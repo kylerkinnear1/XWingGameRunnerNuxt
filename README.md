@@ -28,7 +28,7 @@ Build a comprehensive game runner that manages lists, activation dials, damage t
 ## 📱 App Routes
 
 ```
-/lists                 – View game lists
+/squads                 – View game lists
   /new                 – Create new list
   /import              – Import list from URL/file
   /:id                 – View specific list

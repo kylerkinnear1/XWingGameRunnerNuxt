@@ -45,8 +45,8 @@ const items = ref<NavigationMenuItem[]>([
   {
     label: 'Lists',
     children: [
-      { label: 'Create List', to: '/lists/new' },
-      { label: 'View Lists', to: '/lists/view' }
+      { label: 'Create List', to: '/squads/new' },
+      { label: 'View Lists', to: '/squads/view' }
     ]
   }
 ])

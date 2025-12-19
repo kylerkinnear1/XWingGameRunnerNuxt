@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1766094567076,
-      "tag": "0000_foamy_payback",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1766128418073,
-      "tag": "0001_brave_nocturne",
+      "when": 1766147001730,
+      "tag": "0000_chemical_shard",
       "breakpoints": true
     }
   ]

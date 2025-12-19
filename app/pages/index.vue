@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IndexDto } from '#shared/indexDto';
+import type { SquadReadResponseDto } from '~~/shared/squad-dto';
 
-const { data, pending, error } = useFetch<IndexDto>('/api/games');
+const { data, pending, error } = useFetch<SquadReadResponseDto>('/api/squads');
 </script>
 <template>
   <div>
@@ -10,7 +10,7 @@ const { data, pending, error } = useFetch<IndexDto>('/api/games');
     <div v-else-if="data && data.squads.length === 0">
       You don't have any lists! Lets create one!
       <br />
-      <NuxtLink to="/lists/new">
+      <NuxtLink to="/squads/new">
         <button class="app-button">Create List</button>
       </NuxtLink>
     </div>
