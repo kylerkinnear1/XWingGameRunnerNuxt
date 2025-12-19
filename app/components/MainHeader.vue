@@ -1,15 +1,24 @@
 <template>
-  <header class="flex items-center justify-between px-4 py-2 border-b">
-    <div class="flex items-center gap-3">
-      <NuxtLink to="/" class="font-bold">XWing Gamemaster</NuxtLink>
+  <header class="border-b">
+    <div class="px-8 py-3">
+      <div class="flex items-center gap-3">
+        <NuxtLink to="/" class="flex items-center gap-2 py-3">
+          <img
+            src="/xwing_logo.png"
+            alt="XWing Gamemaster"
+            class="h-12 w-auto shrink-0"
+          />
+          <span class="font-bold whitespace-nowrap">XWing Gamemaster</span>
+        </NuxtLink>
 
-      <div class="ms-4">
-        <UNavigationMenu :items="items" class="w-full" content-orientation="vertical" />
+        <div class="min-w-0 flex-1 px-6">
+          <UNavigationMenu
+            :items="items"
+            content-orientation="vertical"
+            class="w-full"
+          />
+        </div>
       </div>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <TemplateMenu />
     </div>
   </header>
 </template>
@@ -17,7 +26,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { NavigationMenuItem } from '@nuxt/ui'
-import TemplateMenu from './TemplateMenu.vue'
 
 const items = ref<NavigationMenuItem[]>([
   {
