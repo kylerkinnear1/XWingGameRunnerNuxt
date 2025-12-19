@@ -35,4 +35,5 @@ const items = ref<NavigationMenuItem[]>([
     ]
   }
 ])
+
 </script>

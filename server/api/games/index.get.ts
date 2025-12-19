@@ -1,5 +1,5 @@
-import { getDb } from "../../db/getDb.ts";
-import { squads } from "../../db/schema.ts";
+import { getDb } from "../../db/getDb";
+import { squads } from "../../db/schema";
 import { IndexDto } from "#shared/indexDto";
 
 export default defineEventHandler<Promise<IndexDto>>(async (event) => {

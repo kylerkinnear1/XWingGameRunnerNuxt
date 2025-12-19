@@ -9,8 +9,9 @@ const { data, pending, error } = useFetch<IndexDto>('/api/games');
     <div v-else-if="error">Error occured: {{ error }}</div>
     <div v-else-if="data && data.squads.length === 0">
       You don't have any lists! Lets create one!
+      <br />
       <NuxtLink to="/lists/new">
-        <button>Create List</button>
+        <button class="app-button">Create List</button>
       </NuxtLink>
     </div>
     <div v-else-if="data && data.squads.length > 0">

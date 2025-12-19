@@ -24,5 +24,10 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  sourcemap: {
+    server: true,
+    client: true
   }
 })
