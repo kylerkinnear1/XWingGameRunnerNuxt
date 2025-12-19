@@ -1,0 +1,3202 @@
+{
+  "ships": {
+    "imperial": {
+      "firespray31": {
+        "shipStats": {
+          "attack": 3,
+          "agility": 2,
+          "hull": 6,
+          "shields": 4
+        },
+        "pilots": {
+          "bobafett": {
+            "pilotName": "Boba Fett",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When you reveal a bank maneuver, you may rotate your dial to the other bank maneuver of the same speed.",
+            "points": 39,
+            "faction": "Imperial",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bobafett.png"
+          },
+          "bountyhunter": {
+            "pilotName": "Bounty Hunter",
+            "isUnique": false,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 33,
+            "faction": "Imperial",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bountyhunter.png"
+          },
+          "kathscarlet": {
+            "pilotName": "Kath Scarlet",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
+            "points": 38,
+            "faction": "Imperial",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/kathscarlet.png"
+          },
+          "krassistrelix": {
+            "pilotName": "Krassis Trelix",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When attacking with a secondary weapon, you may reroll 1 attack die.",
+            "points": 36,
+            "faction": "Imperial",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/krassistrelix.png"
+          }
+        }
+      },
+      "tieadvanced": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 3,
+          "hull": 3,
+          "shields": 2
+        },
+        "pilots": {
+          "darthvader": {
+            "pilotName": "Darth Vader",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 9,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "During your Perform Action step, you may perform 2 actions.",
+            "points": 29,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/darthvader.png"
+          },
+          "maarekstele": {
+            "pilotName": "Maarek Stele",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others.",
+            "points": 27,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/maarekstele.png"
+          },
+          "commanderalozen": {
+            "pilotName": "Commander Alozen",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
+            "points": 25,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/commanderalozen.png"
+          },
+          "junoeclipse": {
+            "pilotName": "Juno Eclipse",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "When you reveal your maneuver, you may increase or decrease its speed by 1 (to a minimum of 1).",
+            "points": 28,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/junoeclipse.png"
+          },
+          "lieutenantcolzet": {
+            "pilotName": "Lieutenant Colzet",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "At the start of the End phase, you may spend a target lock you have on an enemy ship to flip 1 random facedown Damage card assigned to it faceup.",
+            "points": 24,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/lieutenantcolzet.png"
+          },
+          "stormsquadronpilot": {
+            "pilotName": "Storm Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 23,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/stormsquadronpilot.png"
+          },
+          "tempestsquadronpilot": {
+            "pilotName": "Tempest Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 2,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 21,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/tempestsquadronpilot.png"
+          },
+          "zertikstrom": {
+            "pilotName": "Zertik Strom",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "System",
+              "Modification"
+            ],
+            "ability": "When attacking with a secondary weapon, if you are inside the defender's firing arc, you may reroll your blank results.",
+            "points": 26,
+            "faction": "Imperial",
+            "shipType": "TIEAdvanced",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/zertikstrom.png"
+          }
+        }
+      },
+      "tiefighter": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 3,
+          "hull": 3,
+          "shields": 0
+        },
+        "pilots": {
+          "howlrunner": {
+            "pilotName": "Howlrunner",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "While a friendly ship at Range 1 is performing an attack with a primary weapon, it may reroll 1 attack die.",
+            "points": 18,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/howlrunner.png"
+          },
+          "backstabber": {
+            "pilotName": "Backstabber",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
+            "points": 16,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/backstabber.png"
+          },
+          "darkcurse": {
+            "pilotName": "Dark Curse",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "When defending, ships attacking you cannot spend focus tokens or reroll attack dice.",
+            "points": 16,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/darkcurse.png"
+          },
+          "maulermithel": {
+            "pilotName": "Mauler Mithel",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "After you perform an attack at Range 1 that hits, assign 1 damage to the defender.",
+            "points": 17,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/maulermithel.png"
+          },
+          "academypilot": {
+            "pilotName": "Academy Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 1,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "",
+            "points": 12,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/academypilot.png"
+          },
+          "blacksquadronpilot": {
+            "pilotName": "Black Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 14,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/blacksquadronpilot.png"
+          },
+          "obsidiansquadronpilot": {
+            "pilotName": "Obsidian Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "",
+            "points": 13,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/obsidiansquadronpilot.png"
+          },
+          "nightbeast": {
+            "pilotName": "Night Beast",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "After executing a green maneuver, you may perform a free focus action.",
+            "points": 15,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/nightbeast.png"
+          },
+          "scourge": {
+            "pilotName": "Scourge",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "When attacking a defender that has 1 or more Damage cards, roll 1 additional attack die.",
+            "points": 17,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/scourge.png"
+          },
+          "wampa": {
+            "pilotName": "Wampa",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "When attacking, you may spend your target lock on the defender to deal 1 damage. Then cancel all dice results.",
+            "points": 14,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wampa.png"
+          },
+          "wingedgundark": {
+            "pilotName": "Winged Gundark",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "When attacking at Range 1, you may change 1 of your hit results to a critical result.",
+            "points": 15,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wingedgundark.png"
+          },
+          "youngster": {
+            "pilotName": "Youngster",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Modification"
+            ],
+            "ability": "After being dealt a Damage card, if you have 2 or fewer Damage cards, flip that Damage card facedown.",
+            "points": 15,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/youngster.png"
+          },
+          "chaser": {
+            "pilotName": "Chaser",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 3,
+            "shields": 0,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Modification"
+            ],
+            "ability": "When attacking, if you are the only ship attacking the defender, roll 1 additional attack die.",
+            "points": 14,
+            "faction": "Imperial",
+            "shipType": "TIEFighter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/chaser.png"
+          }
+        }
+      }
+    },
+    "rebels": {
+      "xwing": {
+        "shipStats": {
+          "attack": 3,
+          "agility": 2,
+          "hull": 3,
+          "shields": 2
+        },
+        "pilots": {
+          "lukeskywalker": {
+            "pilotName": "Luke Skywalker",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When defending, you may change 1 of your focus results to an evade result.",
+            "points": 28,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/lukeskywalker.png"
+          },
+          "wedgeantilles": {
+            "pilotName": "Wedge Antilles",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 9,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When attacking, reduce the defender's agility value by 1 (to a minimum of 0).",
+            "points": 29,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wedgeantilles.png"
+          },
+          "biggsdarklighter": {
+            "pilotName": "Biggs Darklighter",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead.",
+            "points": 25,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/biggsdarklighter.png"
+          },
+          "garvendreis": {
+            "pilotName": "Garven Dreis",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "After spending a focus token, you may place that token on any other friendly ship at Range 1-2.",
+            "points": 26,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/garvendreis.png"
+          },
+          "redsquadronpilot": {
+            "pilotName": "Red Squadron Pilot",
+            "isUnique": false,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 23,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/redsquadronpilot.png"
+          },
+          "rookiepilot": {
+            "pilotName": "Rookie Pilot",
+            "isUnique": false,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 2,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 21,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/rookiepilot.png"
+          },
+          "jekporkins": {
+            "pilotName": "Jek Porkins",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When you receive a stress token, you may remove it and roll 1 attack die. On a hit result, deal 1 facedown Damage card to this ship.",
+            "points": 26,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/jekporkins.png"
+          },
+          "tarnmison": {
+            "pilotName": "Tarn Mison",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship.",
+            "points": 23,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/tarnmison.png"
+          },
+          "wesjanson": {
+            "pilotName": "Wes Janson",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender.",
+            "points": 29,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wesjanson.png"
+          },
+          "hobbieklivian": {
+            "pilotName": "Hobbie Klivian",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 3,
+            "shields": 2,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When you acquire or spend a target lock, you may remove 1 stress token from your ship.",
+            "points": 25,
+            "faction": "Rebel",
+            "shipType": "XWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/hobbieklivian.png"
+          }
+        }
+      },
+      "ywing": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 1,
+          "hull": 5,
+          "shields": 3
+        },
+        "pilots": {
+          "dutchvander": {
+            "pilotName": "Dutch Vander",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "After acquiring a target lock, choose another friendly ship at Range 1-2. That ship may immediately acquire a target lock.",
+            "points": 23,
+            "faction": "Rebel",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/dutchvander.png"
+          },
+          "hortonsalm": {
+            "pilotName": "Horton Salm",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "When attacking at Range 2-3, you may reroll any of your blank results.",
+            "points": 25,
+            "faction": "Rebel",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/hortonsalm.png"
+          },
+          "goldsquadronpilot": {
+            "pilotName": "Gold Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 18,
+            "faction": "Rebel",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/goldsquadronpilot.png"
+          },
+          "graysquadronpilot": {
+            "pilotName": "Gray Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 2,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "Astromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 18,
+            "faction": "Rebel",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/graysquadronpilot.png"
+          }
+        }
+      },
+      "awing": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 3,
+          "hull": 2,
+          "shields": 2
+        },
+        "pilots": {
+          "tychocelchu": {
+            "pilotName": "Tycho Celchu",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "Modification"
+            ],
+            "ability": "You may perform actions even while you have stress tokens.",
+            "points": 26,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/tychocelchu.png"
+          },
+          "jakefarrell": {
+            "pilotName": "Jake Farrell",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "Modification"
+            ],
+            "ability": "After performing a focus action, you may perform a free boost or barrel roll action.",
+            "points": 24,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/jakefarrell.png"
+          },
+          "arvelcrynyd": {
+            "pilotName": "Arvel Crynyd",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Modification"
+            ],
+            "ability": "You may declare an enemy ship inside your firing arc that you are touching as the target of your attack.",
+            "points": 23,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/arvelcrynyd.png"
+          },
+          "gemmersojan": {
+            "pilotName": "Gemmer Sojan",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Modification"
+            ],
+            "ability": "While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1.",
+            "points": 22,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/gemmersojan.png"
+          },
+          "greensquadronpilot": {
+            "pilotName": "Green Squadron Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 19,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/greensquadronpilot.png"
+          },
+          "prototypepilot": {
+            "pilotName": "Prototype Pilot",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 3,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 1,
+            "actions": [
+              "Focus",
+              "Evade",
+              "TargetLock",
+              "Boost",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 17,
+            "faction": "Rebel",
+            "shipType": "AWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/prototypepilot.png"
+          }
+        }
+      }
+    },
+    "scum": {
+      "ywing": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 1,
+          "hull": 5,
+          "shields": 3
+        },
+        "pilots": {
+          "kavil": {
+            "pilotName": "Kavil",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "SalvagedAstromech",
+              "Modification"
+            ],
+            "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
+            "points": 24,
+            "faction": "Scum",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/kavil.png"
+          },
+          "drearenthal": {
+            "pilotName": "Drea Renthal",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "SalvagedAstromech",
+              "Modification"
+            ],
+            "ability": "When a friendly ship at Range 1-3 attacks a ship you have locked, the friendly ship may treat your target lock as its own.",
+            "points": 22,
+            "faction": "Scum",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/drearenthal.png"
+          },
+          "hiredgun": {
+            "pilotName": "Hired Gun",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 4,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "SalvagedAstromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 20,
+            "faction": "Scum",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/hiredgun.png"
+          },
+          "syndicatethug": {
+            "pilotName": "Syndicate Thug",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 1,
+            "hull": 5,
+            "shields": 3,
+            "pilotSkill": 2,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Turret",
+              "Torpedo",
+              "Torpedo",
+              "SalvagedAstromech",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 18,
+            "faction": "Scum",
+            "shipType": "YWing",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/syndicatethug.png"
+          }
+        }
+      },
+      "z95headhunter": {
+        "shipStats": {
+          "attack": 2,
+          "agility": 2,
+          "hull": 2,
+          "shields": 2
+        },
+        "pilots": {
+          "ndrusuhlak": {
+            "pilotName": "N'dru Suhlak",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 2,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When attacking, if there are no other friendly ships at Range 1-2, roll 1 additional attack die.",
+            "points": 17,
+            "faction": "Scum",
+            "shipType": "Z95Headhunter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/ndrusuhlak.png"
+          },
+          "kaatoleeachos": {
+            "pilotName": "Kaa'to Leeachos",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 2,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Missile",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
+            "points": 15,
+            "faction": "Scum",
+            "shipType": "Z95Headhunter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/kaatoleeachos.png"
+          },
+          "blacksunsoldier": {
+            "pilotName": "Black Sun Soldier",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 2,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 3,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 13,
+            "faction": "Scum",
+            "shipType": "Z95Headhunter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/blacksunsoldier.png"
+          },
+          "binayrepirate": {
+            "pilotName": "Binayre Pirate",
+            "isUnique": false,
+            "attack": 2,
+            "agility": 2,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 1,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 12,
+            "faction": "Scum",
+            "shipType": "Z95Headhunter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/binayrepirate.png"
+          },
+          "nashtahpup": {
+            "pilotName": "Nashtah Pup",
+            "isUnique": true,
+            "attack": 2,
+            "agility": 2,
+            "hull": 2,
+            "shields": 2,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Missile",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "You have the pilot skill and pilot ability of the friendly Hound's Tooth (fore section), if it is in play.",
+            "points": 4,
+            "faction": "Scum",
+            "shipType": "Z95Headhunter",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/nashtahpup.png"
+          }
+        }
+      },
+      "firespray31": {
+        "shipStats": {
+          "attack": 3,
+          "agility": 2,
+          "hull": 6,
+          "shields": 4
+        },
+        "pilots": {
+          "bobafett": {
+            "pilotName": "Boba Fett",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 8,
+            "actions": [
+              "Focus",
+              "TargetLock",
+              "Evade",
+              "BarrelRoll"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When you reveal a bank maneuver, you may rotate your dial to the other bank maneuver of the same speed.",
+            "points": 39,
+            "faction": "Scum",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/bobafett.png"
+          },
+          "kathscarlet": {
+            "pilotName": "Kath Scarlet",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 7,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Elite",
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
+            "points": 38,
+            "faction": "Scum",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/kathscarlet.png"
+          },
+          "emonazzameen": {
+            "pilotName": "Emon Azzameen",
+            "isUnique": true,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 6,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "When dropping a bomb, you may use the [3 straight] template instead of the [1 straight] template.",
+            "points": 36,
+            "faction": "Scum",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/emonazzameen.png"
+          },
+          "mandalorianmercenary": {
+            "pilotName": "Mandalorian Mercenary",
+            "isUnique": false,
+            "attack": 3,
+            "agility": 2,
+            "hull": 6,
+            "shields": 4,
+            "pilotSkill": 5,
+            "actions": [
+              "Focus",
+              "TargetLock"
+            ],
+            "upgradeSlots": [
+              "Cannon",
+              "Missile",
+              "Crew",
+              "Bomb",
+              "Illicit",
+              "Modification"
+            ],
+            "ability": "",
+            "points": 35,
+            "faction": "Scum",
+            "shipType": "Firespray31",
+            "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/mandalorianmercenary.png"
+          }
+        }
+      }
+    }
+  },
+  "upgrades": {
+    "elite": {
+      "veteraninstincts": {
+        "name": "Veteran Instincts",
+        "isUnique": false,
+        "rulesText": "Increase your pilot skill value by 2.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/veteraninstincts.png"
+      },
+      "pushthelimit": {
+        "name": "Push the Limit",
+        "isUnique": false,
+        "rulesText": "Once per round, after you perform an action, you may perform 1 free action shown in your action bar. Then receive 1 stress token.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/pushthelimit.png"
+      },
+      "predator": {
+        "name": "Predator",
+        "isUnique": false,
+        "rulesText": "When attacking, you may reroll 1 attack die. If the defender's pilot skill value is 2 or lower, you may instead reroll up to 2 attack dice.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/predator.png"
+      },
+      "crackshot": {
+        "name": "Crack Shot",
+        "isUnique": false,
+        "rulesText": "When attacking a ship inside your firing arc, you may discard this card to cancel 1 of the defender's evade results.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": true,
+          "isModification": false
+        },
+        "limited": true,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/crackshot.png"
+      },
+      "marksmanship": {
+        "name": "Marksmanship",
+        "isUnique": false,
+        "rulesText": "Action: When attacking this round, you may change 1 of your focus results to a critical hit result and all of your other focus results to hit results.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/marksmanship.png"
+      },
+      "lonewolf": {
+        "name": "Lone Wolf",
+        "isUnique": true,
+        "rulesText": "When attacking or defending, if there are no other friendly ships at Range 1-2, you may reroll 1 of your blank results.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/lonewolf.png"
+      },
+      "expertiseEPT": {
+        "name": "Expertise",
+        "isUnique": false,
+        "rulesText": "When attacking, if you have no stress tokens, you may change all of your focus results to hit results.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/expertiseEPT.png"
+      },
+      "swarmtactics": {
+        "name": "Swarm Tactics",
+        "isUnique": false,
+        "rulesText": "At the start of the Combat phase, choose 1 friendly ship at Range 1. Until the end of this phase, treat that ship as if its pilot skill were equal to yours.",
+        "upgradeType": "Elite",
+        "slotsRequired": [
+          "Elite"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/swarmtactics.png"
+      }
+    },
+    "astromech": {
+      "r2d2": {
+        "name": "R2-D2",
+        "isUnique": true,
+        "rulesText": "After executing a green maneuver, you may recover 1 shield (up to your shield value).",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r2d2.png"
+      },
+      "r2astromech": {
+        "name": "R2 Astromech",
+        "isUnique": false,
+        "rulesText": "You may treat all 1- and 2-speed maneuvers as green maneuvers.",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r2astromech.png"
+      },
+      "r3a2": {
+        "name": "R3-A2",
+        "isUnique": false,
+        "rulesText": "When you declare the target of your attack, if the defender is inside your firing arc, you may receive 1 stress token to cause the defender to receive 1 stress token.",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r3a2.png"
+      },
+      "r5k6": {
+        "name": "R5-K6",
+        "isUnique": false,
+        "rulesText": "After spending your target lock, roll 1 defense die. On an evade result, immediately acquire a target lock on that same ship. You cannot spend this target lock during this attack.",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r5k6.png"
+      },
+      "r7t1": {
+        "name": "R7-T1",
+        "isUnique": false,
+        "rulesText": "Action: Choose an enemy ship at Range 1-2. If you are inside that ship's firing arc, you may acquire a target lock on that ship. Then, you may perform a free boost action.",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r7t1.png"
+      },
+      "bb8": {
+        "name": "BB-8",
+        "isUnique": true,
+        "rulesText": "When you reveal a green maneuver, you may perform a free barrel roll action.",
+        "upgradeType": "Astromech",
+        "slotsRequired": [
+          "Astromech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/bb8.png"
+      }
+    },
+    "torpedo": {
+      "protontorpedoes": {
+        "name": "Proton Torpedoes",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your focus results to a critical hit result.",
+        "upgradeType": "Torpedo",
+        "slotsRequired": [
+          "Torpedo"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/protontorpedoes.png"
+      },
+      "advprotontorpedoes": {
+        "name": "Advanced Proton Torpedoes",
+        "isUnique": false,
+        "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a focus result.",
+        "upgradeType": "Torpedo",
+        "slotsRequired": [
+          "Torpedo"
+        ],
+        "points": 6,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 5,
+        "minRange": 1,
+        "maxRange": 1,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/advprotontorpedoes.png"
+      },
+      "plasmatorpedoes": {
+        "name": "Plasma Torpedoes",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender.",
+        "upgradeType": "Torpedo",
+        "slotsRequired": [
+          "Torpedo"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/plasmatorpedoes.png"
+      },
+      "iontorpedoes": {
+        "name": "Ion Torpedoes",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
+        "upgradeType": "Torpedo",
+        "slotsRequired": [
+          "Torpedo"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/iontorpedoes.png"
+      }
+    },
+    "missile": {
+      "concussionmissiles": {
+        "name": "Concussion Missiles",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a hit result.",
+        "upgradeType": "Missile",
+        "slotsRequired": [
+          "Missile"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/concussionmissiles.png"
+      },
+      "homingmissiles": {
+        "name": "Homing Missiles",
+        "isUnique": false,
+        "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. The defender cannot spend evade tokens during this attack.",
+        "upgradeType": "Missile",
+        "slotsRequired": [
+          "Missile"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/homingmissiles.png"
+      },
+      "clustermissiles": {
+        "name": "Cluster Missiles",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack twice.",
+        "upgradeType": "Missile",
+        "slotsRequired": [
+          "Missile"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 2,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/clustermissiles.png"
+      },
+      "assaultmissiles": {
+        "name": "Assault Missiles",
+        "isUnique": false,
+        "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, each other ship at Range 1 of the defender suffers 1 damage.",
+        "upgradeType": "Missile",
+        "slotsRequired": [
+          "Missile"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/assaultmissiles.png"
+      },
+      "protonrockets": {
+        "name": "Proton Rockets",
+        "isUnique": false,
+        "rulesText": "Attack (focus): Discard this card to perform this attack. You may roll additional attack dice equal to your agility value, to a maximum of 3 additional dice.",
+        "upgradeType": "Missile",
+        "slotsRequired": [
+          "Missile"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 2,
+        "minRange": 1,
+        "maxRange": 1,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/protonrockets.png"
+      }
+    },
+    "cannon": {
+      "ioncannon": {
+        "name": "Ion Cannon",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
+        "upgradeType": "Cannon",
+        "slotsRequired": [
+          "Cannon"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/ioncannon.png"
+      },
+      "heavylasercannon": {
+        "name": "Heavy Laser Cannon",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship. Immediately after rolling your attack dice, you must change all of your critical hit results to hit results.",
+        "upgradeType": "Cannon",
+        "slotsRequired": [
+          "Cannon"
+        ],
+        "points": 7,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 4,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/heavylasercannon.png"
+      },
+      "autoblaster": {
+        "name": "Autoblaster",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship. Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
+        "upgradeType": "Cannon",
+        "slotsRequired": [
+          "Cannon"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 1,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/autoblaster.png"
+      },
+      "manglercannon": {
+        "name": "Mangler Cannon",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship. When you attack with this weapon, you may change 1 of your hit results to a critical hit result.",
+        "upgradeType": "Cannon",
+        "slotsRequired": [
+          "Cannon"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/manglercannon.png"
+      }
+    },
+    "turret": {
+      "twinlaserturret": {
+        "name": "Twin Laser Turret",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Perform this attack twice. Each attack cannot be modified by more than 1 focus token or spend more than 1 focus token.",
+        "upgradeType": "Turret",
+        "slotsRequired": [
+          "Turret"
+        ],
+        "points": 6,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 2,
+        "maxRange": 3,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/twinlaserturret.png"
+      },
+      "blasterturret": {
+        "name": "Blaster Turret",
+        "isUnique": false,
+        "rulesText": "Attack (focus): Attack 1 ship (even a ship outside your firing arc). You may change 1 of your focus results to a hit result.",
+        "upgradeType": "Turret",
+        "slotsRequired": [
+          "Turret"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 2,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/blasterturret.png"
+      },
+      "ioncannonturret": {
+        "name": "Ion Cannon Turret",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
+        "upgradeType": "Turret",
+        "slotsRequired": [
+          "Turret"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 2,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/ioncannonturret.png"
+      },
+      "autoblasterturret": {
+        "name": "Autoblaster Turret",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
+        "upgradeType": "Turret",
+        "slotsRequired": [
+          "Turret"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 2,
+        "minRange": 1,
+        "maxRange": 1,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/autoblasterturret.png"
+      },
+      "dorsalturret": {
+        "name": "Dorsal Turret",
+        "isUnique": false,
+        "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If the target of this attack is inside your firing arc, roll 1 additional attack die.",
+        "upgradeType": "Turret",
+        "slotsRequired": [
+          "Turret"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": 2,
+        "minRange": 1,
+        "maxRange": 2,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/dorsalturret.png"
+      }
+    },
+    "crew": {
+      "chewbacca": {
+        "name": "Chewbacca",
+        "isUnique": true,
+        "rulesText": "When you are dealt a faceup Damage card, immediately flip it facedown (without resolving its effect).",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/chewbacca.png"
+      },
+      "hansolo": {
+        "name": "Han Solo",
+        "isUnique": true,
+        "rulesText": "When attacking, you may reroll all of your dice. If you do so, you cannot spend focus tokens during this attack.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/hansolo.png"
+      },
+      "lukeskywalker": {
+        "name": "Luke Skywalker",
+        "isUnique": true,
+        "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You may change 1 focus result to a hit result. You cannot perform another attack this round.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 7,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/lukeskywalker.png"
+      },
+      "gunner": {
+        "name": "Gunner",
+        "isUnique": false,
+        "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You cannot perform another attack this round.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/gunner.png"
+      },
+      "intelligenceagent": {
+        "name": "Intelligence Agent",
+        "isUnique": false,
+        "rulesText": "At the start of the Activation phase, choose 1 enemy ship at Range 1-2. You may look at that ship's chosen maneuver.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/intelligenceagent.png"
+      },
+      "reconspecialist": {
+        "name": "Recon Specialist",
+        "isUnique": false,
+        "rulesText": "When you perform a focus action, assign 1 additional focus token to your ship.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/reconspecialist.png"
+      },
+      "darthvader": {
+        "name": "Darth Vader",
+        "isUnique": true,
+        "rulesText": "After you perform an attack against an enemy ship, you may suffer 2 damage to cause that ship to suffer 1 damage.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [
+            "Imperial"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/darthvader.png"
+      },
+      "fleetofficer": {
+        "name": "Fleet Officer",
+        "isUnique": false,
+        "rulesText": "Action: Choose up to 2 friendly ships at Range 1-2 and assign 1 focus token to each of those ships. Then receive 1 stress token.",
+        "upgradeType": "Crew",
+        "slotsRequired": [
+          "Crew"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [
+            "Imperial"
+          ],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/fleetofficer.png"
+      }
+    },
+    "bomb": {
+      "protonbombs": {
+        "name": "Proton Bombs",
+        "isUnique": false,
+        "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 proton bomb token. This token detonates at the end of the Activation phase.",
+        "upgradeType": "Bomb",
+        "slotsRequired": [
+          "Bomb"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/protonbombs.png"
+      },
+      "seismiccharges": {
+        "name": "Seismic Charges",
+        "isUnique": false,
+        "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 seismic charge token. This token detonates at the end of the Activation phase.",
+        "upgradeType": "Bomb",
+        "slotsRequired": [
+          "Bomb"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/seismiccharges.png"
+      },
+      "proximitymines": {
+        "name": "Proximity Mines",
+        "isUnique": false,
+        "rulesText": "Action: Discard this card to drop 1 proximity mine token. When a ship's base or maneuver template overlaps this token, this token detonates.",
+        "upgradeType": "Bomb",
+        "slotsRequired": [
+          "Bomb"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/proximitymines.png"
+      },
+      "clustermines": {
+        "name": "Cluster Mines",
+        "isUnique": false,
+        "rulesText": "Action: Discard this card to drop 1 cluster mine token set. When a ship overlaps one of these tokens, that token detonates.",
+        "upgradeType": "Bomb",
+        "slotsRequired": [
+          "Bomb"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/clustermines.png"
+      },
+      "ionbombs": {
+        "name": "Ion Bombs",
+        "isUnique": false,
+        "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 ion bomb token. This token detonates at the end of the Activation phase.",
+        "upgradeType": "Bomb",
+        "slotsRequired": [
+          "Bomb"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/ionbombs.png"
+      }
+    },
+    "modification": {
+      "hullupgrade": {
+        "name": "Hull Upgrade",
+        "isUnique": false,
+        "rulesText": "Increase your hull value by 1.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/hullupgrade.png"
+      },
+      "shieldupgrade": {
+        "name": "Shield Upgrade",
+        "isUnique": false,
+        "rulesText": "Increase your shield value by 1.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/shieldupgrade.png"
+      },
+      "engineupgrade": {
+        "name": "Engine Upgrade",
+        "isUnique": false,
+        "rulesText": "Your action bar gains the boost action icon.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/engineupgrade.png"
+      },
+      "stealthdevice": {
+        "name": "Stealth Device",
+        "isUnique": false,
+        "rulesText": "Increase your agility value by 1. If you are hit by an attack, discard this card.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/stealthdevice.png"
+      },
+      "autothrusters": {
+        "name": "Autothrusters",
+        "isUnique": false,
+        "rulesText": "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to an evade result. You can equip this card only if you have the boost action icon.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/autothrusters.png"
+      },
+      "targetingcomputer": {
+        "name": "Targeting Computer",
+        "isUnique": false,
+        "rulesText": "Your action bar gains the target lock action icon.",
+        "upgradeType": "Modification",
+        "slotsRequired": [
+          "Modification"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": true
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/targetingcomputer.png"
+      }
+    },
+    "system": {
+      "advancedsensors": {
+        "name": "Advanced Sensors",
+        "isUnique": false,
+        "rulesText": "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your Perform Action step during this round.",
+        "upgradeType": "System",
+        "slotsRequired": [
+          "System"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/advancedsensors.png"
+      },
+      "firecontrolsystem": {
+        "name": "Fire-Control System",
+        "isUnique": false,
+        "rulesText": "After you perform an attack, you may acquire a target lock on the defender.",
+        "upgradeType": "System",
+        "slotsRequired": [
+          "System"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/firecontrolsystem.png"
+      },
+      "sensorjammer": {
+        "name": "Sensor Jammer",
+        "isUnique": false,
+        "rulesText": "When defending, you may change 1 of the attacker's hit results to a focus result. The attacker cannot reroll the die with the changed result.",
+        "upgradeType": "System",
+        "slotsRequired": [
+          "System"
+        ],
+        "points": 4,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/sensorjammer.png"
+      },
+      "accuracycorrector": {
+        "name": "Accuracy Corrector",
+        "isUnique": false,
+        "rulesText": "When attacking, during the Modify Attack Dice step, you may cancel all of your dice results. Then, you may add 2 hit results. Your dice cannot be modified again during this attack.",
+        "upgradeType": "System",
+        "slotsRequired": [
+          "System"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/accuracycorrector.png"
+      },
+      "collisiondetector": {
+        "name": "Collision Detector",
+        "isUnique": false,
+        "rulesText": "When you reveal a maneuver, you may rotate your dial to another maneuver with the same bearing. You cannot rotate to a red maneuver if you have any stress tokens. You can only equip this upgrade if you have the system upgrade icon.",
+        "upgradeType": "System",
+        "slotsRequired": [
+          "System"
+        ],
+        "points": 0,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/collisiondetector.png"
+      }
+    },
+    "illicit": {
+      "glitterstim": {
+        "name": "Glitterstim",
+        "isUnique": false,
+        "rulesText": "At the start of the Combat phase, you may discard this card and receive 1 stress token. If you do, until the end of the round, when attacking or defending, you may convert all of your focus results to hit or evade results.",
+        "upgradeType": "Illicit",
+        "slotsRequired": [
+          "Illicit"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/glitterstim.png"
+      },
+      "inertialdampeners": {
+        "name": "Inertial Dampeners",
+        "isUnique": false,
+        "rulesText": "When you reveal your maneuver, you may discard this card to instead perform a white [0 stop] maneuver. Then receive 1 stress token.",
+        "upgradeType": "Illicit",
+        "slotsRequired": [
+          "Illicit"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/inertialdampeners.png"
+      },
+      "hotshotblaster": {
+        "name": "Hot Shot Blaster",
+        "isUnique": false,
+        "rulesText": "Attack (energy): Attack 1 ship. You may receive 1 ion token to roll 1 additional attack die. If you do not have an energy token, you cannot perform this attack.",
+        "upgradeType": "Illicit",
+        "slotsRequired": [
+          "Illicit"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": true,
+          "isModification": false
+        },
+        "limited": true,
+        "attack": 3,
+        "minRange": 1,
+        "maxRange": 2,
+        "energy": 1,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/hotshotblaster.png"
+      },
+      "deadmansswitch": {
+        "name": "Dead Man's Switch",
+        "isUnique": false,
+        "rulesText": "When you are destroyed, each other ship at Range 1 suffers 1 damage.",
+        "upgradeType": "Illicit",
+        "slotsRequired": [
+          "Illicit"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/deadmansswitch.png"
+      },
+      "feedbackarray": {
+        "name": "Feedback Array",
+        "isUnique": false,
+        "rulesText": "During the Combat phase, instead of performing an attack, you may receive 1 ion token and suffer 1 damage to cause each ship at Range 1 to suffer 1 damage.",
+        "upgradeType": "Illicit",
+        "slotsRequired": [
+          "Illicit"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/feedbackarray.png"
+      }
+    },
+    "title": {
+      "millenniumfalcon": {
+        "name": "Millennium Falcon",
+        "isUnique": true,
+        "rulesText": "Your action bar gains the evade action icon.",
+        "upgradeType": "Title",
+        "slotsRequired": [
+          "Title"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [
+            "YT1300"
+          ],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/millenniumfalcon.png"
+      },
+      "slavei": {
+        "name": "Slave I",
+        "isUnique": true,
+        "rulesText": "After you execute a 3-speed bank maneuver or a 3-speed turn maneuver, you may perform a free boost action.",
+        "upgradeType": "Title",
+        "slotsRequired": [
+          "Title"
+        ],
+        "points": 0,
+        "restrictions": {
+          "factions": [
+            "Scum"
+          ],
+          "ships": [
+            "Firespray31"
+          ],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/slavei.png"
+      },
+      "royalguardtie": {
+        "name": "Royal Guard TIE",
+        "isUnique": false,
+        "rulesText": "You may equip up to 2 Modification upgrades (instead of 1). You cannot equip this upgrade if your pilot skill value is 4 or lower.",
+        "upgradeType": "Title",
+        "slotsRequired": [
+          "Title"
+        ],
+        "points": 0,
+        "restrictions": {
+          "factions": [
+            "Imperial"
+          ],
+          "ships": [
+            "TIEInterceptor"
+          ],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/royalguardtie.png"
+      },
+      "tiex1": {
+        "name": "TIE/x1",
+        "isUnique": false,
+        "rulesText": "After you perform a boost or barrel roll action, you may perform a free evade action.",
+        "upgradeType": "Title",
+        "slotsRequired": [
+          "Title"
+        ],
+        "points": 0,
+        "restrictions": {
+          "factions": [
+            "Imperial"
+          ],
+          "ships": [
+            "TIEAdvanced"
+          ],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/tiex1.png"
+      },
+      "outrider": {
+        "name": "Outrider",
+        "isUnique": true,
+        "rulesText": "While you have a cannon upgrade card equipped, you cannot perform primary weapon attacks and you may perform cannon secondary weapon attacks against ships outside your firing arc.",
+        "upgradeType": "Title",
+        "slotsRequired": [
+          "Title"
+        ],
+        "points": 5,
+        "restrictions": {
+          "factions": [
+            "Rebel"
+          ],
+          "ships": [
+            "YT2400"
+          ],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/outrider.png"
+      }
+    },
+    "tech": {
+      "commrelay": {
+        "name": "Comm Relay",
+        "isUnique": false,
+        "rulesText": "During the End phase, you may receive 1 evade or focus token. If you do not have any focus or evade tokens at the end of the Combat phase, you may not use this ability until the end of the next round.",
+        "upgradeType": "Tech",
+        "slotsRequired": [
+          "Tech"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/commrelay.png"
+      },
+      "patternanalyzer": {
+        "name": "Pattern Analyzer",
+        "isUnique": false,
+        "rulesText": "When you fully execute a maneuver, you may postpone triggering any abilities that occur after executing that maneuver until after you perform an action.",
+        "upgradeType": "Tech",
+        "slotsRequired": [
+          "Tech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/patternanalyzer.png"
+      },
+      "primedthrusters": {
+        "name": "Primed Thrusters",
+        "isUnique": false,
+        "rulesText": "When you reveal a [3 straight] maneuver, you may treat it as a green maneuver.",
+        "upgradeType": "Tech",
+        "slotsRequired": [
+          "Tech"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/primedthrusters.png"
+      },
+      "targetingsynchronizer": {
+        "name": "Targeting Synchronizer",
+        "isUnique": false,
+        "rulesText": "When a friendly ship at Range 1-2 is attacking a ship you have locked, it may treat that ship as being locked as well.",
+        "upgradeType": "Tech",
+        "slotsRequired": [
+          "Tech"
+        ],
+        "points": 3,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/targetingsynchronizer.png"
+      },
+      "sensorcluster": {
+        "name": "Sensor Cluster",
+        "isUnique": false,
+        "rulesText": "When defending, you may spend a focus token to change 1 of your blank results to an evade result.",
+        "upgradeType": "Tech",
+        "slotsRequired": [
+          "Tech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/sensorcluster.png"
+      }
+    },
+    "salvagedastromech": {
+      "salvagedastromech": {
+        "name": "Salvaged Astromech",
+        "isUnique": false,
+        "rulesText": "When you are dealt a faceup Damage card with the Ship trait, you may immediately discard that card (before resolving its effect). Then, discard this Upgrade card.",
+        "upgradeType": "SalvagedAstromech",
+        "slotsRequired": [
+          "SalvagedAstromech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/salvagedastromech.png"
+      },
+      "r4agromech": {
+        "name": "R4 Agromech",
+        "isUnique": false,
+        "rulesText": "When attacking, after you spend a focus token, you may receive 1 stress token to receive 1 focus token.",
+        "upgradeType": "SalvagedAstromech",
+        "slotsRequired": [
+          "SalvagedAstromech"
+        ],
+        "points": 2,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/r4agromech.png"
+      },
+      "unhingedastromech": {
+        "name": "Unhinged Astromech",
+        "isUnique": false,
+        "rulesText": "You may treat all 3-speed maneuvers as green maneuvers.",
+        "upgradeType": "SalvagedAstromech",
+        "slotsRequired": [
+          "SalvagedAstromech"
+        ],
+        "points": 1,
+        "restrictions": {
+          "factions": [],
+          "ships": [],
+          "isLimited": false,
+          "isModification": false
+        },
+        "limited": false,
+        "attack": null,
+        "minRange": null,
+        "maxRange": null,
+        "energy": null,
+        "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/unhingedastromech.png"
+      }
+    }
+  }
+}

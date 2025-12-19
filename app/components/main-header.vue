@@ -44,7 +44,7 @@ const items = ref<NavigationMenuItem[]>([
   },
   {
     label: 'Squads',
-    to: '/squads/view'
+    to: '/squads/'
   }
 ])
 
