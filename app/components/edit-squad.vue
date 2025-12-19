@@ -2,6 +2,8 @@
 import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 
+const { selectedSquad, refreshList } = useSquadEditor();
+
 const form = ref<SquadUpdateDto>({
     name: '',
     faction: Faction.Rebel
@@ -11,46 +13,52 @@ const loading = ref(false);
 const error = ref<string | null>(null);
 const success = ref(false);
 
-const initialFormState = (): SquadUpdateDto => ({
-    name: '',
-    faction: Faction.Rebel
-});
+const isEditing = computed(() => !!selectedSquad.value);
 
-function resetForm() {
-    form.value = initialFormState();
-    error.value = null;
-    success.value = false;
-}
+watch(selectedSquad, (squad) => {
+    if (squad) {
+        form.value = {
+            name: squad.name,
+            faction: squad.faction
+        };
+        error.value = null;
+        success.value = false;
+    }
+}, { immediate: true });
 
-async function createSquad() {
+async function saveSquad() {
     error.value = null;
     success.value = false;
     loading.value = true;
 
     try {
-    const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
-        method: 'POST',
-        body: form.value
-    });
-
-    success.value = true;
-    resetForm();
+        await $fetch(`/api/squads/${selectedSquad.value!.id}`, {
+            method: 'PUT',
+            body: form.value
+        });
     
-    // Keep success message visible
-    success.value = true;
+        success.value = true;
+    
+        // Refresh the list to show updated data
+        await refreshList();
     } catch (e: any) {
-    error.value = e.data?.message || 'Failed to create squad';
+        error.value = e.data?.message || 'Failed to save squad';
     } finally {
-    loading.value = false;
+        loading.value = false;
     }
 }
 </script>
-
 <template>
     <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Create New Squad</h1>
+    <h1 class="text-3xl font-bold mb-6">
+        {{ isEditing ? 'Edit Squad' : 'Select a Squad' }}
+    </h1>
 
-    <form @submit.prevent="createSquad" class="space-y-6">
+    <div v-if="!isEditing" class="text-center py-12 text-gray-500">
+        <p>Select a squad from the list or create a new one</p>
+    </div>
+
+    <form v-else @submit.prevent="saveSquad" class="space-y-6">
         <div>
         <label for="name" class="block text-sm font-medium mb-2">
             Squad Name
@@ -73,7 +81,8 @@ async function createSquad() {
             id="faction"
             v-model="form.faction"
             required
-            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            disabled
+            class="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
         >
             <option
             v-for="option in factionOptions"
@@ -83,16 +92,15 @@ async function createSquad() {
             {{ option.label }}
             </option>
         </select>
+        <p class="text-xs text-gray-500 mt-1">Faction cannot be changed after creation</p>
         </div>
 
-        <!-- Error Message -->
         <div v-if="error" class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
         {{ error }}
         </div>
 
-        <!-- Success Message -->
         <div v-if="success" class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-        Squad created successfully!
+        Squad updated successfully!
         </div>
 
         <div class="flex gap-4">
@@ -101,12 +109,8 @@ async function createSquad() {
             :disabled="loading || !form.name"
             class="app-button"
         >
-            {{ loading ? 'Creating...' : 'Create Squad' }}
+            {{ loading ? 'Saving...' : 'Update Squad' }}
         </button>
-
-        <NuxtLink to="/lists/view" class="px-9 py-2 border rounded-lg hover:bg-gray-50">
-            Cancel
-        </NuxtLink>
         </div>
     </form>
     </div>

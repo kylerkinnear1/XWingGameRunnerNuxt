@@ -7,7 +7,7 @@
     
     <!-- Right side - Create Form -->
     <div class="lg:col-span-2">
-      <SubmitSquad />
+      <EditSquad />
     </div>
   </div>
 </template>

@@ -2,13 +2,18 @@
 import type { SquadReadResponseDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 
+const { selectedSquad, selectSquad, registerRefresh } = useSquadEditor();
 const { data: response, pending, error, refresh } = await useFetch<SquadReadResponseDto>('/api/squads');
+
+// Register refresh function so other components can trigger it
+onMounted(() => {
+  registerRefresh(refresh);
+});
 
 const selectedFaction = ref<Faction>(Faction.Rebel);
 const creating = ref(false);
 const createError = ref<string | null>(null);
 
-// Faction background colors
 const factionBgColors = {
   [Faction.Rebel]: 'bg-red-50 border-red-200',
   [Faction.Empire]: 'bg-gray-50 border-gray-200',
@@ -20,7 +25,7 @@ async function createEmptySquad() {
   createError.value = null;
 
   try {
-    await $fetch<SquadUpdateResponseDto>('/api/squads', {
+    const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
       method: 'POST',
       body: {
         name: `New ${selectedFaction.value} Squad`,
@@ -28,8 +33,12 @@ async function createEmptySquad() {
       }
     });
 
-    // Refresh the list to show new squad
     await refresh();
+    
+    const newSquad = response.value?.squads.find(s => s.id === result.id);
+    if (newSquad) {
+      selectSquad(newSquad);
+    }
   } catch (e: any) {
     createError.value = e.data?.message || 'Failed to create squad';
   } finally {
@@ -37,16 +46,17 @@ async function createEmptySquad() {
   }
 }
 
-// Expose refresh for parent components
+function handleSquadClick(squad: any) {
+  selectSquad(squad);
+}
+
 defineExpose({
   refresh
 });
 </script>
-
 <template>
   <div class="border rounded-lg transition-colors" :class="factionBgColors[selectedFaction]">
     <div class="p-4 border-b" :class="factionBgColors[selectedFaction]">
-      <!-- Faction Selector -->
       <div class="mb-4">
         <label for="faction" class="block text-sm font-medium mb-2">
           Faction
@@ -66,7 +76,6 @@ defineExpose({
         </select>
       </div>
 
-      <!-- Create Button -->
       <button
         @click="createEmptySquad"
         :disabled="creating"
@@ -75,7 +84,6 @@ defineExpose({
         {{ creating ? 'Creating...' : 'Create List' }}
       </button>
 
-      <!-- Create Error -->
       <div v-if="createError" class="mt-2 text-sm text-red-600">
         {{ createError }}
       </div>
@@ -84,29 +92,30 @@ defineExpose({
     <div class="p-4">
       <h2 class="text-2xl font-bold mb-4">Your Squads</h2>
 
-      <!-- Loading State -->
       <div v-if="pending" class="text-center py-8 text-gray-500">
         Loading squads...
       </div>
 
-      <!-- Error State -->
       <div v-else-if="error" class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
         Failed to load squads
       </div>
 
-      <!-- Empty State -->
       <div v-else-if="!response || response.squads.length === 0" class="text-center py-8">
         <p class="text-gray-500 mb-4">No squads yet</p>
         <p class="text-sm text-gray-400">Select a faction and click "Create List"</p>
       </div>
 
-      <!-- Squad List -->
       <div v-else class="space-y-3">
-        <SquadCard
+        <div
           v-for="squad in response.squads"
           :key="squad.id"
-          :squad="squad"
-        />
+          @click="handleSquadClick(squad)"
+        >
+          <SquadCard 
+            :squad="squad"
+            :isSelected="selectedSquad?.id === squad.id"
+          />
+        </div>
       </div>
     </div>
   </div>
