@@ -18,6 +18,13 @@
             class="w-full"
           />
         </div>
+
+        <NuxtLink
+          to="/login"
+          class="shrink-0 px-4 py-2 rounded-md border text-sm font-medium hover:bg-gray-100"
+        >
+          Login / Sign up
+        </NuxtLink>
       </div>
     </div>
   </header>
