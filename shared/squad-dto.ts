@@ -14,12 +14,12 @@ export type SquadReadResponseDto = {
     squads: SquadReadDto[];
 }
 
-export type SquadCreateDto = {
+export type SquadUpdateDto = {
     name: string;
     faction: Faction;
 }
 
-export type SquadCreateResponseDto = {
+export type SquadUpdateResponseDto = {
     id: string;
     createdAt : Date;
     updatedAt: Date;

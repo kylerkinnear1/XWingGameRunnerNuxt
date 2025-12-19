@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { SquadCreateDto, SquadCreateResponseDto } from '#shared/squad-dto';
+import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 
-const form = ref<SquadCreateDto>({
+const form = ref<SquadUpdateDto>({
     name: '',
     faction: Faction.Rebel
 });
@@ -11,7 +11,7 @@ const loading = ref(false);
 const error = ref<string | null>(null);
 const success = ref(false);
 
-const initialFormState = (): SquadCreateDto => ({
+const initialFormState = (): SquadUpdateDto => ({
     name: '',
     faction: Faction.Rebel
 });
@@ -28,7 +28,7 @@ async function createSquad() {
     loading.value = true;
 
     try {
-    const result = await $fetch<SquadCreateResponseDto>('/api/squads', {
+    const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
         method: 'POST',
         body: form.value
     });

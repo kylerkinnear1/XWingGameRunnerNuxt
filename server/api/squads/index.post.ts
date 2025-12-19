@@ -1,9 +1,9 @@
 import { db } from "../../db/db";
 import { squads } from "../../db/schema";
-import { SquadCreateDto, SquadCreateResponseDto } from "#shared/squad-dto";
+import { SquadUpdateDto, SquadUpdateResponseDto } from "#shared/squad-dto";
 import { auth } from "../../auth";
 
-export default defineEventHandler<Promise<SquadCreateResponseDto>>(async (event) => {
+export default defineEventHandler<Promise<SquadUpdateResponseDto>>(async (event) => {
     const session = await auth.api.getSession({ 
       headers: event.headers 
     });
@@ -15,9 +15,9 @@ export default defineEventHandler<Promise<SquadCreateResponseDto>>(async (event)
       });
     }
   
-    const body = await readBody<SquadCreateDto>(event);
+    const body = await readBody<SquadUpdateDto>(event);
     
-    if (!body.name || !body.faction) {
+    if (!body.faction) {
       throw createError({
         statusCode: 400,
         message: "Name and faction are required"

@@ -1,3 +1,0 @@
-<template>
-    <SubmitSquad />
-</template>

@@ -2,7 +2,7 @@ import { db } from "../../db/db";
 import { squads } from "../../db/schema";
 import { SquadReadResponseDto } from "#shared/squad-dto";
 import { auth } from "../../auth";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 export default defineEventHandler<Promise<SquadReadResponseDto>>(async (event) => {
   const session = await auth.api.getSession({ 
@@ -19,7 +19,8 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(async (event) =
   const userSquads = await db
     .select()
     .from(squads)
-    .where(eq(squads.userId, session.user.id));
+    .where(eq(squads.userId, session.user.id))
+    .orderBy(desc(squads.updatedAt));
   
   return { squads: userSquads };
 });
