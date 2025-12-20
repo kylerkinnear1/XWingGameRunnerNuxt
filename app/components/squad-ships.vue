@@ -79,12 +79,6 @@ function addPilotToSquad(pilot: PilotDto) {
     </div>
 
     <!-- Pilot Drawer - slides next to ship drawer -->
-    <Transition
-      enter-active-class="transition-transform duration-300 ease-out"
-      leave-active-class="transition-transform duration-300 ease-in"
-      enter-from-class="-translate-x-full"
-      leave-to-class="-translate-x-full"
-    >
       <div
         v-if="isDrawerOpen && selectedShip"
         class="w-96 flex-shrink-0 border-r border-gray-700 bg-gray-800 flex flex-col"
@@ -163,7 +157,6 @@ function addPilotToSquad(pilot: PilotDto) {
           </div>
         </div>
       </div>
-    </Transition>
   </div>
 
   <!-- Card Image Tooltip -->
