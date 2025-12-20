@@ -58,14 +58,19 @@ async function createEmptySquad() {
   creating.value = true;
   createError.value = null;
 
-  try {
-    const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
-      method: 'POST',
-      body: {
-        name: `New ${selectedFaction.value} Squad`,
-        faction: selectedFaction.value
-      }
-    });
+try {
+  const factionNames = new Map([
+    [Faction.Empire, 'Imperial Fleet'],
+    [Faction.Rebel, 'Rebel Squadron']
+  ]);
+
+  const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
+    method: 'POST',
+    body: {
+      name: factionNames.get(selectedFaction.value) || 'Hired Guns',
+      faction: selectedFaction.value
+    }
+  });
 
     await refresh();
     
