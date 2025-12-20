@@ -35,19 +35,18 @@ const factionSelectedColors = {
   [Faction.Scum]: 'bg-amber-800/70 border-l-amber-400'
 };
 
-// Get ship icons and points
 const squadDetails = computed(() => {
   if (!cards.value || !props.squad.pilots.length) {
     return { ships: [], totalPoints: 0, isOverLimit: false };
   }
 
-  const shipTypes = new Set<string>();
+  const ships: string[] = [];
   let totalPoints = 0;
 
   props.squad.pilots.forEach(pilot => {
     const card = cards.value!.pilots.find(p => p.id === pilot.pilotId);
     if (card) {
-      shipTypes.add(card.shipType);
+      ships.push(card.shipType);
       totalPoints += card.points;
       
       // Add upgrade points
@@ -61,7 +60,7 @@ const squadDetails = computed(() => {
   });
 
   return {
-    ships: Array.from(shipTypes),
+    ships,
     totalPoints,
     isOverLimit: props.pointLimit ? totalPoints > props.pointLimit : false
   };
@@ -93,8 +92,8 @@ const squadDetails = computed(() => {
         <!-- Ship Icons -->
         <div v-if="squadDetails.ships.length > 0" class="flex gap-1 mt-1 flex-wrap">
           <span
-            v-for="ship in squadDetails.ships"
-            :key="ship"
+            v-for="(ship, index) in squadDetails.ships"
+            :key="`${ship}-${index}`"
             class="xwing-ship text-gray-400 text-5xl"
             :title="ship"
           >
