@@ -12,8 +12,15 @@ onMounted(() => {
 });
 
 const selectedFaction = ref<Faction>(Faction.Rebel);
+const pointLimit = ref(100);
 const creating = ref(false);
 const createError = ref<string | null>(null);
+
+// Point limit options
+const pointLimitOptions = [
+  { value: 100, label: '100 Points' },
+  { value: 300, label: '300 Points' }
+];
 
 // Filter squads by selected faction
 const filteredSquads = computed(() => {
@@ -113,12 +120,6 @@ defineExpose({
             {{ option.label }}
           </option>
         </select>
-        <div class="flex items-center gap-2 mt-2 text-sm text-gray-400">
-          <span class="xwing-icon text-xl" :class="factionIconColors[selectedFaction]">
-            {{ FACTION_ICONS[selectedFaction] }}
-          </span>
-          <span>{{ factionOptions.find(f => f.value === selectedFaction)?.label }}</span>
-        </div>
       </div>
 
       <button
@@ -160,6 +161,7 @@ defineExpose({
           <SquadCard 
             :squad="squad"
             :isSelected="selectedSquad?.id === squad.id"
+            :pointLimit="pointLimit"
           />
         </div>
       </div>

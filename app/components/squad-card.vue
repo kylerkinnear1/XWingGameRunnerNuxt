@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import type { SquadReadDto } from '#shared/squad-dto';
 import { Faction } from '#shared/enums';
-import { FACTION_ICONS } from '#shared/xwing-icons';
+import { FACTION_ICONS, getShipIcon } from '#shared/xwing-icons';
 
 const props = defineProps<{
   squad: SquadReadDto;
   isSelected?: boolean;
+  pointLimit?: number;
 }>();
+
+const { cards } = useCards();
 
 const factionIconColors = {
   [Faction.Rebel]: 'text-red-500',
@@ -32,12 +35,38 @@ const factionSelectedColors = {
   [Faction.Scum]: 'bg-amber-800/70 border-l-amber-400'
 };
 
-function formatDate(date: Date) {
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric'
+// Get ship icons and points
+const squadDetails = computed(() => {
+  if (!cards.value || !props.squad.pilots.length) {
+    return { ships: [], totalPoints: 0, isOverLimit: false };
+  }
+
+  const shipTypes = new Set<string>();
+  let totalPoints = 0;
+
+  props.squad.pilots.forEach(pilot => {
+    const card = cards.value!.pilots.find(p => p.id === pilot.pilotId);
+    if (card) {
+      shipTypes.add(card.shipType);
+      totalPoints += card.points;
+      
+      // Add upgrade points
+      pilot.upgradeIds?.forEach(upgradeId => {
+        const upgrade = cards.value!.upgrades.find(u => u.id === upgradeId);
+        if (upgrade) {
+          totalPoints += upgrade.points;
+        }
+      });
+    }
   });
-}
+
+  return {
+    ships: Array.from(shipTypes),
+    totalPoints,
+    isOverLimit: props.pointLimit ? totalPoints > props.pointLimit : false
+  };
+});
+
 </script> 
 <template>
   <div 
@@ -48,7 +77,7 @@ function formatDate(date: Date) {
       isSelected ? factionSelectedColors[squad.faction] : ''
     ]"
   >
-    <div class="flex items-center gap-3">
+    <div class="flex items-start gap-3">
       <span 
         class="xwing-icon text-2xl shrink-0"
         :class="factionIconColors[squad.faction]"
@@ -60,9 +89,32 @@ function formatDate(date: Date) {
         <h3 class="font-semibold text-sm truncate text-gray-100">
           {{ squad.name }}
         </h3>
-        <p class="text-xs text-gray-500">
-          {{ formatDate(squad.updatedAt) }}
-        </p>
+        
+        <!-- Ship Icons -->
+        <div v-if="squadDetails.ships.length > 0" class="flex gap-1 mt-1 flex-wrap">
+          <span
+            v-for="ship in squadDetails.ships"
+            :key="ship"
+            class="xwing-ship text-gray-400 text-5xl"
+            :title="ship"
+          >
+            {{ getShipIcon(ship) }}
+          </span>
+        </div>
+
+      </div>
+      
+      <!-- Point Counter -->
+      <div class="shrink-0 text-right">
+        <div 
+          class="font-bold text-sm"
+          :class="squadDetails.isOverLimit ? 'text-red-400' : 'text-teal-400'"
+        >
+          {{ squadDetails.totalPoints }}
+        </div>
+        <div v-if="pointLimit" class="text-xs text-gray-500">
+          / {{ pointLimit }}
+        </div>
       </div>
     </div>
   </div>
