@@ -8,10 +8,28 @@ const props = defineProps<{
   isSelected?: boolean;
 }>();
 
-const factionColors = {
-  [Faction.Rebel]: 'text-red-600',
-  [Faction.Empire]: 'text-gray-700',
-  [Faction.Scum]: 'text-orange-600'
+const factionIconColors = {
+  [Faction.Rebel]: 'text-red-500',
+  [Faction.Empire]: 'text-gray-400',
+  [Faction.Scum]: 'text-amber-500'
+};
+
+const factionBgColors = {
+  [Faction.Rebel]: 'bg-red-950/50 border-red-800',
+  [Faction.Empire]: 'bg-gray-800 border-gray-700',
+  [Faction.Scum]: 'bg-amber-950/50 border-amber-800'
+};
+
+const factionHoverColors = {
+  [Faction.Rebel]: 'hover:bg-red-800/60 hover:border-red-600',
+  [Faction.Empire]: 'hover:bg-gray-700 hover:border-gray-600',
+  [Faction.Scum]: 'hover:bg-amber-800/60 hover:border-amber-600'
+};
+
+const factionSelectedColors = {
+  [Faction.Rebel]: 'bg-red-800/70 border-l-red-400',
+  [Faction.Empire]: 'bg-gray-700 border-l-gray-300',
+  [Faction.Scum]: 'bg-amber-800/70 border-l-amber-400'
 };
 
 function formatDate(date: Date) {
@@ -23,13 +41,17 @@ function formatDate(date: Date) {
 </script> 
 <template>
   <div 
-    class="px-3 py-3 border border-gray-700 hover:bg-gray-700 transition-all cursor-pointer"
-    :class="{ 'border-l-4 border-l-teal-500 bg-gray-700': isSelected }"
+    class="px-3 py-3 border transition-all cursor-pointer border-l-4"
+    :class="[
+      factionBgColors[squad.faction],
+      factionHoverColors[squad.faction],
+      isSelected ? factionSelectedColors[squad.faction] : ''
+    ]"
   >
     <div class="flex items-center gap-3">
       <span 
         class="xwing-icon text-2xl shrink-0"
-        :class="factionColors[squad.faction]"
+        :class="factionIconColors[squad.faction]"
       >
         {{ FACTION_ICONS[squad.faction] }}
       </span>

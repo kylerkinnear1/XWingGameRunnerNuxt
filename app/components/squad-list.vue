@@ -15,10 +15,14 @@ const creating = ref(false);
 const createError = ref<string | null>(null);
 
 const factionBgColors = {
-  [Faction.Rebel]: 'bg-red-950 border-red-900',
+  [Faction.Rebel]: 'bg-red-950/40 border-red-900',
   [Faction.Empire]: 'bg-gray-900 border-gray-800',
-  [Faction.Scum]: 'bg-orange-950 border-orange-900'
+  [Faction.Scum]: 'bg-amber-950/40 border-amber-900'
 };
+
+const selectedFactionBg = computed(() => {
+  return factionBgColors[selectedFaction.value];
+});
 
 async function createEmptySquad() {
   creating.value = true;
@@ -55,8 +59,8 @@ defineExpose({
 });
 </script>
 <template>
-  <div class="h-full flex flex-col transition-colors" :class="factionBgColors[selectedFaction]">
-    <div class="p-4 border-b border-gray-700" :class="factionBgColors[selectedFaction]">
+  <div class="h-full flex flex-col transition-colors" :class="selectedFactionBg">
+    <div class="p-4 border-b border-gray-700" :class="selectedFactionBg">
       <div class="mb-3">
         <label for="faction" class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400">
           Faction

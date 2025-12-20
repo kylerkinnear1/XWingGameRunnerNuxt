@@ -50,7 +50,6 @@ watch(selectedSquad, (squad) => {
     } else {
         shipGroups.value = [];
         selectedShip.value = null;
-        isDrawerOpen.value = false;
     }
     } catch (error) {
     console.error('Error updating ship groups:', error);

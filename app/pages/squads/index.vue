@@ -11,7 +11,14 @@ const isShipDrawerOpen = computed(() => !!selectedSquad.value);
     </div>
     
     <!-- Ship Drawer - slides out when squad selected (contains ship grid + pilot drawer) -->
-    <SquadShips v-if="isShipDrawerOpen" />
+    <Transition
+      enter-active-class="transition-transform duration-300 ease-out"
+      leave-active-class="transition-transform duration-300 ease-in"
+      enter-from-class="-translate-x-full"
+      leave-to-class="-translate-x-full"
+    >
+      <SquadShips v-if="isShipDrawerOpen" :key="selectedSquad?.id" />
+    </Transition>
     
     <!-- Right side - Edit Form (slides as drawers open) -->
     <div class="flex-1 bg-gray-900 overflow-y-auto">
