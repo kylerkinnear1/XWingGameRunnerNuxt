@@ -3,7 +3,7 @@ import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 import { STAT_ICONS, getShipIcon } from '#shared/xwing-icons';
 
-const { selectedSquad, formPilots, removePilot, refreshList, markAsSaved } = useSquadEditor();
+const { selectedSquad, formPilots, removePilot, refreshList } = useSquadEditor();
 const { cards } = useCards();
 
 const form = ref<{ name: string; faction: Faction }>({
@@ -17,7 +17,6 @@ const success = ref(false);
 
 const isEditing = computed(() => !!selectedSquad.value);
 
-// Get pilot card details for display
 const pilotDetails = computed(() => {
     if (!cards.value) return [];
     return formPilots.value.map(pilot => {
@@ -58,11 +57,7 @@ async function saveSquad() {
         });
     
         success.value = true;
-        
-        // Mark changes as saved
-        markAsSaved();
     
-        // Refresh the list to show updated data
         await refreshList();
     } catch (e: any) {
         error.value = e.data?.message || 'Failed to save squad';

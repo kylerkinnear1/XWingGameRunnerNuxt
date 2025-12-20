@@ -3,84 +3,46 @@ import type { PilotDto } from '#shared/cards';
 import { SHIP_ICONS, STAT_ICONS, getShipIcon } from '#shared/xwing-icons';
 
 interface ShipGroup {
-    shipKey: string;
-    shipName: string;
-    pilots: PilotDto[];
+  shipKey: string;
+  shipName: string;
+  pilots: PilotDto[];
 }
 
-const { selectedSquad } = useSquadEditor();
+const props = defineProps<{
+  shipGroups: ShipGroup[];
+  squadName: string;
+}>();
 
-const cardsComposable = useCards();
-
-const shipGroups = ref<ShipGroup[]>([]);
 const selectedShip = ref<ShipGroup | null>(null);
 const hoveredPilot = ref<PilotDto | null>(null);
 const hoverPosition = ref({ x: 0, y: 0 });
-const loadError = ref<string | null>(null);
-const isLoading = ref(true);
 
 const isDrawerOpen = computed(() => !!selectedShip.value);
 
-// Load cards on mount
-onMounted(async () => {
-    try {
-    await cardsComposable.loadCards();
-    console.log('Cards loaded in component');
-    } catch (error) {
-    console.error('Failed to load cards:', error);
-    loadError.value = 'Failed to load card data';
-    } finally {
-    isLoading.value = false;
-    }
-});
-
-watch(selectedSquad, (squad) => {
-    try {
-    if (squad) {
-        const pilots = cardsComposable.getPilotsForFaction(squad.faction);
-        const grouped = cardsComposable.groupPilotsByShip(pilots);
-        
-        shipGroups.value = Array.from(grouped.entries()).map(
-        ([shipKey, pilots]: [string, PilotDto[]]) => ({
-            shipKey,
-            shipName: pilots[0]?.shipType || 'Unknown Ship',
-            pilots
-        })
-        );
-    } else {
-        shipGroups.value = [];
-        selectedShip.value = null;
-    }
-    } catch (error) {
-    console.error('Error updating ship groups:', error);
-    loadError.value = 'Failed to load ships';
-    }
-}, { immediate: true });
-
 function openShipDrawer(group: ShipGroup) {
-    selectedShip.value = group;
+  selectedShip.value = group;
 }
 
 function closeDrawer() {
-    selectedShip.value = null;
+  selectedShip.value = null;
 }
 
 function handlePilotHover(pilot: PilotDto, event: MouseEvent) {
-    hoveredPilot.value = pilot;
-    hoverPosition.value = {
+  hoveredPilot.value = pilot;
+  hoverPosition.value = {
     x: event.clientX,
     y: event.clientY
-    };
+  };
 }
 
 function handlePilotLeave() {
-    hoveredPilot.value = null;
+  hoveredPilot.value = null;
 }
 
 const { addPilot } = useSquadEditor();
 
 function addPilotToSquad(pilot: PilotDto) {
-    addPilot(pilot.id);
+  addPilot(pilot.id);
 }
 </script>
 
@@ -90,25 +52,10 @@ function addPilotToSquad(pilot: PilotDto) {
     <div class="w-80 flex-shrink-0 flex flex-col bg-gray-800">
       <div class="p-4 border-b border-gray-700 bg-gray-900">
         <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400">Ship Selection</h2>
-        <p v-if="selectedSquad" class="text-xs text-gray-500 mt-1">
-          {{ selectedSquad.name }}
-        </p>
+        <p class="text-xs text-gray-500 mt-1">{{ squadName }}</p>
       </div>
 
-      <div v-if="loadError" class="p-8 text-center">
-        <div class="text-red-400 text-sm mb-2">{{ loadError }}</div>
-        <p class="text-xs text-gray-500">Make sure cards.json exists in the public folder</p>
-      </div>
-
-      <div v-else-if="isLoading" class="p-8 text-center text-gray-400 text-sm">
-        Loading ships...
-      </div>
-
-      <div v-else-if="shipGroups.length === 0" class="p-8 text-center text-gray-400 text-sm">
-        No ships available
-      </div>
-
-      <div v-else class="flex-1 overflow-y-auto p-2">
+      <div class="flex-1 overflow-y-auto p-2">
         <div class="flex flex-col gap-2">
           <button
             v-for="group in shipGroups"
@@ -219,7 +166,7 @@ function addPilotToSquad(pilot: PilotDto) {
     </Transition>
   </div>
 
-    <!-- Card Image Tooltip -->
+  <!-- Card Image Tooltip -->
   <Teleport to="body">
     <div
       v-if="hoveredPilot && hoveredPilot.cardImageUrl"

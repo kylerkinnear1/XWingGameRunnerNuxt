@@ -28,7 +28,12 @@ const factionIconColors = {
   [Faction.Scum]: 'text-amber-500'
 };
 
-async function handleFactionChange(newFaction: Faction) {
+// Handle faction change with unsaved changes check
+async function handleFactionChange(event: Event) {
+  const newFaction = (event.target as HTMLSelectElement).value as Faction;
+  
+  if (newFaction === selectedFaction.value) return;
+  
   // Check for unsaved changes before switching
   if (hasUnsavedChanges.value) {
     const confirmed = confirm(
@@ -36,7 +41,10 @@ async function handleFactionChange(newFaction: Faction) {
     );
     
     if (!confirmed) {
-      // Revert to old faction
+      // Revert the select value
+      nextTick(() => {
+        selectedFaction.value = selectedFaction.value; // Force re-render
+      });
       return;
     }
   }
@@ -45,13 +53,6 @@ async function handleFactionChange(newFaction: Faction) {
   closeDrawer();
   selectedFaction.value = newFaction;
 }
-
-// Watch for faction changes through v-model
-watch(selectedFaction, (newValue, oldValue) => {
-  if (oldValue !== undefined && newValue !== oldValue) {
-    handleFactionChange(newValue);
-  }
-});
 
 async function createEmptySquad() {
   creating.value = true;
@@ -99,7 +100,8 @@ defineExpose({
         </label>
         <select
           id="faction"
-          v-model="selectedFaction"
+          :value="selectedFaction"
+          @change="handleFactionChange"
           class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-800 text-gray-100"
         >
           <option
