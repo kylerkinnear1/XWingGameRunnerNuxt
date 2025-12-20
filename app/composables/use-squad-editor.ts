@@ -5,6 +5,7 @@ export const useSquadEditor = () => {
   const formPilots = useState<PilotDto[]>('formPilots', () => []);
   const refreshCallback = useState<(() => Promise<void>) | null>('squadListRefresh', () => null);
   const lastSavedPilots = useState<PilotDto[]>('lastSavedPilots', () => []);
+  const pointLimit = useState<number>('squadPointLimit', () => 100);
   
   const hasUnsavedChanges = computed(() => {
     if (!selectedSquad.value) return false;
@@ -64,6 +65,7 @@ export const useSquadEditor = () => {
     selectedSquad: readonly(selectedSquad),
     formPilots,
     hasUnsavedChanges: readonly(hasUnsavedChanges),
+    pointLimit,
     selectSquad,
     closeDrawer,
     markAsSaved,

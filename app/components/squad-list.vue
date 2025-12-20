@@ -3,7 +3,7 @@ import type { SquadReadResponseDto, SquadUpdateResponseDto } from '#shared/squad
 import { Faction, factionOptions } from '#shared/enums';
 import { FACTION_ICONS } from '#shared/xwing-icons';
 
-const { selectedSquad, selectSquad, hasUnsavedChanges, closeDrawer, registerRefresh } = useSquadEditor();
+const { selectedSquad, selectSquad, hasUnsavedChanges, closeDrawer, registerRefresh, pointLimit } = useSquadEditor();
 const { data: response, pending, error, refresh } = await useFetch<SquadReadResponseDto>('/api/squads');
 
 // Register refresh function so other components can trigger it
@@ -12,15 +12,8 @@ onMounted(() => {
 });
 
 const selectedFaction = ref<Faction>(Faction.Rebel);
-const pointLimit = ref(100);
 const creating = ref(false);
 const createError = ref<string | null>(null);
-
-// Point limit options
-const pointLimitOptions = [
-  { value: 100, label: '100 Points' },
-  { value: 300, label: '300 Points' }
-];
 
 // Filter squads by selected faction
 const filteredSquads = computed(() => {

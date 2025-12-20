@@ -35,6 +35,7 @@ const factionSelectedColors = {
   [Faction.Scum]: 'bg-amber-800/70 border-l-amber-400'
 };
 
+// Get ship icons and points - FIXED: Now shows each ship instance instead of unique types
 const squadDetails = computed(() => {
   if (!cards.value || !props.squad.pilots.length) {
     return { ships: [], totalPoints: 0, isOverLimit: false };

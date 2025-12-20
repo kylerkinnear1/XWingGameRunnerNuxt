@@ -3,7 +3,7 @@ import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 import { STAT_ICONS, getShipIcon } from '#shared/xwing-icons';
 
-const { selectedSquad, formPilots, removePilot, refreshList } = useSquadEditor();
+const { selectedSquad, formPilots, removePilot, refreshList, pointLimit } = useSquadEditor();
 const { cards } = useCards();
 
 const form = ref<{ name: string; faction: Faction }>({
@@ -26,6 +26,33 @@ const pilotDetails = computed(() => {
             card
         };
     });
+});
+
+// Calculate total points live
+const squadPoints = computed(() => {
+    if (!cards.value) return { total: 0, isOverLimit: false };
+    
+    let total = 0;
+    
+    formPilots.value.forEach(pilot => {
+        const card = cards.value!.pilots.find(p => p.id === pilot.pilotId);
+        if (card) {
+            total += card.points;
+            
+            // Add upgrade points
+            pilot.upgradeIds?.forEach(upgradeId => {
+                const upgrade = cards.value!.upgrades.find(u => u.id === upgradeId);
+                if (upgrade) {
+                    total += upgrade.points;
+                }
+            });
+        }
+    });
+    
+    return {
+        total,
+        isOverLimit: total > pointLimit.value
+    };
 });
 
 watch(selectedSquad, (squad) => {
@@ -73,9 +100,21 @@ function handleRemovePilot(pilotId: string) {
 <template>
     <div class="h-full flex flex-col bg-gray-900">
     <div class="p-4 border-b border-gray-700 bg-gray-800">
-    <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400">
-        {{ isEditing ? 'Squad Editor' : 'No Squad Selected' }}
-    </h2>
+      <div class="flex items-baseline justify-between">
+        <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400">
+          {{ isEditing ? 'Squad Editor' : 'No Squad Selected' }}
+        </h2>
+        <div v-if="isEditing" class="flex items-baseline gap-2">
+          <span 
+            class="text-2xl font-bold"
+            :class="squadPoints.isOverLimit ? 'text-red-400' : 'text-teal-400'"
+          >
+            {{ squadPoints.total }}
+          </span>
+          <span class="text-sm text-gray-500">/</span>
+          <span class="text-sm text-gray-400">{{ pointLimit }}</span>
+        </div>
+      </div>
     </div>
 
     <div v-if="!isEditing" class="flex-1 flex items-center justify-center text-gray-400 text-sm">
@@ -99,28 +138,6 @@ function handleRemovePilot(pilotId: string) {
             class="w-full px-3 py-2 border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-800 text-gray-100"
             placeholder="Enter squad name"
         />
-        </div>
-
-        <div>
-        <label for="faction" class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400">
-            Faction
-        </label>
-        <select
-            id="faction"
-            v-model="form.faction"
-            required
-            disabled
-            class="w-full px-3 py-2 border border-gray-700 bg-gray-800 cursor-not-allowed text-sm text-gray-400"
-        >
-            <option
-            v-for="option in factionOptions"
-            :key="option.value"
-            :value="option.value"
-            >
-            {{ option.label }}
-            </option>
-        </select>
-        <p class="text-xs text-gray-500 mt-1">Faction cannot be changed after creation</p>
         </div>
 
         <!-- Pilots Section -->
