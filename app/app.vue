@@ -11,8 +11,8 @@ useHead({
   }
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'X-Wing Gamemaster'
+const description = 'Want to play X-Wing Faster? This is the app for you!'
 
 useSeoMeta({
   title,

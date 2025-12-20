@@ -8,6 +8,7 @@ export type SquadReadDto = {
     faction: Faction;
     createdAt: Date;
     updatedAt: Date;
+    pilots: PilotDto[];
 }
 
 export type SquadReadResponseDto = {
@@ -17,10 +18,17 @@ export type SquadReadResponseDto = {
 export type SquadUpdateDto = {
     name: string;
     faction: Faction;
+    pilots: PilotDto[];
 }
 
 export type SquadUpdateResponseDto = {
     id: string;
     createdAt : Date;
-    updatedAt: Date;
+    updatedAt: Date;   
+    pilots: PilotDto[];
+}
+
+export type PilotDto = {
+    pilotId: string;
+    upgradeIds : string[];
 }
