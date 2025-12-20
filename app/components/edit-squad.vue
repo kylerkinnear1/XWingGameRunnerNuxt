@@ -3,7 +3,7 @@ import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
 import { STAT_ICONS, getShipIcon } from '#shared/xwing-icons';
 
-const { selectedSquad, formPilots, removePilot, refreshList } = useSquadEditor();
+const { selectedSquad, formPilots, removePilot, refreshList, markAsSaved } = useSquadEditor();
 const { cards } = useCards();
 
 const form = ref<{ name: string; faction: Faction }>({
@@ -58,6 +58,9 @@ async function saveSquad() {
         });
     
         success.value = true;
+        
+        // Mark changes as saved
+        markAsSaved();
     
         // Refresh the list to show updated data
         await refreshList();

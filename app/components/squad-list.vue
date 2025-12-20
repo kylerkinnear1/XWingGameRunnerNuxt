@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { SquadReadResponseDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
+import { FACTION_ICONS } from '#shared/xwing-icons';
 
-const { selectedSquad, selectSquad, registerRefresh } = useSquadEditor();
+const { selectedSquad, selectSquad, hasUnsavedChanges, closeDrawer, registerRefresh } = useSquadEditor();
 const { data: response, pending, error, refresh } = await useFetch<SquadReadResponseDto>('/api/squads');
 
 // Register refresh function so other components can trigger it
@@ -14,14 +15,42 @@ const selectedFaction = ref<Faction>(Faction.Rebel);
 const creating = ref(false);
 const createError = ref<string | null>(null);
 
-const factionBgColors = {
-  [Faction.Rebel]: 'bg-red-950/40 border-red-900',
-  [Faction.Empire]: 'bg-gray-900 border-gray-800',
-  [Faction.Scum]: 'bg-amber-950/40 border-amber-900'
+// Filter squads by selected faction
+const filteredSquads = computed(() => {
+  if (!response.value) return [];
+  return response.value.squads.filter(s => s.faction === selectedFaction.value);
+});
+
+// Faction icon colors for dropdown options
+const factionIconColors = {
+  [Faction.Rebel]: 'text-red-500',
+  [Faction.Empire]: 'text-gray-400',
+  [Faction.Scum]: 'text-amber-500'
 };
 
-const selectedFactionBg = computed(() => {
-  return factionBgColors[selectedFaction.value];
+async function handleFactionChange(newFaction: Faction) {
+  // Check for unsaved changes before switching
+  if (hasUnsavedChanges.value) {
+    const confirmed = confirm(
+      'You have unsaved changes. Are you sure you want to switch factions? Your changes will be lost.'
+    );
+    
+    if (!confirmed) {
+      // Revert to old faction
+      return;
+    }
+  }
+  
+  // Close the drawer and switch faction
+  closeDrawer();
+  selectedFaction.value = newFaction;
+}
+
+// Watch for faction changes through v-model
+watch(selectedFaction, (newValue, oldValue) => {
+  if (oldValue !== undefined && newValue !== oldValue) {
+    handleFactionChange(newValue);
+  }
 });
 
 async function createEmptySquad() {
@@ -51,7 +80,10 @@ async function createEmptySquad() {
 }
 
 function handleSquadClick(squad: any) {
-  selectSquad(squad);
+  // Force reactivity by using nextTick
+  nextTick(() => {
+    selectSquad(squad);
+  });
 }
 
 defineExpose({
@@ -59,8 +91,8 @@ defineExpose({
 });
 </script>
 <template>
-  <div class="h-full flex flex-col transition-colors" :class="selectedFactionBg">
-    <div class="p-4 border-b border-gray-700" :class="selectedFactionBg">
+  <div class="h-full flex flex-col bg-gray-800">
+    <div class="p-4 border-b border-gray-700 bg-gray-900">
       <div class="mb-3">
         <label for="faction" class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400">
           Faction
@@ -68,16 +100,23 @@ defineExpose({
         <select
           id="faction"
           v-model="selectedFaction"
-          class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-900 text-gray-100"
+          class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-800 text-gray-100"
         >
           <option
             v-for="option in factionOptions"
             :key="option.value"
             :value="option.value"
+            class="flex items-center gap-2"
           >
             {{ option.label }}
           </option>
         </select>
+        <div class="flex items-center gap-2 mt-2 text-sm text-gray-400">
+          <span class="xwing-icon text-xl" :class="factionIconColors[selectedFaction]">
+            {{ FACTION_ICONS[selectedFaction] }}
+          </span>
+          <span>{{ factionOptions.find(f => f.value === selectedFaction)?.label }}</span>
+        </div>
       </div>
 
       <button
@@ -93,7 +132,7 @@ defineExpose({
       </div>
     </div>
 
-    <div class="flex-1 overflow-y-auto">
+    <div class="flex-1 overflow-y-auto bg-gray-800">
       <div class="p-4">
       <h2 class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-400">Your Squads</h2>
 
@@ -105,14 +144,14 @@ defineExpose({
         Failed to load squads
       </div>
 
-      <div v-else-if="!response || response.squads.length === 0" class="text-center py-8">
-        <p class="text-gray-400 mb-4">No squads yet</p>
-        <p class="text-sm text-gray-500">Select a faction and click "Create New Squad"</p>
+      <div v-else-if="filteredSquads.length === 0" class="text-center py-8">
+        <p class="text-gray-400 mb-2">No {{ selectedFaction }} squads yet</p>
+        <p class="text-sm text-gray-500">Click "Create New Squad" to get started</p>
       </div>
 
       <div v-else class="space-y-2">
         <div
-          v-for="squad in response.squads"
+          v-for="squad in filteredSquads"
           :key="squad.id"
           @click="handleSquadClick(squad)"
         >
