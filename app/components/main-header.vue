@@ -1,14 +1,14 @@
 <template>
-  <header class="border-b">
-    <div class="px-8 py-3">
+  <header class="border-b border-gray-700 bg-gray-800">
+    <div class="px-6 py-2">
       <div class="flex items-center gap-3">
-        <NuxtLink to="/" class="flex items-center gap-2 py-3">
+        <NuxtLink to="/" class="flex items-center gap-2 py-2">
           <img
             src="/xwing_logo.png"
             alt="XWing Gamemaster"
-            class="h-12 w-auto shrink-0"
+            class="h-10 w-auto shrink-0"
           />
-          <span class="font-bold whitespace-nowrap">XWing Gamemaster</span>
+          <span class="font-bold text-lg whitespace-nowrap text-gray-100">XWing Gamemaster</span>
         </NuxtLink>
 
         <div class="min-w-0 flex-1 px-6">
@@ -21,7 +21,7 @@
 
         <NuxtLink
           to="/login"
-          class="shrink-0 px-4 py-2 rounded-md border text-sm font-medium hover:bg-gray-100"
+          class="shrink-0 px-4 py-2 border border-gray-700 text-sm font-semibold text-gray-200 hover:bg-gray-700 transition-colors"
         >
           Login / Sign up
         </NuxtLink>

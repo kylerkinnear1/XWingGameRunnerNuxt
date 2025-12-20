@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@font-face {
+  font-family: 'xwing-miniatures';
+  src: url('/xwing-miniatures.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'xwing-miniatures-ships';
+  src: url('/xwing-miniatures-ships.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
 
@@ -31,5 +45,19 @@
       transition-all duration-150
       disabled:opacity-50 
       disabled:cursor-not-allowed;
+  }
+
+  .xwing-icon {
+    font-family: 'xwing-miniatures';
+    font-style: normal;
+    font-size: 1.5em;
+    line-height: 1;
+  }
+
+  .xwing-ship {
+    font-family: 'xwing-miniatures-ships';
+    font-style: normal;
+    font-size: 1.5em;
+    line-height: 1;
   }
 }

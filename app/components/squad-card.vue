@@ -1,53 +1,47 @@
 <script setup lang="ts">
-    import type { SquadReadDto } from '#shared/squad-dto';
-    import { Faction } from '#shared/enums';
-    
-    const props = defineProps<{
-      squad: SquadReadDto;
-      isSelected?: boolean;
-    }>();
-    
-    const factionColors = {
-      [Faction.Rebel]: 'bg-red-100 text-red-800 border-red-200',
-      [Faction.Empire]: 'bg-gray-100 text-gray-800 border-gray-200',
-      [Faction.Scum]: 'bg-orange-100 text-orange-800 border-orange-200'
-    };
-    
-    const factionLabels = {
-      [Faction.Rebel]: 'Rebel',
-      [Faction.Empire]: 'Empire',
-      [Faction.Scum]: 'Scum'
-    };
-    
-    function formatDate(date: Date) {
-      return new Date(date).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      });
-    }
+import type { SquadReadDto } from '#shared/squad-dto';
+import { Faction } from '#shared/enums';
+import { FACTION_ICONS } from '#shared/xwing-icons';
+
+const props = defineProps<{
+  squad: SquadReadDto;
+  isSelected?: boolean;
+}>();
+
+const factionColors = {
+  [Faction.Rebel]: 'text-red-600',
+  [Faction.Empire]: 'text-gray-700',
+  [Faction.Scum]: 'text-orange-600'
+};
+
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  });
+}
 </script> 
 <template>
-    <div 
-    class="p-4 border rounded-lg hover:bg-white/50 transition-all cursor-pointer"
-    :class="{ 'ring-2 ring-green-500 bg-white': isSelected }"
-    >
-    <div class="flex items-start justify-between gap-3">
-        <div class="flex-1 min-w-0">
-        <h3 class="font-semibold text-lg truncate">
-            {{ squad.name }}
-        </h3>
-        <p class="text-sm text-gray-500 mt-1">
-            Updated {{ formatDate(squad.updatedAt) }}
-        </p>
-        </div>
-        
-        <span 
-        class="px-3 py-1 text-xs font-medium rounded-full border shrink-0"
+  <div 
+    class="px-3 py-3 border border-gray-700 hover:bg-gray-700 transition-all cursor-pointer"
+    :class="{ 'border-l-4 border-l-teal-500 bg-gray-700': isSelected }"
+  >
+    <div class="flex items-center gap-3">
+      <span 
+        class="xwing-icon text-2xl shrink-0"
         :class="factionColors[squad.faction]"
-        >
-        {{ factionLabels[squad.faction] }}
-        </span>
+      >
+        {{ FACTION_ICONS[squad.faction] }}
+      </span>
+      
+      <div class="flex-1 min-w-0">
+        <h3 class="font-semibold text-sm truncate text-gray-100">
+          {{ squad.name }}
+        </h3>
+        <p class="text-xs text-gray-500">
+          {{ formatDate(squad.updatedAt) }}
+        </p>
+      </div>
     </div>
-    </div>
+  </div>
 </template>

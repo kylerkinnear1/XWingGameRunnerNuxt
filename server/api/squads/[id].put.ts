@@ -66,7 +66,6 @@ export default defineEventHandler<Promise<SquadUpdateResponseDto>>(async (event)
       .filter(row => row.upgrade)
       .map(row => row.upgrade!);
 
-
     const existingShipMap = new Map(existingShips.map(s => [s.pilotId!, s]));
     
     const operations = groupUpdates(body, existingShipMap, existingUpgrades, squadId!, now);

@@ -31,7 +31,7 @@
         "Modification"
       ],
       "ability": "When you reveal a bank maneuver, you may rotate your dial to the other bank maneuver of the same speed.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/firespray31/bobafett.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bobafett.png"
     },
     {
       "id": "empire/firespray31/bountyhunter",
@@ -61,7 +61,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/firespray31/bountyhunter.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bountyhunter.png"
     },
     {
       "id": "empire/firespray31/kathscarlet",
@@ -92,7 +92,7 @@
         "Modification"
       ],
       "ability": "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/firespray31/kathscarlet.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/kathscarlet.png"
     },
     {
       "id": "empire/firespray31/krassistrelix",
@@ -121,7 +121,7 @@
         "Modification"
       ],
       "ability": "When attacking with a secondary weapon, you may reroll 1 attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/firespray31/krassistrelix.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/krassistrelix.png"
     },
     {
       "id": "empire/tieadvanced/darthvader",
@@ -150,7 +150,7 @@
         "Modification"
       ],
       "ability": "During your Perform Action step, you may perform 2 actions.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/darthvader.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/darthvader.png"
     },
     {
       "id": "empire/tieadvanced/maarekstele",
@@ -179,7 +179,7 @@
         "Modification"
       ],
       "ability": "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/maarekstele.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/maarekstele.png"
     },
     {
       "id": "empire/tieadvanced/commanderalozen",
@@ -207,7 +207,7 @@
         "Modification"
       ],
       "ability": "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/commanderalozen.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/commanderalozen.png"
     },
     {
       "id": "empire/tieadvanced/junoeclipse",
@@ -236,7 +236,7 @@
         "Modification"
       ],
       "ability": "When you reveal your maneuver, you may increase or decrease its speed by 1 (to a minimum of 1).",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/junoeclipse.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/junoeclipse.png"
     },
     {
       "id": "empire/tieadvanced/lieutenantcolzet",
@@ -264,7 +264,7 @@
         "Modification"
       ],
       "ability": "At the start of the End phase, you may spend a target lock you have on an enemy ship to flip 1 random facedown Damage card assigned to it faceup.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/lieutenantcolzet.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/lieutenantcolzet.png"
     },
     {
       "id": "empire/tieadvanced/stormsquadronpilot",
@@ -292,7 +292,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/stormsquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/stormsquadronpilot.png"
     },
     {
       "id": "empire/tieadvanced/tempestsquadronpilot",
@@ -320,7 +320,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/tempestsquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/tempestsquadronpilot.png"
     },
     {
       "id": "empire/tieadvanced/zertikstrom",
@@ -349,7 +349,7 @@
         "Modification"
       ],
       "ability": "When attacking with a secondary weapon, if you are inside the defender's firing arc, you may reroll your blank results.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tieadvanced/zertikstrom.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/zertikstrom.png"
     },
     {
       "id": "empire/tiefighter/howlrunner",
@@ -376,7 +376,7 @@
         "Modification"
       ],
       "ability": "While a friendly ship at Range 1 is performing an attack with a primary weapon, it may reroll 1 attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/howlrunner.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/howlrunner.png"
     },
     {
       "id": "empire/tiefighter/backstabber",
@@ -403,7 +403,7 @@
         "Modification"
       ],
       "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/backstabber.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/backstabber.png"
     },
     {
       "id": "empire/tiefighter/darkcurse",
@@ -429,7 +429,7 @@
         "Modification"
       ],
       "ability": "When defending, ships attacking you cannot spend focus tokens or reroll attack dice.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/darkcurse.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/darkcurse.png"
     },
     {
       "id": "empire/tiefighter/maulermithel",
@@ -456,7 +456,7 @@
         "Modification"
       ],
       "ability": "After you perform an attack at Range 1 that hits, assign 1 damage to the defender.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/maulermithel.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/maulermithel.png"
     },
     {
       "id": "empire/tiefighter/academypilot",
@@ -482,7 +482,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/academypilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/academypilot.png"
     },
     {
       "id": "empire/tiefighter/blacksquadronpilot",
@@ -509,7 +509,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/blacksquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/blacksquadronpilot.png"
     },
     {
       "id": "empire/tiefighter/obsidiansquadronpilot",
@@ -535,7 +535,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/obsidiansquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/obsidiansquadronpilot.png"
     },
     {
       "id": "empire/tiefighter/nightbeast",
@@ -561,7 +561,7 @@
         "Modification"
       ],
       "ability": "After executing a green maneuver, you may perform a free focus action.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/nightbeast.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/nightbeast.png"
     },
     {
       "id": "empire/tiefighter/scourge",
@@ -588,7 +588,7 @@
         "Modification"
       ],
       "ability": "When attacking a defender that has 1 or more Damage cards, roll 1 additional attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/scourge.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/scourge.png"
     },
     {
       "id": "empire/tiefighter/wampa",
@@ -615,7 +615,7 @@
         "Modification"
       ],
       "ability": "When attacking, you may spend your target lock on the defender to deal 1 damage. Then cancel all dice results.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/wampa.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wampa.png"
     },
     {
       "id": "empire/tiefighter/wingedgundark",
@@ -641,7 +641,7 @@
         "Modification"
       ],
       "ability": "When attacking at Range 1, you may change 1 of your hit results to a critical result.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/wingedgundark.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wingedgundark.png"
     },
     {
       "id": "empire/tiefighter/youngster",
@@ -668,7 +668,7 @@
         "Modification"
       ],
       "ability": "After being dealt a Damage card, if you have 2 or fewer Damage cards, flip that Damage card facedown.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/youngster.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/youngster.png"
     },
     {
       "id": "empire/tiefighter/chaser",
@@ -694,7 +694,7 @@
         "Modification"
       ],
       "ability": "When attacking, if you are the only ship attacking the defender, roll 1 additional attack die.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/empire/tiefighter/chaser.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/chaser.png"
     },
     {
       "id": "rebel/xwing/lukeskywalker",
@@ -722,7 +722,7 @@
         "Modification"
       ],
       "ability": "When defending, you may change 1 of your focus results to an evade result.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/lukeskywalker.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/lukeskywalker.png"
     },
     {
       "id": "rebel/xwing/wedgeantilles",
@@ -750,7 +750,7 @@
         "Modification"
       ],
       "ability": "When attacking, reduce the defender's agility value by 1 (to a minimum of 0).",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/wedgeantilles.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wedgeantilles.png"
     },
     {
       "id": "rebel/xwing/biggsdarklighter",
@@ -777,7 +777,7 @@
         "Modification"
       ],
       "ability": "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/biggsdarklighter.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/biggsdarklighter.png"
     },
     {
       "id": "rebel/xwing/garvendreis",
@@ -805,7 +805,7 @@
         "Modification"
       ],
       "ability": "After spending a focus token, you may place that token on any other friendly ship at Range 1-2.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/garvendreis.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/garvendreis.png"
     },
     {
       "id": "rebel/xwing/redsquadronpilot",
@@ -832,7 +832,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/redsquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/redsquadronpilot.png"
     },
     {
       "id": "rebel/xwing/rookiepilot",
@@ -859,7 +859,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/rookiepilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/rookiepilot.png"
     },
     {
       "id": "rebel/xwing/jekporkins",
@@ -887,7 +887,7 @@
         "Modification"
       ],
       "ability": "When you receive a stress token, you may remove it and roll 1 attack die. On a hit result, deal 1 facedown Damage card to this ship.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/jekporkins.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/jekporkins.png"
     },
     {
       "id": "rebel/xwing/tarnmison",
@@ -914,7 +914,7 @@
         "Modification"
       ],
       "ability": "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/tarnmison.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/tarnmison.png"
     },
     {
       "id": "rebel/xwing/wesjanson",
@@ -942,7 +942,7 @@
         "Modification"
       ],
       "ability": "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/wesjanson.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wesjanson.png"
     },
     {
       "id": "rebel/xwing/hobbieklivian",
@@ -969,7 +969,7 @@
         "Modification"
       ],
       "ability": "When you acquire or spend a target lock, you may remove 1 stress token from your ship.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/xwing/hobbieklivian.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/hobbieklivian.png"
     },
     {
       "id": "rebel/ywing/dutchvander",
@@ -998,7 +998,7 @@
         "Modification"
       ],
       "ability": "After acquiring a target lock, choose another friendly ship at Range 1-2. That ship may immediately acquire a target lock.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/ywing/dutchvander.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/dutchvander.png"
     },
     {
       "id": "rebel/ywing/hortonsalm",
@@ -1027,7 +1027,7 @@
         "Modification"
       ],
       "ability": "When attacking at Range 2-3, you may reroll any of your blank results.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/ywing/hortonsalm.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/hortonsalm.png"
     },
     {
       "id": "rebel/ywing/goldsquadronpilot",
@@ -1056,7 +1056,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/ywing/goldsquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/goldsquadronpilot.png"
     },
     {
       "id": "rebel/ywing/graysquadronpilot",
@@ -1085,7 +1085,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/ywing/graysquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/graysquadronpilot.png"
     },
     {
       "id": "rebel/awing/tychocelchu",
@@ -1115,7 +1115,7 @@
         "Modification"
       ],
       "ability": "You may perform actions even while you have stress tokens.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/tychocelchu.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/tychocelchu.png"
     },
     {
       "id": "rebel/awing/jakefarrell",
@@ -1145,7 +1145,7 @@
         "Modification"
       ],
       "ability": "After performing a focus action, you may perform a free boost or barrel roll action.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/jakefarrell.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/jakefarrell.png"
     },
     {
       "id": "rebel/awing/arvelcrynyd",
@@ -1174,7 +1174,7 @@
         "Modification"
       ],
       "ability": "You may declare an enemy ship inside your firing arc that you are touching as the target of your attack.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/arvelcrynyd.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/arvelcrynyd.png"
     },
     {
       "id": "rebel/awing/gemmersojan",
@@ -1203,7 +1203,7 @@
         "Modification"
       ],
       "ability": "While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1.",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/gemmersojan.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/gemmersojan.png"
     },
     {
       "id": "rebel/awing/greensquadronpilot",
@@ -1233,7 +1233,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/greensquadronpilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/greensquadronpilot.png"
     },
     {
       "id": "rebel/awing/prototypepilot",
@@ -1262,7 +1262,7 @@
         "Modification"
       ],
       "ability": "",
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebel/awing/prototypepilot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/prototypepilot.png"
     },
     {
       "id": "scum/ywing/kavil",

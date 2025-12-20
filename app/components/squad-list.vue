@@ -15,9 +15,9 @@ const creating = ref(false);
 const createError = ref<string | null>(null);
 
 const factionBgColors = {
-  [Faction.Rebel]: 'bg-red-50 border-red-200',
-  [Faction.Empire]: 'bg-gray-50 border-gray-200',
-  [Faction.Scum]: 'bg-orange-50 border-orange-200'
+  [Faction.Rebel]: 'bg-red-950 border-red-900',
+  [Faction.Empire]: 'bg-gray-900 border-gray-800',
+  [Faction.Scum]: 'bg-orange-950 border-orange-900'
 };
 
 async function createEmptySquad() {
@@ -55,16 +55,16 @@ defineExpose({
 });
 </script>
 <template>
-  <div class="border rounded-lg transition-colors" :class="factionBgColors[selectedFaction]">
-    <div class="p-4 border-b" :class="factionBgColors[selectedFaction]">
-      <div class="mb-4">
-        <label for="faction" class="block text-sm font-medium mb-2">
+  <div class="h-full flex flex-col transition-colors" :class="factionBgColors[selectedFaction]">
+    <div class="p-4 border-b border-gray-700" :class="factionBgColors[selectedFaction]">
+      <div class="mb-3">
+        <label for="faction" class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400">
           Faction
         </label>
         <select
           id="faction"
           v-model="selectedFaction"
-          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
+          class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-900 text-gray-100"
         >
           <option
             v-for="option in factionOptions"
@@ -79,33 +79,34 @@ defineExpose({
       <button
         @click="createEmptySquad"
         :disabled="creating"
-        class="w-full app-button"
+        class="w-full px-4 py-2 text-sm font-semibold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {{ creating ? 'Creating...' : 'Create List' }}
+        {{ creating ? 'Creating...' : 'Create New Squad' }}
       </button>
 
-      <div v-if="createError" class="mt-2 text-sm text-red-600">
+      <div v-if="createError" class="mt-2 text-xs text-red-400">
         {{ createError }}
       </div>
     </div>
 
-    <div class="p-4">
-      <h2 class="text-2xl font-bold mb-4">Your Squads</h2>
+    <div class="flex-1 overflow-y-auto">
+      <div class="p-4">
+      <h2 class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-400">Your Squads</h2>
 
-      <div v-if="pending" class="text-center py-8 text-gray-500">
+      <div v-if="pending" class="text-center py-8 text-gray-400">
         Loading squads...
       </div>
 
-      <div v-else-if="error" class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+      <div v-else-if="error" class="p-4 bg-red-900 border border-red-700 text-red-200">
         Failed to load squads
       </div>
 
       <div v-else-if="!response || response.squads.length === 0" class="text-center py-8">
-        <p class="text-gray-500 mb-4">No squads yet</p>
-        <p class="text-sm text-gray-400">Select a faction and click "Create List"</p>
+        <p class="text-gray-400 mb-4">No squads yet</p>
+        <p class="text-sm text-gray-500">Select a faction and click "Create New Squad"</p>
       </div>
 
-      <div v-else class="space-y-3">
+      <div v-else class="space-y-2">
         <div
           v-for="squad in response.squads"
           :key="squad.id"
@@ -116,6 +117,7 @@ defineExpose({
             :isSelected="selectedSquad?.id === squad.id"
           />
         </div>
+      </div>
       </div>
     </div>
   </div>
