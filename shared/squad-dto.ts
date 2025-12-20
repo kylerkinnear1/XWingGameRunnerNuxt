@@ -24,8 +24,7 @@ export type SquadUpdateDto = {
 export type SquadUpdateResponseDto = {
     id: string;
     createdAt : Date;
-    updatedAt: Date;   
-    pilots: PilotDto[];
+    updatedAt: Date;
 }
 
 export type PilotDto = {
