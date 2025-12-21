@@ -7,29 +7,6 @@ const {
   error,
   refresh,
 } = await useFetch<GameSummaryResponseDto>("/api/games");
-
-const creating = ref(false);
-const createError = ref<string | null>(null);
-
-async function createNewGame() {
-  creating.value = true;
-  createError.value = null;
-
-  try {
-    const result = await $fetch("/api/games", {
-      method: "post",
-    });
-
-    await refresh();
-
-    // TODO: Navigate to game detail page
-    // navigateTo(`/games/${result.id}`);
-  } catch (e: any) {
-    createError.value = e.data?.message || "Failed to create game";
-  } finally {
-    creating.value = false;
-  }
-}
 </script>
 
 <template>
@@ -37,20 +14,12 @@ async function createNewGame() {
     <div class="p-6 border-b border-gray-700 bg-gray-800">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-100">Games</h1>
-        <button
-          @click="createNewGame"
-          :disabled="creating"
-          class="px-6 py-2 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
+        <NuxtLink
+          to="/games/new"
+          class="px-6 py-2 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide"
         >
-          {{ creating ? "Creating..." : "Start New Game" }}
-        </button>
-      </div>
-
-      <div
-        v-if="createError"
-        class="mt-3 p-3 bg-red-900 border border-red-700 text-red-200 text-sm"
-      >
-        {{ createError }}
+          Start New Game
+        </NuxtLink>
       </div>
     </div>
 
@@ -72,9 +41,10 @@ async function createNewGame() {
       </div>
 
       <div v-else class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <div
+        <NuxtLink
           v-for="game in response.games"
           :key="game.id"
+          :to="`/games/${game.id}`"
           class="p-4 border border-gray-700 bg-gray-800 hover:bg-gray-750 transition-colors cursor-pointer"
         >
           <div class="flex items-start justify-between mb-2">
@@ -94,7 +64,7 @@ async function createNewGame() {
           <div class="mt-3 text-xs text-gray-500">
             Updated: {{ new Date(game.updatedAt).toLocaleString() }}
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </div>
