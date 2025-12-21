@@ -166,9 +166,13 @@ function handleStart() {
 
             <!-- Start Button -->
             <button
-              v-if="animationPhase === 'ready'"
               @click="handleStart"
-              class="px-12 py-4 text-xl font-bold bg-teal-600 text-white border-b-8 border-teal-800 hover:bg-teal-500 active:border-b-4 transition-all uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 animate-pulse"
+              class="px-12 py-4 text-xl font-bold bg-teal-600 text-white border-b-8 border-teal-800 hover:bg-teal-500 active:border-b-4 transition-all uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 transition-all duration-1000"
+              :class="[
+                animationPhase === 'ready'
+                  ? 'opacity-100 animate-pulse'
+                  : 'opacity-0 pointer-events-none',
+              ]"
             >
               Start Battle
             </button>
@@ -228,12 +232,6 @@ function handleStart() {
           </div>
         </div>
       </div>
-
-      <!-- Battle Info -->
-      <div
-        v-if="animationPhase === 'ready'"
-        class="mt-8 text-center text-gray-400 text-sm animate-fade-in"
-      ></div>
     </div>
   </div>
 </template>
