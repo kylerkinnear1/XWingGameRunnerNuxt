@@ -112,7 +112,7 @@ async function saveSquad() {
     const body: SquadUpdateDto = {
       name: form.value.name,
       faction: form.value.faction,
-      pilots: formPilots.value,
+      ships: formPilots.value,
     };
 
     await $fetch(`/api/squads/${selectedSquad.value!.id}`, {

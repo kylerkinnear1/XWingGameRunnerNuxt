@@ -98,9 +98,8 @@ function groupUpdates(
   squadId: string,
   now: Date
 ) {
-  const requestedShipIds = new Set(
-    body.ships.filter((s) => s.id).map((s) => s.id)
-  );
+  const ships = body.ships || [];
+  const requestedShipIds = new Set(ships.filter((s) => s.id).map((s) => s.id));
   const shipIdsToDelete: string[] = [];
   const upgradeIdsToDelete: string[] = [];
   const upgradesToInsert: Array<{
@@ -125,7 +124,7 @@ function groupUpdates(
     }
   }
 
-  for (const ship of body.ships) {
+  for (const ship of ships) {
     const existingShip = ship.id ? existingShipMap.get(ship.id) : undefined;
 
     if (existingShip) {
