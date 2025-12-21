@@ -30,11 +30,27 @@ const [squad1Response, squad2Response] = await Promise.all([
   squad2Promise,
 ]);
 
-const squads = ref<SquadReadDto[]>(
-  [squad1Response.squads[0], squad2Response.squads[0]].filter(
-    (s): s is SquadReadDto => s !== undefined
-  )
-);
+// Map squads to ensure correct player association
+const player1Squad = computed(() => {
+  if (!gameData.value) return null;
+  return squad1Response.squads.find(
+    (s) => s.id === gameData.value!.player1SquadId
+  );
+});
+
+const player2Squad = computed(() => {
+  if (!gameData.value) return null;
+  return squad2Response.squads.find(
+    (s) => s.id === gameData.value!.player2SquadId
+  );
+});
+
+const squads = computed(() => {
+  const result: SquadReadDto[] = [];
+  if (player1Squad.value) result.push(player1Squad.value);
+  if (player2Squad.value) result.push(player2Squad.value);
+  return result;
+});
 
 const selectedStepIndex = ref(0);
 const expandedShipId = ref<string | null>(null);
@@ -59,89 +75,92 @@ const currentGameState = computed(() => {
   });
 });
 
-const shipsWithDetails = computed(() => {
-  if (!cards.value || !squads.value || !gameData.value) return [];
+// Create ship lists directly from squads, just like the animation does
+const createShipFromSquad = (
+  shipDto: { id: string; pilotId: string; upgradeIds: string[] },
+  playerId: string
+): { ship: ShipStateDto; pilot: any } | null => {
+  if (!cards.value) return null;
+  const pilot = cards.value.pilots.find((p) => p.id === shipDto.pilotId);
+  if (!pilot) return null;
+
+  const shipState: ShipStateDto = {
+    shipId: shipDto.id,
+    playerId,
+    pilotSkill: pilot.pilotSkill,
+    hull: pilot.hull,
+    shields: pilot.shields,
+    attack: pilot.attack,
+    agility: pilot.agility,
+    tokens: [],
+    faceUpDamage: [],
+    faceDownDamage: 0,
+    weapons: [],
+    upgrades: shipDto.upgradeIds.map((id) => ({
+      upgradeId: id,
+      faceUp: false,
+    })),
+    isPlaced: false,
+    isDestroyed: false,
+    didBump: false,
+    dialAssigned: null,
+    isHalfPointsScored: false,
+    hasActivated: false,
+    collisions: [],
+    attackTargetShipId: null,
+    hasAttacked: false,
+    maneuvers: pilot.maneuvers,
+  };
+
+  return { ship: shipState, pilot };
+};
+
+const player1Ships = computed(() => {
+  if (!player1Squad.value || !gameData.value) return [];
 
   // If game has started, use ships from game state
   if (currentGameState.value && currentGameState.value.ships.length > 0) {
-    return currentGameState.value.ships.map((shipState) => {
-      const squad = squads.value.find(
-        (s) =>
-          s.id === gameData.value!.player1SquadId ||
-          s.id === gameData.value!.player2SquadId
-      );
-      const shipDto = squad?.ships.find((s) => s.id === shipState.shipId);
-      const pilot = cards.value?.pilots.find((p) => p.id === shipDto?.pilotId);
-
-      return {
-        ship: shipState,
-        pilot,
-      };
-    });
+    return currentGameState.value.ships
+      .filter((s) => s.playerId === gameData.value!.player1Id)
+      .map((shipState) => {
+        const shipDto = player1Squad.value!.ships.find(
+          (s) => s.id === shipState.shipId
+        );
+        const pilot = cards.value?.pilots.find(
+          (p) => p.id === shipDto?.pilotId
+        );
+        return { ship: shipState, pilot };
+      });
   }
 
-  // Before game starts, create ship states from squads
-  const allShips: Array<{ ship: ShipStateDto; pilot: any }> = [];
-
-  squads.value.forEach((squad) => {
-    const playerId =
-      squad.id === gameData.value!.player1SquadId
-        ? gameData.value!.player1Id
-        : gameData.value!.player2Id;
-
-    squad.ships.forEach((shipDto) => {
-      const pilot = cards.value?.pilots.find((p) => p.id === shipDto.pilotId);
-      if (pilot) {
-        const shipState: ShipStateDto = {
-          shipId: shipDto.id,
-          playerId,
-          pilotSkill: pilot.pilotSkill,
-          hull: pilot.hull,
-          shields: pilot.shields,
-          attack: pilot.attack,
-          agility: pilot.agility,
-          tokens: [],
-          faceUpDamage: [],
-          faceDownDamage: 0,
-          weapons: [],
-          upgrades: shipDto.upgradeIds.map((id) => ({
-            upgradeId: id,
-            faceUp: false,
-          })),
-          isPlaced: false,
-          isDestroyed: false,
-          didBump: false,
-          dialAssigned: null,
-          isHalfPointsScored: false,
-          hasActivated: false,
-          collisions: [],
-          attackTargetShipId: null,
-          hasAttacked: false,
-          maneuvers: pilot.maneuvers,
-        };
-        allShips.push({
-          ship: shipState,
-          pilot,
-        });
-      }
-    });
-  });
-
-  return allShips;
-});
-
-const player1Ships = computed(() => {
-  if (!gameData.value) return [];
-  return shipsWithDetails.value.filter(
-    (s) => s.ship.playerId === gameData.value?.player1Id
-  );
+  // Before game starts, create from squad directly
+  return player1Squad.value.ships
+    .map((shipDto) => createShipFromSquad(shipDto, gameData.value!.player1Id))
+    .filter((s): s is { ship: ShipStateDto; pilot: any } => s !== null);
 });
 
 const player2Ships = computed(() => {
-  if (!gameData.value) return [];
-  return shipsWithDetails.value.filter(
-    (s) => s.ship.playerId === gameData.value?.player2Id
-  );
+  if (!player2Squad.value || !gameData.value) return [];
+
+  // If game has started, use ships from game state
+  if (currentGameState.value && currentGameState.value.ships.length > 0) {
+    return currentGameState.value.ships
+      .filter((s) => s.playerId === gameData.value!.player2Id)
+      .map((shipState) => {
+        const shipDto = player2Squad.value!.ships.find(
+          (s) => s.id === shipState.shipId
+        );
+        const pilot = cards.value?.pilots.find(
+          (p) => p.id === shipDto?.pilotId
+        );
+        return { ship: shipState, pilot };
+      });
+  }
+
+  // Before game starts, create from squad directly
+  return player2Squad.value.ships
+    .map((shipDto) => createShipFromSquad(shipDto, gameData.value!.player2Id))
+    .filter((s): s is { ship: ShipStateDto; pilot: any } => s !== null);
 });
 
 function selectStep(index: number) {
@@ -231,9 +250,9 @@ async function refresh() {
     <!-- Main Game Area -->
     <div class="flex-1 overflow-hidden">
       <GameStartAnimation
-        v-if="!gameStarted && squads.length >= 2 && squads[0] && squads[1]"
-        :player1Squad="squads[0]"
-        :player2Squad="squads[1]"
+        v-if="!gameStarted && player1Squad && player2Squad"
+        :player1Squad="player1Squad"
+        :player2Squad="player2Squad"
         @start="startGame"
       />
 
