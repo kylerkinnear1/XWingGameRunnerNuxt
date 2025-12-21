@@ -16,9 +16,8 @@ const createError = ref<string | null>(null);
 const deleting = ref<string | null>(null);
 const deleteError = ref<string | null>(null);
 
-// Delete confirmation modal state
-const showDeleteModal = ref(false);
-const squadToDelete = ref<{ id: string; name: string } | null>(null);
+// Toast for delete confirmation
+const toast = useToast();
 
 // Faction change confirmation modal state
 const showFactionChangeModal = ref(false);
@@ -95,36 +94,39 @@ async function createEmptySquad() {
   }
 }
 
-function openDeleteModal(squadId: string, squadName: string) {
-  squadToDelete.value = { id: squadId, name: squadName };
-  showDeleteModal.value = true;
-}
+async function handleDelete(squadId: string, squadName: string) {
+  if (!confirm(`Are you sure you want to delete "${squadName}"? This action cannot be undone.`)) {
+    return;
+  }
 
-function closeDeleteModal() {
-  showDeleteModal.value = false;
-  squadToDelete.value = null;
-}
-
-async function confirmDelete() {
-  if (!squadToDelete.value) return;
-
-  const { id, name } = squadToDelete.value;
-  deleting.value = id;
+  deleting.value = squadId;
   deleteError.value = null;
 
   try {
-    await $fetch(`/api/squads/${id}`, {
+    await $fetch(`/api/squads/${squadId}`, {
       method: 'DELETE'
     });
 
-    if (selectedSquad.value?.id === id) {
+    if (selectedSquad.value?.id === squadId) {
       closeDrawer();
     }
 
     await refresh();
-    closeDeleteModal();
+    
+    toast.add({
+      title: 'Squad deleted',
+      description: `"${squadName}" has been deleted.`,
+      color: 'success'
+    });
   } catch (e: any) {
-    deleteError.value = e.data?.message || 'Failed to delete squad';
+    const errorMessage = e.data?.message || 'Failed to delete squad';
+    deleteError.value = errorMessage;
+    
+    toast.add({
+      title: 'Delete failed',
+      description: errorMessage,
+      color: 'error'
+    });
   } finally {
     deleting.value = null;
   }
@@ -210,14 +212,13 @@ defineExpose({
           </div>
           
           <!-- Action Drawer (slides down vertically on hover) -->
-          <div class="max-h-0 overflow-hidden transition-all duration-200 group-hover:max-h-12">
-            <div class="flex items-center justify-center gap-2 pt-2 pointer-events-auto">
+          <div class="h-0 overflow-hidden transition-all duration-200 group-hover:h-12">
+            <div class="flex items-center justify-center gap-2 pt-2">
               <button
-                @click.stop.prevent="openDeleteModal(squad.id, squad.name)"
+                @click.stop="handleDelete(squad.id, squad.name)"
                 :disabled="deleting === squad.id"
-                class="px-4 py-2 bg-red-900/90 text-red-200 hover:bg-red-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 pointer-events-auto"
+                class="px-4 py-2 bg-red-900/90 text-red-200 hover:bg-red-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 title="Delete squad"
-                type="button"
               >
                 <svg v-if="deleting !== squad.id" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -235,56 +236,6 @@ defineExpose({
       </div>
     </div>
   </div>
-
-  <!-- Delete Confirmation Modal -->
-  <UModal v-model="showDeleteModal">
-    <UCard>
-      <template #header>
-        <div class="flex items-center justify-between">
-          <h3 class="text-lg font-bold text-gray-100">Delete Squad</h3>
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-heroicons-x-mark-20-solid"
-            @click="closeDeleteModal"
-          />
-        </div>
-      </template>
-
-      <div class="space-y-4">
-        <p class="text-gray-300">
-          Are you sure you want to delete <span class="font-semibold">"{{ squadToDelete?.name }}"</span>?
-        </p>
-        <p class="text-sm text-red-400">
-          This action cannot be undone.
-        </p>
-
-        <div v-if="deleteError" class="p-3 bg-red-900 border border-red-700 text-red-200 text-sm">
-          {{ deleteError }}
-        </div>
-      </div>
-
-      <template #footer>
-        <div class="flex justify-end gap-3">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            @click="closeDeleteModal"
-            :disabled="!!deleting"
-          >
-            Cancel
-          </UButton>
-          <UButton
-            color="error"
-            @click="confirmDelete"
-            :loading="!!deleting"
-          >
-            Delete
-          </UButton>
-        </div>
-      </template>
-    </UCard>
-  </UModal>
 
   <!-- Faction Change Confirmation Modal -->
   <UModal v-model="showFactionChangeModal">
