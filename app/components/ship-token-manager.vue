@@ -10,6 +10,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   addToken: [shipId: string, tokenType: TokenType];
   removeToken: [shipId: string, tokenType: TokenType];
+  closeTokenManager: [];
 }>();
 
 const availableTokens = [
@@ -68,14 +69,36 @@ function handleAddToken(tokenType: TokenType) {
 function handleRemoveToken(tokenType: TokenType) {
   emit("removeToken", props.ship.shipId, tokenType);
 }
+
+function handleClose() {
+  emit("closeTokenManager");
+}
 </script>
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="p-3 border-b border-gray-700">
+    <div class="p-3 border-b border-gray-700 flex items-center justify-between">
       <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
         Tokens
       </div>
+      <button
+        @click="handleClose"
+        class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
     </div>
     <div class="flex-1 overflow-y-auto p-2">
       <div class="space-y-1">

@@ -41,6 +41,12 @@ function handleAddToken(shipId: string, tokenType: TokenType) {
 function handleRemoveToken(shipId: string, tokenType: TokenType) {
   emit("removeToken", shipId, tokenType);
 }
+
+function handleCloseTokenManager() {
+  if (props.expandedShipId) {
+    emit("toggleExpansion", props.expandedShipId);
+  }
+}
 </script>
 
 <template>
@@ -144,6 +150,7 @@ function handleRemoveToken(shipId: string, tokenType: TokenType) {
         :ship="expandedShip"
         @add-token="handleAddToken"
         @remove-token="handleRemoveToken"
+        @close-token-manager="handleCloseTokenManager"
       />
     </div>
   </div>
