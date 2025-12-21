@@ -74,7 +74,7 @@ function placeShip(shipId: string) {
         <!-- Player 1 Column -->
         <div class="space-y-2">
           <h3
-            class="text-lg font-bold text-red-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10"
+            class="text-lg font-bold text-red-400 mb-4 top-0 bg-gray-900 py-2 z-10"
           >
             Player 1
           </h3>
@@ -155,7 +155,7 @@ function placeShip(shipId: string) {
         <!-- Player 2 Column -->
         <div class="space-y-2">
           <h3
-            class="text-lg font-bold text-gray-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10"
+            class="text-lg font-bold text-gray-400 mb-4 top-0 bg-gray-900 py-2 z-10"
           >
             Player 2
           </h3>
