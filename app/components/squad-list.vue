@@ -236,48 +236,4 @@ defineExpose({
       </div>
     </div>
   </div>
-
-  <!-- Faction Change Confirmation Modal -->
-  <UModal v-model="showFactionChangeModal">
-    <UCard>
-      <template #header>
-        <div class="flex items-center justify-between">
-          <h3 class="text-lg font-bold text-gray-100">Unsaved Changes</h3>
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-heroicons-x-mark-20-solid"
-            @click="cancelFactionChange"
-          />
-        </div>
-      </template>
-
-      <div class="space-y-4">
-        <p class="text-gray-300">
-          You have unsaved changes. Are you sure you want to switch factions?
-        </p>
-        <p class="text-sm text-yellow-400">
-          Your changes will be lost.
-        </p>
-      </div>
-
-      <template #footer>
-        <div class="flex justify-end gap-3">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            @click="cancelFactionChange"
-          >
-            Cancel
-          </UButton>
-          <UButton
-            color="warning"
-            @click="confirmFactionChange"
-          >
-            Switch Anyway
-          </UButton>
-        </div>
-      </template>
-    </UCard>
-  </UModal>
 </template>

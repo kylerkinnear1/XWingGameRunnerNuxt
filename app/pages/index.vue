@@ -33,7 +33,7 @@
 
             <NuxtLink to="/squads">
               <button class="px-8 py-4 text-lg font-bold bg-gray-700 text-white border-b-4 border-gray-900 hover:bg-gray-600 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]">
-                Manage Lists
+                Build Your Squad
               </button>
             </NuxtLink>
           </div>
