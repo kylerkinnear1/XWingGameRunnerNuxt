@@ -86,6 +86,20 @@ export enum CollisionType {
   Ship = 'ship'
 }
 
+export enum ReinforceDirection {
+    Front = 'front',
+    Back = 'back'
+}
+
+export enum GamePhase {
+    Start = 'start',
+    Setup = 'setup',
+    Planning = 'planning',
+    Activation = 'activation',
+    Engagement = 'engagement',
+    End = 'end'
+}
+
 // Maneuver helper type
 export interface Maneuver {
   bearing: Bearing

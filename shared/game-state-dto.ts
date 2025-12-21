@@ -3,7 +3,9 @@ import {
   TokenType, 
   ActionType, 
   DiceResult,
-  CollisionType 
+  CollisionType,
+  ReinforceDirection,
+  GamePhase
 } from './enums'
 
 import type { Maneuver } from './enums'
@@ -14,14 +16,63 @@ export type GameStateDto = {
   player2Id: string
   player1SquadId: string
   player2SquadId: string
-  steps: GameStep[]
-  currentStep: number
+  steps: GameStepDto[]
   createdAt: Date
   updatedAt: Date
 }
 
-export type GameStep = 
-  | GameStart
+export type CurrentGameState = {
+  currentStep: number
+  ships: readonly ShipStateDto[]
+  playerWithInitiative: string,
+  bombIds: string[]
+  mineIds: string[]
+  obstacleIds: string[]
+  player1Points: number
+  player2Points: number
+  totalTurns: number
+  currentPhase: GamePhase
+}
+
+export type ShipStateDto = {
+  playerId: string
+  shipId: string
+  pilotSkill: number
+  hull: number
+  shields: number
+  attack: number
+  agility: number
+  maneuver: Maneuver
+  tokens: TokenStateDto[]
+  faceUpDamage: CritStateDto[]
+  faceDownDamage: number
+  weapons: readonly WeaponStateDto[]
+  isPlaced: boolean,
+  isDestroyed: boolean
+  dialAssigned: Maneuver | null
+  isHalfPointsScored: boolean
+}
+
+export type CritStateDto = {
+    critCardId: string
+    faceUp: boolean
+}
+
+export type TokenStateDto = {
+    tokenType: TokenType
+    conditionId: string | null
+    reinforceDirection: ReinforceDirection | null
+    sourceShipId: string | null
+}
+
+export type WeaponStateDto = {
+    weaponId: string
+    isDestroyed: boolean
+    ammo: number
+}
+
+export type GameStepDto = 
+  | GameStartDto
   | SelectInitiative
   | StartSetup
   | ShipPlaced
@@ -36,6 +87,7 @@ export type GameStep =
   | StressCheck
   | PerformAction
   | DetonateBomb
+  | DestroyObstacle
   | AssignToken
   | TriggerAbility
   | CombatStep
@@ -57,7 +109,7 @@ export type GameStep =
   | TurnEnd
   | GameEnd
 
-export interface GameStart {
+export interface GameStartDto {
   type: 'game_start'
   timestamp: Date
 }
@@ -157,6 +209,12 @@ export interface DetonateBomb {
   type: 'detonate_bomb'
   bombId: string
   affectedShipIds: string[]
+  timestamp: Date
+}
+
+export interface DestroyObstacle {
+  type: 'destroy_obstacle'
+  obstacleId: string
   timestamp: Date
 }
 
