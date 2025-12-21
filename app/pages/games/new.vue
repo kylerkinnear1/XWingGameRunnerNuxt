@@ -1,3 +1,1 @@
-<template>
-    New Game Page
-</template>
+<template>New Game Page</template>

@@ -1,63 +1,81 @@
 import { db } from "../../db/db";
 import { squads, squadShips, shipUpgrades } from "../../db/schema";
-import { SquadReadResponseDto, SquadReadDto, PilotDto } from "#shared/squad-dto";
+import {
+  SquadReadResponseDto,
+  SquadReadDto,
+  PilotDto,
+} from "#shared/squad-dto";
 import { auth } from "../../auth";
 import { eq, desc } from "drizzle-orm";
 import { Faction } from "#shared/enums";
 
-export default defineEventHandler<Promise<SquadReadResponseDto>>(async (event) => {
-  const session = await auth.api.getSession({ 
-    headers: event.headers 
-  });
-  
-  if (!session?.user) {
-    throw createError({
-      statusCode: 401,
-      message: "Unauthorized"
+export default defineEventHandler<Promise<SquadReadResponseDto>>(
+  async (event) => {
+    const session = await auth.api.getSession({
+      headers: event.headers,
     });
-  }
 
-  const results = await db
-    .select({
-      squad: squads,
-      ship: squadShips,
-      upgrade: shipUpgrades
-    })
-    .from(squads)
-    .leftJoin(squadShips, eq(squads.id, squadShips.squadId))
-    .leftJoin(shipUpgrades, eq(squadShips.id, shipUpgrades.shipId))
-    .where(eq(squads.userId, session.user.id))
-    .orderBy(desc(squads.updatedAt), shipUpgrades.sortOrder);
+    if (!session?.user) {
+      throw createError({
+        statusCode: 401,
+        message: "Unauthorized",
+      });
+    }
 
-  const squadsWithPilots = Object.values(
-    Object.groupBy(results.filter(r => r.squad), r => r.squad!.id)
-  )
-  .filter((squadGroup): squadGroup is NonNullable<typeof squadGroup> => squadGroup !== undefined && squadGroup.length > 0)
-  .map(squadGroup => {
-    const first = squadGroup[0];
-    return {
-      id: first.squad!.id,
-      userId: first.squad!.userId,
-      name: first.squad!.name,
-      faction: first.squad!.faction as Faction,
-      createdAt: first.squad!.createdAt,
-      updatedAt: first.squad!.updatedAt,
-      
-      pilots: Object.values(
-        Object.groupBy(squadGroup.filter(r => r.ship), r => r.ship!.id)
-      )
-      .filter((pilotGroup): pilotGroup is NonNullable<typeof pilotGroup> => pilotGroup !== undefined && pilotGroup.length > 0)
-      .map(pilotGroup => {
-        const firstPilot = pilotGroup[0];
-        return {
-          pilotId: firstPilot.ship!.pilotId || '',
-          upgradeIds: pilotGroup
-            .filter(r => r.upgrade)
-            .map(r => r.upgrade!.upgradeId)
-        };
+    const results = await db
+      .select({
+        squad: squads,
+        ship: squadShips,
+        upgrade: shipUpgrades,
       })
-    };
-  });
+      .from(squads)
+      .leftJoin(squadShips, eq(squads.id, squadShips.squadId))
+      .leftJoin(shipUpgrades, eq(squadShips.id, shipUpgrades.shipId))
+      .where(eq(squads.userId, session.user.id))
+      .orderBy(desc(squads.updatedAt), shipUpgrades.sortOrder);
 
-  return { squads: squadsWithPilots };
-});
+    const squadsWithPilots = Object.values(
+      Object.groupBy(
+        results.filter((r) => r.squad),
+        (r) => r.squad!.id
+      )
+    )
+      .filter(
+        (squadGroup): squadGroup is NonNullable<typeof squadGroup> =>
+          squadGroup !== undefined && squadGroup.length > 0
+      )
+      .map((squadGroup) => {
+        const first = squadGroup[0];
+        return {
+          id: first.squad!.id,
+          userId: first.squad!.userId,
+          name: first.squad!.name,
+          faction: first.squad!.faction as Faction,
+          createdAt: first.squad!.createdAt,
+          updatedAt: first.squad!.updatedAt,
+
+          pilots: Object.values(
+            Object.groupBy(
+              squadGroup.filter((r) => r.ship),
+              (r) => r.ship!.id
+            )
+          )
+            .filter(
+              (pilotGroup): pilotGroup is NonNullable<typeof pilotGroup> =>
+                pilotGroup !== undefined && pilotGroup.length > 0
+            )
+            .map((pilotGroup) => {
+              const firstPilot = pilotGroup[0];
+              return {
+                pilotId: firstPilot.ship!.pilotId || "",
+                upgradeIds: pilotGroup
+                  .filter((r) => r.upgrade)
+                  .map((r) => r.upgrade!.upgradeId),
+              };
+            }),
+        };
+      });
+
+    return { squads: squadsWithPilots };
+  }
+);

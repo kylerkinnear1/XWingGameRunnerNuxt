@@ -1,3 +1,1 @@
-<template>
-    Resume Game Page
-</template>
+<template>Resume Game Page</template>

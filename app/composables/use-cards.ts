@@ -1,25 +1,25 @@
-import { parseCards } from '#shared/cards.parser';
-import type { CardsDto, PilotDto } from '#shared/cards';
-import type { Faction } from '#shared/enums';
+import { parseCards } from "#shared/cards.parser";
+import type { CardsDto, PilotDto } from "#shared/cards";
+import type { Faction } from "#shared/enums";
 
 export const useCards = () => {
-  const cards = useState<CardsDto | null>('cards', () => null);
-  const loading = useState<boolean>('cardsLoading', () => false);
-  const error = useState<Error | null>('cardsError', () => null);
+  const cards = useState<CardsDto | null>("cards", () => null);
+  const loading = useState<boolean>("cardsLoading", () => false);
+  const error = useState<Error | null>("cardsError", () => null);
 
   const loadCards = async () => {
     if (cards.value) return; // Already loaded
-    
+
     loading.value = true;
     error.value = null;
-    
+
     try {
-      const response = await fetch('/cards.json');
+      const response = await fetch("/cards.json");
       const text = await response.text();
       cards.value = parseCards(text);
     } catch (e) {
       error.value = e as Error;
-      console.error('Failed to load cards:', e);
+      console.error("Failed to load cards:", e);
     } finally {
       loading.value = false;
     }
@@ -27,14 +27,14 @@ export const useCards = () => {
 
   const getPilotsForFaction = (faction: Faction): PilotDto[] => {
     if (!cards.value) return [];
-    
+
     const factionKey = faction.toLowerCase();
-    return cards.value.pilots.filter(p => p.factionKey === factionKey);
+    return cards.value.pilots.filter((p) => p.factionKey === factionKey);
   };
 
   const groupPilotsByShip = (pilots: PilotDto[]) => {
     const grouped = new Map<string, PilotDto[]>();
-    
+
     for (const pilot of pilots) {
       const shipKey = pilot.shipKey;
       if (!grouped.has(shipKey)) {
@@ -42,12 +42,12 @@ export const useCards = () => {
       }
       grouped.get(shipKey)!.push(pilot);
     }
-    
+
     // Sort pilots within each ship by skill (descending)
     for (const [, shipPilots] of grouped) {
       shipPilots.sort((a, b) => b.pilotSkill - a.pilotSkill);
     }
-    
+
     return grouped;
   };
 
@@ -57,6 +57,6 @@ export const useCards = () => {
     error: readonly(error),
     loadCards,
     getPilotsForFaction,
-    groupPilotsByShip
+    groupPilotsByShip,
   };
 };

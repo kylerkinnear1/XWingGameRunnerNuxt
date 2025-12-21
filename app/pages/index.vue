@@ -10,7 +10,10 @@
             alt="XWing Gamemaster"
             class="h-16 w-auto"
           />
-          <span class="font-bold text-3xl whitespace-nowrap text-white drop-shadow-lg">XWing Gamemaster</span>
+          <span
+            class="font-bold text-3xl whitespace-nowrap text-white drop-shadow-lg"
+            >XWing Gamemaster</span
+          >
         </div>
 
         <!-- Cover Image with Buttons Overlay -->
@@ -21,18 +24,26 @@
             class="w-full h-auto rounded-2xl border-4 border-gray-700 shadow-2xl object-contain"
           />
           <!-- Dark overlay for better button visibility -->
-          <div class="absolute inset-0 rounded-2xl bg-black/40 pointer-events-none"></div>
-          
+          <div
+            class="absolute inset-0 rounded-2xl bg-black/40 pointer-events-none"
+          ></div>
+
           <!-- Buttons Centered in Image -->
-          <div class="absolute inset-0 flex flex-col items-center justify-center gap-4">
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center gap-4"
+          >
             <NuxtLink to="/games/new">
-              <button class="px-8 py-4 text-lg font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]">
+              <button
+                class="px-8 py-4 text-lg font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]"
+              >
                 Start New Game
               </button>
             </NuxtLink>
 
             <NuxtLink to="/squads">
-              <button class="px-8 py-4 text-lg font-bold bg-gray-700 text-white border-b-4 border-gray-900 hover:bg-gray-600 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]">
+              <button
+                class="px-8 py-4 text-lg font-bold bg-gray-700 text-white border-b-4 border-gray-900 hover:bg-gray-600 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]"
+              >
                 Build Your Squad
               </button>
             </NuxtLink>

@@ -1,77 +1,77 @@
 // shared/game-steps.ts
-import { 
-  TokenType, 
-  ActionType, 
+import {
+  TokenType,
+  ActionType,
   DiceResult,
   CollisionType,
   ReinforceDirection,
-  GamePhase
-} from './enums'
+  GamePhase,
+} from "./enums";
 
-import type { Maneuver } from './enums'
+import type { Maneuver } from "./enums";
 
 export type GameStateDto = {
-  id: string
-  player1Id: string
-  player2Id: string
-  player1SquadId: string
-  player2SquadId: string
-  steps: GameStepDto[]
-  createdAt: Date
-  updatedAt: Date
-}
+  id: string;
+  player1Id: string;
+  player2Id: string;
+  player1SquadId: string;
+  player2SquadId: string;
+  steps: GameStepDto[];
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export type CurrentGameState = {
-  currentStep: number
-  ships: readonly ShipStateDto[]
-  playerWithInitiative: string,
-  bombIds: string[]
-  mineIds: string[]
-  obstacleIds: string[]
-  player1Points: number
-  player2Points: number
-  totalTurns: number
-  currentPhase: GamePhase
-}
+  currentStep: number;
+  ships: readonly ShipStateDto[];
+  playerWithInitiative: string;
+  bombIds: string[];
+  mineIds: string[];
+  obstacleIds: string[];
+  player1Points: number;
+  player2Points: number;
+  totalTurns: number;
+  currentPhase: GamePhase;
+};
 
 export type ShipStateDto = {
-  playerId: string
-  shipId: string
-  pilotSkill: number
-  hull: number
-  shields: number
-  attack: number
-  agility: number
-  maneuver: Maneuver
-  tokens: TokenStateDto[]
-  faceUpDamage: CritStateDto[]
-  faceDownDamage: number
-  weapons: readonly WeaponStateDto[]
-  isPlaced: boolean,
-  isDestroyed: boolean
-  dialAssigned: Maneuver | null
-  isHalfPointsScored: boolean
-}
+  playerId: string;
+  shipId: string;
+  pilotSkill: number;
+  hull: number;
+  shields: number;
+  attack: number;
+  agility: number;
+  maneuver: Maneuver;
+  tokens: TokenStateDto[];
+  faceUpDamage: CritStateDto[];
+  faceDownDamage: number;
+  weapons: readonly WeaponStateDto[];
+  isPlaced: boolean;
+  isDestroyed: boolean;
+  dialAssigned: Maneuver | null;
+  isHalfPointsScored: boolean;
+};
 
 export type CritStateDto = {
-    critCardId: string
-    faceUp: boolean
-}
+  critCardId: string;
+  faceUp: boolean;
+};
 
 export type TokenStateDto = {
-    tokenType: TokenType
-    conditionId: string | null
-    reinforceDirection: ReinforceDirection | null
-    sourceShipId: string | null
-}
+  tokenType: TokenType;
+  conditionId: string | null;
+  reinforceDirection: ReinforceDirection | null;
+  sourceShipId: string | null;
+};
 
 export type WeaponStateDto = {
-    weaponId: string
-    isDestroyed: boolean
-    ammo: number
-}
+  weaponId: string;
+  isDestroyed: boolean;
+  ammo: number;
+};
 
-export type GameStepDto = 
+export type GameStepDto =
   | GameStartDto
   | SelectInitiative
   | StartSetup
@@ -107,249 +107,249 @@ export type GameStepDto =
   | AssignCondition
   | Cleanup
   | TurnEnd
-  | GameEnd
+  | GameEnd;
 
 export interface GameStartDto {
-  type: 'game_start'
-  timestamp: Date
+  type: "game_start";
+  timestamp: Date;
 }
 
 // Setup Phase
 export interface SelectInitiative {
-  type: 'select_initiative'
-  playerWithInitiative: string
-  timestamp: Date
+  type: "select_initiative";
+  playerWithInitiative: string;
+  timestamp: Date;
 }
 
 export interface StartSetup {
-  type: 'start_setup'
-  timestamp: Date
+  type: "start_setup";
+  timestamp: Date;
 }
 
 export interface ShipPlaced {
-  type: 'ship_placed'
-  shipId: string
-  timestamp: Date
+  type: "ship_placed";
+  shipId: string;
+  timestamp: Date;
 }
 
 export interface EndSetup {
-  type: 'end_setup'
-  timestamp: Date
+  type: "end_setup";
+  timestamp: Date;
 }
 
 // Turn Flow
 export interface TurnStart {
-  type: 'turn_start'
-  timestamp: Date
+  type: "turn_start";
+  timestamp: Date;
 }
 
 export interface Planning {
-  type: 'planning'
-  timestamp: Date
+  type: "planning";
+  timestamp: Date;
 }
 
 export interface TurnEnd {
-  type: 'turn_end'
-  timestamp: Date
+  type: "turn_end";
+  timestamp: Date;
 }
 
 export interface GameEnd {
-  type: 'game_end'
-  winnerId: string | null
-  player1Points: number
-  player2Points: number
-  totalTurns: number
-  timestamp: Date
+  type: "game_end";
+  winnerId: string | null;
+  player1Points: number;
+  player2Points: number;
+  totalTurns: number;
+  timestamp: Date;
 }
 
 // Planning Phase
 export interface AssignDial {
-  type: 'assign_dial'
-  shipId: string
-  maneuver: Maneuver
-  timestamp: Date
+  type: "assign_dial";
+  shipId: string;
+  maneuver: Maneuver;
+  timestamp: Date;
 }
 
 // Activation Phase
 export interface ActivationStep {
-  type: 'activation_step'
-  shipId: string
-  timestamp: Date
+  type: "activation_step";
+  shipId: string;
+  timestamp: Date;
 }
 
 export interface BeginManeuver {
-  type: 'begin_maneuver'
-  timestamp: Date
+  type: "begin_maneuver";
+  timestamp: Date;
 }
 
 export interface CleanManeuver {
-  type: 'clean_maneuver'
-  timestamp: Date
+  type: "clean_maneuver";
+  timestamp: Date;
 }
 
 export interface Collide {
-  type: 'collide'
-  collisionType: CollisionType
-  timestamp: Date
+  type: "collide";
+  collisionType: CollisionType;
+  timestamp: Date;
 }
 
 export interface StressCheck {
-  type: 'stress_check'
-  timestamp: Date
+  type: "stress_check";
+  timestamp: Date;
 }
 
 export interface PerformAction {
-  type: 'perform_action'
-  action: ActionType
-  targetShipId?: string
-  timestamp: Date
+  type: "perform_action";
+  action: ActionType;
+  targetShipId?: string;
+  timestamp: Date;
 }
 
 export interface DetonateBomb {
-  type: 'detonate_bomb'
-  bombId: string
-  affectedShipIds: string[]
-  timestamp: Date
+  type: "detonate_bomb";
+  bombId: string;
+  affectedShipIds: string[];
+  timestamp: Date;
 }
 
 export interface DestroyObstacle {
-  type: 'destroy_obstacle'
-  obstacleId: string
-  timestamp: Date
+  type: "destroy_obstacle";
+  obstacleId: string;
+  timestamp: Date;
 }
 
 // Tokens & Conditions
 export interface AssignToken {
-  type: 'assign_token'
-  shipId: string
-  tokenType: TokenType
-  targetShipId?: string
-  timestamp: Date
+  type: "assign_token";
+  shipId: string;
+  tokenType: TokenType;
+  targetShipId?: string;
+  timestamp: Date;
 }
 
 export interface SpendToken {
-  type: 'spend_token'
-  shipId: string
-  tokenType: TokenType
-  timestamp: Date
+  type: "spend_token";
+  shipId: string;
+  tokenType: TokenType;
+  timestamp: Date;
 }
 
 export interface AssignCondition {
-  type: 'assign_condition'
-  shipId: string
-  conditionId: string
-  timestamp: Date
+  type: "assign_condition";
+  shipId: string;
+  conditionId: string;
+  timestamp: Date;
 }
 
 export interface TriggerAbility {
-  type: 'trigger_ability'
-  shipId: string
-  abilityId: string
-  timestamp: Date
+  type: "trigger_ability";
+  shipId: string;
+  abilityId: string;
+  timestamp: Date;
 }
 
 // Combat Phase
 export interface CombatStep {
-  type: 'combat_step'
-  attackerShipId: string
-  pilotSkill: number
-  timestamp: Date
+  type: "combat_step";
+  attackerShipId: string;
+  pilotSkill: number;
+  timestamp: Date;
 }
 
 export interface DeclareTarget {
-  type: 'declare_target'
-  attackerShipId: string
-  defenderShipId: string
-  weaponId: string
-  baseAttackDice: number
-  baseDefenseDice: number
-  timestamp: Date
+  type: "declare_target";
+  attackerShipId: string;
+  defenderShipId: string;
+  weaponId: string;
+  baseAttackDice: number;
+  baseDefenseDice: number;
+  timestamp: Date;
 }
 
 export interface RollAttackDice {
-  type: 'roll_attack_dice'
-  results: DiceResult[]
-  timestamp: Date
+  type: "roll_attack_dice";
+  results: DiceResult[];
+  timestamp: Date;
 }
 
 export interface ModifyAttackDice {
-  type: 'modify_attack_dice'
-  attackerShipId: string
-  beforeResults: DiceResult[]
-  afterResults: DiceResult[]
-  timestamp: Date
+  type: "modify_attack_dice";
+  attackerShipId: string;
+  beforeResults: DiceResult[];
+  afterResults: DiceResult[];
+  timestamp: Date;
 }
 
 export interface RollDefenseDice {
-  type: 'roll_defense_dice'
-  defenderShipId: string
-  results: DiceResult[]
-  timestamp: Date
+  type: "roll_defense_dice";
+  defenderShipId: string;
+  results: DiceResult[];
+  timestamp: Date;
 }
 
 export interface ModifyDefenseDice {
-  type: 'modify_defense_dice'
-  defenderShipId: string
-  beforeResults: DiceResult[]
-  afterResults: DiceResult[]
-  timestamp: Date
+  type: "modify_defense_dice";
+  defenderShipId: string;
+  beforeResults: DiceResult[];
+  afterResults: DiceResult[];
+  timestamp: Date;
 }
 
 export interface SpendAmmo {
-  type: 'spend_ammo'
-  shipId: string
-  weaponId: string
-  ammoRemaining: number
-  timestamp: Date
+  type: "spend_ammo";
+  shipId: string;
+  weaponId: string;
+  ammoRemaining: number;
+  timestamp: Date;
 }
 
 export interface ApplyDamage {
-  type: 'apply_damage'
-  shipId: string
-  hitsApplied: number
-  critsApplied: number
-  hullRemaining: number
-  shieldsRemaining: number
-  timestamp: Date
+  type: "apply_damage";
+  shipId: string;
+  hitsApplied: number;
+  critsApplied: number;
+  hullRemaining: number;
+  shieldsRemaining: number;
+  timestamp: Date;
 }
 
 export interface ShipHalfHealth {
-  type: 'ship_half_health'
-  shipId: string
-  timestamp: Date
+  type: "ship_half_health";
+  shipId: string;
+  timestamp: Date;
 }
 
 export interface AssignCrit {
-  type: 'assign_crit'
-  shipId: string
-  critCardId: string
-  timestamp: Date
+  type: "assign_crit";
+  shipId: string;
+  critCardId: string;
+  timestamp: Date;
 }
 
 export interface FlipCrit {
-  type: 'flip_crit'
-  shipId: string
-  critCardId: string
-  faceUp: boolean
-  timestamp: Date
+  type: "flip_crit";
+  shipId: string;
+  critCardId: string;
+  faceUp: boolean;
+  timestamp: Date;
 }
 
 export interface DestroyShip {
-  type: 'destroy_ship'
-  shipId: string
-  destroyedByShipId: string
-  timestamp: Date
+  type: "destroy_ship";
+  shipId: string;
+  destroyedByShipId: string;
+  timestamp: Date;
 }
 
 export interface AttackerComplete {
-  type: 'attacker_complete'
-  attackerShipId: string
-  timestamp: Date
+  type: "attacker_complete";
+  attackerShipId: string;
+  timestamp: Date;
 }
 
 // End Phase
 export interface Cleanup {
-  type: 'cleanup'
-  tokensRemoved: Record<string, TokenType[]>
-  timestamp: Date
+  type: "cleanup";
+  tokensRemoved: Record<string, TokenType[]>;
+  timestamp: Date;
 }
