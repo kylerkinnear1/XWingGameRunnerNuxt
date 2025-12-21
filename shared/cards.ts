@@ -1,3 +1,5 @@
+import type { Maneuver } from "#shared/enums";
+
 export interface CardsDto {
   pilots: PilotDto[];
   upgrades: UpgradeDto[];
@@ -5,9 +7,7 @@ export interface CardsDto {
 
 export interface PilotDto {
   id: string;
-  key: string;
   factionKey: string;
-  shipKey: string;
 
   pilotName: string;
   faction: string;
@@ -27,6 +27,7 @@ export interface PilotDto {
 
   ability?: string;
   cardImageUrl?: string;
+  maneuvers: readonly Maneuver[];
 }
 
 export interface UpgradeDto {

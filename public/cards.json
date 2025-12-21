@@ -1,8 +1,7 @@
 {
   "pilots": [
     {
-      "id": "empire/firespray31/bobafett",
-      "key": "bobafett",
+      "id": "firespray31/bobafett",
       "factionKey": "empire",
       "shipKey": "firespray31",
       "pilotName": "Boba Fett",
@@ -34,8 +33,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bobafett.png"
     },
     {
-      "id": "empire/firespray31/bountyhunter",
-      "key": "bountyhunter",
+      "id": "firespray31/bountyhunter",
       "factionKey": "empire",
       "shipKey": "firespray31",
       "pilotName": "Bounty Hunter",
@@ -64,8 +62,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bountyhunter.png"
     },
     {
-      "id": "empire/firespray31/kathscarlet",
-      "key": "kathscarlet",
+      "id": "firespray31/kathscarlet",
       "factionKey": "empire",
       "shipKey": "firespray31",
       "pilotName": "Kath Scarlet",
@@ -95,8 +92,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/kathscarlet.png"
     },
     {
-      "id": "empire/firespray31/krassistrelix",
-      "key": "krassistrelix",
+      "id": "firespray31/krassistrelix",
       "factionKey": "empire",
       "shipKey": "firespray31",
       "pilotName": "Krassis Trelix",
@@ -124,8 +120,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/krassistrelix.png"
     },
     {
-      "id": "empire/tieadvanced/darthvader",
-      "key": "darthvader",
+      "id": "tieadvanced/darthvader",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Darth Vader",
@@ -153,8 +148,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/darthvader.png"
     },
     {
-      "id": "empire/tieadvanced/maarekstele",
-      "key": "maarekstele",
+      "id": "tieadvanced/maarekstele",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Maarek Stele",
@@ -182,8 +176,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/maarekstele.png"
     },
     {
-      "id": "empire/tieadvanced/commanderalozen",
-      "key": "commanderalozen",
+      "id": "tieadvanced/commanderalozen",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Commander Alozen",
@@ -210,8 +203,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/commanderalozen.png"
     },
     {
-      "id": "empire/tieadvanced/junoeclipse",
-      "key": "junoeclipse",
+      "id": "tieadvanced/junoeclipse",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Juno Eclipse",
@@ -239,8 +231,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/junoeclipse.png"
     },
     {
-      "id": "empire/tieadvanced/lieutenantcolzet",
-      "key": "lieutenantcolzet",
+      "id": "tieadvanced/lieutenantcolzet",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Lieutenant Colzet",
@@ -267,8 +258,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/lieutenantcolzet.png"
     },
     {
-      "id": "empire/tieadvanced/stormsquadronpilot",
-      "key": "stormsquadronpilot",
+      "id": "tieadvanced/stormsquadronpilot",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Storm Squadron Pilot",
@@ -295,8 +285,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/stormsquadronpilot.png"
     },
     {
-      "id": "empire/tieadvanced/tempestsquadronpilot",
-      "key": "tempestsquadronpilot",
+      "id": "tieadvanced/tempestsquadronpilot",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Tempest Squadron Pilot",
@@ -323,8 +312,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/tempestsquadronpilot.png"
     },
     {
-      "id": "empire/tieadvanced/zertikstrom",
-      "key": "zertikstrom",
+      "id": "tieadvanced/zertikstrom",
       "factionKey": "empire",
       "shipKey": "tieadvanced",
       "pilotName": "Zertik Strom",
@@ -352,8 +340,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/zertikstrom.png"
     },
     {
-      "id": "empire/tiefighter/howlrunner",
-      "key": "howlrunner",
+      "id": "tiefighter/howlrunner",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Howlrunner",
@@ -379,8 +366,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/howlrunner.png"
     },
     {
-      "id": "empire/tiefighter/backstabber",
-      "key": "backstabber",
+      "id": "tiefighter/backstabber",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Backstabber",
@@ -406,8 +392,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/backstabber.png"
     },
     {
-      "id": "empire/tiefighter/darkcurse",
-      "key": "darkcurse",
+      "id": "tiefighter/darkcurse",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Dark Curse",
@@ -432,8 +417,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/darkcurse.png"
     },
     {
-      "id": "empire/tiefighter/maulermithel",
-      "key": "maulermithel",
+      "id": "tiefighter/maulermithel",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Mauler Mithel",
@@ -459,8 +443,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/maulermithel.png"
     },
     {
-      "id": "empire/tiefighter/academypilot",
-      "key": "academypilot",
+      "id": "tiefighter/academypilot",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Academy Pilot",
@@ -485,8 +468,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/academypilot.png"
     },
     {
-      "id": "empire/tiefighter/blacksquadronpilot",
-      "key": "blacksquadronpilot",
+      "id": "tiefighter/blacksquadronpilot",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Black Squadron Pilot",
@@ -512,8 +494,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/blacksquadronpilot.png"
     },
     {
-      "id": "empire/tiefighter/obsidiansquadronpilot",
-      "key": "obsidiansquadronpilot",
+      "id": "tiefighter/obsidiansquadronpilot",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Obsidian Squadron Pilot",
@@ -538,8 +519,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/obsidiansquadronpilot.png"
     },
     {
-      "id": "empire/tiefighter/nightbeast",
-      "key": "nightbeast",
+      "id": "tiefighter/nightbeast",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Night Beast",
@@ -564,8 +544,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/nightbeast.png"
     },
     {
-      "id": "empire/tiefighter/scourge",
-      "key": "scourge",
+      "id": "tiefighter/scourge",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Scourge",
@@ -591,8 +570,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/scourge.png"
     },
     {
-      "id": "empire/tiefighter/wampa",
-      "key": "wampa",
+      "id": "tiefighter/wampa",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Wampa",
@@ -618,8 +596,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wampa.png"
     },
     {
-      "id": "empire/tiefighter/wingedgundark",
-      "key": "wingedgundark",
+      "id": "tiefighter/wingedgundark",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Winged Gundark",
@@ -644,8 +621,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wingedgundark.png"
     },
     {
-      "id": "empire/tiefighter/youngster",
-      "key": "youngster",
+      "id": "tiefighter/youngster",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Youngster",
@@ -671,8 +647,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/youngster.png"
     },
     {
-      "id": "empire/tiefighter/chaser",
-      "key": "chaser",
+      "id": "tiefighter/chaser",
       "factionKey": "empire",
       "shipKey": "tiefighter",
       "pilotName": "Chaser",
@@ -697,8 +672,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/chaser.png"
     },
     {
-      "id": "rebel/xwing/lukeskywalker",
-      "key": "lukeskywalker",
+      "id": "xwing/lukeskywalker",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Luke Skywalker",
@@ -725,8 +699,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/lukeskywalker.png"
     },
     {
-      "id": "rebel/xwing/wedgeantilles",
-      "key": "wedgeantilles",
+      "id": "xwing/wedgeantilles",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Wedge Antilles",
@@ -753,8 +726,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wedgeantilles.png"
     },
     {
-      "id": "rebel/xwing/biggsdarklighter",
-      "key": "biggsdarklighter",
+      "id": "xwing/biggsdarklighter",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Biggs Darklighter",
@@ -780,8 +752,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/biggsdarklighter.png"
     },
     {
-      "id": "rebel/xwing/garvendreis",
-      "key": "garvendreis",
+      "id": "xwing/garvendreis",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Garven Dreis",
@@ -808,8 +779,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/garvendreis.png"
     },
     {
-      "id": "rebel/xwing/redsquadronpilot",
-      "key": "redsquadronpilot",
+      "id": "xwing/redsquadronpilot",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Red Squadron Pilot",
@@ -835,8 +805,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/redsquadronpilot.png"
     },
     {
-      "id": "rebel/xwing/rookiepilot",
-      "key": "rookiepilot",
+      "id": "xwing/rookiepilot",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Rookie Pilot",
@@ -862,8 +831,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/rookiepilot.png"
     },
     {
-      "id": "rebel/xwing/jekporkins",
-      "key": "jekporkins",
+      "id": "xwing/jekporkins",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Jek Porkins",
@@ -890,8 +858,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/jekporkins.png"
     },
     {
-      "id": "rebel/xwing/tarnmison",
-      "key": "tarnmison",
+      "id": "xwing/tarnmison",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Tarn Mison",
@@ -917,8 +884,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/tarnmison.png"
     },
     {
-      "id": "rebel/xwing/wesjanson",
-      "key": "wesjanson",
+      "id": "xwing/wesjanson",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Wes Janson",
@@ -945,8 +911,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wesjanson.png"
     },
     {
-      "id": "rebel/xwing/hobbieklivian",
-      "key": "hobbieklivian",
+      "id": "xwing/hobbieklivian",
       "factionKey": "rebel",
       "shipKey": "xwing",
       "pilotName": "Hobbie Klivian",
@@ -972,8 +937,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/hobbieklivian.png"
     },
     {
-      "id": "rebel/ywing/dutchvander",
-      "key": "dutchvander",
+      "id": "ywing/dutchvander",
       "factionKey": "rebel",
       "shipKey": "ywing",
       "pilotName": "Dutch Vander",
@@ -1001,8 +965,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/dutchvander.png"
     },
     {
-      "id": "rebel/ywing/hortonsalm",
-      "key": "hortonsalm",
+      "id": "ywing/hortonsalm",
       "factionKey": "rebel",
       "shipKey": "ywing",
       "pilotName": "Horton Salm",
@@ -1030,8 +993,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/hortonsalm.png"
     },
     {
-      "id": "rebel/ywing/goldsquadronpilot",
-      "key": "goldsquadronpilot",
+      "id": "ywing/goldsquadronpilot",
       "factionKey": "rebel",
       "shipKey": "ywing",
       "pilotName": "Gold Squadron Pilot",
@@ -1059,8 +1021,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/goldsquadronpilot.png"
     },
     {
-      "id": "rebel/ywing/graysquadronpilot",
-      "key": "graysquadronpilot",
+      "id": "ywing/graysquadronpilot",
       "factionKey": "rebel",
       "shipKey": "ywing",
       "pilotName": "Gray Squadron Pilot",
@@ -1088,8 +1049,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/graysquadronpilot.png"
     },
     {
-      "id": "rebel/awing/tychocelchu",
-      "key": "tychocelchu",
+      "id": "awing/tychocelchu",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Tycho Celchu",
@@ -1118,8 +1078,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/tychocelchu.png"
     },
     {
-      "id": "rebel/awing/jakefarrell",
-      "key": "jakefarrell",
+      "id": "awing/jakefarrell",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Jake Farrell",
@@ -1148,8 +1107,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/jakefarrell.png"
     },
     {
-      "id": "rebel/awing/arvelcrynyd",
-      "key": "arvelcrynyd",
+      "id": "awing/arvelcrynyd",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Arvel Crynyd",
@@ -1177,8 +1135,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/arvelcrynyd.png"
     },
     {
-      "id": "rebel/awing/gemmersojan",
-      "key": "gemmersojan",
+      "id": "awing/gemmersojan",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Gemmer Sojan",
@@ -1206,8 +1163,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/gemmersojan.png"
     },
     {
-      "id": "rebel/awing/greensquadronpilot",
-      "key": "greensquadronpilot",
+      "id": "awing/greensquadronpilot",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Green Squadron Pilot",
@@ -1236,8 +1192,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/greensquadronpilot.png"
     },
     {
-      "id": "rebel/awing/prototypepilot",
-      "key": "prototypepilot",
+      "id": "awing/prototypepilot",
       "factionKey": "rebel",
       "shipKey": "awing",
       "pilotName": "Prototype Pilot",
@@ -1265,8 +1220,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/prototypepilot.png"
     },
     {
-      "id": "scum/ywing/kavil",
-      "key": "kavil",
+      "id": "ywing/kavil",
       "factionKey": "scum",
       "shipKey": "ywing",
       "pilotName": "Kavil",
@@ -1295,8 +1249,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/kavil.png"
     },
     {
-      "id": "scum/ywing/drearenthal",
-      "key": "drearenthal",
+      "id": "ywing/drearenthal",
       "factionKey": "scum",
       "shipKey": "ywing",
       "pilotName": "Drea Renthal",
@@ -1324,8 +1277,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/drearenthal.png"
     },
     {
-      "id": "scum/ywing/hiredgun",
-      "key": "hiredgun",
+      "id": "ywing/hiredgun",
       "factionKey": "scum",
       "shipKey": "ywing",
       "pilotName": "Hired Gun",
@@ -1353,8 +1305,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/hiredgun.png"
     },
     {
-      "id": "scum/ywing/syndicatethug",
-      "key": "syndicatethug",
+      "id": "ywing/syndicatethug",
       "factionKey": "scum",
       "shipKey": "ywing",
       "pilotName": "Syndicate Thug",
@@ -1382,8 +1333,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/syndicatethug.png"
     },
     {
-      "id": "scum/z95headhunter/ndrusuhlak",
-      "key": "ndrusuhlak",
+      "id": "z95headhunter/ndrusuhlak",
       "factionKey": "scum",
       "shipKey": "z95headhunter",
       "pilotName": "N'dru Suhlak",
@@ -1410,8 +1360,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/ndrusuhlak.png"
     },
     {
-      "id": "scum/z95headhunter/kaatoleeachos",
-      "key": "kaatoleeachos",
+      "id": "z95headhunter/kaatoleeachos",
       "factionKey": "scum",
       "shipKey": "z95headhunter",
       "pilotName": "Kaa'to Leeachos",
@@ -1438,8 +1387,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/kaatoleeachos.png"
     },
     {
-      "id": "scum/z95headhunter/blacksunsoldier",
-      "key": "blacksunsoldier",
+      "id": "z95headhunter/blacksunsoldier",
       "factionKey": "scum",
       "shipKey": "z95headhunter",
       "pilotName": "Black Sun Soldier",
@@ -1465,8 +1413,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/blacksunsoldier.png"
     },
     {
-      "id": "scum/z95headhunter/binayrepirate",
-      "key": "binayrepirate",
+      "id": "z95headhunter/binayrepirate",
       "factionKey": "scum",
       "shipKey": "z95headhunter",
       "pilotName": "Binayre Pirate",
@@ -1492,8 +1439,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/binayrepirate.png"
     },
     {
-      "id": "scum/z95headhunter/nashtahpup",
-      "key": "nashtahpup",
+      "id": "z95headhunter/nashtahpup",
       "factionKey": "scum",
       "shipKey": "z95headhunter",
       "pilotName": "Nashtah Pup",
@@ -1519,8 +1465,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/nashtahpup.png"
     },
     {
-      "id": "scum/firespray31/bobafett",
-      "key": "bobafett",
+      "id": "firespray31/bobafett",
       "factionKey": "scum",
       "shipKey": "firespray31",
       "pilotName": "Boba Fett",
@@ -1552,8 +1497,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/bobafett.png"
     },
     {
-      "id": "scum/firespray31/kathscarlet",
-      "key": "kathscarlet",
+      "id": "firespray31/kathscarlet",
       "factionKey": "scum",
       "shipKey": "firespray31",
       "pilotName": "Kath Scarlet",
@@ -1583,8 +1527,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/kathscarlet.png"
     },
     {
-      "id": "scum/firespray31/emonazzameen",
-      "key": "emonazzameen",
+      "id": "firespray31/emonazzameen",
       "factionKey": "scum",
       "shipKey": "firespray31",
       "pilotName": "Emon Azzameen",
@@ -1613,8 +1556,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/emonazzameen.png"
     },
     {
-      "id": "scum/firespray31/mandalorianmercenary",
-      "key": "mandalorianmercenary",
+      "id": "firespray31/mandalorianmercenary",
       "factionKey": "scum",
       "shipKey": "firespray31",
       "pilotName": "Mandalorian Mercenary",
@@ -1645,8 +1587,7 @@
   ],
   "upgrades": [
     {
-      "id": "elite/veteraninstincts",
-      "key": "veteraninstincts",
+      "id": "veteraninstincts",
       "categoryKey": "elite",
       "name": "Veteran Instincts",
       "isUnique": false,
@@ -1670,8 +1611,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/veteraninstincts.png"
     },
     {
-      "id": "elite/pushthelimit",
-      "key": "pushthelimit",
+      "id": "pushthelimit",
       "categoryKey": "elite",
       "name": "Push the Limit",
       "isUnique": false,
@@ -1695,8 +1635,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/pushthelimit.png"
     },
     {
-      "id": "elite/predator",
-      "key": "predator",
+      "id": "predator",
       "categoryKey": "elite",
       "name": "Predator",
       "isUnique": false,
@@ -1720,8 +1659,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/predator.png"
     },
     {
-      "id": "elite/crackshot",
-      "key": "crackshot",
+      "id": "crackshot",
       "categoryKey": "elite",
       "name": "Crack Shot",
       "isUnique": false,
@@ -1745,8 +1683,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/crackshot.png"
     },
     {
-      "id": "elite/marksmanship",
-      "key": "marksmanship",
+      "id": "marksmanship",
       "categoryKey": "elite",
       "name": "Marksmanship",
       "isUnique": false,
@@ -1770,8 +1707,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/marksmanship.png"
     },
     {
-      "id": "elite/lonewolf",
-      "key": "lonewolf",
+      "id": "lonewolf",
       "categoryKey": "elite",
       "name": "Lone Wolf",
       "isUnique": true,
@@ -1795,8 +1731,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/lonewolf.png"
     },
     {
-      "id": "elite/expertiseEPT",
-      "key": "expertiseEPT",
+      "id": "expertiseEPT",
       "categoryKey": "elite",
       "name": "Expertise",
       "isUnique": false,
@@ -1820,8 +1755,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/expertiseEPT.png"
     },
     {
-      "id": "elite/swarmtactics",
-      "key": "swarmtactics",
+      "id": "swarmtactics",
       "categoryKey": "elite",
       "name": "Swarm Tactics",
       "isUnique": false,
@@ -1845,8 +1779,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/swarmtactics.png"
     },
     {
-      "id": "astromech/r2d2",
-      "key": "r2d2",
+      "id": "r2d2",
       "categoryKey": "astromech",
       "name": "R2-D2",
       "isUnique": true,
@@ -1872,8 +1805,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r2d2.png"
     },
     {
-      "id": "astromech/r2astromech",
-      "key": "r2astromech",
+      "id": "r2astromech",
       "categoryKey": "astromech",
       "name": "R2 Astromech",
       "isUnique": false,
@@ -1897,8 +1829,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r2astromech.png"
     },
     {
-      "id": "astromech/r3a2",
-      "key": "r3a2",
+      "id": "r3a2",
       "categoryKey": "astromech",
       "name": "R3-A2",
       "isUnique": false,
@@ -1922,8 +1853,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r3a2.png"
     },
     {
-      "id": "astromech/r5k6",
-      "key": "r5k6",
+      "id": "r5k6",
       "categoryKey": "astromech",
       "name": "R5-K6",
       "isUnique": false,
@@ -1947,8 +1877,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r5k6.png"
     },
     {
-      "id": "astromech/r7t1",
-      "key": "r7t1",
+      "id": "r7t1",
       "categoryKey": "astromech",
       "name": "R7-T1",
       "isUnique": false,
@@ -1972,8 +1901,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r7t1.png"
     },
     {
-      "id": "astromech/bb8",
-      "key": "bb8",
+      "id": "bb8",
       "categoryKey": "astromech",
       "name": "BB-8",
       "isUnique": true,
@@ -1999,8 +1927,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/bb8.png"
     },
     {
-      "id": "torpedo/protontorpedoes",
-      "key": "protontorpedoes",
+      "id": "protontorpedoes",
       "categoryKey": "torpedo",
       "name": "Proton Torpedoes",
       "isUnique": false,
@@ -2024,8 +1951,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/protontorpedoes.png"
     },
     {
-      "id": "torpedo/advprotontorpedoes",
-      "key": "advprotontorpedoes",
+      "id": "advprotontorpedoes",
       "categoryKey": "torpedo",
       "name": "Advanced Proton Torpedoes",
       "isUnique": false,
@@ -2049,8 +1975,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/advprotontorpedoes.png"
     },
     {
-      "id": "torpedo/plasmatorpedoes",
-      "key": "plasmatorpedoes",
+      "id": "plasmatorpedoes",
       "categoryKey": "torpedo",
       "name": "Plasma Torpedoes",
       "isUnique": false,
@@ -2074,8 +1999,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/plasmatorpedoes.png"
     },
     {
-      "id": "torpedo/iontorpedoes",
-      "key": "iontorpedoes",
+      "id": "iontorpedoes",
       "categoryKey": "torpedo",
       "name": "Ion Torpedoes",
       "isUnique": false,
@@ -2099,8 +2023,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/torpedo/iontorpedoes.png"
     },
     {
-      "id": "missile/concussionmissiles",
-      "key": "concussionmissiles",
+      "id": "concussionmissiles",
       "categoryKey": "missile",
       "name": "Concussion Missiles",
       "isUnique": false,
@@ -2124,8 +2047,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/concussionmissiles.png"
     },
     {
-      "id": "missile/homingmissiles",
-      "key": "homingmissiles",
+      "id": "homingmissiles",
       "categoryKey": "missile",
       "name": "Homing Missiles",
       "isUnique": false,
@@ -2149,8 +2071,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/homingmissiles.png"
     },
     {
-      "id": "missile/clustermissiles",
-      "key": "clustermissiles",
+      "id": "clustermissiles",
       "categoryKey": "missile",
       "name": "Cluster Missiles",
       "isUnique": false,
@@ -2174,8 +2095,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/clustermissiles.png"
     },
     {
-      "id": "missile/assaultmissiles",
-      "key": "assaultmissiles",
+      "id": "assaultmissiles",
       "categoryKey": "missile",
       "name": "Assault Missiles",
       "isUnique": false,
@@ -2199,8 +2119,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/assaultmissiles.png"
     },
     {
-      "id": "missile/protonrockets",
-      "key": "protonrockets",
+      "id": "protonrockets",
       "categoryKey": "missile",
       "name": "Proton Rockets",
       "isUnique": false,
@@ -2224,8 +2143,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/missile/protonrockets.png"
     },
     {
-      "id": "cannon/ioncannon",
-      "key": "ioncannon",
+      "id": "ioncannon",
       "categoryKey": "cannon",
       "name": "Ion Cannon",
       "isUnique": false,
@@ -2249,8 +2167,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/ioncannon.png"
     },
     {
-      "id": "cannon/heavylasercannon",
-      "key": "heavylasercannon",
+      "id": "heavylasercannon",
       "categoryKey": "cannon",
       "name": "Heavy Laser Cannon",
       "isUnique": false,
@@ -2274,8 +2191,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/heavylasercannon.png"
     },
     {
-      "id": "cannon/autoblaster",
-      "key": "autoblaster",
+      "id": "autoblaster",
       "categoryKey": "cannon",
       "name": "Autoblaster",
       "isUnique": false,
@@ -2299,8 +2215,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/autoblaster.png"
     },
     {
-      "id": "cannon/manglercannon",
-      "key": "manglercannon",
+      "id": "manglercannon",
       "categoryKey": "cannon",
       "name": "Mangler Cannon",
       "isUnique": false,
@@ -2324,8 +2239,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/cannon/manglercannon.png"
     },
     {
-      "id": "turret/twinlaserturret",
-      "key": "twinlaserturret",
+      "id": "twinlaserturret",
       "categoryKey": "turret",
       "name": "Twin Laser Turret",
       "isUnique": false,
@@ -2349,8 +2263,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/twinlaserturret.png"
     },
     {
-      "id": "turret/blasterturret",
-      "key": "blasterturret",
+      "id": "blasterturret",
       "categoryKey": "turret",
       "name": "Blaster Turret",
       "isUnique": false,
@@ -2374,8 +2287,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/blasterturret.png"
     },
     {
-      "id": "turret/ioncannonturret",
-      "key": "ioncannonturret",
+      "id": "ioncannonturret",
       "categoryKey": "turret",
       "name": "Ion Cannon Turret",
       "isUnique": false,
@@ -2399,8 +2311,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/ioncannonturret.png"
     },
     {
-      "id": "turret/autoblasterturret",
-      "key": "autoblasterturret",
+      "id": "autoblasterturret",
       "categoryKey": "turret",
       "name": "Autoblaster Turret",
       "isUnique": false,
@@ -2424,8 +2335,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/autoblasterturret.png"
     },
     {
-      "id": "turret/dorsalturret",
-      "key": "dorsalturret",
+      "id": "dorsalturret",
       "categoryKey": "turret",
       "name": "Dorsal Turret",
       "isUnique": false,
@@ -2449,8 +2359,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/turret/dorsalturret.png"
     },
     {
-      "id": "crew/chewbacca",
-      "key": "chewbacca",
+      "id": "chewbacca",
       "categoryKey": "crew",
       "name": "Chewbacca",
       "isUnique": true,
@@ -2476,8 +2385,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/chewbacca.png"
     },
     {
-      "id": "crew/hansolo",
-      "key": "hansolo",
+      "id": "hansolo",
       "categoryKey": "crew",
       "name": "Han Solo",
       "isUnique": true,
@@ -2503,8 +2411,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/hansolo.png"
     },
     {
-      "id": "crew/lukeskywalker",
-      "key": "lukeskywalker",
+      "id": "lukeskywalker",
       "categoryKey": "crew",
       "name": "Luke Skywalker",
       "isUnique": true,
@@ -2530,8 +2437,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/lukeskywalker.png"
     },
     {
-      "id": "crew/gunner",
-      "key": "gunner",
+      "id": "gunner",
       "categoryKey": "crew",
       "name": "Gunner",
       "isUnique": false,
@@ -2555,8 +2461,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/gunner.png"
     },
     {
-      "id": "crew/intelligenceagent",
-      "key": "intelligenceagent",
+      "id": "intelligenceagent",
       "categoryKey": "crew",
       "name": "Intelligence Agent",
       "isUnique": false,
@@ -2580,8 +2485,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/intelligenceagent.png"
     },
     {
-      "id": "crew/reconspecialist",
-      "key": "reconspecialist",
+      "id": "reconspecialist",
       "categoryKey": "crew",
       "name": "Recon Specialist",
       "isUnique": false,
@@ -2605,8 +2509,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/reconspecialist.png"
     },
     {
-      "id": "crew/darthvader",
-      "key": "darthvader",
+      "id": "darthvader",
       "categoryKey": "crew",
       "name": "Darth Vader",
       "isUnique": true,
@@ -2632,8 +2535,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/darthvader.png"
     },
     {
-      "id": "crew/fleetofficer",
-      "key": "fleetofficer",
+      "id": "fleetofficer",
       "categoryKey": "crew",
       "name": "Fleet Officer",
       "isUnique": false,
@@ -2659,8 +2561,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/crew/fleetofficer.png"
     },
     {
-      "id": "bomb/protonbombs",
-      "key": "protonbombs",
+      "id": "protonbombs",
       "categoryKey": "bomb",
       "name": "Proton Bombs",
       "isUnique": false,
@@ -2684,8 +2585,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/protonbombs.png"
     },
     {
-      "id": "bomb/seismiccharges",
-      "key": "seismiccharges",
+      "id": "seismiccharges",
       "categoryKey": "bomb",
       "name": "Seismic Charges",
       "isUnique": false,
@@ -2709,8 +2609,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/seismiccharges.png"
     },
     {
-      "id": "bomb/proximitymines",
-      "key": "proximitymines",
+      "id": "proximitymines",
       "categoryKey": "bomb",
       "name": "Proximity Mines",
       "isUnique": false,
@@ -2734,8 +2633,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/proximitymines.png"
     },
     {
-      "id": "bomb/clustermines",
-      "key": "clustermines",
+      "id": "clustermines",
       "categoryKey": "bomb",
       "name": "Cluster Mines",
       "isUnique": false,
@@ -2759,8 +2657,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/clustermines.png"
     },
     {
-      "id": "bomb/ionbombs",
-      "key": "ionbombs",
+      "id": "ionbombs",
       "categoryKey": "bomb",
       "name": "Ion Bombs",
       "isUnique": false,
@@ -2784,8 +2681,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/bomb/ionbombs.png"
     },
     {
-      "id": "modification/hullupgrade",
-      "key": "hullupgrade",
+      "id": "hullupgrade",
       "categoryKey": "modification",
       "name": "Hull Upgrade",
       "isUnique": false,
@@ -2809,8 +2705,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/hullupgrade.png"
     },
     {
-      "id": "modification/shieldupgrade",
-      "key": "shieldupgrade",
+      "id": "shieldupgrade",
       "categoryKey": "modification",
       "name": "Shield Upgrade",
       "isUnique": false,
@@ -2834,8 +2729,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/shieldupgrade.png"
     },
     {
-      "id": "modification/engineupgrade",
-      "key": "engineupgrade",
+      "id": "engineupgrade",
       "categoryKey": "modification",
       "name": "Engine Upgrade",
       "isUnique": false,
@@ -2859,8 +2753,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/engineupgrade.png"
     },
     {
-      "id": "modification/stealthdevice",
-      "key": "stealthdevice",
+      "id": "stealthdevice",
       "categoryKey": "modification",
       "name": "Stealth Device",
       "isUnique": false,
@@ -2884,8 +2777,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/stealthdevice.png"
     },
     {
-      "id": "modification/autothrusters",
-      "key": "autothrusters",
+      "id": "autothrusters",
       "categoryKey": "modification",
       "name": "Autothrusters",
       "isUnique": false,
@@ -2909,8 +2801,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/autothrusters.png"
     },
     {
-      "id": "modification/targetingcomputer",
-      "key": "targetingcomputer",
+      "id": "targetingcomputer",
       "categoryKey": "modification",
       "name": "Targeting Computer",
       "isUnique": false,
@@ -2934,8 +2825,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/targetingcomputer.png"
     },
     {
-      "id": "system/advancedsensors",
-      "key": "advancedsensors",
+      "id": "advancedsensors",
       "categoryKey": "system",
       "name": "Advanced Sensors",
       "isUnique": false,
@@ -2959,8 +2849,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/advancedsensors.png"
     },
     {
-      "id": "system/firecontrolsystem",
-      "key": "firecontrolsystem",
+      "id": "firecontrolsystem",
       "categoryKey": "system",
       "name": "Fire-Control System",
       "isUnique": false,
@@ -2984,8 +2873,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/firecontrolsystem.png"
     },
     {
-      "id": "system/sensorjammer",
-      "key": "sensorjammer",
+      "id": "sensorjammer",
       "categoryKey": "system",
       "name": "Sensor Jammer",
       "isUnique": false,
@@ -3009,8 +2897,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/sensorjammer.png"
     },
     {
-      "id": "system/accuracycorrector",
-      "key": "accuracycorrector",
+      "id": "accuracycorrector",
       "categoryKey": "system",
       "name": "Accuracy Corrector",
       "isUnique": false,
@@ -3034,8 +2921,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/accuracycorrector.png"
     },
     {
-      "id": "system/collisiondetector",
-      "key": "collisiondetector",
+      "id": "collisiondetector",
       "categoryKey": "system",
       "name": "Collision Detector",
       "isUnique": false,
@@ -3059,8 +2945,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/system/collisiondetector.png"
     },
     {
-      "id": "illicit/glitterstim",
-      "key": "glitterstim",
+      "id": "glitterstim",
       "categoryKey": "illicit",
       "name": "Glitterstim",
       "isUnique": false,
@@ -3084,8 +2969,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/glitterstim.png"
     },
     {
-      "id": "illicit/inertialdampeners",
-      "key": "inertialdampeners",
+      "id": "inertialdampeners",
       "categoryKey": "illicit",
       "name": "Inertial Dampeners",
       "isUnique": false,
@@ -3109,8 +2993,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/inertialdampeners.png"
     },
     {
-      "id": "illicit/hotshotblaster",
-      "key": "hotshotblaster",
+      "id": "hotshotblaster",
       "categoryKey": "illicit",
       "name": "Hot Shot Blaster",
       "isUnique": false,
@@ -3134,8 +3017,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/hotshotblaster.png"
     },
     {
-      "id": "illicit/deadmansswitch",
-      "key": "deadmansswitch",
+      "id": "deadmansswitch",
       "categoryKey": "illicit",
       "name": "Dead Man's Switch",
       "isUnique": false,
@@ -3159,8 +3041,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/deadmansswitch.png"
     },
     {
-      "id": "illicit/feedbackarray",
-      "key": "feedbackarray",
+      "id": "feedbackarray",
       "categoryKey": "illicit",
       "name": "Feedback Array",
       "isUnique": false,
@@ -3184,8 +3065,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/illicit/feedbackarray.png"
     },
     {
-      "id": "title/millenniumfalcon",
-      "key": "millenniumfalcon",
+      "id": "millenniumfalcon",
       "categoryKey": "title",
       "name": "Millennium Falcon",
       "isUnique": true,
@@ -3213,8 +3093,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/millenniumfalcon.png"
     },
     {
-      "id": "title/slavei",
-      "key": "slavei",
+      "id": "slavei",
       "categoryKey": "title",
       "name": "Slave I",
       "isUnique": true,
@@ -3242,8 +3121,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/slavei.png"
     },
     {
-      "id": "title/royalguardtie",
-      "key": "royalguardtie",
+      "id": "royalguardtie",
       "categoryKey": "title",
       "name": "Royal Guard TIE",
       "isUnique": false,
@@ -3271,8 +3149,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/royalguardtie.png"
     },
     {
-      "id": "title/tiex1",
-      "key": "tiex1",
+      "id": "tiex1",
       "categoryKey": "title",
       "name": "TIE/x1",
       "isUnique": false,
@@ -3300,8 +3177,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/tiex1.png"
     },
     {
-      "id": "title/outrider",
-      "key": "outrider",
+      "id": "outrider",
       "categoryKey": "title",
       "name": "Outrider",
       "isUnique": true,
@@ -3329,8 +3205,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/title/outrider.png"
     },
     {
-      "id": "tech/commrelay",
-      "key": "commrelay",
+      "id": "commrelay",
       "categoryKey": "tech",
       "name": "Comm Relay",
       "isUnique": false,
@@ -3354,8 +3229,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/commrelay.png"
     },
     {
-      "id": "tech/patternanalyzer",
-      "key": "patternanalyzer",
+      "id": "patternanalyzer",
       "categoryKey": "tech",
       "name": "Pattern Analyzer",
       "isUnique": false,
@@ -3379,8 +3253,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/patternanalyzer.png"
     },
     {
-      "id": "tech/primedthrusters",
-      "key": "primedthrusters",
+      "id": "primedthrusters",
       "categoryKey": "tech",
       "name": "Primed Thrusters",
       "isUnique": false,
@@ -3404,8 +3277,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/primedthrusters.png"
     },
     {
-      "id": "tech/targetingsynchronizer",
-      "key": "targetingsynchronizer",
+      "id": "targetingsynchronizer",
       "categoryKey": "tech",
       "name": "Targeting Synchronizer",
       "isUnique": false,
@@ -3429,8 +3301,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/targetingsynchronizer.png"
     },
     {
-      "id": "tech/sensorcluster",
-      "key": "sensorcluster",
+      "id": "sensorcluster",
       "categoryKey": "tech",
       "name": "Sensor Cluster",
       "isUnique": false,
@@ -3454,8 +3325,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/tech/sensorcluster.png"
     },
     {
-      "id": "salvagedastromech/salvagedastromech",
-      "key": "salvagedastromech",
+      "id": "salvagedastromech",
       "categoryKey": "salvagedastromech",
       "name": "Salvaged Astromech",
       "isUnique": false,
@@ -3479,8 +3349,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/salvagedastromech.png"
     },
     {
-      "id": "salvagedastromech/r4agromech",
-      "key": "r4agromech",
+      "id": "r4agromech",
       "categoryKey": "salvagedastromech",
       "name": "R4 Agromech",
       "isUnique": false,
@@ -3504,8 +3373,7 @@
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/r4agromech.png"
     },
     {
-      "id": "salvagedastromech/unhingedastromech",
-      "key": "unhingedastromech",
+      "id": "unhingedastromech",
       "categoryKey": "salvagedastromech",
       "name": "Unhinged Astromech",
       "isUnique": false,

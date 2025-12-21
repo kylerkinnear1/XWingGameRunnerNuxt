@@ -27,11 +27,16 @@ export type CurrentGameState = {
   playerWithInitiative: string | null;
   bombIds: string[];
   mineIds: string[];
-  obstacleIds: string[];
+  obstacles: ObstacleStateDto[];
   player1Points: number;
   player2Points: number;
   totalTurns: number;
   currentPhase: GamePhase;
+};
+
+export type ObstacleStateDto = {
+  obstacleId: string;
+  isDestroyed: boolean;
 };
 
 export type ShipStateDto = {
@@ -50,9 +55,13 @@ export type ShipStateDto = {
   upgrades: readonly UpgradeStateDto[];
   isPlaced: boolean;
   isDestroyed: boolean;
+  didBump: boolean;
   dialAssigned: Maneuver | null;
   isHalfPointsScored: boolean;
   hasActivated: boolean;
+  collisions: CollisionStateDto[];
+  attackTargetShipId: string | null;
+  hasAttacked: boolean;
 };
 
 export type UpgradeStateDto = {
@@ -65,11 +74,18 @@ export type CritStateDto = {
   faceUp: boolean;
 };
 
+export type CollisionStateDto = {
+  collisionType: CollisionType;
+  shipId: string;
+  landedOnObstacle: boolean;
+};
+
 export type TokenStateDto = {
   tokenType: TokenType;
   conditionId: string | null;
   reinforceDirection: ReinforceDirection | null;
   sourceShipId: string | null;
+  targetShipId: string | null;
 };
 
 export type WeaponStateDto = {
@@ -80,8 +96,11 @@ export type WeaponStateDto = {
 
 export type GameStepDto =
   | GameStartDto
+  | IncreaseMaxHull
+  | IncreaseMaxShields
   | SelectInitiative
   | StartSetup
+  | PlaceObstacle
   | ShipPlaced
   | EndSetup
   | TurnStart
@@ -97,12 +116,13 @@ export type GameStepDto =
   | DestroyObstacle
   | AssignToken
   | TriggerAbility
-  | CombatStep
+  | BeginCombat
   | DeclareTarget
   | RollAttackDice
   | ModifyAttackDice
   | RollDefenseDice
   | ModifyDefenseDice
+  | CompleteAttack
   | FlipUpgrade
   | SpendAmmo
   | ApplyDamage
@@ -110,15 +130,25 @@ export type GameStepDto =
   | DestroyShip
   | AssignCrit
   | FlipCrit
-  | AttackerComplete
   | SpendToken
-  | AssignCondition
   | Cleanup
   | TurnEnd
   | GameEnd;
 
 export interface GameStartDto {
   type: "game_start";
+  timestamp: Date;
+}
+
+export interface IncreaseMaxHull {
+  type: "increase_max_hull";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface IncreaseMaxShields {
+  type: "increase_max_shields";
+  shipId: string;
   timestamp: Date;
 }
 
@@ -131,6 +161,12 @@ export interface SelectInitiative {
 
 export interface StartSetup {
   type: "start_setup";
+  timestamp: Date;
+}
+
+export interface PlaceObstacle {
+  type: "place_obstacle";
+  obstacleId: string;
   timestamp: Date;
 }
 
@@ -187,27 +223,33 @@ export interface ActivationStep {
 
 export interface BeginManeuver {
   type: "begin_maneuver";
+  shipId: string;
   timestamp: Date;
 }
 
 export interface CleanManeuver {
   type: "clean_maneuver";
+  shipId: string;
   timestamp: Date;
 }
 
 export interface Collide {
   type: "collide";
+  shipId: string;
   collisionType: CollisionType;
+  landedOnObstacle: boolean;
   timestamp: Date;
 }
 
 export interface StressCheck {
   type: "stress_check";
+  shipId: string;
   timestamp: Date;
 }
 
 export interface PerformAction {
   type: "perform_action";
+  shipId: string;
   action: ActionType;
   targetShipId?: string;
   timestamp: Date;
@@ -229,9 +271,11 @@ export interface DestroyObstacle {
 // Tokens & Conditions
 export interface AssignToken {
   type: "assign_token";
-  shipId: string;
+  sourceShipId: string;
   tokenType: TokenType;
-  targetShipId?: string;
+  conditionId: string | null;
+  reinforceDirection: ReinforceDirection | null;
+  targetShipId: string | null;
   timestamp: Date;
 }
 
@@ -245,6 +289,7 @@ export interface SpendToken {
 export interface AssignCondition {
   type: "assign_condition";
   shipId: string;
+  sourceShipId: string | null;
   conditionId: string;
   timestamp: Date;
 }
@@ -257,9 +302,8 @@ export interface TriggerAbility {
 }
 
 // Combat Phase
-export interface CombatStep {
+export interface BeginCombat {
   type: "combat_step";
-  attackerShipId: string;
   pilotSkill: number;
   timestamp: Date;
 }
@@ -300,6 +344,12 @@ export interface ModifyDefenseDice {
   defenderShipId: string;
   beforeResults: DiceResult[];
   afterResults: DiceResult[];
+  timestamp: Date;
+}
+
+export interface CompleteAttack {
+  type: "complete_attack";
+  attackerShipId: string;
   timestamp: Date;
 }
 
@@ -357,15 +407,8 @@ export interface DestroyShip {
   timestamp: Date;
 }
 
-export interface AttackerComplete {
-  type: "attacker_complete";
-  attackerShipId: string;
-  timestamp: Date;
-}
-
 // End Phase
 export interface Cleanup {
   type: "cleanup";
-  tokensRemoved: Record<string, TokenType[]>;
   timestamp: Date;
 }

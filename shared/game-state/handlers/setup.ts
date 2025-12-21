@@ -1,0 +1,162 @@
+import { GamePhase } from "#shared/enums";
+import type { Maneuver } from "#shared/enums";
+import type {
+  SquadReadDto,
+} from "#shared/squad-dto";
+import type { CardsDto, PilotDto, UpgradeDto } from "#shared/cards";
+import type {
+  CurrentGameState,
+  GameStartDto,
+  SelectInitiative,
+  StartSetup,
+  PlaceObstacle,
+  ShipPlaced,
+  EndSetup,
+  IncreaseMaxHull,
+  IncreaseMaxShields,
+} from "#shared/game-state-dto";
+import { createWeaponsForShip } from "../utils/weapon-factory";
+
+export function handleGameStart(
+  step: GameStartDto,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const pilots = cards.pilots.reduce((acc, p) => {
+    acc[p.id] = p;
+    return acc;
+  }, {} as Record<string, PilotDto>);
+
+  const upgrades = cards.upgrades.reduce((acc, u) => {
+    acc[u.id] = u;
+    return acc;
+  }, {} as Record<string, UpgradeDto>);
+
+  const maneuvers = cards.pilots.reduce((acc, p) => {
+    acc[p.id] = p.maneuvers;
+    return acc;
+  }, {} as Record<string, readonly Maneuver[]>);
+
+  state.currentStep += 1;
+  state.currentPhase = GamePhase.Start;
+  state.player1Points = 0;
+  state.player2Points = 0;
+  state.bombIds = [];
+  state.mineIds = [];
+  state.obstacles = [];
+  state.ships = squads.flatMap((squad) =>
+    squad.ships.map((ship) => ({
+      shipId: ship.id,
+      pilotId: ship.pilotId,
+      hull: pilots[ship.pilotId]?.hull || 0,
+      shields: pilots[ship.pilotId]?.shields || 0,
+      weapons: createWeaponsForShip(ship, pilots, upgrades),
+      tokens: [],
+      faceUpDamage: [],
+      playerId: squad.userId,
+      pilotSkill: pilots[ship.pilotId]?.pilotSkill || 0,
+      attack: pilots[ship.pilotId]?.attack || 0,
+      agility: pilots[ship.pilotId]?.agility || 0,
+      maneuvers: maneuvers[ship.pilotId] || [],
+      isPlaced: false,
+      isDestroyed: false,
+      dialAssigned: null,
+      isHalfPointsScored: false,
+      faceDownDamage: 0,
+      upgrades: ship.upgradeIds.map((id) => ({
+        upgradeId: id,
+        faceUp: false,
+      })),
+      hasActivated: false,
+      didBump: false,
+      collisions: [],
+      attackTargetShipId: null,
+      hasAttacked: false,
+    }))
+  );
+  state.playerWithInitiative = null;
+  state.totalTurns = 0;
+}
+
+export function handleIncreaseMaxHull(
+  step: IncreaseMaxHull,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.hull += 1;
+  }
+}
+
+export function handleIncreaseMaxShields(
+  step: IncreaseMaxShields,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.shields += 1;
+  }
+}
+
+export function handleSelectInitiative(
+  step: SelectInitiative,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.playerWithInitiative = step.playerWithInitiative;
+  state.currentStep += 1;
+}
+
+export function handleStartSetup(
+  step: StartSetup,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentPhase = GamePhase.Setup;
+  state.currentStep += 1;
+}
+
+export function handlePlaceObstacle(
+  step: PlaceObstacle,
+  currentState: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  currentState.obstacles.push({
+    obstacleId: step.obstacleId,
+    isDestroyed: false,
+  });
+}
+
+export function handleShipPlaced(
+  step: ShipPlaced,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.isPlaced = true;
+  }
+  state.currentStep += 1;
+}
+
+export function handleEndSetup(
+  step: EndSetup,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+}
+
