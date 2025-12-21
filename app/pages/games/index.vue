@@ -23,12 +23,51 @@ const mySquads = computed(() => mySquadsResponse.value?.squads ?? []);
 // Selected game or 'new' for creating new game
 const selectedId = ref<string | "new" | null>("new");
 
-// Squads mapped by ID for quick lookup
-const squadsById = computed(() => {
-  const map = new Map<string, SquadReadDto>();
-  mySquads.value.forEach((s) => map.set(s.id, s));
-  return map;
-});
+// Squads mapped by ID for quick lookup (includes fetched squads)
+const squadsById = ref<Map<string, SquadReadDto>>(new Map());
+
+// Initialize with my squads
+watch(
+  mySquads,
+  (squads) => {
+    squads.forEach((s) => squadsById.value.set(s.id, s));
+  },
+  { immediate: true }
+);
+
+// Fetch squads for games that we don't have yet
+async function fetchSquadIfNeeded(squadId: string) {
+  if (squadsById.value.has(squadId)) return;
+
+  try {
+    const response = await $fetch<SquadReadResponseDto>(
+      `/api/squads/${squadId}`
+    );
+    const squad = response.squads[0];
+    if (squad) {
+      squadsById.value.set(squadId, squad);
+    }
+  } catch (error) {
+    console.error(`Failed to fetch squad ${squadId}:`, error);
+  }
+}
+
+// Fetch all squads for games when games are loaded
+watch(
+  gamesResponse,
+  async (games) => {
+    if (!games) return;
+
+    const squadIds = new Set<string>();
+    games.games.forEach((game) => {
+      squadIds.add(game.player1SquadId);
+      squadIds.add(game.player2SquadId);
+    });
+
+    await Promise.all(Array.from(squadIds).map(fetchSquadIfNeeded));
+  },
+  { immediate: true }
+);
 
 // Get squad details for each game
 const gamesWithSquads = computed(() => {
@@ -152,8 +191,8 @@ async function createGame() {
 }
 
 function continueGame() {
-  if (selectedGame.value) {
-    router.push(`/games/${selectedGame.value.game.id}`);
+  if (selectedId.value && selectedId.value !== "new") {
+    router.push(`/games/${selectedId.value}`);
   }
 }
 </script>
@@ -162,7 +201,7 @@ function continueGame() {
   <div class="flex h-full overflow-hidden bg-gray-900">
     <!-- Left sidebar - Game List -->
     <div
-      class="w-80 flex-shrink-0 border-r border-gray-700 bg-gray-800 overflow-y-auto"
+      class="w-80 shrink-0 border-r border-gray-700 bg-gray-800 overflow-y-auto"
     >
       <div class="p-4 border-b border-gray-700 bg-gray-900">
         <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400">

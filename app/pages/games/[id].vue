@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { GameStateDto } from "#shared/game-state-dto";
+import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { TokenType } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
@@ -60,28 +60,74 @@ const currentGameState = computed(() => {
 });
 
 const shipsWithDetails = computed(() => {
-  if (
-    !currentGameState.value ||
-    !cards.value ||
-    !squads.value ||
-    !gameData.value
-  )
-    return [];
+  if (!cards.value || !squads.value || !gameData.value) return [];
 
-  return currentGameState.value.ships.map((shipState) => {
-    const squad = squads.value.find(
-      (s) =>
-        s.id === gameData.value!.player1SquadId ||
-        s.id === gameData.value!.player2SquadId
-    );
-    const shipDto = squad?.ships.find((s) => s.id === shipState.shipId);
-    const pilot = cards.value?.pilots.find((p) => p.id === shipDto?.pilotId);
+  // If game has started, use ships from game state
+  if (currentGameState.value && currentGameState.value.ships.length > 0) {
+    return currentGameState.value.ships.map((shipState) => {
+      const squad = squads.value.find(
+        (s) =>
+          s.id === gameData.value!.player1SquadId ||
+          s.id === gameData.value!.player2SquadId
+      );
+      const shipDto = squad?.ships.find((s) => s.id === shipState.shipId);
+      const pilot = cards.value?.pilots.find((p) => p.id === shipDto?.pilotId);
 
-    return {
-      ship: shipState,
-      pilot,
-    };
+      return {
+        ship: shipState,
+        pilot,
+      };
+    });
+  }
+
+  // Before game starts, create ship states from squads
+  const allShips: Array<{ ship: ShipStateDto; pilot: any }> = [];
+
+  squads.value.forEach((squad) => {
+    const playerId =
+      squad.id === gameData.value!.player1SquadId
+        ? gameData.value!.player1Id
+        : gameData.value!.player2Id;
+
+    squad.ships.forEach((shipDto) => {
+      const pilot = cards.value?.pilots.find((p) => p.id === shipDto.pilotId);
+      if (pilot) {
+        const shipState: ShipStateDto = {
+          shipId: shipDto.id,
+          playerId,
+          pilotSkill: pilot.pilotSkill,
+          hull: pilot.hull,
+          shields: pilot.shields,
+          attack: pilot.attack,
+          agility: pilot.agility,
+          tokens: [],
+          faceUpDamage: [],
+          faceDownDamage: 0,
+          weapons: [],
+          upgrades: shipDto.upgradeIds.map((id) => ({
+            upgradeId: id,
+            faceUp: false,
+          })),
+          isPlaced: false,
+          isDestroyed: false,
+          didBump: false,
+          dialAssigned: null,
+          isHalfPointsScored: false,
+          hasActivated: false,
+          collisions: [],
+          attackTargetShipId: null,
+          hasAttacked: false,
+          maneuvers: pilot.maneuvers,
+        };
+        allShips.push({
+          ship: shipState,
+          pilot,
+        });
+      }
+    });
   });
+
+  return allShips;
 });
 
 const player1Ships = computed(() => {
@@ -148,6 +194,16 @@ async function startGame() {
 
 async function refresh() {
   await refreshGameData();
+  // Reset expanded ship if it no longer exists after refresh
+  if (expandedShipId.value) {
+    const allShips = [...player1Ships.value, ...player2Ships.value];
+    const shipExists = allShips.some(
+      (s) => s.ship.shipId === expandedShipId.value
+    );
+    if (!shipExists) {
+      expandedShipId.value = null;
+    }
+  }
 }
 </script>
 

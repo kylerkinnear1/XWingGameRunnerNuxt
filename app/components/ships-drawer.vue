@@ -142,11 +142,12 @@ function handleCloseTokenManager() {
 
     <!-- Token Drawer (slides from right of ship list) -->
     <div
-      class="bg-gray-900 border-l border-gray-700 shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full"
-      :class="expandedShipId ? 'w-64' : 'w-0'"
+      v-if="expandedShipId"
+      class="bg-gray-900 border-l border-gray-700 shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full w-64"
     >
       <ShipTokenManager
-        v-if="expandedShip && expandedShipId"
+        v-if="expandedShip"
+        :key="expandedShipId"
         :ship="expandedShip"
         @add-token="handleAddToken"
         @remove-token="handleRemoveToken"
