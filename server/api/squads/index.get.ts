@@ -1,13 +1,10 @@
 import { db } from "../../db/db";
 import { squads, squadShips, shipUpgrades } from "../../db/schema";
-import {
-  SquadReadResponseDto,
-  SquadReadDto,
-  ShipDto,
-} from "#shared/squad-dto";
+import { SquadReadResponseDto, SquadReadDto, ShipDto } from "#shared/squad-dto";
 import { auth } from "../../auth";
 import { eq, desc } from "drizzle-orm";
 import { Faction } from "#shared/enums";
+import { getQueriedUserId } from "../../get-queried-user-id";
 
 export default defineEventHandler<Promise<SquadReadResponseDto>>(
   async (event) => {
@@ -22,6 +19,10 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(
       });
     }
 
+    const query = getQuery(event);
+    const email = query.email as string | undefined;
+
+    const userId = await getQueriedUserId(email, session);
     const results = await db
       .select({
         squad: squads,
@@ -31,7 +32,7 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(
       .from(squads)
       .leftJoin(squadShips, eq(squads.id, squadShips.squadId))
       .leftJoin(shipUpgrades, eq(squadShips.id, shipUpgrades.shipId))
-      .where(eq(squads.userId, session.user.id))
+      .where(eq(squads.userId, userId))
       .orderBy(desc(squads.updatedAt), shipUpgrades.sortOrder);
 
     const squadsWithShips = Object.values(

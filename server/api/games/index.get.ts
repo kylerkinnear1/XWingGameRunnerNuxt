@@ -14,6 +14,13 @@ export default defineEventHandler<Promise<GameSummaryResponseDto>>(
       headers: event.headers,
     });
 
+    if (!session?.user) {
+      throw createError({
+        statusCode: 401,
+        message: "Unauthorized",
+      });
+    }
+
     const userId = await getQueriedUserId(email, session);
 
     if (!session?.user) {
@@ -63,7 +70,7 @@ async function getQueriedUserId(
       name: string;
       image?: string | null | undefined | undefined;
     };
-  } | null
+  }
 ) {
   if (email) {
     const selectedUser = await db
@@ -80,13 +87,6 @@ async function getQueriedUserId(
     }
 
     return selectedUser[0].id;
-  }
-
-  if (!session?.user) {
-    throw createError({
-      statusCode: 401,
-      message: "Unauthorized",
-    });
   }
 
   return session.user.id;

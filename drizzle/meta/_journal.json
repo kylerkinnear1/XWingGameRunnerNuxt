@@ -8,6 +8,13 @@
       "when": 1766147001730,
       "tag": "0000_chemical_shard",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1766331884517,
+      "tag": "0001_worried_leper_queen",
+      "breakpoints": true
     }
   ]
 }
