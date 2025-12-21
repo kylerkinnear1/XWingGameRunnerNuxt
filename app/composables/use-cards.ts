@@ -42,7 +42,7 @@ export const useCards = () => {
     const grouped = new Map<string, PilotDto[]>();
 
     for (const pilot of pilots) {
-      const shipKey = pilot.id;
+      const shipKey = pilot.shipType;
       if (!grouped.has(shipKey)) {
         grouped.set(shipKey, []);
       }
