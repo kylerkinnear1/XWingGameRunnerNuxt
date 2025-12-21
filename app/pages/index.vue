@@ -32,7 +32,7 @@
           <div
             class="absolute inset-0 flex flex-col items-center justify-center gap-4"
           >
-            <NuxtLink to="/games/new">
+            <NuxtLink to="/games">
               <button
                 class="px-8 py-4 text-lg font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide shadow-lg hover:shadow-xl min-w-[250px]"
               >

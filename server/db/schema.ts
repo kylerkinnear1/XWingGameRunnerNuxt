@@ -6,6 +6,7 @@ import {
   text,
   integer,
   timestamp,
+  jsonb,
 } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
@@ -50,14 +51,34 @@ export const games = pgTable("games", {
   id: uuid("id").primaryKey().defaultRandom(),
 
   // Change from uuid to text
-  player1Id: text("player1_id").references(() => user.id),
-  player2Id: text("player2_id").references(() => user.id),
+  player1Id: text("player1_id")
+    .references(() => user.id)
+    .notNull(),
+  player2Id: text("player2_id")
+    .references(() => user.id)
+    .notNull(),
 
-  player1SquadId: uuid("player1_squad_id").references(() => squads.id),
-  player2SquadId: uuid("player2_squad_id").references(() => squads.id),
+  player1SquadId: uuid("player1_squad_id")
+    .references(() => squads.id)
+    .notNull(),
+  player2SquadId: uuid("player2_squad_id")
+    .references(() => squads.id)
+    .notNull(),
+
+  userId: text("user_id").references(() => user.id),
 
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
+});
+
+export const gameSteps = pgTable("game_steps", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  gameId: uuid("game_id")
+    .notNull()
+    .references(() => games.id, { onDelete: "cascade" }),
+  type: text("type").notNull(),
+  step: jsonb("step").notNull(),
+  createdAt: timestamp("created_at").notNull(),
 });
 
 export const activities = pgTable("activities", {
