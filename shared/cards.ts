@@ -22,8 +22,8 @@ export interface CardsDto {
     hull: number;
     shields: number;
   
-    actions: string[];
-    upgradeSlots: string[];
+    actions: readonly string[];
+    upgradeSlots: readonly string[];
   
     ability?: string;
     cardImageUrl?: string;
@@ -38,12 +38,12 @@ export interface CardsDto {
     isUnique: boolean;
     rulesText: string;
     upgradeType: string;
-    slotsRequired: string[];
+    slotsRequired: readonly string[];
     points: number;
   
     restrictions?: {
-      factions: string[];
-      ships: string[];
+      factions: readonly string[];
+      ships: readonly string[];
       isLimited: boolean;
       isModification: boolean;
     };

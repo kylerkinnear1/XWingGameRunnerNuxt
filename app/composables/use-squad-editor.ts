@@ -22,9 +22,15 @@ export const useSquadEditor = () => {
   
   const selectSquad = (squad: SquadReadDto | null) => {
     selectedSquad.value = squad;
-    // Initialize form pilots from selected squad
-    formPilots.value = squad?.pilots ? [...squad.pilots] : [];
-    lastSavedPilots.value = squad?.pilots ? [...squad.pilots] : [];
+    // Initialize form pilots from selected squad, ensuring upgradeIds is always an array
+    formPilots.value = squad?.pilots ? squad.pilots.map(p => ({
+      pilotId: p.pilotId,
+      upgradeIds: p.upgradeIds || []
+    })) : [];
+    lastSavedPilots.value = squad?.pilots ? squad.pilots.map(p => ({
+      pilotId: p.pilotId,
+      upgradeIds: p.upgradeIds || []
+    })) : [];
   };
   
   const closeDrawer = () => {
