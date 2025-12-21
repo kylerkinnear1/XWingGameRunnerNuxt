@@ -1,5 +1,5 @@
 import type { UpgradeDto, PilotDto as CardPilotDto } from "#shared/cards";
-import type { PilotDto } from "#shared/squad-dto";
+import type { ShipDto } from "#shared/squad-dto";
 
 export const useUpgrades = () => {
   const { cards } = useCards();
@@ -91,8 +91,9 @@ export const useUpgrades = () => {
 
   /**
    * Check if an upgrade can be added (not unique or not already in squad)
+   * @param pilotId - Optional pilot ID to exclude from the check (for replacement scenarios)
    */
-  function canAddUpgrade(upgradeId: string, squadPilots: PilotDto[]): boolean {
+  function canAddUpgrade(upgradeId: string, squadShips: ShipDto[], pilotId?: string): boolean {
     if (!cards.value) return false;
 
     const upgrade = getUpgrade(upgradeId);
@@ -101,10 +102,11 @@ export const useUpgrades = () => {
     // Non-unique upgrades can always be added
     if (!upgrade.isUnique) return true;
 
-    // Check if this unique upgrade is already in the squad
-    const isInSquad = squadPilots.some((pilot) =>
-      pilot.upgradeIds.includes(upgradeId)
-    );
+    // Check if this unique upgrade is already in the squad (excluding the current ship if provided)
+    const isInSquad = squadShips.some((ship) => {
+      if (pilotId && ship.pilotId === pilotId) return false;
+      return ship.upgradeIds.includes(upgradeId);
+    });
 
     return !isInSquad;
   }

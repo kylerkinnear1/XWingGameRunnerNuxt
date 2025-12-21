@@ -3,7 +3,7 @@ import { squads, squadShips, shipUpgrades } from "../../db/schema";
 import {
   SquadReadResponseDto,
   SquadReadDto,
-  PilotDto,
+  ShipDto,
 } from "#shared/squad-dto";
 import { auth } from "../../auth";
 import { eq, desc } from "drizzle-orm";
@@ -34,7 +34,7 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(
       .where(eq(squads.userId, session.user.id))
       .orderBy(desc(squads.updatedAt), shipUpgrades.sortOrder);
 
-    const squadsWithPilots = Object.values(
+    const squadsWithShips = Object.values(
       Object.groupBy(
         results.filter((r) => r.squad),
         (r) => r.squad!.id
@@ -54,21 +54,22 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(
           createdAt: first.squad!.createdAt,
           updatedAt: first.squad!.updatedAt,
 
-          pilots: Object.values(
+          ships: Object.values(
             Object.groupBy(
               squadGroup.filter((r) => r.ship),
               (r) => r.ship!.id
             )
           )
             .filter(
-              (pilotGroup): pilotGroup is NonNullable<typeof pilotGroup> =>
-                pilotGroup !== undefined && pilotGroup.length > 0
+              (shipGroup): shipGroup is NonNullable<typeof shipGroup> =>
+                shipGroup !== undefined && shipGroup.length > 0
             )
-            .map((pilotGroup) => {
-              const firstPilot = pilotGroup[0];
+            .map((shipGroup) => {
+              const firstShip = shipGroup[0];
               return {
-                pilotId: firstPilot.ship!.pilotId || "",
-                upgradeIds: pilotGroup
+                id: firstShip.ship!.id,
+                pilotId: firstShip.ship!.pilotId || "",
+                upgradeIds: shipGroup
                   .filter((r) => r.upgrade)
                   .map((r) => r.upgrade!.upgradeId),
               };
@@ -76,6 +77,6 @@ export default defineEventHandler<Promise<SquadReadResponseDto>>(
         };
       });
 
-    return { squads: squadsWithPilots };
+    return { squads: squadsWithShips };
   }
 );

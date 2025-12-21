@@ -1,52 +1,53 @@
-import type { SquadReadDto, PilotDto } from "#shared/squad-dto";
+import type { SquadReadDto, ShipDto } from "#shared/squad-dto";
 
 export const useSquadEditor = () => {
   const selectedSquad = useState<SquadReadDto | null>(
     "selectedSquad",
     () => null
   );
-  const formPilots = useState<PilotDto[]>("formPilots", () => []);
+  const formShips = useState<ShipDto[]>("formShips", () => []);
   const refreshCallback = useState<(() => Promise<void>) | null>(
     "squadListRefresh",
     () => null
   );
-  const lastSavedPilots = useState<PilotDto[]>("lastSavedPilots", () => []);
+  const lastSavedShips = useState<ShipDto[]>("lastSavedShips", () => []);
   const pointLimit = useState<number>("squadPointLimit", () => 100);
 
   const hasUnsavedChanges = computed(() => {
     if (!selectedSquad.value) return false;
 
-    // Compare current form pilots with last saved state
-    if (formPilots.value.length !== lastSavedPilots.value.length) return true;
+    // Compare current form ships with last saved state
+    if (formShips.value.length !== lastSavedShips.value.length) return true;
 
-    // Check if pilot IDs match
-    const currentIds = formPilots.value.map((p) => p.pilotId).sort();
-    const savedIds = lastSavedPilots.value.map((p) => p.pilotId).sort();
+    // Check if ship IDs match
+    const currentIds = formShips.value.map((s) => s.id || s.pilotId).sort();
+    const savedIds = lastSavedShips.value.map((s) => s.id || s.pilotId).sort();
 
     return JSON.stringify(currentIds) !== JSON.stringify(savedIds);
   });
 
   const selectSquad = (squad: SquadReadDto | null) => {
     selectedSquad.value = squad;
-    // Initialize form pilots from selected squad
-    formPilots.value = squad?.pilots ? [...squad.pilots] : [];
-    lastSavedPilots.value = squad?.pilots ? [...squad.pilots] : [];
+    // Initialize form ships from selected squad
+    formShips.value = squad?.ships ? [...squad.ships] : [];
+    lastSavedShips.value = squad?.ships ? [...squad.ships] : [];
   };
 
   const closeDrawer = () => {
     selectedSquad.value = null;
-    formPilots.value = [];
-    lastSavedPilots.value = [];
+    formShips.value = [];
+    lastSavedShips.value = [];
   };
 
   const markAsSaved = () => {
-    lastSavedPilots.value = [...formPilots.value];
+    lastSavedShips.value = [...formShips.value];
   };
 
   const addPilot = (pilotId: string) => {
     // Check if pilot already exists
-    if (!formPilots.value.some((p) => p.pilotId === pilotId)) {
-      formPilots.value.push({
+    if (!formShips.value.some((s) => s.pilotId === pilotId && !s.id)) {
+      formShips.value.push({
+        id: "", // Will be set by server when saved
         pilotId,
         upgradeIds: [],
       });
@@ -54,7 +55,7 @@ export const useSquadEditor = () => {
   };
 
   const removePilot = (pilotId: string) => {
-    formPilots.value = formPilots.value.filter((p) => p.pilotId !== pilotId);
+    formShips.value = formShips.value.filter((s) => s.pilotId !== pilotId || s.id);
   };
 
   const registerRefresh = (callback: () => Promise<void>) => {
@@ -69,7 +70,8 @@ export const useSquadEditor = () => {
 
   return {
     selectedSquad: readonly(selectedSquad),
-    formPilots,
+    formPilots: formShips, // Keep old name for backward compatibility with components
+    formShips,
     hasUnsavedChanges: readonly(hasUnsavedChanges),
     pointLimit,
     selectSquad,

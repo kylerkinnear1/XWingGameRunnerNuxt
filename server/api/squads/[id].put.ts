@@ -4,7 +4,7 @@ import { squads, squadShips, shipUpgrades } from "../../db/schema";
 import {
   SquadUpdateDto,
   SquadUpdateResponseDto,
-  PilotDto,
+  ShipDto,
 } from "#shared/squad-dto";
 import { auth } from "../../auth";
 import { eq, and, inArray, notInArray } from "drizzle-orm";
@@ -68,9 +68,7 @@ export default defineEventHandler<Promise<SquadUpdateResponseDto>>(
         .filter((row) => row.upgrade)
         .map((row) => row.upgrade!);
 
-      const existingShipMap = new Map(
-        existingShips.map((s) => [s.pilotId!, s])
-      );
+      const existingShipMap = new Map(existingShips.map((s) => [s.id, s]));
 
       const operations = groupUpdates(
         body,
@@ -100,7 +98,9 @@ function groupUpdates(
   squadId: string,
   now: Date
 ) {
-  const requestedPilotIds = new Set(body.pilots.map((p) => p.pilotId));
+  const requestedShipIds = new Set(
+    body.ships.filter((s) => s.id).map((s) => s.id)
+  );
   const shipIdsToDelete: string[] = [];
   const upgradeIdsToDelete: string[] = [];
   const upgradesToInsert: Array<{
@@ -117,24 +117,24 @@ function groupUpdates(
     createdAt: Date;
     updatedAt: Date;
   }> = [];
-  const existingPilotIds: string[] = [];
+  const existingShipIds: string[] = [];
 
-  for (const [pilotId, ship] of existingShipMap) {
-    if (!requestedPilotIds.has(pilotId)) {
+  for (const [shipId, ship] of existingShipMap) {
+    if (!requestedShipIds.has(shipId)) {
       shipIdsToDelete.push(ship.id);
     }
   }
 
-  for (const pilot of body.pilots) {
-    const existingShip = existingShipMap.get(pilot.pilotId);
+  for (const ship of body.ships) {
+    const existingShip = ship.id ? existingShipMap.get(ship.id) : undefined;
 
     if (existingShip) {
-      existingPilotIds.push(pilot.pilotId);
+      existingShipIds.push(ship.id);
 
       const shipExistingUpgrades = existingUpgrades.filter(
         (u) => u.shipId === existingShip.id
       );
-      const requestedUpgradeIds = new Set(pilot.upgradeIds || []);
+      const requestedUpgradeIds = new Set(ship.upgradeIds || []);
 
       for (const upgrade of shipExistingUpgrades) {
         if (!requestedUpgradeIds.has(upgrade.upgradeId)) {
@@ -142,9 +142,9 @@ function groupUpdates(
         }
       }
 
-      if (pilot.upgradeIds) {
-        for (let i = 0; i < pilot.upgradeIds.length; i++) {
-          const upgradeId = pilot.upgradeIds[i];
+      if (ship.upgradeIds) {
+        for (let i = 0; i < ship.upgradeIds.length; i++) {
+          const upgradeId = ship.upgradeIds[i];
           const existingUpgrade = shipExistingUpgrades.find(
             (u) => u.upgradeId === upgradeId
           );
@@ -166,8 +166,8 @@ function groupUpdates(
     } else {
       newShipsToInsert.push({
         squadId,
-        shipTemplateId: pilot.pilotId,
-        pilotId: pilot.pilotId,
+        shipTemplateId: ship.pilotId,
+        pilotId: ship.pilotId,
         createdAt: now,
         updatedAt: now,
       });
@@ -180,7 +180,7 @@ function groupUpdates(
     upgradesToInsert,
     upgradesToUpdate,
     newShipsToInsert,
-    existingPilotIds,
+    existingShipIds,
   };
 }
 
@@ -196,7 +196,7 @@ async function updateDatabase(
     upgradesToInsert,
     upgradesToUpdate,
     newShipsToInsert,
-    existingPilotIds,
+    existingShipIds,
   } = operations;
 
   if (shipIdsToDelete.length > 0) {
@@ -213,14 +213,14 @@ async function updateDatabase(
     await tx.insert(squadShips).values(newShipsToInsert);
   }
 
-  if (existingPilotIds.length > 0) {
+  if (existingShipIds.length > 0) {
     await tx
       .update(squadShips)
       .set({ updatedAt: now })
       .where(
         and(
           eq(squadShips.squadId, squadId),
-          inArray(squadShips.pilotId, existingPilotIds)
+          inArray(squadShips.id, existingShipIds)
         )
       );
   }

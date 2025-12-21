@@ -37,21 +37,21 @@ const factionSelectedColors = {
 
 // Get ship icons and points - FIXED: Now shows each ship instance instead of unique types
 const squadDetails = computed(() => {
-  if (!cards.value || !props.squad.pilots.length) {
+  if (!cards.value || !props.squad.ships.length) {
     return { ships: [], totalPoints: 0, isOverLimit: false };
   }
 
   const ships: string[] = [];
   let totalPoints = 0;
 
-  props.squad.pilots.forEach((pilot) => {
-    const card = cards.value!.pilots.find((p) => p.id === pilot.pilotId);
+  props.squad.ships.forEach((ship) => {
+    const card = cards.value!.pilots.find((p) => p.id === ship.pilotId);
     if (card) {
       ships.push(card.shipType);
       totalPoints += card.points;
 
       // Add upgrade points
-      pilot.upgradeIds?.forEach((upgradeId) => {
+      ship.upgradeIds?.forEach((upgradeId) => {
         const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
         if (upgrade) {
           totalPoints += upgrade.points;

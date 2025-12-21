@@ -24,7 +24,7 @@ export type GameStateDto = {
 export type CurrentGameState = {
   currentStep: number;
   ships: readonly ShipStateDto[];
-  playerWithInitiative: string;
+  playerWithInitiative: string | null;
   bombIds: string[];
   mineIds: string[];
   obstacleIds: string[];
