@@ -211,6 +211,25 @@ async function startGame() {
   await refresh();
 }
 
+const initiativeSelected = computed(() => {
+  return (
+    gameData.value?.steps.some((step) => step.type === "select_initiative") ??
+    false
+  );
+});
+
+async function selectInitiative(playerId: string) {
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: {
+      type: "select_initiative",
+      playerWithInitiative: playerId,
+      timestamp: new Date(),
+    },
+  });
+  await refresh();
+}
+
 async function refresh() {
   await refreshGameData();
   // Reset expanded ship if it no longer exists after refresh
@@ -256,8 +275,23 @@ async function refresh() {
         @start="startGame"
       />
 
+      <SelectInitiative
+        v-else-if="
+          gameStarted &&
+          !initiativeSelected &&
+          player1Squad &&
+          player2Squad &&
+          gameData
+        "
+        :player1-squad="player1Squad"
+        :player2-squad="player2Squad"
+        :player1-id="gameData.player1Id"
+        :player2-id="gameData.player2Id"
+        @select-initiative="selectInitiative"
+      />
+
       <GameBoard
-        v-else-if="gameStarted"
+        v-else-if="gameStarted && initiativeSelected"
         :current-game-state="currentGameState"
       />
     </div>
