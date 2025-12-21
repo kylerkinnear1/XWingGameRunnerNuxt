@@ -32,8 +32,6 @@
 
       <!-- RIGHT: Opponent -->
       <section>
-        <h2 class="text-lg font-medium mb-2">Opponent</h2>
-
         <!-- Email Search -->
         <form class="flex gap-2 mb-4" @submit.prevent="searchOpponent">
           <input

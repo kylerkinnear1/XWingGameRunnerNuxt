@@ -168,20 +168,34 @@ defineExpose({
   <div class="h-full flex flex-col bg-gray-800">
     <div class="p-4 border-b border-gray-700 bg-gray-900">
       <div class="mb-3">
-        <label for="faction" class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400">
+        <label
+          for="faction"
+          class="block text-xs font-medium mb-1.5 uppercase tracking-wide text-gray-400"
+        >
           Faction
         </label>
-        <select id="faction" :value="selectedFaction" @change="handleFactionChange"
-          class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-800 text-gray-100">
-          <option v-for="option in factionOptions" :key="option.value" :value="option.value"
-            class="flex items-center gap-2">
+        <select
+          id="faction"
+          :value="selectedFaction"
+          @change="handleFactionChange"
+          class="w-full px-3 py-2 text-sm border border-gray-700 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-gray-800 text-gray-100"
+        >
+          <option
+            v-for="option in factionOptions"
+            :key="option.value"
+            :value="option.value"
+            class="flex items-center gap-2"
+          >
             {{ option.label }}
           </option>
         </select>
       </div>
 
-      <button @click="createEmptySquad" :disabled="creating"
-        class="w-full px-4 py-2 text-sm font-semibold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+      <button
+        @click="createEmptySquad"
+        :disabled="creating"
+        class="w-full px-4 py-2 text-sm font-semibold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         {{ creating ? "Creating..." : "Create New Squad" }}
       </button>
 
@@ -192,7 +206,9 @@ defineExpose({
 
     <div class="flex-1 overflow-y-auto bg-gray-800">
       <div class="p-4">
-        <h2 class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-400">
+        <h2
+          class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-400"
+        >
           Your Squads
         </h2>
 
@@ -200,7 +216,10 @@ defineExpose({
           Loading squads...
         </div>
 
-        <div v-else-if="error" class="p-4 bg-red-900 border border-red-700 text-red-200">
+        <div
+          v-else-if="error"
+          class="p-4 bg-red-900 border border-red-700 text-red-200"
+        >
           Failed to load squads
         </div>
 
@@ -214,25 +233,57 @@ defineExpose({
         <div v-else class="space-y-2">
           <div v-for="squad in filteredSquads" :key="squad.id" class="group">
             <div @click="handleSquadClick(squad)">
-              <SquadCard :squad="squad" :isSelected="selectedSquad?.id === squad.id" :pointLimit="pointLimit" />
+              <SquadCard
+                :squad="squad"
+                :isSelected="selectedSquad?.id === squad.id"
+                :pointLimit="pointLimit"
+              />
             </div>
 
             <!-- Action Drawer (slides down vertically on hover) -->
-            <div class="h-0 overflow-hidden transition-all duration-200 group-hover:h-12">
+            <div
+              class="h-0 overflow-hidden transition-all duration-200 group-hover:h-12"
+            >
               <div class="flex items-center justify-center gap-2 pt-2">
-                <button @click.stop="handleDelete(squad.id, squad.name)" :disabled="deleting === squad.id"
+                <button
+                  @click.stop="handleDelete(squad.id, squad.name)"
+                  :disabled="deleting === squad.id"
                   class="px-4 py-2 bg-red-900/90 text-red-200 hover:bg-red-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                  title="Delete squad">
-                  <svg v-if="deleting !== squad.id" class="w-4 h-4" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  title="Delete squad"
+                >
+                  <svg
+                    v-if="deleting !== squad.id"
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
                   </svg>
-                  <svg v-else class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
+                  <svg
+                    v-else
+                    class="w-4 h-4 animate-spin"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   <span class="text-xs font-semibold">DELETE</span>
                 </button>

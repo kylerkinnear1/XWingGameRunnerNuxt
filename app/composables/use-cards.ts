@@ -9,6 +9,7 @@ export const useCards = () => {
 
   const loadCards = async () => {
     if (cards.value) return; // Already loaded
+    if (!process.client) return; // Only load on client side
 
     loading.value = true;
     error.value = null;
@@ -25,6 +26,11 @@ export const useCards = () => {
     }
   };
 
+  // Auto-load cards when composable is first used (client-side only)
+  if (process.client && !cards.value && !loading.value && !error.value) {
+    loadCards();
+  }
+
   const getPilotsForFaction = (faction: Faction): PilotDto[] => {
     if (!cards.value) return [];
 
@@ -36,7 +42,7 @@ export const useCards = () => {
     const grouped = new Map<string, PilotDto[]>();
 
     for (const pilot of pilots) {
-      const shipKey = pilot.shipKey;
+      const shipKey = pilot.id;
       if (!grouped.has(shipKey)) {
         grouped.set(shipKey, []);
       }
