@@ -23,7 +23,7 @@ export type GameStateDto = {
 
 export type CurrentGameState = {
   currentStep: number;
-  ships: readonly ShipStateDto[];
+  ships: ShipStateDto[];
   playerWithInitiative: string | null;
   bombIds: string[];
   mineIds: string[];
@@ -42,15 +42,22 @@ export type ShipStateDto = {
   shields: number;
   attack: number;
   agility: number;
-  maneuver: Maneuver;
+  maneuvers: readonly Maneuver[];
   tokens: TokenStateDto[];
   faceUpDamage: CritStateDto[];
   faceDownDamage: number;
   weapons: readonly WeaponStateDto[];
+  upgrades: readonly UpgradeStateDto[];
   isPlaced: boolean;
   isDestroyed: boolean;
   dialAssigned: Maneuver | null;
   isHalfPointsScored: boolean;
+  hasActivated: boolean;
+};
+
+export type UpgradeStateDto = {
+  upgradeId: string;
+  faceUp: boolean;
 };
 
 export type CritStateDto = {
@@ -96,6 +103,7 @@ export type GameStepDto =
   | ModifyAttackDice
   | RollDefenseDice
   | ModifyDefenseDice
+  | FlipUpgrade
   | SpendAmmo
   | ApplyDamage
   | ShipHalfHealth
@@ -292,6 +300,14 @@ export interface ModifyDefenseDice {
   defenderShipId: string;
   beforeResults: DiceResult[];
   afterResults: DiceResult[];
+  timestamp: Date;
+}
+
+export interface FlipUpgrade {
+  type: "flip_upgrade";
+  shipId: string;
+  upgradeId: string;
+  faceUp: boolean;
   timestamp: Date;
 }
 

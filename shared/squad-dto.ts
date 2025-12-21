@@ -12,7 +12,7 @@ export type SquadReadDto = {
 };
 
 export type SquadReadResponseDto = {
-  squads: SquadReadDto[];
+  squads: readonly SquadReadDto[];
 };
 
 export type SquadUpdateDto = {
