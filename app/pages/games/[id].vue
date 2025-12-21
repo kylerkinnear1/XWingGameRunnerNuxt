@@ -2,6 +2,7 @@
 import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { TokenType } from "#shared/enums";
+import { GamePhase } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
 
 const route = useRoute();
@@ -229,6 +230,47 @@ const allShipsPlaced = computed(() => {
   return currentGameState.value.ships.every((ship) => ship.isPlaced);
 });
 
+const turnStarted = computed(() => {
+  return (
+    gameData.value?.steps.some((step) => step.type === "turn_start") ?? false
+  );
+});
+
+const isPlanningPhase = computed(() => {
+  return currentGameState.value?.currentPhase === GamePhase.Planning;
+});
+
+const showTurnAnimation = ref(false);
+
+watch(
+  [allShipsPlaced, turnStarted],
+  async ([allPlaced, turnStart]) => {
+    if (allPlaced && !turnStart && setupStarted.value) {
+      await startTurn();
+      showTurnAnimation.value = true;
+    }
+  },
+  { immediate: true }
+);
+
+async function startTurn() {
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: {
+      type: "turn_start",
+      timestamp: new Date(),
+    },
+  });
+  await refresh();
+  if (gameData.value) {
+    selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
+}
+
+function handleTurnAnimationComplete() {
+  showTurnAnimation.value = false;
+}
+
 async function selectInitiative(playerId: string) {
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
@@ -345,8 +387,34 @@ async function refresh() {
         @place-ship="placeShip"
       />
 
+      <TurnStartAnimation
+        v-else-if="
+          gameStarted &&
+          setupStarted &&
+          allShipsPlaced &&
+          turnStarted &&
+          showTurnAnimation &&
+          currentGameState
+        "
+        :turn-number="currentGameState.totalTurns"
+        @complete="handleTurnAnimationComplete"
+      />
+
+      <Planning
+        v-else-if="
+          gameStarted &&
+          setupStarted &&
+          allShipsPlaced &&
+          turnStarted &&
+          !showTurnAnimation &&
+          isPlanningPhase
+        "
+      />
+
       <GameBoard
-        v-else-if="gameStarted && setupStarted && allShipsPlaced"
+        v-else-if="
+          gameStarted && setupStarted && allShipsPlaced && !isPlanningPhase
+        "
         :current-game-state="currentGameState"
       />
     </div>
