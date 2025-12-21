@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { SquadReadResponseDto, SquadUpdateResponseDto } from '#shared/squad-dto';
 import { Faction, factionOptions } from '#shared/enums';
-import { FACTION_ICONS } from '#shared/xwing-icons';
 
 const { selectedSquad, selectSquad, hasUnsavedChanges, closeDrawer, registerRefresh, pointLimit } = useSquadEditor();
 const { data: response, pending, error, refresh } = await useFetch<SquadReadResponseDto>('/api/squads');
@@ -14,6 +13,16 @@ onMounted(() => {
 const selectedFaction = ref<Faction>(Faction.Rebel);
 const creating = ref(false);
 const createError = ref<string | null>(null);
+const deleting = ref<string | null>(null);
+const deleteError = ref<string | null>(null);
+
+// Delete confirmation modal state
+const showDeleteModal = ref(false);
+const squadToDelete = ref<{ id: string; name: string } | null>(null);
+
+// Faction change confirmation modal state
+const showFactionChangeModal = ref(false);
+const pendingFaction = ref<Faction | null>(null);
 
 // Filter squads by selected faction
 const filteredSquads = computed(() => {
@@ -21,56 +30,57 @@ const filteredSquads = computed(() => {
   return response.value.squads.filter(s => s.faction === selectedFaction.value);
 });
 
-// Faction icon colors for dropdown options
-const factionIconColors = {
-  [Faction.Rebel]: 'text-red-500',
-  [Faction.Empire]: 'text-gray-400',
-  [Faction.Scum]: 'text-amber-500'
-};
-
-// Handle faction change with unsaved changes check
 async function handleFactionChange(event: Event) {
   const newFaction = (event.target as HTMLSelectElement).value as Faction;
   
   if (newFaction === selectedFaction.value) return;
   
-  // Check for unsaved changes before switching
   if (hasUnsavedChanges.value) {
-    const confirmed = confirm(
-      'You have unsaved changes. Are you sure you want to switch factions? Your changes will be lost.'
-    );
-    
-    if (!confirmed) {
-      // Revert the select value
-      nextTick(() => {
-        selectedFaction.value = selectedFaction.value; // Force re-render
-      });
-      return;
-    }
+    pendingFaction.value = newFaction;
+    showFactionChangeModal.value = true;
+  } else {
+    closeDrawer();
+    selectedFaction.value = newFaction;
   }
-  
-  // Close the drawer and switch faction
-  closeDrawer();
-  selectedFaction.value = newFaction;
+}
+
+function confirmFactionChange() {
+  if (pendingFaction.value) {
+    closeDrawer();
+    selectedFaction.value = pendingFaction.value;
+    pendingFaction.value = null;
+  }
+  showFactionChangeModal.value = false;
+}
+
+function cancelFactionChange() {
+  pendingFaction.value = null;
+  showFactionChangeModal.value = false;
+  nextTick(() => {
+    const select = document.getElementById('faction') as HTMLSelectElement;
+    if (select) {
+      select.value = selectedFaction.value;
+    }
+  });
 }
 
 async function createEmptySquad() {
   creating.value = true;
   createError.value = null;
 
-try {
-  const factionNames = new Map([
-    [Faction.Empire, 'Imperial Fleet'],
-    [Faction.Rebel, 'Rebel Squadron']
-  ]);
+  try {
+    const factionNames = new Map([
+      [Faction.Empire, 'Imperial Fleet'],
+      [Faction.Rebel, 'Rebel Squadron']
+    ]);
 
-  const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
-    method: 'POST',
-    body: {
-      name: factionNames.get(selectedFaction.value) || 'Hired Guns',
-      faction: selectedFaction.value
-    }
-  });
+    const result = await $fetch<SquadUpdateResponseDto>('/api/squads', {
+      method: 'POST',
+      body: {
+        name: factionNames.get(selectedFaction.value) || 'Hired Guns',
+        faction: selectedFaction.value
+      }
+    });
 
     await refresh();
     
@@ -82,6 +92,41 @@ try {
     createError.value = e.data?.message || 'Failed to create squad';
   } finally {
     creating.value = false;
+  }
+}
+
+function openDeleteModal(squadId: string, squadName: string) {
+  squadToDelete.value = { id: squadId, name: squadName };
+  showDeleteModal.value = true;
+}
+
+function closeDeleteModal() {
+  showDeleteModal.value = false;
+  squadToDelete.value = null;
+}
+
+async function confirmDelete() {
+  if (!squadToDelete.value) return;
+
+  const { id, name } = squadToDelete.value;
+  deleting.value = id;
+  deleteError.value = null;
+
+  try {
+    await $fetch(`/api/squads/${id}`, {
+      method: 'DELETE'
+    });
+
+    if (selectedSquad.value?.id === id) {
+      closeDrawer();
+    }
+
+    await refresh();
+    closeDeleteModal();
+  } catch (e: any) {
+    deleteError.value = e.data?.message || 'Failed to delete squad';
+  } finally {
+    deleting.value = null;
   }
 }
 
@@ -154,16 +199,134 @@ defineExpose({
         <div
           v-for="squad in filteredSquads"
           :key="squad.id"
-          @click="handleSquadClick(squad)"
+          class="group"
         >
-          <SquadCard 
-            :squad="squad"
-            :isSelected="selectedSquad?.id === squad.id"
-            :pointLimit="pointLimit"
-          />
+          <div @click="handleSquadClick(squad)">
+            <SquadCard 
+              :squad="squad"
+              :isSelected="selectedSquad?.id === squad.id"
+              :pointLimit="pointLimit"
+            />
+          </div>
+          
+          <!-- Action Drawer (slides down vertically on hover) -->
+          <div class="max-h-0 overflow-hidden transition-all duration-200 group-hover:max-h-12">
+            <div class="flex items-center justify-center gap-2 pt-2 pointer-events-auto">
+              <button
+                @click.stop.prevent="openDeleteModal(squad.id, squad.name)"
+                :disabled="deleting === squad.id"
+                class="px-4 py-2 bg-red-900/90 text-red-200 hover:bg-red-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 pointer-events-auto"
+                title="Delete squad"
+                type="button"
+              >
+                <svg v-if="deleting !== squad.id" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                <svg v-else class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="text-xs font-semibold">DELETE</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       </div>
     </div>
   </div>
+
+  <!-- Delete Confirmation Modal -->
+  <UModal v-model="showDeleteModal">
+    <UCard>
+      <template #header>
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-bold text-gray-100">Delete Squad</h3>
+          <UButton
+            color="neutral"
+            variant="ghost"
+            icon="i-heroicons-x-mark-20-solid"
+            @click="closeDeleteModal"
+          />
+        </div>
+      </template>
+
+      <div class="space-y-4">
+        <p class="text-gray-300">
+          Are you sure you want to delete <span class="font-semibold">"{{ squadToDelete?.name }}"</span>?
+        </p>
+        <p class="text-sm text-red-400">
+          This action cannot be undone.
+        </p>
+
+        <div v-if="deleteError" class="p-3 bg-red-900 border border-red-700 text-red-200 text-sm">
+          {{ deleteError }}
+        </div>
+      </div>
+
+      <template #footer>
+        <div class="flex justify-end gap-3">
+          <UButton
+            color="neutral"
+            variant="ghost"
+            @click="closeDeleteModal"
+            :disabled="!!deleting"
+          >
+            Cancel
+          </UButton>
+          <UButton
+            color="error"
+            @click="confirmDelete"
+            :loading="!!deleting"
+          >
+            Delete
+          </UButton>
+        </div>
+      </template>
+    </UCard>
+  </UModal>
+
+  <!-- Faction Change Confirmation Modal -->
+  <UModal v-model="showFactionChangeModal">
+    <UCard>
+      <template #header>
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-bold text-gray-100">Unsaved Changes</h3>
+          <UButton
+            color="neutral"
+            variant="ghost"
+            icon="i-heroicons-x-mark-20-solid"
+            @click="cancelFactionChange"
+          />
+        </div>
+      </template>
+
+      <div class="space-y-4">
+        <p class="text-gray-300">
+          You have unsaved changes. Are you sure you want to switch factions?
+        </p>
+        <p class="text-sm text-yellow-400">
+          Your changes will be lost.
+        </p>
+      </div>
+
+      <template #footer>
+        <div class="flex justify-end gap-3">
+          <UButton
+            color="neutral"
+            variant="ghost"
+            @click="cancelFactionChange"
+          >
+            Cancel
+          </UButton>
+          <UButton
+            color="warning"
+            @click="confirmFactionChange"
+          >
+            Switch Anyway
+          </UButton>
+        </div>
+      </template>
+    </UCard>
+  </UModal>
 </template>

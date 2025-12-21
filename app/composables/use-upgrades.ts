@@ -78,8 +78,9 @@ export const useUpgrades = () => {
 
   /**
    * Check if an upgrade can be added (not unique or not already in squad)
+   * @param pilotId - Optional pilot ID to exclude from the check (for replacement scenarios)
    */
-  function canAddUpgrade(upgradeId: string, squadPilots: PilotDto[]): boolean {
+  function canAddUpgrade(upgradeId: string, squadPilots: PilotDto[], pilotId?: string): boolean {
     if (!cards.value) return false;
     
     const upgrade = getUpgrade(upgradeId);
@@ -88,10 +89,11 @@ export const useUpgrades = () => {
     // Non-unique upgrades can always be added
     if (!upgrade.isUnique) return true;
 
-    // Check if this unique upgrade is already in the squad
-    const isInSquad = squadPilots.some(pilot => 
-      pilot.upgradeIds.includes(upgradeId)
-    );
+    // Check if this unique upgrade is already in the squad (excluding the current pilot if provided)
+    const isInSquad = squadPilots.some(pilot => {
+      if (pilotId && pilot.pilotId === pilotId) return false;
+      return pilot.upgradeIds.includes(upgradeId);
+    });
 
     return !isInSquad;
   }

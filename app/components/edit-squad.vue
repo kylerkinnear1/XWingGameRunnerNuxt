@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { SquadUpdateDto, SquadUpdateResponseDto } from '#shared/squad-dto';
-import type { UpgradeDto } from '#shared/cards';
+import type { UpgradeDto, PilotDto as CardPilotDto } from '#shared/cards';
 import { Faction, factionOptions } from '#shared/enums';
 import { STAT_ICONS, getShipIcon, getUpgradeSlotIcon } from '#shared/xwing-icons';
 
 const { selectedSquad, formPilots, removePilot, refreshList, pointLimit } = useSquadEditor();
 const { cards } = useCards();
-const { getUpgradesForSlot, getAvailableSlots, getUpgrade, canAddUpgrade, getAllUpgrades } = useUpgrades();
+const { getUpgradesForSlot, getUpgrade, canAddUpgrade, getAllUpgrades } = useUpgrades();
 
 const form = ref<{ name: string; faction: Faction }>({
     name: '',
@@ -123,19 +123,81 @@ function handleRemovePilot(pilotId: string) {
     removePilot(pilotId);
 }
 
-function addUpgradeToSlot(pilotId: string, upgradeId: string) {
-    if (!upgradeId) return;
-    
-    const pilot = formPilots.value.find(p => p.pilotId === pilotId);
-    if (pilot && !pilot.upgradeIds.includes(upgradeId)) {
-        pilot.upgradeIds.push(upgradeId);
+// Get all upgrade slots for a pilot (base slots + their current assignments)
+function getAllUpgradeSlots(pilotCard: CardPilotDto, pilot: any) {
+    interface SlotInfo {
+        slotIndex: number;
+        slotType: string;
+        upgradeId: string | null;
     }
+    
+    const baseSlots = [...pilotCard.upgradeSlots];
+    const upgradeIds = pilot.upgradeIds || [];
+    const slots: SlotInfo[] = [];
+    const assignedUpgrades = new Set<string>();
+    
+    // Iterate through base slots in their original order
+    baseSlots.forEach((slotType, index) => {
+        // Find an unassigned upgrade that fits this slot
+        const matchingUpgrade = upgradeIds.find((upgradeId: string) => {
+            if (assignedUpgrades.has(upgradeId)) return false;
+            const upgrade = getUpgrade(upgradeId);
+            if (!upgrade) return false;
+            // Check if this upgrade can use this slot type
+            return upgrade.slotsRequired.includes(slotType);
+        });
+        
+        slots.push({
+            slotIndex: index,
+            slotType,
+            upgradeId: matchingUpgrade || null
+        });
+        
+        if (matchingUpgrade) {
+            assignedUpgrades.add(matchingUpgrade);
+        }
+    });
+    
+    return slots;
 }
 
-function removeUpgrade(pilotId: string, upgradeId: string) {
+function selectUpgradeForSlot(pilotId: string, slotIndex: number, upgradeId: string) {
     const pilot = formPilots.value.find(p => p.pilotId === pilotId);
-    if (pilot) {
-        pilot.upgradeIds = pilot.upgradeIds.filter(id => id !== upgradeId);
+    if (!pilot) return;
+    
+    // Get the slot info
+    const pilotCard = cards.value?.pilots.find(p => p.id === pilotId);
+    if (!pilotCard) return;
+    
+    const slots = getAllUpgradeSlots(pilotCard, pilot);
+    const slot = slots[slotIndex];
+    if (!slot) return;
+    
+    // If there's already an upgrade in this slot, replace it
+    if (slot.upgradeId) {
+        const existingIndex = pilot.upgradeIds.indexOf(slot.upgradeId);
+        if (existingIndex !== -1) {
+            pilot.upgradeIds[existingIndex] = upgradeId;
+        }
+    } else {
+        // Add new upgrade
+        pilot.upgradeIds.push(upgradeId);
+    }
+    
+    closeSlotMenu();
+}
+
+function removeUpgradeFromSlot(pilotId: string, slotIndex: number) {
+    const pilot = formPilots.value.find(p => p.pilotId === pilotId);
+    if (!pilot) return;
+    
+    const pilotCard = cards.value?.pilots.find(p => p.id === pilotId);
+    if (!pilotCard) return;
+    
+    const slots = getAllUpgradeSlots(pilotCard, pilot);
+    const slot = slots[slotIndex];
+    if (slot && slot.upgradeId) {
+        pilot.upgradeIds = pilot.upgradeIds.filter(id => id !== slot.upgradeId);
     }
 }
 
@@ -153,7 +215,10 @@ function closeCustomPicker() {
 
 function addCustomUpgrade(upgradeId: string) {
     if (customPickerPilotId.value) {
-        addUpgradeToSlot(customPickerPilotId.value, upgradeId);
+        const pilot = formPilots.value.find(p => p.pilotId === customPickerPilotId.value);
+        if (pilot) {
+            pilot.upgradeIds.push(upgradeId);
+        }
         closeCustomPicker();
     }
 }
@@ -192,19 +257,6 @@ function handleUpgradeHover(upgrade: UpgradeDto | null, event: MouseEvent) {
 
 function handleUpgradeLeave() {
     hoveredUpgrade.value = null;
-}
-
-function handleUpgradeSelect(pilotId: string, event: Event) {
-    const target = event.target as HTMLSelectElement;
-    if (target.value) {
-        addUpgradeToSlot(pilotId, target.value);
-        target.value = '';
-    }
-}
-
-function selectUpgradeFromMenu(pilotId: string, upgradeId: string) {
-    addUpgradeToSlot(pilotId, upgradeId);
-    openSlotMenu.value = null;
 }
 
 function toggleSlotMenu(slotKey: string) {
@@ -330,69 +382,58 @@ onMounted(() => {
 
             <!-- Upgrades Section -->
             <div class="p-3 space-y-2">
-                <!-- Selected Upgrades -->
-                <div v-if="pilot.upgradeIds && pilot.upgradeIds.length > 0" class="space-y-1">
-                <div
-                    v-for="upgradeId in pilot.upgradeIds"
-                    :key="upgradeId"
-                    class="flex items-center gap-2 p-2 bg-gray-700 border border-gray-600 text-xs group/upgrade"
-                    @mouseenter="handleUpgradeHover(getUpgrade(upgradeId) || null, $event)"
-                    @mousemove="handleUpgradeHover(getUpgrade(upgradeId) || null, $event)"
-                    @mouseleave="handleUpgradeLeave"
-                >
-                    <span 
-                    class="xwing-icon shrink-0"
-                    :class="getSlotColor(getUpgrade(upgradeId)?.upgradeType || '')"
-                    >
-                    {{ getUpgradeSlotIcon(getUpgrade(upgradeId)?.upgradeType || '') }}
-                    </span>
-                    <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-1">
-                        <span v-if="getUpgrade(upgradeId)?.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
-                        <span class="text-gray-100 truncate">{{ getUpgrade(upgradeId)?.name || upgradeId }}</span>
-                    </div>
-                    <div class="text-gray-400 text-xs">
-                        {{ getUpgrade(upgradeId)?.upgradeType }} • 
-                        <span class="text-teal-400 font-semibold">{{ getUpgrade(upgradeId)?.points || 0 }}</span> pts
-                    </div>
-                    </div>
-                    <button
-                    type="button"
-                    @click="removeUpgrade(pilot.pilotId, upgradeId)"
-                    class="opacity-0 group-hover/upgrade:opacity-100 p-1 text-red-400 hover:text-red-300 transition-all shrink-0"
-                    >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    </button>
-                </div>
-                </div>
-
-                <!-- Available Upgrade Slots -->
+                <!-- All Upgrade Slots (both filled and empty) -->
                 <div v-if="card" class="space-y-2">
                 <div
-                    v-for="(slotType, index) in getAvailableSlots(card, pilot.upgradeIds)"
-                    :key="`${slotType}-${index}`"
+                    v-for="(slot, index) in getAllUpgradeSlots(card, pilot)"
+                    :key="`${slot.slotType}-${index}`"
                     class="relative flex items-center gap-2 upgrade-slot-menu"
                 >
                     <!-- Slot Type Icon -->
                     <span 
                     class="xwing-icon text-lg shrink-0"
-                    :class="getSlotColor(slotType)"
-                    :title="slotType"
+                    :class="getSlotColor(slot.slotType)"
+                    :title="slot.slotType"
                     >
-                    {{ getUpgradeSlotIcon(slotType) }}
+                    {{ getUpgradeSlotIcon(slot.slotType) }}
                     </span>
                     
-                    <!-- Upgrade Menu Button -->
+                    <!-- Upgrade Dropdown Button -->
                     <button
                         type="button"
                         @click.stop="toggleSlotMenu(`${pilot.pilotId}-${index}`)"
-                        class="flex-1 px-2 py-1 text-xs border border-gray-600 bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-1 focus:ring-teal-500 flex items-center justify-between"
+                        class="flex-1 px-2 py-1 text-xs border transition-colors flex items-center justify-between"
+                        :class="slot.upgradeId 
+                            ? 'border-gray-600 bg-gray-700 text-gray-100 hover:bg-gray-600' 
+                            : 'border-gray-600 bg-gray-750 text-gray-400 hover:bg-gray-700'"
+                        @mouseenter="slot.upgradeId ? handleUpgradeHover(getUpgrade(slot.upgradeId) || null, $event) : null"
+                        @mousemove="slot.upgradeId ? handleUpgradeHover(getUpgrade(slot.upgradeId) || null, $event) : null"
+                        @mouseleave="handleUpgradeLeave"
                     >
-                        <span>Select {{ slotType }}</span>
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="flex items-center gap-1 flex-1 min-w-0">
+                            <span v-if="slot.upgradeId && getUpgrade(slot.upgradeId)?.isUnique" class="xwing-icon text-yellow-500 text-xs shrink-0">u</span>
+                            <span class="truncate">
+                                {{ slot.upgradeId ? getUpgrade(slot.upgradeId)?.name : `Select ${slot.slotType}` }}
+                            </span>
+                            <span v-if="slot.upgradeId" class="text-teal-400 shrink-0">
+                                ({{ getUpgrade(slot.upgradeId)?.points }})
+                            </span>
+                        </span>
+                        <svg class="w-3 h-3 ml-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Clear Button (only show if slot is filled) -->
+                    <button
+                        v-if="slot.upgradeId"
+                        type="button"
+                        @click.stop="removeUpgradeFromSlot(pilot.pilotId, slot.slotIndex)"
+                        class="p-1 text-red-400 hover:text-red-300 hover:bg-red-900/30 transition-all shrink-0"
+                        title="Clear slot"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
 
@@ -401,35 +442,51 @@ onMounted(() => {
                         v-if="openSlotMenu === `${pilot.pilotId}-${index}`"
                         class="absolute left-0 right-0 top-full mt-1 z-50 w-64 max-h-96 overflow-y-auto bg-gray-800 border border-gray-700 shadow-xl"
                     >
+                        <!-- Clear option if slot is filled -->
                         <div
-                            v-for="upgrade in getUpgradesForSlot(slotType, card)"
+                            v-if="slot.upgradeId"
+                            @click.stop="removeUpgradeFromSlot(pilot.pilotId, slot.slotIndex); closeSlotMenu()"
+                            class="px-3 py-2 hover:bg-red-900/30 cursor-pointer border-b border-gray-700 text-red-400 font-semibold"
+                        >
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <span class="text-xs">Clear Slot</span>
+                            </div>
+                        </div>
+
+                        <!-- Available upgrades -->
+                        <div
+                            v-for="upgrade in getUpgradesForSlot(slot.slotType, card)"
                             :key="upgrade.id"
-                            @click.stop="!upgrade.isUnique || canAddUpgrade(upgrade.id, formPilots) ? selectUpgradeFromMenu(pilot.pilotId, upgrade.id) : null"
+                            @click.stop="(!upgrade.isUnique || canAddUpgrade(upgrade.id, formPilots, pilot.pilotId)) ? selectUpgradeForSlot(pilot.pilotId, slot.slotIndex, upgrade.id) : null"
                             @mouseenter="handleUpgradeHover(upgrade, $event)"
                             @mousemove="handleUpgradeHover(upgrade, $event)"
                             @mouseleave="handleUpgradeLeave"
                             class="px-3 py-2 hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0 transition-colors"
                             :class="{ 
-                            'opacity-50 cursor-not-allowed': upgrade.isUnique && !canAddUpgrade(upgrade.id, formPilots)
+                                'opacity-50 cursor-not-allowed': upgrade.isUnique && !canAddUpgrade(upgrade.id, formPilots, pilot.pilotId),
+                                'bg-gray-700': slot.upgradeId === upgrade.id
                             }"
                         >
                             <div class="flex items-start gap-2">
-                            <span 
-                                class="xwing-icon text-sm shrink-0 mt-0.5"
-                                :class="getSlotColor(upgrade.upgradeType)"
-                            >
-                                {{ getUpgradeSlotIcon(upgrade.upgradeType) }}
-                            </span>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center gap-1">
-                                <span v-if="upgrade.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
-                                <span class="text-xs text-gray-100 truncate">{{ upgrade.name }}</span>
+                                <span 
+                                    class="xwing-icon text-sm shrink-0 mt-0.5"
+                                    :class="getSlotColor(upgrade.upgradeType)"
+                                >
+                                    {{ getUpgradeSlotIcon(upgrade.upgradeType) }}
+                                </span>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1">
+                                        <span v-if="upgrade.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
+                                        <span class="text-xs text-gray-100 truncate">{{ upgrade.name }}</span>
+                                    </div>
+                                    <div class="text-xs text-teal-400 font-semibold">{{ upgrade.points }} pts</div>
                                 </div>
-                                <div class="text-xs text-teal-400 font-semibold">{{ upgrade.points }} pts</div>
-                            </div>
                             </div>
                         </div>
-                        <div v-if="getUpgradesForSlot(slotType, card).length === 0" class="px-3 py-4 text-center text-xs text-gray-500">
+                        <div v-if="getUpgradesForSlot(slot.slotType, card).length === 0" class="px-3 py-4 text-center text-xs text-gray-500">
                             No upgrades available
                         </div>
                     </div>
