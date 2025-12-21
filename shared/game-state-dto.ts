@@ -105,7 +105,7 @@ export type GameStepDto =
   | EndSetup
   | TurnStart
   | Planning
-  | AssignDial
+  | PlanningComplete
   | ActivationStep
   | BeginManeuver
   | CleanManeuver
@@ -206,11 +206,9 @@ export interface GameEnd {
   timestamp: Date;
 }
 
-// Planning Phase
-export interface AssignDial {
-  type: "assign_dial";
-  shipId: string;
-  maneuver: Maneuver;
+export interface PlanningComplete {
+  type: "planning_complete";
+  dials: Record<string, Maneuver>;
   timestamp: Date;
 }
 

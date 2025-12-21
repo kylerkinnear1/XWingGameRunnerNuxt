@@ -76,8 +76,13 @@ export function handleStep(
     case "planning":
       planningHandlers.handlePlanning(step, currentState, squads, cards);
       break;
-    case "assign_dial":
-      planningHandlers.handleAssignDial(step, currentState, squads, cards);
+    case "planning_complete":
+      planningHandlers.handlePlanningComplete(
+        step,
+        currentState,
+        squads,
+        cards
+      );
       break;
     case "activation_step":
       activationHandlers.handleActivationStep(

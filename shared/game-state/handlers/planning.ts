@@ -1,13 +1,11 @@
 import { GamePhase } from "#shared/enums";
-import type {
-  SquadReadDto,
-} from "#shared/squad-dto";
+import type { SquadReadDto } from "#shared/squad-dto";
 import type { CardsDto } from "#shared/cards";
 import type {
   CurrentGameState,
   TurnStart,
   Planning,
-  AssignDial,
+  PlanningComplete,
 } from "#shared/game-state-dto";
 
 export function handleTurnStart(
@@ -39,16 +37,17 @@ export function handlePlanning(
   state.currentStep += 1;
 }
 
-export function handleAssignDial(
-  step: AssignDial,
+export function handlePlanningComplete(
+  step: PlanningComplete,
   state: CurrentGameState,
   squads: readonly SquadReadDto[],
   cards: CardsDto
 ): void {
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.dialAssigned = step.maneuver;
-  }
+  Object.entries(step.dials).forEach(([shipId, maneuver]) => {
+    const ship = state.ships.find((s) => s.shipId === shipId);
+    if (ship) {
+      ship.dialAssigned = maneuver;
+    }
+  });
   state.currentStep += 1;
 }
-

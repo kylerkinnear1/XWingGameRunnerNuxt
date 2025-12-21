@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
-import type { TokenType } from "#shared/enums";
+import type { TokenType, Maneuver } from "#shared/enums";
 import { GamePhase } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
 
@@ -241,17 +241,25 @@ const isPlanningPhase = computed(() => {
 });
 
 const showTurnAnimation = ref(false);
+const previousTurnStarted = ref(false);
 
 watch(
   [allShipsPlaced, turnStarted],
   async ([allPlaced, turnStart]) => {
     if (allPlaced && !turnStart && setupStarted.value) {
-      await startTurn();
       showTurnAnimation.value = true;
+      await startTurn();
     }
   },
   { immediate: true }
 );
+
+watch(turnStarted, (isTurnStarted) => {
+  if (isTurnStarted && !previousTurnStarted.value && allShipsPlaced.value) {
+    showTurnAnimation.value = true;
+  }
+  previousTurnStarted.value = isTurnStarted;
+});
 
 async function startTurn() {
   await $fetch(`/api/games/${gameId}/steps`, {
@@ -269,6 +277,21 @@ async function startTurn() {
 
 function handleTurnAnimationComplete() {
   showTurnAnimation.value = false;
+}
+
+async function handlePlanningComplete(dials: Record<string, Maneuver>) {
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: {
+      type: "planning_complete",
+      dials,
+      timestamp: new Date(),
+    },
+  });
+  await refresh();
+  if (gameData.value) {
+    selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
 }
 
 async function selectInitiative(playerId: string) {
@@ -407,8 +430,16 @@ async function refresh() {
           allShipsPlaced &&
           turnStarted &&
           !showTurnAnimation &&
-          isPlanningPhase
+          isPlanningPhase &&
+          currentGameState &&
+          gameData
         "
+        :player1-ships="player1Ships"
+        :player2-ships="player2Ships"
+        :player1-id="gameData.player1Id"
+        :player2-id="gameData.player2Id"
+        :player-with-initiative="currentGameState.playerWithInitiative"
+        @complete-planning="handlePlanningComplete"
       />
 
       <GameBoard
