@@ -3,7 +3,7 @@ import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
 import type { Maneuver } from "#shared/enums";
 import { ManeuverDifficulty, Bearing } from "#shared/enums";
-import { getShipIcon, STAT_ICONS } from "#shared/xwing-icons";
+import { getShipIcon } from "#shared/xwing-icons";
 
 interface ShipWithPilot {
   ship: ShipStateDto;
@@ -167,14 +167,9 @@ function groupManeuversBySpeed(
           <!-- Ship Header -->
           <div class="p-4 border-b border-gray-700 bg-gray-900">
             <div class="flex items-center gap-4">
-              <!-- Pilot Skill Badge -->
+              <!-- Pilot Skill Badge - Orange like the cards -->
               <div
-                class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold"
-                :class="
-                  currentPlayerId === player1Id
-                    ? 'bg-red-600 text-white'
-                    : 'bg-gray-600 text-white'
-                "
+                class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold bg-orange-600 text-white"
               >
                 {{ ship.pilotSkill }}
               </div>
@@ -192,53 +187,31 @@ function groupManeuversBySpeed(
                 {{ getShipIcon(pilot.shipType) }}
               </span>
 
-              <!-- Ship Details -->
+              <!-- Ship Details - Just name, no redundant stats -->
               <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-100 mb-1">
+                <h3 class="text-lg font-semibold text-gray-100">
                   {{ pilot?.pilotName || "Unknown" }}
                 </h3>
-                <div class="flex items-center gap-4 text-sm">
-                  <span class="flex items-center gap-1 text-gray-300">
-                    <span class="xwing-icon text-red-500">{{
-                      STAT_ICONS.attack
-                    }}</span>
-                    <span class="font-medium">{{ ship.attack }}</span>
-                  </span>
-                  <span class="flex items-center gap-1 text-gray-300">
-                    <span class="xwing-icon text-green-500">{{
-                      STAT_ICONS.agility
-                    }}</span>
-                    <span class="font-medium">{{ ship.agility }}</span>
-                  </span>
-                  <span class="flex items-center gap-1 text-gray-300">
-                    <span class="xwing-icon text-gray-400">{{
-                      STAT_ICONS.hull
-                    }}</span>
-                    <span class="font-medium">{{ ship.hull }}</span>
-                  </span>
-                  <span class="flex items-center gap-1 text-gray-300">
-                    <span class="xwing-icon text-blue-500">{{
-                      STAT_ICONS.shield
-                    }}</span>
-                    <span class="font-medium">{{ ship.shields }}</span>
-                  </span>
-                </div>
               </div>
 
               <!-- Selected Dial Display -->
               <div
                 v-if="selectedDials[ship.shipId]"
-                class="shrink-0 flex items-center gap-2 px-4 py-2 bg-teal-900/50 border border-teal-600 rounded"
+                class="shrink-0 flex flex-col items-center gap-1 px-6 py-3 bg-teal-900/50 border border-teal-600 rounded"
               >
-                <span class="text-xs text-gray-400">Selected:</span>
+                <span class="text-xs text-gray-400 uppercase tracking-wide"
+                  >Selected</span
+                >
+                <!-- Dial Arrow -->
                 <span
-                  class="xwing-icon text-3xl"
+                  class="xwing-icon text-5xl"
                   :class="getManeuverDisplay(selectedDials[ship.shipId]!).color"
                 >
                   {{ getManeuverDisplay(selectedDials[ship.shipId]!).bearing }}
                 </span>
+                <!-- Speed underneath -->
                 <span
-                  class="text-2xl font-bold"
+                  class="text-3xl font-bold"
                   :class="getManeuverDisplay(selectedDials[ship.shipId]!).color"
                 >
                   {{ getManeuverDisplay(selectedDials[ship.shipId]!).speed }}
@@ -264,24 +237,31 @@ function groupManeuversBySpeed(
                   {{ speed }}
                 </div>
 
-                <!-- Maneuver Options -->
+                <!-- Maneuver Options - Show as dials with arrow on top, speed on bottom -->
                 <div class="flex-1 flex flex-wrap gap-2">
                   <button
                     v-for="(maneuver, index) in maneuvers"
                     :key="index"
                     @click="selectDial(ship.shipId, maneuver)"
-                    class="flex items-center gap-2 px-4 py-2 border-2 transition-all hover:scale-105"
+                    class="flex flex-col items-center gap-1 px-3 py-2 border-2 transition-all hover:scale-105"
                     :class="[
                       selectedDials[ship.shipId] === maneuver
                         ? 'border-teal-500 bg-teal-900/50'
                         : 'border-gray-600 bg-gray-700 hover:border-gray-500',
-                      getManeuverDisplay(maneuver).color,
                     ]"
                   >
-                    <span class="xwing-icon text-2xl">
+                    <!-- Dial Arrow -->
+                    <span
+                      class="xwing-icon text-4xl"
+                      :class="getManeuverDisplay(maneuver).color"
+                    >
                       {{ getManeuverDisplay(maneuver).bearing }}
                     </span>
-                    <span class="text-xl font-bold">
+                    <!-- Speed underneath -->
+                    <span
+                      class="text-2xl font-bold"
+                      :class="getManeuverDisplay(maneuver).color"
+                    >
                       {{ getManeuverDisplay(maneuver).speed }}
                     </span>
                   </button>
