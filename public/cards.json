@@ -1667,7 +1667,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/veteraninstincts.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/veteraninstincts.png"
     },
     {
       "id": "elite/pushthelimit",
@@ -1692,7 +1692,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/pushthelimit.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/pushthelimit.png"
     },
     {
       "id": "elite/predator",
@@ -1717,7 +1717,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/predator.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/predator.png"
     },
     {
       "id": "elite/crackshot",
@@ -1742,7 +1742,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/crackshot.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/crackshot.png"
     },
     {
       "id": "elite/marksmanship",
@@ -1767,7 +1767,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/marksmanship.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/marksmanship.png"
     },
     {
       "id": "elite/lonewolf",
@@ -1792,7 +1792,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/lonewolf.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/lonewolf.png"
     },
     {
       "id": "elite/expertiseEPT",
@@ -1817,7 +1817,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/expertiseEPT.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/expertiseEPT.png"
     },
     {
       "id": "elite/swarmtactics",
@@ -1842,7 +1842,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/elite/swarmtactics.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/ept/swarmtactics.png"
     },
     {
       "id": "astromech/r2d2",
@@ -1869,7 +1869,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r2d2.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r2d2.png"
     },
     {
       "id": "astromech/r2astromech",
@@ -1894,7 +1894,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r2astromech.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r2astromech.png"
     },
     {
       "id": "astromech/r3a2",
@@ -1919,7 +1919,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r3a2.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r3a2.png"
     },
     {
       "id": "astromech/r5k6",
@@ -1944,7 +1944,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r5k6.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r5k6.png"
     },
     {
       "id": "astromech/r7t1",
@@ -1969,7 +1969,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/r7t1.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/r7t1.png"
     },
     {
       "id": "astromech/bb8",
@@ -1996,7 +1996,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/astromech/bb8.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/amd/bb8.png"
     },
     {
       "id": "torpedo/protontorpedoes",
@@ -2806,7 +2806,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/hullupgrade.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/hullupgrade.png"
     },
     {
       "id": "modification/shieldupgrade",
@@ -2831,7 +2831,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/shieldupgrade.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/shieldupgrade.png"
     },
     {
       "id": "modification/engineupgrade",
@@ -2856,7 +2856,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/engineupgrade.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/engineupgrade.png"
     },
     {
       "id": "modification/stealthdevice",
@@ -2881,7 +2881,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/stealthdevice.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/stealthdevice.png"
     },
     {
       "id": "modification/autothrusters",
@@ -2906,7 +2906,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/autothrusters.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/autothrusters.png"
     },
     {
       "id": "modification/targetingcomputer",
@@ -2931,7 +2931,7 @@
       "minRange": null,
       "maxRange": null,
       "energy": null,
-      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/modification/targetingcomputer.png"
+      "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/mod/targetingcomputer.png"
     },
     {
       "id": "system/advancedsensors",

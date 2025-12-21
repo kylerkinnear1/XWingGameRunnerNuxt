@@ -22,6 +22,13 @@ const showCustomPicker = ref(false);
 const customPickerPilotId = ref<string | null>(null);
 const customPickerSearch = ref('');
 
+// Hover state for upgrade card images
+const hoveredUpgrade = ref<UpgradeDto | null>(null);
+const hoverPosition = ref({ x: 0, y: 0 });
+
+// Track which upgrade slot menu is open (pilotId-slotIndex)
+const openSlotMenu = ref<string | null>(null);
+
 const isEditing = computed(() => !!selectedSquad.value);
 
 const pilotDetails = computed(() => {
@@ -105,8 +112,8 @@ async function saveSquad() {
         success.value = true;
     
         await refreshList();
-    } catch (e: any) {
-        error.value = e.data?.message || 'Failed to save squad';
+    } catch (e) {
+        error.value = (e as any).data?.message || 'Failed to save squad';
     } finally {
         loading.value = false;
     }
@@ -122,14 +129,6 @@ function addUpgradeToSlot(pilotId: string, upgradeId: string) {
     const pilot = formPilots.value.find(p => p.pilotId === pilotId);
     if (pilot && !pilot.upgradeIds.includes(upgradeId)) {
         pilot.upgradeIds.push(upgradeId);
-    }
-}
-
-function handleUpgradeSelect(pilotId: string, event: Event) {
-    const target = event.target as HTMLSelectElement;
-    if (target.value) {
-        addUpgradeToSlot(pilotId, target.value);
-        target.value = '';
     }
 }
 
@@ -180,6 +179,51 @@ function getSlotColor(slotType: string): string {
     };
     return colors[slotType] || 'text-gray-400';
 }
+
+function handleUpgradeHover(upgrade: UpgradeDto | null, event: MouseEvent) {
+    hoveredUpgrade.value = upgrade;
+    if (upgrade && upgrade.cardImageUrl) {
+        hoverPosition.value = {
+            x: event.clientX,
+            y: event.clientY
+        };
+    }
+}
+
+function handleUpgradeLeave() {
+    hoveredUpgrade.value = null;
+}
+
+function handleUpgradeSelect(pilotId: string, event: Event) {
+    const target = event.target as HTMLSelectElement;
+    if (target.value) {
+        addUpgradeToSlot(pilotId, target.value);
+        target.value = '';
+    }
+}
+
+function selectUpgradeFromMenu(pilotId: string, upgradeId: string) {
+    addUpgradeToSlot(pilotId, upgradeId);
+    openSlotMenu.value = null;
+}
+
+function toggleSlotMenu(slotKey: string) {
+    openSlotMenu.value = openSlotMenu.value === slotKey ? null : slotKey;
+}
+
+function closeSlotMenu() {
+    openSlotMenu.value = null;
+}
+
+onMounted(() => {
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.upgrade-slot-menu')) {
+            closeSlotMenu();
+        }
+    });
+});
+
 </script>
 <template>
     <div class="h-full flex flex-col bg-gray-900">
@@ -287,11 +331,14 @@ function getSlotColor(slotType: string): string {
             <!-- Upgrades Section -->
             <div class="p-3 space-y-2">
                 <!-- Selected Upgrades -->
-                <div v-if="pilot.upgradeIds?.length > 0" class="space-y-1">
+                <div v-if="pilot.upgradeIds && pilot.upgradeIds.length > 0" class="space-y-1">
                 <div
                     v-for="upgradeId in pilot.upgradeIds"
                     :key="upgradeId"
                     class="flex items-center gap-2 p-2 bg-gray-700 border border-gray-600 text-xs group/upgrade"
+                    @mouseenter="handleUpgradeHover(getUpgrade(upgradeId) || null, $event)"
+                    @mousemove="handleUpgradeHover(getUpgrade(upgradeId) || null, $event)"
+                    @mouseleave="handleUpgradeLeave"
                 >
                     <span 
                     class="xwing-icon shrink-0"
@@ -322,37 +369,77 @@ function getSlotColor(slotType: string): string {
                 </div>
 
                 <!-- Available Upgrade Slots -->
-                <div v-if="card" class="flex flex-wrap gap-2">
+                <div v-if="card" class="space-y-2">
                 <div
                     v-for="(slotType, index) in getAvailableSlots(card, pilot.upgradeIds)"
                     :key="`${slotType}-${index}`"
-                    class="flex-1 min-w-[150px]"
+                    class="relative flex items-center gap-2 upgrade-slot-menu"
                 >
-                    <select
-                    @change="handleUpgradeSelect(pilot.pilotId, $event)"
-                    class="w-full px-2 py-1 text-xs border border-gray-600 bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-1 focus:ring-teal-500"
+                    <!-- Slot Type Icon -->
+                    <span 
+                    class="xwing-icon text-lg shrink-0"
+                    :class="getSlotColor(slotType)"
+                    :title="slotType"
                     >
-                    <option value="" class="text-gray-400">
-                        <span class="xwing-icon" :class="getSlotColor(slotType)">{{ getUpgradeSlotIcon(slotType) }}</span>
-                        {{ slotType }}
-                    </option>
-                    <option
-                        v-for="upgrade in getUpgradesForSlot(slotType, card)"
-                        :key="upgrade.id"
-                        :value="upgrade.id"
-                        :disabled="upgrade.isUnique && !canAddUpgrade(upgrade.id, formPilots)"
-                        class="text-gray-100"
+                    {{ getUpgradeSlotIcon(slotType) }}
+                    </span>
+                    
+                    <!-- Upgrade Menu Button -->
+                    <button
+                        type="button"
+                        @click.stop="toggleSlotMenu(`${pilot.pilotId}-${index}`)"
+                        class="flex-1 px-2 py-1 text-xs border border-gray-600 bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-1 focus:ring-teal-500 flex items-center justify-between"
                     >
-                        {{ upgrade.isUnique ? '● ' : '' }}{{ upgrade.name }} ({{ upgrade.points }})
-                    </option>
-                    </select>
+                        <span>Select {{ slotType }}</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div
+                        v-if="openSlotMenu === `${pilot.pilotId}-${index}`"
+                        class="absolute left-0 right-0 top-full mt-1 z-50 w-64 max-h-96 overflow-y-auto bg-gray-800 border border-gray-700 shadow-xl"
+                    >
+                        <div
+                            v-for="upgrade in getUpgradesForSlot(slotType, card)"
+                            :key="upgrade.id"
+                            @click.stop="!upgrade.isUnique || canAddUpgrade(upgrade.id, formPilots) ? selectUpgradeFromMenu(pilot.pilotId, upgrade.id) : null"
+                            @mouseenter="handleUpgradeHover(upgrade, $event)"
+                            @mousemove="handleUpgradeHover(upgrade, $event)"
+                            @mouseleave="handleUpgradeLeave"
+                            class="px-3 py-2 hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0 transition-colors"
+                            :class="{ 
+                            'opacity-50 cursor-not-allowed': upgrade.isUnique && !canAddUpgrade(upgrade.id, formPilots)
+                            }"
+                        >
+                            <div class="flex items-start gap-2">
+                            <span 
+                                class="xwing-icon text-sm shrink-0 mt-0.5"
+                                :class="getSlotColor(upgrade.upgradeType)"
+                            >
+                                {{ getUpgradeSlotIcon(upgrade.upgradeType) }}
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-1">
+                                <span v-if="upgrade.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
+                                <span class="text-xs text-gray-100 truncate">{{ upgrade.name }}</span>
+                                </div>
+                                <div class="text-xs text-teal-400 font-semibold">{{ upgrade.points }} pts</div>
+                            </div>
+                            </div>
+                        </div>
+                        <div v-if="getUpgradesForSlot(slotType, card).length === 0" class="px-3 py-4 text-center text-xs text-gray-500">
+                            No upgrades available
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Custom Upgrade Picker Button -->
                 <button
                     type="button"
                     @click="openCustomPicker(pilot.pilotId)"
-                    class="px-3 py-1 text-xs font-semibold bg-gray-600 text-gray-200 border border-gray-500 hover:bg-gray-500 transition-all"
+                    class="w-full px-3 py-1 text-xs font-semibold bg-gray-600 text-gray-200 border border-gray-500 hover:bg-gray-500 transition-all"
                     title="Add custom upgrade (unrestricted)"
                 >
                     <span class="text-sm">+</span> Custom
@@ -422,6 +509,9 @@ function getSlotColor(slotType: string): string {
             v-for="upgrade in filteredCustomUpgrades"
             :key="upgrade.id"
             @click="addCustomUpgrade(upgrade.id)"
+            @mouseenter="handleUpgradeHover(upgrade, $event)"
+            @mousemove="handleUpgradeHover(upgrade, $event)"
+            @mouseleave="handleUpgradeLeave"
             class="p-3 hover:bg-gray-700 border border-gray-700 mb-1 cursor-pointer transition-colors group"
             >
             <div class="flex items-start gap-3">
@@ -457,6 +547,24 @@ function getSlotColor(slotType: string): string {
             </div>
         </div>
         </div>
+    </div>
+    </Teleport>
+
+    <!-- Upgrade Card Image Tooltip -->
+    <Teleport to="body">
+    <div
+        v-if="hoveredUpgrade && hoveredUpgrade.cardImageUrl"
+        class="fixed z-60 pointer-events-none"
+        :style="{
+        left: `${Math.max(20, hoverPosition.x - 400)}px`,
+        top: `${Math.max(20, hoverPosition.y - 150)}px`
+        }"
+    >
+        <img
+        :src="hoveredUpgrade.cardImageUrl"
+        :alt="hoveredUpgrade.name"
+        class="w-64 rounded-lg shadow-2xl border-2 border-gray-300"
+        />
     </div>
     </Teleport>
 </template>
