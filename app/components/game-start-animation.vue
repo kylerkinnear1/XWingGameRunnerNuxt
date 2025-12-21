@@ -149,11 +149,11 @@ function handleStart() {
 
         <!-- VS Center -->
         <div
-          class="flex items-center justify-center transition-all duration-1000 ease-out"
+          class="flex items-center justify-center transition-transform duration-1000 ease-out"
           :class="[
             animationPhase === 'vsIn' || animationPhase === 'ready'
-              ? 'scale-100 opacity-100'
-              : 'scale-0 opacity-0',
+              ? 'scale-100'
+              : 'scale-0',
           ]"
         >
           <div class="text-center">
@@ -167,10 +167,10 @@ function handleStart() {
             <!-- Start Button -->
             <button
               @click="handleStart"
-              class="px-12 py-4 text-xl font-bold bg-teal-600 text-white border-b-8 border-teal-800 hover:bg-teal-500 active:border-b-4 transition-all uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 transition-all duration-1000"
+              class="px-12 py-4 text-xl font-bold bg-teal-600 text-white border-b-8 border-teal-800 hover:bg-teal-500 active:border-b-4 uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 transition-opacity duration-700 ease-out"
               :class="[
                 animationPhase === 'ready'
-                  ? 'opacity-100 animate-pulse'
+                  ? 'opacity-100 pointer-events-auto start-button-pulse'
                   : 'opacity-0 pointer-events-none',
               ]"
             >
@@ -237,16 +237,23 @@ function handleStart() {
 </template>
 
 <style scoped>
-@keyframes fade-in {
-  from {
-    opacity: 0;
+/* Pulse WITHOUT touching opacity (so opacity transition works) */
+@keyframes startPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(20, 184, 166, 0);
   }
-  to {
-    opacity: 1;
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.45);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(20, 184, 166, 0);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
+.start-button-pulse {
+  animation: startPulse 1.6s ease-in-out infinite;
 }
 </style>
