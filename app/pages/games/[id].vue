@@ -218,6 +218,17 @@ const initiativeSelected = computed(() => {
   );
 });
 
+const setupStarted = computed(() => {
+  return (
+    gameData.value?.steps.some((step) => step.type === "start_setup") ?? false
+  );
+});
+
+const allShipsPlaced = computed(() => {
+  if (!currentGameState.value) return false;
+  return currentGameState.value.ships.every((ship) => ship.isPlaced);
+});
+
 async function selectInitiative(playerId: string) {
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
@@ -227,7 +238,34 @@ async function selectInitiative(playerId: string) {
       timestamp: new Date(),
     },
   });
+  // Automatically start setup after initiative is selected
+  await startSetup();
+}
+
+async function startSetup() {
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: {
+      type: "start_setup",
+      timestamp: new Date(),
+    },
+  });
   await refresh();
+}
+
+async function placeShip(shipId: string) {
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: {
+      type: "ship_placed",
+      shipId,
+      timestamp: new Date(),
+    },
+  });
+  await refresh();
+  if (gameData.value) {
+    selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
 }
 
 async function refresh() {
@@ -290,8 +328,25 @@ async function refresh() {
         @select-initiative="selectInitiative"
       />
 
+      <StartSetup
+        v-else-if="
+          gameStarted &&
+          initiativeSelected &&
+          setupStarted &&
+          currentGameState &&
+          gameData &&
+          !allShipsPlaced
+        "
+        :player1-ships="player1Ships"
+        :player2-ships="player2Ships"
+        :player1-id="gameData.player1Id"
+        :player2-id="gameData.player2Id"
+        :player-with-initiative="currentGameState.playerWithInitiative"
+        @place-ship="placeShip"
+      />
+
       <GameBoard
-        v-else-if="gameStarted && initiativeSelected"
+        v-else-if="gameStarted && setupStarted && allShipsPlaced"
         :current-game-state="currentGameState"
       />
     </div>
