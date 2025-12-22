@@ -113,10 +113,14 @@ export function handleAssignCrit(
 ): void {
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
-    ship.faceUpDamage.push({
-      critCardId: step.critCardId,
-      faceUp: true,
-    });
+    if (step.critCardId === "facedown") {
+      ship.faceDownDamage += 1;
+    } else {
+      ship.faceUpDamage.push({
+        critCardId: step.critCardId,
+        faceUp: true,
+      });
+    }
   }
   state.currentStep += 1;
 }
