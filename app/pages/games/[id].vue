@@ -75,6 +75,11 @@ const transitionName = computed(() => {
     return `${baseTransition}-no-leave`;
   }
 
+  // Suppress enter transition when entering ModifyAttackDice
+  if (currentGameState.value?.uiScreen === CurrentGamePage.ModifyAttackDice) {
+    return `${baseTransition}-no-enter`;
+  }
+
   return baseTransition;
 });
 
@@ -1028,6 +1033,41 @@ async function handleNoShot() {
   opacity: 1;
 }
 
+/* Slide Up with no enter transition */
+.slide-up-no-enter-enter-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-enter-leave-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-enter-enter-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
 /* Slide Down - Moving Backward in Time */
 .slide-down-enter-active,
 .slide-down-leave-active {
@@ -1090,5 +1130,40 @@ async function handleNoShot() {
 .slide-down-no-leave-leave-to {
   transform: translateY(0);
   opacity: 1;
+}
+
+/* Slide Down with no enter transition */
+.slide-down-no-enter-enter-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-enter-leave-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-enter-enter-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
 }
 </style>

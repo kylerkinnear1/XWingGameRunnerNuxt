@@ -9,39 +9,33 @@ const emit = defineEmits<{
   confirm: [dice: AttackDie[]];
 }>();
 
-// Component state - clone the initial dice so we don't mutate props
 const dice = ref<AttackDie[]>(JSON.parse(JSON.stringify(props.initialDice)));
 const selectedDieId = ref<string | null>(null);
 const isModifyDrawerOpen = ref(false);
 
-// Face options for modification
 const attackFaces: AttackDieFace[] = ["hit", "crit", "focus", "blank"];
 
-// Open modify drawer for a specific die
 function handleDieClick(die: AttackDie) {
   selectedDieId.value = die.id;
   isModifyDrawerOpen.value = true;
 }
 
-// Change the face of the selected die
 function changeDieFace(newFace: AttackDieFace) {
   if (!selectedDieId.value) return;
 
   const dieIndex = dice.value.findIndex((d) => d.id === selectedDieId.value);
   if (dieIndex !== -1) {
-    dice.value[dieIndex].face = newFace;
+    dice.value[dieIndex]!.face = newFace;
   }
 
   isModifyDrawerOpen.value = false;
   selectedDieId.value = null;
 }
 
-// Confirm the dice results
 function handleConfirm() {
   emit("confirm", dice.value);
 }
 
-// Get the currently selected die for the drawer
 const selectedDie = computed(() => {
   if (!selectedDieId.value) return null;
   return dice.value.find((d) => d.id === selectedDieId.value) || null;
@@ -52,7 +46,7 @@ function getDieImage(face: AttackDieFace): string {
     hit: "/AttackHit.png",
     crit: "/AttackCrit.png",
     focus: "/AttackFocus.png",
-    blank: "/attackMiss.png",
+    blank: "/AttackMiss.png",
   };
   return imageMap[face];
 }
@@ -60,128 +54,182 @@ function getDieImage(face: AttackDieFace): string {
 
 <template>
   <div class="modify-attack-dice-component">
-    <div
-      class="instruction-text mb-4 text-center text-gray-600 dark:text-gray-400"
-    >
-      Tap any die to modify its result
-    </div>
-
-    <div class="dice-display grid grid-cols-4 gap-4 mb-6">
-      <button
+    <div class="dice-preview mb-4 flex flex-wrap justify-center gap-3">
+      <div
         v-for="die in dice"
         :key="die.id"
         class="die-button attack-die"
-        :class="{ blank: die.face === 'blank' }"
+        :class="{
+          unrolled: true,
+          selected: selectedDieId === die.id,
+        }"
         @click="handleDieClick(die)"
       >
         <img :src="getDieImage(die.face)" :alt="die.face" class="die-image" />
-      </button>
+      </div>
     </div>
 
-    <UButton size="xl" color="primary" block @click="handleConfirm">
-      <span class="text-lg">Confirm</span>
-    </UButton>
-
-    <!-- Modify Die Drawer -->
-    <UDrawer v-model:open="isModifyDrawerOpen" side="bottom">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold mb-4">Modify Die Result</h3>
-
-        <div
-          v-if="selectedDie"
-          class="current-face mb-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg"
-        >
-          <span class="text-sm text-gray-600 dark:text-gray-400">Current:</span>
-          <div
-            class="die-button attack-die mt-2"
-            :class="{ blank: selectedDie.face === 'blank' }"
-          >
-            <img
-              :src="getDieImage(selectedDie.face)"
-              :alt="selectedDie.face"
-              class="die-image"
-            />
-          </div>
-        </div>
-
-        <div class="face-options grid grid-cols-4 gap-3">
+    <Transition name="drawer-slide">
+      <div v-if="isModifyDrawerOpen" class="modify-drawer mb-6">
+        <div class="face-options flex flex-wrap justify-center gap-3">
           <button
             v-for="face in attackFaces"
             :key="face"
-            class="die-button attack-die"
-            :class="{
-              blank: face === 'blank',
-              selected: selectedDie?.face === face,
-            }"
+            class="face-option-button"
             @click="changeDieFace(face)"
           >
             <img :src="getDieImage(face)" :alt="face" class="die-image" />
           </button>
         </div>
       </div>
-    </UDrawer>
+    </Transition>
+
+    <div class="flex justify-center">
+      <button class="roll-button" @click="handleConfirm">
+        Confirm Modifications
+      </button>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .modify-attack-dice-component {
   padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dice-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
 }
 
 .die-button {
   aspect-ratio: 1;
-  border-radius: 0.5rem;
-  border: 2px solid #dc2626;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  min-height: 45px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
-.die-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+.die-button.attack-die.unrolled {
+  opacity: 1;
 }
 
-.die-button:active {
-  transform: scale(0.95);
-}
-
-.die-button.blank {
-  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
-  border-color: #991b1b;
-}
-
-.die-button.selected {
-  border-color: #fbbf24;
-  border-width: 3px;
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.6);
+.die-button.attack-die.selected {
+  outline: 3px solid #fbbf24;
+  outline-offset: 4px;
+  border-radius: 0.5rem;
 }
 
 .die-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 0.5rem;
 }
 
-.blank-text {
-  font-size: 0.875rem;
-  font-weight: 600;
-  opacity: 0.7;
+.modify-drawer {
+  width: 100%;
+  max-width: 800px;
 }
 
-.current-face .die-button {
-  width: 45px;
-  height: 45px;
-  margin: 0 auto;
+.face-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
 }
 
-.face-options .die-button {
-  min-height: 45px;
+.face-option-button {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.face-option-button:hover {
+  transform: scale(1.05);
+}
+
+.face-option-button:active {
+  transform: scale(0.95);
+}
+
+.roll-button {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background-color: rgb(13 148 136);
+  color: white;
+  border-bottom: 4px solid rgb(17 94 89);
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.roll-button:hover {
+  background-color: rgb(20 184 166);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.roll-button:active {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+}
+
+.drawer-slide-enter-active,
+.drawer-slide-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.drawer-slide-enter-from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.drawer-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.drawer-slide-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.drawer-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 </style>
