@@ -54,7 +54,15 @@ const squads = computed(() => {
 });
 
 const selectedStepIndex = ref(0);
+const previousStepIndex = ref(0);
 const expandedShipId = ref<string | null>(null);
+
+// Track navigation direction for transitions
+const transitionDirection = computed(() => {
+  return selectedStepIndex.value > previousStepIndex.value
+    ? "forward"
+    : "backward";
+});
 
 const currentGameState = computed(() => {
   if (!gameData.value || !cards.value || !squads.value) return null;
@@ -159,6 +167,7 @@ const player2Ships = computed(() => {
 });
 
 function selectStep(index: number) {
+  previousStepIndex.value = selectedStepIndex.value;
   selectedStepIndex.value = index;
 }
 
@@ -166,17 +175,17 @@ watch(
   [selectedStepIndex, gameData],
   async () => {
     if (!gameData.value) return;
-    
+
     const currentStep = gameData.value.steps[selectedStepIndex.value];
     if (!currentStep) return;
-    
+
     await nextTick();
-    
+
     let expectedStepType: string | null = null;
-    
+
     if (currentStep.type === "action_skipped") {
       if (!currentGameState.value) return;
-      
+
       const allActivated = currentGameState.value.ships.every(
         (s) => s.hasActivated || s.isDestroyed
       );
@@ -184,13 +193,14 @@ watch(
     } else if (currentStep.type === "turn_start") {
       expectedStepType = "planning";
     }
-    
+
     if (!expectedStepType) return;
-    
+
     const nextIndex = selectedStepIndex.value + 1;
     const nextStep = gameData.value.steps[nextIndex];
-    
+
     if (nextStep && nextStep.type === expectedStepType) {
+      previousStepIndex.value = selectedStepIndex.value;
       selectedStepIndex.value = nextIndex;
     }
   },
@@ -319,6 +329,7 @@ async function addStep(step: import("#shared/game-state-dto").GameStepDto) {
   await refresh();
 
   if (gameData.value) {
+    previousStepIndex.value = selectedStepIndex.value;
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
@@ -334,6 +345,7 @@ async function moveToStepOrPush(
   const nextStep = gameData.value.steps[nextIndex];
 
   if (nextStep && nextStep.type === stepType) {
+    previousStepIndex.value = selectedStepIndex.value;
     selectedStepIndex.value = nextIndex;
     await refresh();
   } else {
@@ -525,110 +537,228 @@ async function handleDoneWithActions() {
       @remove-token="removeToken"
     />
 
-    <!-- Main Game Area - Switch based on uiScreen -->
-    <div class="flex-1 overflow-hidden">
-      <!-- Game Start Animation -->
-      <GameStartAnimation
-        v-if="
-          currentGameState?.uiScreen === CurrentGamePage.GameStart &&
-          player1Squad &&
-          player2Squad
-        "
-        :player1Squad="player1Squad"
-        :player2Squad="player2Squad"
-        @start="startGame"
-      />
+    <!-- Main Game Area - Switch based on uiScreen with transitions -->
+    <div class="flex-1 overflow-hidden relative game-transition-container">
+      <Transition
+        :name="transitionDirection === 'forward' ? 'slide-up' : 'slide-down'"
+        mode="out-in"
+      >
+        <!-- Game Start Animation -->
+        <GameStartAnimation
+          v-if="
+            currentGameState?.uiScreen === CurrentGamePage.GameStart &&
+            player1Squad &&
+            player2Squad
+          "
+          :key="CurrentGamePage.GameStart"
+          :player1Squad="player1Squad"
+          :player2Squad="player2Squad"
+          @start="startGame"
+        />
 
-      <!-- Select Initiative -->
-      <SelectInitiative
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.SelectInitiative &&
-          player1Squad &&
-          player2Squad &&
-          gameData
-        "
-        :player1-squad="player1Squad"
-        :player2-squad="player2Squad"
-        :player1-id="gameData.player1Id"
-        :player2-id="gameData.player2Id"
-        @select-initiative="selectInitiative"
-      />
+        <!-- Select Initiative -->
+        <SelectInitiative
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.SelectInitiative &&
+            player1Squad &&
+            player2Squad &&
+            gameData
+          "
+          :key="CurrentGamePage.SelectInitiative"
+          :player1-squad="player1Squad"
+          :player2-squad="player2Squad"
+          :player1-id="gameData.player1Id"
+          :player2-id="gameData.player2Id"
+          @select-initiative="selectInitiative"
+        />
 
-      <!-- Setup Phase -->
-      <StartSetup
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.Setup && gameData
-        "
-        :player1-ships="player1Ships"
-        :player2-ships="player2Ships"
-        :player1-id="gameData.player1Id"
-        :player2-id="gameData.player2Id"
-        :player-with-initiative="currentGameState.playerWithInitiative"
-        @place-ship="placeShip"
-      />
+        <!-- Setup Phase -->
+        <StartSetup
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.Setup && gameData
+          "
+          :key="CurrentGamePage.Setup"
+          :player1-ships="player1Ships"
+          :player2-ships="player2Ships"
+          :player1-id="gameData.player1Id"
+          :player2-id="gameData.player2Id"
+          :player-with-initiative="currentGameState.playerWithInitiative"
+          @place-ship="placeShip"
+        />
 
-      <!-- Turn Start Animation -->
-      <TurnStartAnimation
-        v-else-if="currentGameState?.uiScreen === CurrentGamePage.TurnStart"
-        :turn-number="currentGameState.totalTurns"
-        @complete="handleTurnAnimationComplete"
-      />
+        <!-- Turn Start Animation -->
+        <TurnStartAnimation
+          v-else-if="currentGameState?.uiScreen === CurrentGamePage.TurnStart"
+          :key="`${CurrentGamePage.TurnStart}-${currentGameState.totalTurns}`"
+          :turn-number="currentGameState.totalTurns"
+          @complete="handleTurnAnimationComplete"
+        />
 
-      <Planning
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.Planning && gameData
-        "
-        :player1-ships="player1Ships"
-        :player2-ships="player2Ships"
-        :player1-id="gameData.player1Id"
-        :player2-id="gameData.player2Id"
-        :player-with-initiative="currentGameState.playerWithInitiative"
-        @complete-planning="handlePlanningComplete"
-        @begin-activation="handleBeginActivation"
-      />
+        <Planning
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.Planning && gameData
+          "
+          :key="`${CurrentGamePage.Planning}-${currentGameState.totalTurns}`"
+          :player1-ships="player1Ships"
+          :player2-ships="player2Ships"
+          :player1-id="gameData.player1Id"
+          :player2-id="gameData.player2Id"
+          :player-with-initiative="currentGameState.playerWithInitiative"
+          @complete-planning="handlePlanningComplete"
+          @begin-activation="handleBeginActivation"
+        />
 
-      <!-- Select Ship to Activate -->
-      <SelectActivation
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.SelectActivation &&
-          gameData
-        "
-        :player1-ships="player1Ships"
-        :player2-ships="player2Ships"
-        :player1-id="gameData.player1Id"
-        :player2-id="gameData.player2Id"
-        @activate-ship="handleActivateShip"
-      />
+        <!-- Select Ship to Activate -->
+        <SelectActivation
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.SelectActivation &&
+            gameData
+          "
+          :key="`${CurrentGamePage.SelectActivation}-${selectedStepIndex}`"
+          :player1-ships="player1Ships"
+          :player2-ships="player2Ships"
+          :player1-id="gameData.player1Id"
+          :player2-id="gameData.player2Id"
+          @activate-ship="handleActivateShip"
+        />
 
-      <!-- Collision Selection -->
-      <CollisionSelection
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.CollisionSelection &&
-          currentActivatingShip
-        "
-        :ship="currentActivatingShip.ship"
-        :pilot="currentActivatingShip.pilot"
-        :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
-        @successful-maneuver="handleSuccessfulManeuver"
-        @collision="handleCollision"
-      />
+        <!-- Collision Selection -->
+        <CollisionSelection
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.CollisionSelection &&
+            currentActivatingShip
+          "
+          :key="`${CurrentGamePage.CollisionSelection}-${currentActivatingShip.ship.shipId}`"
+          :ship="currentActivatingShip.ship"
+          :pilot="currentActivatingShip.pilot"
+          :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
+          @successful-maneuver="handleSuccessfulManeuver"
+          @collision="handleCollision"
+        />
 
-      <!-- Action Selection -->
-      <ActionSelection
-        v-else-if="
-          currentGameState?.uiScreen === CurrentGamePage.ActionSelection &&
-          currentActivatingShip
-        "
-        :ship="currentActivatingShip.ship"
-        :pilot="currentActivatingShip.pilot"
-        :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
-        @perform-action="handlePerformAction"
-        @skip-action="handleSkipAction"
-        @done-with-actions="handleDoneWithActions"
-      />
+        <!-- Action Selection -->
+        <ActionSelection
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.ActionSelection &&
+            currentActivatingShip
+          "
+          :key="`${CurrentGamePage.ActionSelection}-${currentActivatingShip.ship.shipId}-${selectedStepIndex}`"
+          :ship="currentActivatingShip.ship"
+          :pilot="currentActivatingShip.pilot"
+          :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
+          @perform-action="handlePerformAction"
+          @skip-action="handleSkipAction"
+          @done-with-actions="handleDoneWithActions"
+        />
 
-      <!-- Game Board (fallback) -->
-      <GameBoard v-else :current-game-state="currentGameState" />
+        <!-- Game Board (fallback) -->
+        <GameBoard
+          v-else
+          :key="`${
+            currentGameState?.uiScreen || 'default'
+          }-${selectedStepIndex}`"
+          :current-game-state="currentGameState"
+        />
+      </Transition>
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Container for gradient masks */
+.game-transition-container {
+  position: relative;
+}
+
+.game-transition-container::before,
+.game-transition-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.game-transition-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgb(17, 24, 39), transparent);
+}
+
+.game-transition-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgb(17, 24, 39), transparent);
+}
+
+/* Show gradients during transitions */
+.game-transition-container:has(.slide-up-enter-active),
+.game-transition-container:has(.slide-up-leave-active),
+.game-transition-container:has(.slide-down-enter-active),
+.game-transition-container:has(.slide-down-leave-active) {
+  &::before,
+  &::after {
+    opacity: 1;
+  }
+}
+
+/* Slide Up - Moving Forward in Time */
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-enter-from {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slide-up-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Slide Down - Moving Backward in Time */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-down-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+</style>
