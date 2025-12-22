@@ -13,7 +13,7 @@ const emit = defineEmits<{
   closeTokenManager: [];
 }>();
 
-const availableTokens = [
+const availableTokens: readonly TokenType[] = [
   TokenType.Focus,
   TokenType.Evade,
   TokenType.Stress,
@@ -22,35 +22,28 @@ const availableTokens = [
   TokenType.Reinforce,
   TokenType.Cloak,
   TokenType.Jam,
-  TokenType.Calculate,
-  TokenType.Charge,
-  TokenType.Force,
-  TokenType.Disarm,
+  TokenType.WeaponsDisabled,
   TokenType.Tractor,
-  TokenType.Strain,
-  TokenType.Deplete,
   TokenType.Shield,
+  TokenType.Condition,
 ] as const;
 
+const iconMap: Record<TokenType, string> = {
+  [TokenType.Focus]: TOKEN_ICONS.focus,
+  [TokenType.Evade]: TOKEN_ICONS.evade,
+  [TokenType.Stress]: TOKEN_ICONS.stress,
+  [TokenType.Ion]: TOKEN_ICONS.ion,
+  [TokenType.TargetLock]: TOKEN_ICONS.targetLock,
+  [TokenType.Reinforce]: TOKEN_ICONS.reinforce,
+  [TokenType.Cloak]: TOKEN_ICONS.cloak,
+  [TokenType.Jam]: TOKEN_ICONS.jam,
+  [TokenType.Tractor]: TOKEN_ICONS.tractor,
+  [TokenType.Shield]: TOKEN_ICONS.shield,
+  [TokenType.WeaponsDisabled]: TOKEN_ICONS.weaponsDisabled,
+  [TokenType.Condition]: TOKEN_ICONS.condition,
+};
+
 function getTokenIcon(tokenType: TokenType): string {
-  const iconMap: Record<string, string> = {
-    [TokenType.Focus]: TOKEN_ICONS.focus,
-    [TokenType.Evade]: TOKEN_ICONS.evade,
-    [TokenType.Stress]: TOKEN_ICONS.stress,
-    [TokenType.Ion]: TOKEN_ICONS.ion,
-    [TokenType.TargetLock]: TOKEN_ICONS.targetLock,
-    [TokenType.Reinforce]: TOKEN_ICONS.reinforce,
-    [TokenType.Cloak]: TOKEN_ICONS.cloak,
-    [TokenType.Jam]: TOKEN_ICONS.jam,
-    [TokenType.Calculate]: TOKEN_ICONS.calculate,
-    [TokenType.Charge]: TOKEN_ICONS.charge,
-    [TokenType.Force]: TOKEN_ICONS.force,
-    [TokenType.Disarm]: TOKEN_ICONS.disarm,
-    [TokenType.Tractor]: TOKEN_ICONS.tractor,
-    [TokenType.Strain]: TOKEN_ICONS.strain,
-    [TokenType.Deplete]: TOKEN_ICONS.deplete,
-    [TokenType.Shield]: TOKEN_ICONS.shield,
-  };
   return iconMap[tokenType] || "?";
 }
 
@@ -104,7 +97,7 @@ function handleClose() {
       <div class="space-y-1">
         <div
           v-for="tokenType in availableTokens"
-          :key="tokenType"
+          :key="`${props.ship.shipId}-${tokenType}`"
           class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
         >
           <div class="flex items-center gap-2 flex-1 min-w-0">

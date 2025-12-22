@@ -60,13 +60,9 @@ export const TOKEN_ICONS = {
   cloak: "å",
   jam: "á",
   reinforce: "Ü",
-  calculate: "Ê",
-  charge: "Ò",
-  force: "Ô",
-  disarm: "Ö",
   tractor: "à",
-  strain: "ö",
-  deplete: "ø",
+  weaponsDisabled: "Ö",
+  condition: "°",
 } as const;
 
 export const UPGRADE_SLOT_ICONS: Record<string, string> = {
