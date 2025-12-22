@@ -124,6 +124,7 @@ export type GameStepDto =
   | AssignToken
   | TriggerAbility
   | BeginCombat
+  | BeginSelectTarget
   | DeclareTarget
   | RollAttackDice
   | ModifyAttackDice
@@ -333,6 +334,11 @@ export interface TriggerAbility {
 export interface BeginCombat {
   type: "combat_step";
   pilotSkill: number;
+  timestamp: Date;
+}
+
+export interface BeginSelectTarget {
+  type: "begin_select_target";
   timestamp: Date;
 }
 

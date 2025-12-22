@@ -154,6 +154,9 @@ export function handleStep(
     case "combat_step":
       combatHandlers.handleCombatStep(step, currentState, squads, cards);
       break;
+    case "begin_select_target":
+      combatHandlers.handleBeginSelectTarget(step, currentState, squads, cards);
+      break;
     case "declare_target":
       combatHandlers.handleDeclareTarget(step, currentState, squads, cards);
       break;

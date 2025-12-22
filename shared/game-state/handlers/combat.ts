@@ -4,6 +4,7 @@ import type { CardsDto } from "#shared/cards";
 import type {
   CurrentGameState,
   BeginCombat,
+  BeginSelectTarget,
   DeclareTarget,
   RollAttackDice,
   ModifyAttackDice,
@@ -21,6 +22,16 @@ export function handleCombatStep(
   state.currentPhase = GamePhase.Engagement;
   state.currentStep += 1;
   state.uiScreen = CurrentGamePage.CombatStart;
+}
+
+export function handleBeginSelectTarget(
+  step: BeginSelectTarget,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.SelectTarget;
 }
 
 export function handleDeclareTarget(

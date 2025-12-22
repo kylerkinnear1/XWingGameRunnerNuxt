@@ -175,11 +175,11 @@ watch(
   [gameData, cards, squads],
   async () => {
     if (!gameData.value || !cards.value || !squads.value.length) return;
-    
+
     const hasGameStartStep = gameData.value.steps.some(
       (step) => step.type === "game_start"
     );
-    
+
     if (!hasGameStartStep && gameData.value.steps.length === 0) {
       await addStep({
         type: "game_start",
@@ -536,12 +536,7 @@ async function handleDoneWithActions() {
 
 async function handleCombatAnimationComplete() {
   await addStep({
-    type: "declare_target",
-    attackerShipId: "",
-    defenderShipId: "",
-    weaponId: "",
-    baseAttackDice: 0,
-    baseDefenseDice: 0,
+    type: "begin_select_target",
     timestamp: new Date(),
   });
 }
@@ -710,6 +705,28 @@ async function handleNoShot() {
           @perform-action="handlePerformAction"
           @skip-action="handleSkipAction"
           @done-with-actions="handleDoneWithActions"
+        />
+
+        <!-- Combat Start Animation -->
+        <CombatStartAnimation
+          v-else-if="currentGameState?.uiScreen === CurrentGamePage.CombatStart"
+          :key="`${CurrentGamePage.CombatStart}-${currentGameState.totalTurns}`"
+          @complete="handleCombatAnimationComplete"
+        />
+
+        <!-- Select Target -->
+        <CombatSelectTarget
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.SelectTarget &&
+            gameData
+          "
+          :key="`${CurrentGamePage.SelectTarget}-${selectedStepIndex}`"
+          :player1-ships="player1Ships"
+          :player2-ships="player2Ships"
+          :player1-id="gameData.player1Id"
+          :player2-id="gameData.player2Id"
+          @declare-attack="handleDeclareAttack"
+          @no-shot="handleNoShot"
         />
 
         <!-- Game Board (fallback) -->
