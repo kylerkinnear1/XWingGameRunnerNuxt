@@ -1,4 +1,4 @@
-import { GamePhase } from "#shared/enums";
+import { GamePhase, CurrentGamePage } from "#shared/enums";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { CardsDto } from "#shared/cards";
 import type {
@@ -17,6 +17,7 @@ export function handleTurnStart(
   state.totalTurns += 1;
   state.currentPhase = GamePhase.Planning;
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.TurnStart;
 
   for (const ship of state.ships) {
     ship.dialAssigned = null;
@@ -35,6 +36,7 @@ export function handlePlanning(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.Planning;
 }
 
 export function handlePlanningComplete(
@@ -50,4 +52,5 @@ export function handlePlanningComplete(
     }
   });
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.Planning;
 }

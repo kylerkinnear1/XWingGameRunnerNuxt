@@ -13,6 +13,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   performAction: [action: ActionType];
   skipAction: [];
+  doneWithActions: [];
 }>();
 
 const colorClasses = {
@@ -69,13 +70,19 @@ function handleSkipAction() {
     <!-- Action Options -->
     <div class="flex-1 overflow-y-auto p-6">
       <div class="max-w-4xl mx-auto space-y-6">
-        <!-- Skip Action - Prominent option -->
-        <div>
+        <!-- Skip Action / Done with Actions -->
+        <div class="space-y-3">
           <button
             @click="handleSkipAction"
             class="w-full p-6 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-gray-500 text-gray-100 font-semibold text-lg transition-all hover:scale-[1.02]"
           >
             ⏭️ Skip Action
+          </button>
+          <button
+            @click="emit('doneWithActions')"
+            class="w-full p-6 border-2 border-teal-600 bg-teal-900/20 hover:bg-teal-900/40 hover:border-teal-500 text-teal-100 font-semibold text-lg transition-all hover:scale-[1.02]"
+          >
+            ✓ Done with Actions
           </button>
         </div>
 

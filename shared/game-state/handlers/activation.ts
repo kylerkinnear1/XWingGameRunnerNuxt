@@ -1,7 +1,5 @@
-import { GamePhase } from "#shared/enums";
-import type {
-  SquadReadDto,
-} from "#shared/squad-dto";
+import { GamePhase, CurrentGamePage, CollisionType } from "#shared/enums";
+import type { SquadReadDto } from "#shared/squad-dto";
 import type { CardsDto } from "#shared/cards";
 import type {
   CurrentGameState,
@@ -11,6 +9,9 @@ import type {
   Collide,
   StressCheck,
   PerformAction,
+  ActionSkipped,
+  SelectActionAgain,
+  DoneWithActions,
   DetonateBomb,
 } from "#shared/game-state-dto";
 
@@ -22,6 +23,7 @@ export function handleActivationStep(
 ): void {
   state.currentPhase = GamePhase.Activation;
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.SelectActivation;
 }
 
 export function handleBeginManeuver(
@@ -36,6 +38,9 @@ export function handleBeginManeuver(
   if (ship) {
     ship.hasActivated = true;
   }
+
+  state.currentActivatingShipId = step.shipId;
+  state.uiScreen = CurrentGamePage.CollisionSelection;
 }
 
 export function handleCleanManeuver(
@@ -50,6 +55,8 @@ export function handleCleanManeuver(
   if (ship) {
     ship.didBump = false;
   }
+
+  state.uiScreen = CurrentGamePage.ActionSelection;
 }
 
 export function handleCollide(
@@ -67,6 +74,10 @@ export function handleCollide(
       shipId: step.shipId,
       landedOnObstacle: step.landedOnObstacle,
     });
+  }
+
+  if (step.collisionType === CollisionType.Ship) {
+    state.currentActivatingShipId = null;
   }
 }
 
@@ -88,6 +99,40 @@ export function handlePerformAction(
   state.currentStep += 1;
 }
 
+export function handleActionSkipped(
+  step: ActionSkipped,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+
+  state.currentActivatingShipId = null;
+}
+
+export function handleSelectActionAgain(
+  step: SelectActionAgain,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+
+  state.currentActivatingShipId = step.shipId;
+  state.uiScreen = CurrentGamePage.ActionSelection;
+}
+
+export function handleDoneWithActions(
+  step: DoneWithActions,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+
+  state.currentActivatingShipId = null;
+}
+
 export function handleDetonateBomb(
   step: DetonateBomb,
   state: CurrentGameState,
@@ -96,4 +141,3 @@ export function handleDetonateBomb(
 ): void {
   state.currentStep += 1;
 }
-

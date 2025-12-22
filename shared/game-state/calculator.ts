@@ -5,7 +5,7 @@ import type {
   CurrentGameState,
   GameStepDto,
 } from "#shared/game-state-dto";
-import { GamePhase } from "#shared/enums";
+import { GamePhase, CurrentGamePage } from "#shared/enums";
 
 import * as setupHandlers from "./handlers/setup";
 import * as planningHandlers from "./handlers/planning";
@@ -30,6 +30,8 @@ export function calculateGameState(
     player2Points: 0,
     totalTurns: 0,
     currentPhase: GamePhase.Start,
+    uiScreen: CurrentGamePage.GameStart,
+    currentActivatingShipId: null,
   };
 
   for (const step of gameState.steps) {
@@ -106,6 +108,25 @@ export function handleStep(
       break;
     case "perform_action":
       activationHandlers.handlePerformAction(step, currentState, squads, cards);
+      break;
+    case "action_skipped":
+      activationHandlers.handleActionSkipped(step, currentState, squads, cards);
+      break;
+    case "select_action_again":
+      activationHandlers.handleSelectActionAgain(
+        step,
+        currentState,
+        squads,
+        cards
+      );
+      break;
+    case "done_with_actions":
+      activationHandlers.handleDoneWithActions(
+        step,
+        currentState,
+        squads,
+        cards
+      );
       break;
     case "detonate_bomb":
       activationHandlers.handleDetonateBomb(step, currentState, squads, cards);

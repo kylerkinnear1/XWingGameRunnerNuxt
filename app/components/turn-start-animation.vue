@@ -44,8 +44,8 @@ onMounted(() => {
           animationPhase === 'initial'
             ? 'scale-0 opacity-0'
             : animationPhase === 'complete'
-              ? 'scale-150 opacity-0'
-              : 'scale-100 opacity-100',
+            ? 'scale-150 opacity-0'
+            : 'scale-100 opacity-100',
         ]"
       >
         <div class="text-6xl font-bold text-gray-400 mb-4">Turn</div>
@@ -59,4 +59,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-

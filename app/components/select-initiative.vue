@@ -84,4 +84,3 @@ function selectPlayer(playerId: string) {
     </div>
   </div>
 </template>
-

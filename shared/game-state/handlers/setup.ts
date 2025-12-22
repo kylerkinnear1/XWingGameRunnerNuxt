@@ -1,13 +1,12 @@
-import { GamePhase } from "#shared/enums";
+import { GamePhase, CurrentGamePage } from "#shared/enums";
 import type { Maneuver } from "#shared/enums";
-import type {
-  SquadReadDto,
-} from "#shared/squad-dto";
+import type { SquadReadDto } from "#shared/squad-dto";
 import type { CardsDto, PilotDto, UpgradeDto } from "#shared/cards";
 import type {
   CurrentGameState,
   GameStartDto,
-  SelectInitiative,
+  BeginSelectInitiative,
+  InitiativeSelected,
   StartSetup,
   PlaceObstacle,
   ShipPlaced,
@@ -40,6 +39,7 @@ export function handleGameStart(
 
   state.currentStep += 1;
   state.currentPhase = GamePhase.Start;
+  state.uiScreen = CurrentGamePage.GameStart;
   state.player1Points = 0;
   state.player2Points = 0;
   state.bombIds = [];
@@ -106,14 +106,23 @@ export function handleIncreaseMaxShields(
   }
 }
 
-export function handleSelectInitiative(
-  step: SelectInitiative,
+export function handleBeginSelectInitiative(
+  step: BeginSelectInitiative,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.SelectInitiative;
+}
+
+export function handleInitiativeSelected(
+  step: InitiativeSelected,
   state: CurrentGameState,
   squads: readonly SquadReadDto[],
   cards: CardsDto
 ): void {
   state.playerWithInitiative = step.playerWithInitiative;
-  state.currentStep += 1;
 }
 
 export function handleStartSetup(
@@ -124,6 +133,7 @@ export function handleStartSetup(
 ): void {
   state.currentPhase = GamePhase.Setup;
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.Setup;
 }
 
 export function handlePlaceObstacle(
@@ -149,6 +159,8 @@ export function handleShipPlaced(
     ship.isPlaced = true;
   }
   state.currentStep += 1;
+
+  state.uiScreen = CurrentGamePage.Setup;
 }
 
 export function handleEndSetup(
@@ -158,5 +170,5 @@ export function handleEndSetup(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.TurnStart;
 }
-

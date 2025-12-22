@@ -8,7 +8,7 @@ import {
   GamePhase,
 } from "./enums";
 
-import type { Maneuver } from "./enums";
+import type { CurrentGamePage, Maneuver } from "./enums";
 
 export type GameStateDto = {
   id: string;
@@ -32,6 +32,9 @@ export type CurrentGameState = {
   player2Points: number;
   totalTurns: number;
   currentPhase: GamePhase;
+
+  uiScreen: CurrentGamePage;
+  currentActivatingShipId: string | null;
 };
 
 export type ObstacleStateDto = {
@@ -112,6 +115,9 @@ export type GameStepDto =
   | Collide
   | StressCheck
   | PerformAction
+  | ActionSkipped
+  | SelectActionAgain
+  | DoneWithActions
   | DetonateBomb
   | DestroyObstacle
   | AssignToken
@@ -250,6 +256,24 @@ export interface PerformAction {
   shipId: string;
   action: ActionType;
   targetShipId?: string;
+  timestamp: Date;
+}
+
+export interface ActionSkipped {
+  type: "action_skipped";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface SelectActionAgain {
+  type: "select_action_again";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface DoneWithActions {
+  type: "done_with_actions";
+  shipId: string;
   timestamp: Date;
 }
 

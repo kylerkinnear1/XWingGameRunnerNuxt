@@ -28,8 +28,27 @@ const currentPlayerId = ref<string>(
   props.playerWithInitiative || props.player1Id
 );
 
-// Track selected dials for all ships
+// Track selected dials for all ships - initialize from ship.dialAssigned if already set
 const selectedDials = ref<Record<string, Maneuver>>({});
+
+// Initialize selectedDials from ship.dialAssigned when component loads or props change
+watch(
+  () => [...props.player1Ships, ...props.player2Ships],
+  (ships) => {
+    ships.forEach(({ ship }) => {
+      if (ship.dialAssigned) {
+        selectedDials.value[ship.shipId] = ship.dialAssigned;
+      }
+    });
+  },
+  { immediate: true, deep: true }
+);
+
+// Get all ships
+const allShips = computed(() => [
+  ...props.player1Ships,
+  ...props.player2Ships,
+]);
 
 // Get ships for current player
 const currentPlayerShips = computed(() => {
@@ -49,10 +68,25 @@ const isInitiativePlayer = computed(() => {
 });
 
 // Check if all current player's ships have dials assigned
-const allDialsAssigned = computed(() => {
+const allCurrentPlayerDialsAssigned = computed(() => {
   return currentPlayerShips.value.every(
     (s) => !!selectedDials.value[s.ship.shipId]
   );
+});
+
+// Check if all ships (both players) have dials assigned
+const allDialsAssigned = computed(() => {
+  return allShips.value.every(
+    (s) => !!selectedDials.value[s.ship.shipId]
+  );
+});
+
+// Determine if we should show all ships (when all dials are assigned) or just current player's ships
+const shipsToShow = computed(() => {
+  if (allDialsAssigned.value) {
+    return allShips.value;
+  }
+  return currentPlayerShips.value;
 });
 
 // Get maneuver display info
@@ -102,9 +136,11 @@ function confirmDials() {
   } else {
     // Both players done - emit complete event with dials
     emit("completePlanning", { ...selectedDials.value });
-    // Then signal to begin activation phase
-    emit("beginActivation");
   }
+}
+
+function beginActivation() {
+  emit("beginActivation");
 }
 
 // Group maneuvers by speed for display
@@ -133,7 +169,7 @@ function groupManeuversBySpeed(
     <div class="flex-1 overflow-y-auto p-6">
       <div class="max-w-6xl mx-auto space-y-4">
         <div
-          v-for="{ ship, pilot } in currentPlayerShips"
+          v-for="{ ship, pilot } in shipsToShow"
           :key="ship.shipId"
           class="border-2 transition-all"
           :class="
@@ -157,7 +193,7 @@ function groupManeuversBySpeed(
                 v-if="pilot"
                 class="xwing-ship text-3xl shrink-0"
                 :class="
-                  currentPlayerId === player1Id
+                  ship.playerId === player1Id
                     ? 'text-red-400'
                     : 'text-gray-400'
                 "
@@ -243,12 +279,20 @@ function groupManeuversBySpeed(
     <div class="p-6 border-t border-gray-700 bg-gray-800">
       <div class="max-w-6xl mx-auto flex items-center justify-center">
         <button
+          v-if="allDialsAssigned"
+          @click="beginActivation"
+          class="px-8 py-3 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide"
+        >
+          Begin Activation
+        </button>
+        <button
+          v-else
           @click="confirmDials"
-          :disabled="!allDialsAssigned"
+          :disabled="!allCurrentPlayerDialsAssigned"
           class="px-8 py-3 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
         >
           {{
-            isInitiativePlayer ? "Pass Device to Player 2" : "Begin Activation"
+            isInitiativePlayer ? "Pass Device to Player 2" : "Complete Planning"
           }}
         </button>
       </div>

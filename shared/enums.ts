@@ -100,6 +100,19 @@ export enum GamePhase {
   End = "end",
 }
 
+export enum CurrentGamePage {
+  GameStart = "game-start",
+  SelectInitiative = "select-initiative",
+  Setup = "setup",
+  TurnStart = "turn-start",
+  Planning = "planning",
+  SelectActivation = "select-activation",
+  CollisionSelection = "collision-selection",
+  ActionSelection = "action-selection",
+  Engagement = "engagement",
+  End = "end",
+}
+
 // Maneuver helper type
 export interface Maneuver {
   bearing: Bearing;

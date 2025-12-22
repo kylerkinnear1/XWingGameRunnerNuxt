@@ -2,7 +2,7 @@
 import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { TokenType, Maneuver, ActionType } from "#shared/enums";
-import { CollisionType, GamePhase } from "#shared/enums";
+import { CollisionType, GamePhase, CurrentGamePage } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
 
 const route = useRoute();
@@ -55,12 +55,6 @@ const squads = computed(() => {
 
 const selectedStepIndex = ref(0);
 const expandedShipId = ref<string | null>(null);
-
-const gameStarted = computed(() => {
-  return (
-    gameData.value?.steps.some((step) => step.type === "game_start") ?? false
-  );
-});
 
 const currentGameState = computed(() => {
   if (!gameData.value || !cards.value || !squads.value) return null;
@@ -212,71 +206,20 @@ async function startGame() {
   await refresh();
 }
 
-const initiativeSelected = computed(() => {
-  return (
-    gameData.value?.steps.some((step) => step.type === "select_initiative") ??
-    false
-  );
-});
-
-const setupStarted = computed(() => {
-  return (
-    gameData.value?.steps.some((step) => step.type === "start_setup") ?? false
-  );
-});
-
-const allShipsPlaced = computed(() => {
-  if (!currentGameState.value) return false;
-  return currentGameState.value.ships.every((ship) => ship.isPlaced);
-});
-
-const turnStarted = computed(() => {
-  return (
-    gameData.value?.steps.some((step) => step.type === "turn_start") ?? false
-  );
-});
-
-const isPlanningPhase = computed(() => {
-  return currentGameState.value?.currentPhase === GamePhase.Planning;
-});
-
-const showTurnAnimation = ref(false);
-const previousTurnStarted = ref(false);
-
-watch(
-  [allShipsPlaced, turnStarted],
-  async ([allPlaced, turnStart]) => {
-    if (allPlaced && !turnStart && setupStarted.value) {
-      showTurnAnimation.value = true;
-      await startTurn();
-    }
-  },
-  { immediate: true }
-);
-
-watch(turnStarted, (isTurnStarted) => {
-  if (isTurnStarted && !previousTurnStarted.value && allShipsPlaced.value) {
-    showTurnAnimation.value = true;
-  }
-  previousTurnStarted.value = isTurnStarted;
-});
-
-async function startTurn() {
-  await $fetch(`/api/games/${gameId}/steps`, {
+function handleTurnAnimationComplete() {
+  $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
-      type: "turn_start",
+      type: "planning",
       timestamp: new Date(),
     },
+  }).then(() => {
+    refresh().then(() => {
+      if (gameData.value) {
+        selectedStepIndex.value = gameData.value.steps.length - 1;
+      }
+    });
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
-}
-
-function handleTurnAnimationComplete() {
-  showTurnAnimation.value = false;
 }
 
 async function handlePlanningComplete(dials: Record<string, Maneuver>) {
@@ -347,49 +290,30 @@ async function refresh() {
   }
 }
 
-// In your script section, add these new reactive states:
-const activationSubPhase = ref<"select" | "collision" | "action" | null>(null);
-const currentActivatingShipId = ref<string | null>(null);
-
-// Add this computed to check if we're in activation phase
-const isActivationPhase = computed(() => {
-  return currentGameState.value?.currentPhase === GamePhase.Activation;
-});
-
-// Add this computed to get the currently activating ship
 const currentActivatingShip = computed(() => {
-  if (!currentActivatingShipId.value) return null;
+  if (!currentGameState.value?.currentActivatingShipId) return null;
   const allShips = [...player1Ships.value, ...player2Ships.value];
-  return allShips.find((s) => s.ship.shipId === currentActivatingShipId.value);
+  return allShips.find(
+    (s) => s.ship.shipId === currentGameState.value!.currentActivatingShipId
+  );
 });
 
-// Add this function to handle beginning activation phase
 async function handleBeginActivation() {
-  // Post activation_step to begin the activation phase
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
       type: "activation_step",
-      shipId: "", // This will be filled when a ship is selected
+      shipId: "",
       timestamp: new Date(),
     },
   });
-
   await refresh();
-
-  // Set to ship selection sub-phase
-  activationSubPhase.value = "select";
-
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
 
-// Add this function to handle ship activation selection
 async function handleActivateShip(shipId: string) {
-  currentActivatingShipId.value = shipId;
-
-  // Post begin_maneuver step
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
@@ -398,109 +322,76 @@ async function handleActivateShip(shipId: string) {
       timestamp: new Date(),
     },
   });
-
   await refresh();
-
-  // Move to collision selection sub-phase
-  activationSubPhase.value = "collision";
-
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
 
-// Add this function to handle successful maneuver
 async function handleSuccessfulManeuver() {
-  if (!currentActivatingShipId.value) return;
+  if (!currentGameState.value?.currentActivatingShipId) return;
 
-  // Post clean_maneuver step
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
       type: "clean_maneuver",
-      shipId: currentActivatingShipId.value,
+      shipId: currentGameState.value.currentActivatingShipId,
       timestamp: new Date(),
     },
   });
-
   await refresh();
-
-  // Move to action selection
-  activationSubPhase.value = "action";
-
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
 
-// Add this function to handle collision
 async function handleCollision(
   collisionType: CollisionType,
   landedOnObstacle: boolean
 ) {
-  if (!currentActivatingShipId.value) return;
+  if (!currentGameState.value?.currentActivatingShipId) return;
 
-  // Post collide step
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
       type: "collide",
-      shipId: currentActivatingShipId.value,
+      shipId: currentGameState.value.currentActivatingShipId,
       collisionType,
       landedOnObstacle,
       timestamp: new Date(),
     },
   });
-
   await refresh();
-
-  // Move to action selection (or skip if bumped)
-  if (collisionType === CollisionType.Ship) {
-    // Ship collision skips action, go back to ship selection
-    activationSubPhase.value = "select";
-    currentActivatingShipId.value = null;
-  } else {
-    activationSubPhase.value = "action";
-  }
-
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
 
-// Add this function to handle performing an action
 async function handlePerformAction(action: ActionType) {
-  if (!currentActivatingShipId.value) return;
+  if (!currentGameState.value?.currentActivatingShipId) return;
 
-  // Post perform_action step
   await $fetch(`/api/games/${gameId}/steps`, {
     method: "POST",
     body: {
       type: "perform_action",
-      shipId: currentActivatingShipId.value,
+      shipId: currentGameState.value.currentActivatingShipId,
       action,
       timestamp: new Date(),
     },
   });
-
   await refresh();
-
-  // Ship is done activating, go back to selection
-  activationSubPhase.value = "select";
-  currentActivatingShipId.value = null;
-
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
   }
 }
 
-// Add this function to handle skipping action
 async function handleSkipAction() {
-  if (!currentActivatingShipId.value) return;
+  if (!currentGameState.value?.currentActivatingShipId) return;
 
-  // No step needed for skipping action, just go back to selection
-  activationSubPhase.value = "select";
-  currentActivatingShipId.value = null;
+  await refresh();
+  if (gameData.value) {
+    selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
 }
 </script>
 
@@ -525,19 +416,24 @@ async function handleSkipAction() {
       @remove-token="removeToken"
     />
 
-    <!-- Main Game Area -->
+    <!-- Main Game Area - Switch based on uiScreen -->
     <div class="flex-1 overflow-hidden">
+      <!-- Game Start Animation -->
       <GameStartAnimation
-        v-if="!gameStarted && player1Squad && player2Squad"
+        v-if="
+          currentGameState?.uiScreen === CurrentGamePage.GameStart &&
+          player1Squad &&
+          player2Squad
+        "
         :player1Squad="player1Squad"
         :player2Squad="player2Squad"
         @start="startGame"
       />
 
+      <!-- Select Initiative -->
       <SelectInitiative
         v-else-if="
-          gameStarted &&
-          !initiativeSelected &&
+          currentGameState?.uiScreen === CurrentGamePage.SelectInitiative &&
           player1Squad &&
           player2Squad &&
           gameData
@@ -549,14 +445,10 @@ async function handleSkipAction() {
         @select-initiative="selectInitiative"
       />
 
+      <!-- Setup Phase -->
       <StartSetup
         v-else-if="
-          gameStarted &&
-          initiativeSelected &&
-          setupStarted &&
-          currentGameState &&
-          gameData &&
-          !allShipsPlaced
+          currentGameState?.uiScreen === CurrentGamePage.Setup && gameData
         "
         :player1-ships="player1Ships"
         :player2-ships="player2Ships"
@@ -566,48 +458,16 @@ async function handleSkipAction() {
         @place-ship="placeShip"
       />
 
+      <!-- Turn Start Animation -->
       <TurnStartAnimation
-        v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          showTurnAnimation &&
-          currentGameState
-        "
+        v-else-if="currentGameState?.uiScreen === CurrentGamePage.TurnStart"
         :turn-number="currentGameState.totalTurns"
         @complete="handleTurnAnimationComplete"
       />
 
       <Planning
         v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          !showTurnAnimation &&
-          isPlanningPhase &&
-          currentGameState &&
-          gameData
-        "
-        :player1-ships="player1Ships"
-        :player2-ships="player2Ships"
-        :player1-id="gameData.player1Id"
-        :player2-id="gameData.player2Id"
-        :player-with-initiative="currentGameState.playerWithInitiative"
-        @complete-planning="handlePlanningComplete"
-      />
-
-      <Planning
-        v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          !showTurnAnimation &&
-          isPlanningPhase &&
-          currentGameState &&
-          gameData
+          currentGameState?.uiScreen === CurrentGamePage.Planning && gameData
         "
         :player1-ships="player1Ships"
         :player2-ships="player2Ships"
@@ -618,14 +478,10 @@ async function handleSkipAction() {
         @begin-activation="handleBeginActivation"
       />
 
+      <!-- Select Ship to Activate -->
       <SelectActivation
         v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          isActivationPhase &&
-          activationSubPhase === 'select' &&
+          currentGameState?.uiScreen === CurrentGamePage.SelectActivation &&
           gameData
         "
         :player1-ships="player1Ships"
@@ -635,54 +491,34 @@ async function handleSkipAction() {
         @activate-ship="handleActivateShip"
       />
 
+      <!-- Collision Selection -->
       <CollisionSelection
         v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          isActivationPhase &&
-          activationSubPhase === 'collision' &&
+          currentGameState?.uiScreen === CurrentGamePage.CollisionSelection &&
           currentActivatingShip
         "
         :ship="currentActivatingShip.ship"
         :pilot="currentActivatingShip.pilot"
-        :player-color="
-    currentActivatingShip.ship.playerId === gameData!.player1Id
-      ? 'red'
-      : 'gray'
-  "
+        :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
         @successful-maneuver="handleSuccessfulManeuver"
         @collision="handleCollision"
       />
 
+      <!-- Action Selection -->
       <ActionSelection
         v-else-if="
-          gameStarted &&
-          setupStarted &&
-          allShipsPlaced &&
-          turnStarted &&
-          isActivationPhase &&
-          activationSubPhase === 'action' &&
+          currentGameState?.uiScreen === CurrentGamePage.ActionSelection &&
           currentActivatingShip
         "
         :ship="currentActivatingShip.ship"
         :pilot="currentActivatingShip.pilot"
-        :player-color="
-    currentActivatingShip.ship.playerId === gameData!.player1Id
-      ? 'red'
-      : 'gray'
-  "
+        :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
         @perform-action="handlePerformAction"
         @skip-action="handleSkipAction"
       />
 
-      <GameBoard
-        v-else-if="
-          gameStarted && setupStarted && allShipsPlaced && !isPlanningPhase
-        "
-        :current-game-state="currentGameState"
-      />
+      <!-- Game Board (fallback) -->
+      <GameBoard v-else :current-game-state="currentGameState" />
     </div>
   </div>
 </template>
