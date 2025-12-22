@@ -610,6 +610,16 @@ const currentRollAttackDiceCount = computed(() => {
 const currentAttackDice = computed(() => {
   if (!gameData.value) return [];
   const currentStep = gameData.value.steps[selectedStepIndex.value];
+
+  // If we're on a modify_attack_dice step, use its afterResults
+  if (currentStep && currentStep.type === "modify_attack_dice") {
+    return currentStep.afterResults.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as AttackDieFace,
+    }));
+  }
+
+  // Otherwise, look for roll_attack_dice step with results
   if (
     currentStep &&
     currentStep.type === "roll_attack_dice" &&
@@ -620,6 +630,7 @@ const currentAttackDice = computed(() => {
       face: result as AttackDieFace,
     }));
   }
+
   return [];
 });
 

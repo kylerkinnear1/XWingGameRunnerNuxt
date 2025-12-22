@@ -109,7 +109,7 @@ export function handleModifyAttackDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
-  state.uiScreen = CurrentGamePage.ModifyAttackDice;
+  state.uiScreen = CurrentGamePage.RollDefenseDice;
 }
 
 export function handleRollDefenseDice(
