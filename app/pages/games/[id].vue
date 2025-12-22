@@ -535,7 +535,7 @@ async function handleDoneWithActions() {
 }
 
 async function handleCombatAnimationComplete() {
-  await addStep({
+  await moveToStepOrPush("begin_select_target", {
     type: "begin_select_target",
     timestamp: new Date(),
   });
