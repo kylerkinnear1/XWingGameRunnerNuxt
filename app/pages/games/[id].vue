@@ -651,16 +651,19 @@ async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
 }
 
 async function handleAttackDiceComplete(dice: any[]) {
-  if (!gameData.value) return;
+  if (!gameData.value || !currentGameState.value?.currentAttackingShipId)
+    return;
 
   const currentStep = gameData.value.steps[selectedStepIndex.value];
   if (currentStep && currentStep.type === "roll_attack_dice") {
     const results = dice.map((die) => die.face);
+
+    // Push modify_attack_dice step directly - this will show ModifyAttackDice UI
     await addStep({
-      type: "roll_attack_dice",
-      weaponId: currentStep.weaponId,
-      baseAttackDice: currentStep.baseAttackDice,
-      results,
+      type: "modify_attack_dice",
+      attackerShipId: currentGameState.value.currentAttackingShipId,
+      beforeResults: results,
+      afterResults: results,
       timestamp: new Date(),
     });
   }
@@ -671,13 +674,11 @@ async function handleModifyAttackDiceComplete(dice: any[]) {
     return;
 
   const currentStep = gameData.value.steps[selectedStepIndex.value];
-  if (
-    currentStep &&
-    currentStep.type === "roll_attack_dice" &&
-    currentStep.results
-  ) {
-    const beforeResults = currentStep.results;
+  if (currentStep && currentStep.type === "modify_attack_dice") {
+    const beforeResults = currentStep.beforeResults;
     const afterResults = dice.map((die) => die.face);
+
+    // Update the modify_attack_dice step with final results
     await addStep({
       type: "modify_attack_dice",
       attackerShipId: currentGameState.value.currentAttackingShipId,
@@ -685,6 +686,16 @@ async function handleModifyAttackDiceComplete(dice: any[]) {
       afterResults,
       timestamp: new Date(),
     });
+
+    // Move to next phase - push roll_defense_dice step
+    if (currentGameState.value.currentDefendingShipId) {
+      await addStep({
+        type: "roll_defense_dice",
+        defenderShipId: currentGameState.value.currentDefendingShipId,
+        results: [],
+        timestamp: new Date(),
+      });
+    }
   }
 }
 
