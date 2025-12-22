@@ -18,7 +18,7 @@ export function handleCleanup(
 ): void {
   state.currentPhase = GamePhase.End;
   state.currentStep += 1;
-  state.uiScreen = CurrentGamePage.End;
+  state.uiScreen = CurrentGamePage.Cleanup;
 }
 
 export function handleTurnEnd(

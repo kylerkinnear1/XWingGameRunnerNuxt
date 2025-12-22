@@ -18,6 +18,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   declareAttack: [attackerShipId: string, defenderShipId: string];
   noShot: [];
+  endCombat: [];
 }>();
 
 const selectedAttacker = ref<string | null>(null);
@@ -73,6 +74,10 @@ function noShot() {
   emit("noShot");
   selectedAttacker.value = null;
   selectedDefender.value = null;
+}
+
+function endCombat() {
+  emit("endCombat");
 }
 </script>
 
@@ -334,6 +339,12 @@ function noShot() {
           class="px-8 py-3 text-sm font-bold bg-red-600 text-white border-b-4 border-red-800 hover:bg-red-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
         >
           Declare Attack
+        </button>
+        <button
+          @click="endCombat"
+          class="px-8 py-3 text-sm font-bold bg-amber-600 text-white border-b-4 border-amber-800 hover:bg-amber-500 active:border-b-2 transition-all uppercase tracking-wide"
+        >
+          End Combat
         </button>
       </div>
     </div>

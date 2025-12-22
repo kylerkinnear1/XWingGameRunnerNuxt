@@ -117,6 +117,7 @@ export enum CurrentGamePage {
   ModifyAttackDice = "modify-attack-dice",
   RollDefenseDice = "roll-defense-dice",
   ModifyDefenseDice = "modify-defense-dice",
+  Cleanup = "cleanup",
   End = "end",
 }
 

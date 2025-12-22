@@ -799,10 +799,16 @@ async function handleSkipAttack() {
 }
 
 async function handleNoShot() {
-  // Mark this as no shot and move to next step
   await addStep({
     type: "combat_step",
     pilotSkill: 0,
+    timestamp: new Date(),
+  });
+}
+
+async function handleEndCombat() {
+  await moveToStepOrPush("cleanup", {
+    type: "cleanup",
     timestamp: new Date(),
   });
 }
@@ -824,6 +830,13 @@ async function handleDefenseDiceComplete(dice: any[]) {
       timestamp: new Date(),
     });
   }
+}
+
+async function handleEndTurn() {
+  await moveToStepOrPush("turn_start", {
+    type: "turn_start",
+    timestamp: new Date(),
+  });
 }
 
 async function handleModifyDefenseDiceComplete(dice: any[]) {
@@ -863,9 +876,35 @@ async function handleModifyDefenseDiceComplete(dice: any[]) {
 
     await refresh();
 
-    if (gameData.value) {
+    if (gameData.value && currentGameState.value?.currentAttackingShipId) {
       previousStepIndex.value = selectedStepIndex.value;
       selectedStepIndex.value = gameData.value.steps.length - 1;
+
+      await addStep({
+        type: "complete_attack",
+        attackerShipId: currentGameState.value.currentAttackingShipId,
+        timestamp: new Date(),
+      });
+
+      await nextTick();
+      await refresh();
+
+      if (currentGameState.value) {
+        const shipsAvailableToAttack = currentGameState.value.ships.filter(
+          (s) => !s.hasAttacked && !s.isDestroyed
+        );
+        if (shipsAvailableToAttack.length === 0) {
+          await moveToStepOrPush("cleanup", {
+            type: "cleanup",
+            timestamp: new Date(),
+          });
+        } else {
+          await moveToStepOrPush("declare_attackers", {
+            type: "declare_attackers",
+            timestamp: new Date(),
+          });
+        }
+      }
     }
   }
 }
@@ -1023,6 +1062,7 @@ async function handleModifyDefenseDiceComplete(dice: any[]) {
           :player2-id="gameData.player2Id"
           @declare-attack="handleDeclareAttack"
           @no-shot="handleNoShot"
+          @end-combat="handleEndCombat"
         />
 
         <!-- Select Weapon -->
@@ -1084,6 +1124,13 @@ async function handleModifyDefenseDiceComplete(dice: any[]) {
           :key="`${CurrentGamePage.ModifyDefenseDice}-${selectedStepIndex}`"
           :initial-dice="currentDefenseDice"
           @confirm="handleModifyDefenseDiceComplete"
+        />
+
+        <!-- Cleanup Animation -->
+        <CombatCleanupAnimation
+          v-else-if="currentGameState?.uiScreen === CurrentGamePage.Cleanup"
+          :key="`${CurrentGamePage.Cleanup}-${currentGameState.totalTurns}`"
+          @end-turn="handleEndTurn"
         />
 
         <!-- Game Board (fallback) -->
