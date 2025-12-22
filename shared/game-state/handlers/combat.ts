@@ -95,7 +95,11 @@ export function handleRollAttackDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
-  state.uiScreen = CurrentGamePage.RollAttackDice;
+  if (step.results && step.results.length > 0) {
+    state.uiScreen = CurrentGamePage.ModifyAttackDice;
+  } else {
+    state.uiScreen = CurrentGamePage.RollAttackDice;
+  }
 }
 
 export function handleModifyAttackDice(

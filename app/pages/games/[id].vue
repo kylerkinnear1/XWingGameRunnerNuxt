@@ -2,6 +2,7 @@
 import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { TokenType, Maneuver, ActionType } from "#shared/enums";
+import type { AttackDieFace } from "#shared/dice";
 import { CollisionType, GamePhase, CurrentGamePage } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
 
@@ -56,12 +57,25 @@ const squads = computed(() => {
 const selectedStepIndex = ref(0);
 const previousStepIndex = ref(0);
 const expandedShipId = ref<string | null>(null);
+const previousUiScreen = ref<CurrentGamePage | null>(null);
 
 // Track navigation direction for transitions
 const transitionDirection = computed(() => {
   return selectedStepIndex.value > previousStepIndex.value
     ? "forward"
     : "backward";
+});
+
+const transitionName = computed(() => {
+  const baseTransition =
+    transitionDirection.value === "forward" ? "slide-up" : "slide-down";
+
+  // Suppress leave transition when leaving RollAttackDice
+  if (previousUiScreen.value === CurrentGamePage.RollAttackDice) {
+    return `${baseTransition}-no-leave`;
+  }
+
+  return baseTransition;
 });
 
 const currentGameState = computed(() => {
@@ -77,6 +91,21 @@ const currentGameState = computed(() => {
     upgrades: [...cards.value.upgrades],
   });
 });
+
+// Watch for uiScreen changes to track previous screen
+const currentUiScreen = ref<CurrentGamePage | null>(null);
+watch(
+  () => currentGameState.value?.uiScreen,
+  (newScreen) => {
+    if (newScreen && currentUiScreen.value !== newScreen) {
+      previousUiScreen.value = currentUiScreen.value;
+      currentUiScreen.value = newScreen;
+    } else if (newScreen && !currentUiScreen.value) {
+      currentUiScreen.value = newScreen;
+    }
+  },
+  { immediate: true }
+);
 
 // Create ship lists directly from squads, just like the animation does
 const createShipFromSquad = (
@@ -578,6 +607,22 @@ const currentRollAttackDiceCount = computed(() => {
   return 3;
 });
 
+const currentAttackDice = computed(() => {
+  if (!gameData.value) return [];
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (
+    currentStep &&
+    currentStep.type === "roll_attack_dice" &&
+    currentStep.results
+  ) {
+    return currentStep.results.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as AttackDieFace,
+    }));
+  }
+  return [];
+});
+
 async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
   if (
     !currentGameState.value?.currentAttackingShipId ||
@@ -605,6 +650,28 @@ async function handleAttackDiceComplete(dice: any[]) {
       weaponId: currentStep.weaponId,
       baseAttackDice: currentStep.baseAttackDice,
       results,
+      timestamp: new Date(),
+    });
+  }
+}
+
+async function handleModifyAttackDiceComplete(dice: any[]) {
+  if (!gameData.value || !currentGameState.value?.currentAttackingShipId)
+    return;
+
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (
+    currentStep &&
+    currentStep.type === "roll_attack_dice" &&
+    currentStep.results
+  ) {
+    const beforeResults = currentStep.results;
+    const afterResults = dice.map((die) => die.face);
+    await addStep({
+      type: "modify_attack_dice",
+      attackerShipId: currentGameState.value.currentAttackingShipId,
+      beforeResults,
+      afterResults,
       timestamp: new Date(),
     });
   }
@@ -653,10 +720,7 @@ async function handleNoShot() {
 
     <!-- Main Game Area - Switch based on uiScreen with transitions -->
     <div class="flex-1 overflow-hidden relative game-transition-container">
-      <Transition
-        :name="transitionDirection === 'forward' ? 'slide-up' : 'slide-down'"
-        mode="out-in"
-      >
+      <Transition :name="transitionName" mode="out-in">
         <!-- Game Start Animation -->
         <GameStartAnimation
           v-if="
@@ -803,13 +867,26 @@ async function handleNoShot() {
         />
 
         <!-- Roll Attack Dice -->
-        <CombatAttackDice
+        <div
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.RollAttackDice
           "
           :key="`${CurrentGamePage.RollAttackDice}-${selectedStepIndex}`"
-          :initial-count="currentRollAttackDiceCount"
-          @complete="handleAttackDiceComplete"
+        >
+          <CombatAttackDice
+            :initial-count="currentRollAttackDiceCount"
+            @complete="handleAttackDiceComplete"
+          />
+        </div>
+
+        <!-- Modify Attack Dice -->
+        <CombatModifyAttackDice
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.ModifyAttackDice
+          "
+          :key="`${CurrentGamePage.ModifyAttackDice}-${selectedStepIndex}`"
+          :initial-dice="currentAttackDice"
+          @confirm="handleModifyAttackDiceComplete"
         />
 
         <!-- Game Board (fallback) -->
@@ -894,6 +971,41 @@ async function handleNoShot() {
   opacity: 0;
 }
 
+/* Slide Up with no leave transition */
+.slide-up-no-leave-enter-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-leave-leave-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-leave-enter-from {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slide-up-no-leave-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-leave-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-leave-leave-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /* Slide Down - Moving Backward in Time */
 .slide-down-enter-active,
 .slide-down-leave-active {
@@ -921,5 +1033,40 @@ async function handleNoShot() {
 .slide-down-leave-to {
   transform: translateY(100%);
   opacity: 0;
+}
+
+/* Slide Down with no leave transition */
+.slide-down-no-leave-enter-active {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-leave-leave-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-leave-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-down-no-leave-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-leave-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-leave-leave-to {
+  transform: translateY(0);
+  opacity: 1;
 }
 </style>

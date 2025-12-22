@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { AttackDie, AttackDieFace } from "#shared/dice";
-import { ATTACK_DIE_ICONS } from "#shared/dice";
 
 const props = defineProps<{
   initialDice: AttackDie[];
@@ -48,9 +47,14 @@ const selectedDie = computed(() => {
   return dice.value.find((d) => d.id === selectedDieId.value) || null;
 });
 
-// Get die icon
-function getDieIcon(face: AttackDieFace): string {
-  return ATTACK_DIE_ICONS[face];
+function getDieImage(face: AttackDieFace): string {
+  const imageMap: Record<AttackDieFace, string> = {
+    hit: "/AttackHit.png",
+    crit: "/AttackCrit.png",
+    focus: "/AttackFocus.png",
+    blank: "/attackMiss.png",
+  };
+  return imageMap[face];
 }
 </script>
 
@@ -70,13 +74,7 @@ function getDieIcon(face: AttackDieFace): string {
         :class="{ blank: die.face === 'blank' }"
         @click="handleDieClick(die)"
       >
-        <span
-          v-if="die.face !== 'blank'"
-          class="xwing-miniatures-ship die-icon"
-        >
-          {{ getDieIcon(die.face) }}
-        </span>
-        <span v-else class="blank-text">Blank</span>
+        <img :src="getDieImage(die.face)" :alt="die.face" class="die-image" />
       </button>
     </div>
 
@@ -98,13 +96,11 @@ function getDieIcon(face: AttackDieFace): string {
             class="die-button attack-die mt-2"
             :class="{ blank: selectedDie.face === 'blank' }"
           >
-            <span
-              v-if="selectedDie.face !== 'blank'"
-              class="xwing-miniatures-ship die-icon"
-            >
-              {{ getDieIcon(selectedDie.face) }}
-            </span>
-            <span v-else class="blank-text">Blank</span>
+            <img
+              :src="getDieImage(selectedDie.face)"
+              :alt="selectedDie.face"
+              class="die-image"
+            />
           </div>
         </div>
 
@@ -119,13 +115,7 @@ function getDieIcon(face: AttackDieFace): string {
             }"
             @click="changeDieFace(face)"
           >
-            <span
-              v-if="face !== 'blank'"
-              class="xwing-miniatures-ship die-icon"
-            >
-              {{ getDieIcon(face) }}
-            </span>
-            <span v-else class="blank-text">Blank</span>
+            <img :src="getDieImage(face)" :alt="face" class="die-image" />
           </button>
         </div>
       </div>
@@ -149,7 +139,7 @@ function getDieIcon(face: AttackDieFace): string {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  min-height: 80px;
+  min-height: 45px;
 }
 
 .die-button:hover {
@@ -172,9 +162,11 @@ function getDieIcon(face: AttackDieFace): string {
   box-shadow: 0 0 12px rgba(251, 191, 36, 0.6);
 }
 
-.die-icon {
-  font-size: 3rem;
-  line-height: 1;
+.die-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
 }
 
 .blank-text {
@@ -184,12 +176,12 @@ function getDieIcon(face: AttackDieFace): string {
 }
 
 .current-face .die-button {
-  width: 80px;
-  height: 80px;
+  width: 45px;
+  height: 45px;
   margin: 0 auto;
 }
 
 .face-options .die-button {
-  min-height: 60px;
+  min-height: 45px;
 }
 </style>
