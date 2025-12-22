@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DefenseDie, DefenseDieFace } from "#shared/dice";
-import { DEFENSE_DIE_ICONS } from "#shared/dice";
 
 const props = defineProps<{
   initialDice: DefenseDie[];
@@ -10,123 +9,154 @@ const emit = defineEmits<{
   confirm: [dice: DefenseDie[]];
 }>();
 
-// Component state - clone the initial dice so we don't mutate props
 const dice = ref<DefenseDie[]>(JSON.parse(JSON.stringify(props.initialDice)));
 const selectedDieId = ref<string | null>(null);
 const isModifyDrawerOpen = ref(false);
 
-// Face options for modification
 const defenseFaces: DefenseDieFace[] = ["evade", "focus", "blank"];
 
-// Open modify drawer for a specific die
 function handleDieClick(die: DefenseDie) {
   selectedDieId.value = die.id;
   isModifyDrawerOpen.value = true;
 }
 
-// Change the face of the selected die
 function changeDieFace(newFace: DefenseDieFace) {
   if (!selectedDieId.value) return;
 
   const dieIndex = dice.value.findIndex((d) => d.id === selectedDieId.value);
   if (dieIndex !== -1) {
-    dice.value[dieIndex].face = newFace;
+    dice.value[dieIndex]!.face = newFace;
   }
 
   isModifyDrawerOpen.value = false;
   selectedDieId.value = null;
 }
 
-// Confirm the dice results
 function handleConfirm() {
   emit("confirm", dice.value);
 }
 
-// Get the currently selected die for the drawer
 const selectedDie = computed(() => {
   if (!selectedDieId.value) return null;
   return dice.value.find((d) => d.id === selectedDieId.value) || null;
 });
 
-// Get die icon
-function getDieIcon(face: DefenseDieFace): string {
-  return DEFENSE_DIE_ICONS[face];
+function getDieImage(face: DefenseDieFace): string {
+  const imageMap: Record<DefenseDieFace, string> = {
+    evade: "/DefenseEvade.png",
+    focus: "/DefenseFocus.png",
+    blank: "/DefenseMiss.png",
+  };
+  return imageMap[face];
 }
 </script>
 
 <template>
   <div class="modify-defense-dice-component">
-    <div class="dice-preview grid grid-cols-4 gap-4 mb-6">
+    <div class="dice-preview mb-4 flex flex-wrap justify-center gap-3">
       <div
         v-for="die in dice"
         :key="die.id"
-        class="die-button defense-die unrolled"
+        class="die-button defense-die"
         :class="{
+          unrolled: true,
           selected: selectedDieId === die.id,
         }"
         @click="handleDieClick(die)"
       >
-        <span
-          v-if="die.face !== 'blank'"
-          class="xwing-miniatures-ship die-icon"
-        >
-          {{ getDieIcon(die.face) }}
-        </span>
-        <span v-else class="blank-text">?</span>
+        <img :src="getDieImage(die.face)" :alt="die.face" class="die-image" />
+      </div>
+    </div>
+
+    <div
+      class="dice-controls-spacer mb-6 flex justify-center items-center gap-3"
+    >
+      <div class="dice-control-button invisible">
+        <span class="text-xl">−</span>
+      </div>
+      <div class="text-2xl font-bold w-12 text-center text-white invisible">
+        0
+      </div>
+      <div class="dice-control-button invisible">
+        <span class="text-xl">+</span>
       </div>
     </div>
 
     <Transition name="drawer-slide">
       <div v-if="isModifyDrawerOpen" class="modify-drawer mb-6">
-        <div class="face-options grid grid-cols-3 gap-4">
-          <button
-            v-for="face in defenseFaces"
-            :key="face"
-            class="face-option-button defense-die"
-            @click="changeDieFace(face)"
-          >
-            <span
-              v-if="face !== 'blank'"
-              class="xwing-miniatures-ship die-icon"
+        <div class="drawer-content">
+          <div class="drawer-header">
+            <h3 class="drawer-title">Select New Face</h3>
+            <button
+              class="drawer-close"
+              @click="
+                isModifyDrawerOpen = false;
+                selectedDieId = null;
+              "
             >
-              {{ getDieIcon(face) }}
-            </span>
-            <span v-else class="blank-text">?</span>
-          </button>
+              <span class="text-xl">×</span>
+            </button>
+          </div>
+          <div class="face-options flex flex-wrap justify-center gap-3">
+            <button
+              v-for="face in defenseFaces"
+              :key="face"
+              class="face-option-button"
+              :class="{ active: selectedDie?.face === face }"
+              @click="changeDieFace(face)"
+            >
+              <img :src="getDieImage(face)" :alt="face" class="die-image" />
+            </button>
+          </div>
         </div>
       </div>
     </Transition>
 
-    <UButton size="xl" color="success" block @click="handleConfirm">
-      <span class="text-lg">Confirm Modifications</span>
-    </UButton>
+    <div class="flex justify-center">
+      <button class="roll-button" @click="handleConfirm">
+        Confirm Modifications
+      </button>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .modify-defense-dice-component {
   padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .dice-preview {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
   width: 100%;
 }
 
 .die-button {
   aspect-ratio: 1;
-  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  min-height: 80px;
-  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
   background: transparent;
   border: none;
   padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.die-button.defense-die.unrolled {
+  opacity: 1;
 }
 
 .die-button.defense-die.selected {
@@ -135,73 +165,202 @@ function getDieIcon(face: DefenseDieFace): string {
   border-radius: 0.5rem;
 }
 
-.die-icon {
-  font-size: 3rem;
-  line-height: 1;
+.die-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.blank-text {
-  font-size: 2rem;
+.dice-controls-spacer {
+  height: 36px;
+}
+
+.dice-control-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: white;
   font-weight: 600;
-  opacity: 0.5;
 }
 
 .modify-drawer {
   width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.drawer-content {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.drawer-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  padding: 0;
+}
+
+.drawer-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.drawer-close:active {
+  transform: scale(0.95);
 }
 
 .face-options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
 .face-option-button {
   aspect-ratio: 1;
-  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  min-height: 80px;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  flex-shrink: 0;
   cursor: pointer;
-  background: transparent;
-  border: 2px solid #374151;
-  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-  color: #6b7280;
 }
 
 .face-option-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
 .face-option-button:active {
-  transform: scale(0.95);
+  transform: scale(1.02);
+}
+
+.face-option-button.active {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+}
+
+.face-option-button .die-image {
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+}
+
+@media (max-width: 640px) {
+  .drawer-content {
+    padding: 1rem;
+  }
+
+  .face-option-button {
+    width: 120px;
+    height: 120px;
+  }
+
+  .drawer-title {
+    font-size: 1rem;
+  }
+}
+
+.roll-button {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background-color: rgb(13 148 136);
+  color: white;
+  border-bottom: 4px solid rgb(17 94 89);
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.roll-button:hover {
+  background-color: rgb(20 184 166);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.roll-button:active {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
 }
 
 .drawer-slide-enter-active,
 .drawer-slide-leave-active {
-  transition: all 0.2s ease-out;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  overflow: hidden;
 }
 
 .drawer-slide-enter-from {
   opacity: 0;
-  transform: translateY(-20px);
+  max-height: 0;
 }
 
 .drawer-slide-enter-to {
   opacity: 1;
-  transform: translateY(0);
+  max-height: 1000px;
 }
 
 .drawer-slide-leave-from {
   opacity: 1;
-  transform: translateY(0);
+  max-height: 1000px;
 }
 
 .drawer-slide-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  max-height: 0;
 }
 </style>

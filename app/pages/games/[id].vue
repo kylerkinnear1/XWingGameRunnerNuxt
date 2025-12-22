@@ -2,7 +2,7 @@
 import type { GameStateDto, ShipStateDto } from "#shared/game-state-dto";
 import type { SquadReadDto } from "#shared/squad-dto";
 import type { TokenType, Maneuver, ActionType } from "#shared/enums";
-import type { AttackDieFace } from "#shared/dice";
+import type { AttackDieFace, DefenseDieFace } from "#shared/dice";
 import { CollisionType, GamePhase, CurrentGamePage } from "#shared/enums";
 import { calculateGameState } from "#shared/game-state/calculator";
 
@@ -81,8 +81,21 @@ const transitionName = computed(() => {
     return `${baseTransition}-no-enter-no-leave`;
   }
 
+  // Suppress both enter and leave when transitioning from RollDefenseDice to ModifyDefenseDice
+  if (
+    previousScreen === CurrentGamePage.RollDefenseDice &&
+    currentScreen === CurrentGamePage.ModifyDefenseDice
+  ) {
+    return `${baseTransition}-no-enter-no-leave`;
+  }
+
   // Suppress leave transition when leaving RollAttackDice
   if (previousScreen === CurrentGamePage.RollAttackDice) {
+    return `${baseTransition}-no-leave`;
+  }
+
+  // Suppress leave transition when leaving RollDefenseDice
+  if (previousScreen === CurrentGamePage.RollDefenseDice) {
     return `${baseTransition}-no-leave`;
   }
 
@@ -654,6 +667,33 @@ const currentRollDefenseDiceCount = computed(() => {
   return defendingShip?.ship.agility || 0;
 });
 
+const currentDefenseDice = computed(() => {
+  if (!gameData.value) return [];
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+
+  // If we're on a modify_defense_dice step, use its afterResults
+  if (currentStep && currentStep.type === "modify_defense_dice") {
+    return currentStep.afterResults.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as DefenseDieFace,
+    }));
+  }
+
+  // Otherwise, look for roll_defense_dice step with results
+  if (
+    currentStep &&
+    currentStep.type === "roll_defense_dice" &&
+    currentStep.results
+  ) {
+    return currentStep.results.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as DefenseDieFace,
+    }));
+  }
+
+  return [];
+});
+
 async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
   if (
     !currentGameState.value?.currentAttackingShipId ||
@@ -775,13 +815,58 @@ async function handleDefenseDiceComplete(dice: any[]) {
   if (currentStep && currentStep.type === "roll_defense_dice") {
     const results = dice.map((die) => die.face);
 
-    // Update the roll_defense_dice step with results
+    // Push modify_defense_dice step directly - this will show ModifyDefenseDice UI
     await addStep({
-      type: "roll_defense_dice",
+      type: "modify_defense_dice",
       defenderShipId: currentGameState.value.currentDefendingShipId,
-      results,
+      beforeResults: results,
+      afterResults: results,
       timestamp: new Date(),
     });
+  }
+}
+
+async function handleModifyDefenseDiceComplete(dice: any[]) {
+  if (!gameData.value || !currentGameState.value?.currentDefendingShipId)
+    return;
+
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (currentStep && currentStep.type === "modify_defense_dice") {
+    const beforeResults = currentStep.beforeResults;
+    const afterResults = dice.map((die) => die.face);
+
+    // Truncate the current step and everything after it, then re-add with updated results
+    const currentIndex = selectedStepIndex.value;
+    const previousIndex = currentIndex - 1;
+
+    // Truncate from the previous step (this will remove the current modify_defense_dice step)
+    if (previousIndex >= 0) {
+      await $fetch(`/api/games/${gameId}/steps/truncate`, {
+        method: "POST",
+        body: {
+          afterIndex: previousIndex,
+        },
+      });
+    }
+
+    // Re-add the modify_defense_dice step with updated afterResults
+    await $fetch(`/api/games/${gameId}/steps`, {
+      method: "POST",
+      body: {
+        type: "modify_defense_dice",
+        defenderShipId: currentGameState.value.currentDefendingShipId,
+        beforeResults,
+        afterResults,
+        timestamp: new Date(),
+      },
+    });
+
+    await refresh();
+
+    if (gameData.value) {
+      previousStepIndex.value = selectedStepIndex.value;
+      selectedStepIndex.value = gameData.value.steps.length - 1;
+    }
   }
 }
 </script>
@@ -987,9 +1072,19 @@ async function handleDefenseDiceComplete(dice: any[]) {
         >
           <CombatDefenseDice
             :initial-count="currentRollDefenseDiceCount"
-            @roll-complete="handleDefenseDiceComplete"
+            @complete="handleDefenseDiceComplete"
           />
         </div>
+
+        <!-- Modify Defense Dice -->
+        <CombatModifyDefenseDice
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.ModifyDefenseDice
+          "
+          :key="`${CurrentGamePage.ModifyDefenseDice}-${selectedStepIndex}`"
+          :initial-dice="currentDefenseDice"
+          @confirm="handleModifyDefenseDiceComplete"
+        />
 
         <!-- Game Board (fallback) -->
         <GameBoard

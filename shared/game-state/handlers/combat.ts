@@ -125,6 +125,7 @@ export function handleModifyDefenseDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.ModifyDefenseDice;
 }
 
 export function handleCompleteAttack(
