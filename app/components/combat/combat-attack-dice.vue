@@ -1,292 +1,231 @@
 <script setup lang="ts">
-import type { AttackDie, DefenseDie } from "~/types/dice";
+import type { AttackDie, AttackDieFace } from "#shared/dice";
+import { ATTACK_DIE_ICONS } from "#shared/dice";
+import { rollAttackDice, createUnrolledAttackDice } from "~/domain/dice";
 
-const diceMode = ref<"attack" | "defense" | null>(null);
-const attackResults = ref<AttackDie[] | null>(null);
-const defenseResults = ref<DefenseDie[] | null>(null);
+const props = defineProps<{
+  initialCount: number;
+}>();
 
-function handleAttackComplete(dice: AttackDie[]) {
-  attackResults.value = dice;
-  console.log("Attack dice results:", dice);
+const emit = defineEmits<{
+  complete: [dice: AttackDie[]];
+}>();
+
+const dice = ref<AttackDie[]>([]);
+const diceCount = ref(props.initialCount);
+const isRolled = ref(false);
+const selectedDieId = ref<string | null>(null);
+const isModifyDrawerOpen = ref(false);
+
+const attackFaces: AttackDieFace[] = ["hit", "crit", "focus", "blank"];
+
+function handleRollDice() {
+  dice.value = rollAttackDice(diceCount.value);
+  isRolled.value = true;
 }
 
-function handleDefenseComplete(dice: DefenseDie[]) {
-  defenseResults.value = dice;
-  console.log("Defense dice results:", dice);
+function handleUseRealDice() {
+  dice.value = createUnrolledAttackDice(diceCount.value);
+  isRolled.value = true;
 }
 
-function reset() {
-  diceMode.value = null;
-  attackResults.value = null;
-  defenseResults.value = null;
-}
-
-// Calculate attack totals
-const attackTotals = computed(() => {
-  if (!attackResults.value) return null;
-
-  const totals = {
-    hits: 0,
-    crits: 0,
-    focus: 0,
-    blanks: 0,
+function addDie() {
+  const newDie: AttackDie = {
+    id: crypto.randomUUID(),
+    face: "blank",
   };
+  dice.value.push(newDie);
+  diceCount.value = dice.value.length;
+}
 
-  for (const die of attackResults.value) {
-    if (die.face === "hit") totals.hits++;
-    else if (die.face === "crit") totals.crits++;
-    else if (die.face === "focus") totals.focus++;
-    else if (die.face === "blank") totals.blanks++;
+function removeDie() {
+  if (dice.value.length > 0) {
+    dice.value.pop();
+    diceCount.value = dice.value.length;
+  }
+}
+
+function handleDieClick(die: AttackDie) {
+  if (!isRolled.value) return;
+  selectedDieId.value = die.id;
+  isModifyDrawerOpen.value = true;
+}
+
+function changeDieFace(newFace: AttackDieFace) {
+  if (!selectedDieId.value) return;
+
+  const dieIndex = dice.value.findIndex((d) => d.id === selectedDieId.value);
+  if (dieIndex !== -1 && dice.value[dieIndex]) {
+    dice.value[dieIndex].face = newFace;
   }
 
-  return totals;
+  isModifyDrawerOpen.value = false;
+  selectedDieId.value = null;
+}
+
+function handleComplete() {
+  emit("complete", dice.value);
+}
+
+const selectedDie = computed(() => {
+  if (!selectedDieId.value) return null;
+  return dice.value.find((d) => d.id === selectedDieId.value) || null;
 });
 
-// Calculate defense totals
-const defenseTotals = computed(() => {
-  if (!defenseResults.value) return null;
+function getDieIcon(face: AttackDieFace): string {
+  return ATTACK_DIE_ICONS[face];
+}
 
-  const totals = {
-    evades: 0,
-    focus: 0,
-    blanks: 0,
-  };
-
-  for (const die of defenseResults.value) {
-    if (die.face === "evade") totals.evades++;
-    else if (die.face === "focus") totals.focus++;
-    else if (die.face === "blank") totals.blanks++;
-  }
-
-  return totals;
-});
+function getDieLabel(face: AttackDieFace): string {
+  return face.charAt(0).toUpperCase() + face.slice(1);
+}
 </script>
 
 <template>
-  <div class="dice-demo-page">
-    <div class="container mx-auto p-4">
-      <h1 class="text-3xl font-bold mb-6">X-Wing Dice System Demo</h1>
+  <div class="h-full flex flex-col bg-gray-900 overflow-hidden">
+    <div class="p-6 border-b border-gray-700 bg-gray-800">
+      <h2 class="text-2xl font-bold text-gray-100 mb-4">Roll Attack Dice</h2>
+    </div>
 
-      <!-- Mode Selection -->
-      <div v-if="!diceMode" class="mode-selection max-w-md mx-auto">
-        <UCard>
-          <template #header>
-            <h2 class="text-xl font-semibold">Select Dice Type</h2>
-          </template>
-
-          <div class="flex flex-col gap-3">
-            <UButton size="xl" color="red" block @click="diceMode = 'attack'">
-              <span class="text-lg">Attack Dice (Red)</span>
-            </UButton>
-
+    <div class="flex-1 overflow-y-auto p-6">
+      <div v-if="!isRolled" class="max-w-md mx-auto">
+        <div class="dice-count-control mb-6">
+          <label class="text-lg font-semibold mb-2 block text-gray-100"
+            >Number of Attack Dice</label
+          >
+          <div class="flex items-center gap-4">
             <UButton
-              size="xl"
-              color="green"
-              block
-              @click="diceMode = 'defense'"
+              icon="i-heroicons-minus"
+              color="neutral"
+              :disabled="diceCount <= 0"
+              @click="diceCount--"
+            />
+            <span class="text-2xl font-bold w-12 text-center text-gray-100">{{
+              diceCount
+            }}</span>
+            <UButton
+              icon="i-heroicons-plus"
+              color="neutral"
+              @click="diceCount++"
+            />
+          </div>
+        </div>
+
+        <div class="action-buttons flex flex-col gap-3">
+          <UButton size="xl" color="error" block @click="handleRollDice">
+            <span class="text-lg">Roll Dice</span>
+          </UButton>
+
+          <UButton
+            size="xl"
+            color="neutral"
+            variant="outline"
+            block
+            @click="handleUseRealDice"
+          >
+            <span class="text-lg">Use Real Dice</span>
+          </UButton>
+        </div>
+      </div>
+
+      <div v-else class="max-w-4xl mx-auto">
+        <div class="dice-controls mb-4 flex gap-2">
+          <UButton icon="i-heroicons-plus" color="neutral" @click="addDie">
+            Add Die
+          </UButton>
+          <UButton
+            icon="i-heroicons-minus"
+            color="neutral"
+            :disabled="dice.length === 0"
+            @click="removeDie"
+          >
+            Remove Die
+          </UButton>
+        </div>
+
+        <div class="dice-display grid grid-cols-4 gap-4 mb-6">
+          <button
+            v-for="die in dice"
+            :key="die.id"
+            class="die-button attack-die p-4 rounded-lg border-2 border-red-600 bg-red-900/20 hover:bg-red-900/40 transition-all"
+            :class="{ blank: die.face === 'blank' }"
+            @click="handleDieClick(die)"
+          >
+            <span
+              v-if="die.face !== 'blank'"
+              class="xwing-miniatures-ship die-icon text-4xl text-red-400"
             >
-              <span class="text-lg">Defense Dice (Green)</span>
-            </UButton>
-          </div>
-        </UCard>
-      </div>
+              {{ getDieIcon(die.face) }}
+            </span>
+            <span v-else class="blank-text text-gray-400">Blank</span>
+          </button>
+        </div>
 
-      <!-- Attack Dice Component -->
-      <div v-else-if="diceMode === 'attack' && !attackResults">
-        <UCard>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <h2 class="text-xl font-semibold">Attack Dice</h2>
-              <UButton
-                icon="i-heroicons-arrow-left"
-                color="gray"
-                variant="ghost"
-                @click="reset"
-              >
-                Back
-              </UButton>
-            </div>
-          </template>
-
-          <GameAttackDice :initial-count="3" @complete="handleAttackComplete" />
-        </UCard>
-      </div>
-
-      <!-- Defense Dice Component -->
-      <div v-else-if="diceMode === 'defense' && !defenseResults">
-        <UCard>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <h2 class="text-xl font-semibold">Defense Dice</h2>
-              <UButton
-                icon="i-heroicons-arrow-left"
-                color="gray"
-                variant="ghost"
-                @click="reset"
-              >
-                Back
-              </UButton>
-            </div>
-          </template>
-
-          <GameDefenseDice
-            :initial-count="3"
-            @complete="handleDefenseComplete"
-          />
-        </UCard>
-      </div>
-
-      <!-- Attack Results Display -->
-      <div v-else-if="attackResults" class="results-display max-w-2xl mx-auto">
-        <UCard>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <h2 class="text-xl font-semibold">Attack Results</h2>
-              <UButton
-                icon="i-heroicons-arrow-path"
-                color="gray"
-                @click="reset"
-              >
-                Roll Again
-              </UButton>
-            </div>
-          </template>
-
-          <div class="results-grid">
-            <div class="totals-section mb-6">
-              <h3 class="text-lg font-semibold mb-3">Totals</h3>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="stat-card">
-                  <span class="xwing-miniatures-ship text-3xl text-red-500"
-                    >d</span
-                  >
-                  <span class="text-2xl font-bold">{{
-                    attackTotals?.hits
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Hits</span
-                  >
-                </div>
-                <div class="stat-card">
-                  <span class="xwing-miniatures-ship text-3xl text-red-600"
-                    >c</span
-                  >
-                  <span class="text-2xl font-bold">{{
-                    attackTotals?.crits
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Crits</span
-                  >
-                </div>
-                <div class="stat-card">
-                  <span class="xwing-miniatures-ship text-3xl text-blue-500"
-                    >f</span
-                  >
-                  <span class="text-2xl font-bold">{{
-                    attackTotals?.focus
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Focus</span
-                  >
-                </div>
-                <div class="stat-card">
-                  <span class="text-2xl font-bold">{{
-                    attackTotals?.blanks
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Blanks</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="raw-data">
-              <h3 class="text-lg font-semibold mb-3">Raw Data</h3>
-              <pre
-                class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-auto"
-                >{{ JSON.stringify(attackResults, null, 2) }}</pre
-              >
-            </div>
-          </div>
-        </UCard>
-      </div>
-
-      <!-- Defense Results Display -->
-      <div v-else-if="defenseResults" class="results-display max-w-2xl mx-auto">
-        <UCard>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <h2 class="text-xl font-semibold">Defense Results</h2>
-              <UButton
-                icon="i-heroicons-arrow-path"
-                color="gray"
-                @click="reset"
-              >
-                Roll Again
-              </UButton>
-            </div>
-          </template>
-
-          <div class="results-grid">
-            <div class="totals-section mb-6">
-              <h3 class="text-lg font-semibold mb-3">Totals</h3>
-              <div class="grid grid-cols-3 gap-4">
-                <div class="stat-card">
-                  <span class="xwing-miniatures-ship text-3xl text-green-500"
-                    >e</span
-                  >
-                  <span class="text-2xl font-bold">{{
-                    defenseTotals?.evades
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Evades</span
-                  >
-                </div>
-                <div class="stat-card">
-                  <span class="xwing-miniatures-ship text-3xl text-blue-500"
-                    >f</span
-                  >
-                  <span class="text-2xl font-bold">{{
-                    defenseTotals?.focus
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Focus</span
-                  >
-                </div>
-                <div class="stat-card">
-                  <span class="text-2xl font-bold">{{
-                    defenseTotals?.blanks
-                  }}</span>
-                  <span class="text-sm text-gray-600 dark:text-gray-400"
-                    >Blanks</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="raw-data">
-              <h3 class="text-lg font-semibold mb-3">Raw Data</h3>
-              <pre
-                class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-auto"
-                >{{ JSON.stringify(defenseResults, null, 2) }}</pre
-              >
-            </div>
-          </div>
-        </UCard>
+        <UButton size="lg" color="primary" block @click="handleComplete">
+          Confirm Results
+        </UButton>
       </div>
     </div>
+
+    <UDrawer v-model:open="isModifyDrawerOpen" side="bottom">
+      <div class="p-6">
+        <h3 class="text-xl font-semibold mb-4 text-gray-100">
+          Modify Die Result
+        </h3>
+
+        <div
+          v-if="selectedDie"
+          class="current-face mb-4 p-4 bg-gray-800 rounded-lg"
+        >
+          <span class="text-sm text-gray-400">Current:</span>
+          <div
+            class="die-button attack-die mt-2 p-4 rounded-lg border-2 border-red-600 bg-red-900/20"
+            :class="{ blank: selectedDie.face === 'blank' }"
+          >
+            <span
+              v-if="selectedDie.face !== 'blank'"
+              class="xwing-miniatures-ship die-icon text-4xl text-red-400"
+            >
+              {{ getDieIcon(selectedDie.face) }}
+            </span>
+            <span v-else class="blank-text text-gray-400">Blank</span>
+          </div>
+        </div>
+
+        <div class="face-options grid grid-cols-4 gap-3">
+          <button
+            v-for="face in attackFaces"
+            :key="face"
+            class="p-4 rounded-lg border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 transition-all text-gray-100"
+            @click="changeDieFace(face)"
+          >
+            <div class="flex flex-col items-center gap-2">
+              <span
+                v-if="face !== 'blank'"
+                class="xwing-miniatures-ship text-3xl text-red-400"
+              >
+                {{ getDieIcon(face) }}
+              </span>
+              <span v-else class="text-gray-400">Blank</span>
+              <span class="text-sm">{{ getDieLabel(face) }}</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </UDrawer>
   </div>
 </template>
 
 <style scoped>
-.stat-card {
+.die-button {
+  min-height: 80px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: var(--ui-bg-elevated);
-  border-radius: 0.5rem;
-  border: 1px solid var(--ui-border);
+  justify-content: center;
+}
+
+.die-button.blank {
+  border-color: #4b5563;
+  background-color: rgba(55, 65, 81, 0.2);
 }
 </style>

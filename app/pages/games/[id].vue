@@ -803,7 +803,7 @@ async function handleNoShot() {
         />
 
         <!-- Roll Attack Dice -->
-        <CombatRollAttackDice
+        <CombatAttackDice
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.RollAttackDice
           "
