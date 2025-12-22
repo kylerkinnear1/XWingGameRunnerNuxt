@@ -645,6 +645,15 @@ const currentAttackDice = computed(() => {
   return [];
 });
 
+const currentRollDefenseDiceCount = computed(() => {
+  if (!currentGameState.value?.currentDefendingShipId) return 0;
+  const allShips = [...player1Ships.value, ...player2Ships.value];
+  const defendingShip = allShips.find(
+    (s) => s.ship.shipId === currentGameState.value!.currentDefendingShipId
+  );
+  return defendingShip?.ship.agility || 0;
+});
+
 async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
   if (
     !currentGameState.value?.currentAttackingShipId ||
@@ -689,23 +698,52 @@ async function handleModifyAttackDiceComplete(dice: any[]) {
     const beforeResults = currentStep.beforeResults;
     const afterResults = dice.map((die) => die.face);
 
-    // Update the modify_attack_dice step with final results
-    await addStep({
-      type: "modify_attack_dice",
-      attackerShipId: currentGameState.value.currentAttackingShipId,
-      beforeResults,
-      afterResults,
-      timestamp: new Date(),
+    // Truncate the current step and everything after it, then re-add with updated results
+    const currentIndex = selectedStepIndex.value;
+    const previousIndex = currentIndex - 1;
+
+    // Truncate from the previous step (this will remove the current modify_attack_dice step)
+    // modify_attack_dice is never the first step, so previousIndex should always be >= 0
+    if (previousIndex >= 0) {
+      await $fetch(`/api/games/${gameId}/steps/truncate`, {
+        method: "POST",
+        body: {
+          afterIndex: previousIndex,
+        },
+      });
+    }
+
+    // Re-add the modify_attack_dice step with updated afterResults
+    await $fetch(`/api/games/${gameId}/steps`, {
+      method: "POST",
+      body: {
+        type: "modify_attack_dice",
+        attackerShipId: currentGameState.value.currentAttackingShipId,
+        beforeResults,
+        afterResults,
+        timestamp: new Date(),
+      },
     });
 
-    // Move to next phase - push roll_defense_dice step
+    // Add roll_defense_dice step
     if (currentGameState.value.currentDefendingShipId) {
-      await addStep({
-        type: "roll_defense_dice",
-        defenderShipId: currentGameState.value.currentDefendingShipId,
-        results: [],
-        timestamp: new Date(),
+      await $fetch(`/api/games/${gameId}/steps`, {
+        method: "POST",
+        body: {
+          type: "roll_defense_dice",
+          defenderShipId: currentGameState.value.currentDefendingShipId,
+          results: [],
+          timestamp: new Date(),
+        },
       });
+    }
+
+    await refresh();
+
+    if (gameData.value) {
+      previousStepIndex.value = selectedStepIndex.value;
+      // Move to the roll_defense_dice step (which should be the last step now)
+      selectedStepIndex.value = gameData.value.steps.length - 1;
     }
   }
 }
@@ -727,6 +765,24 @@ async function handleNoShot() {
     pilotSkill: 0,
     timestamp: new Date(),
   });
+}
+
+async function handleDefenseDiceComplete(dice: any[]) {
+  if (!gameData.value || !currentGameState.value?.currentDefendingShipId)
+    return;
+
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (currentStep && currentStep.type === "roll_defense_dice") {
+    const results = dice.map((die) => die.face);
+
+    // Update the roll_defense_dice step with results
+    await addStep({
+      type: "roll_defense_dice",
+      defenderShipId: currentGameState.value.currentDefendingShipId,
+      results,
+      timestamp: new Date(),
+    });
+  }
 }
 </script>
 
@@ -921,6 +977,19 @@ async function handleNoShot() {
           :initial-dice="currentAttackDice"
           @confirm="handleModifyAttackDiceComplete"
         />
+
+        <!-- Roll Defense Dice -->
+        <div
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.RollDefenseDice
+          "
+          :key="`${CurrentGamePage.RollDefenseDice}-${selectedStepIndex}`"
+        >
+          <CombatDefenseDice
+            :initial-count="currentRollDefenseDiceCount"
+            @roll-complete="handleDefenseDiceComplete"
+          />
+        </div>
 
         <!-- Game Board (fallback) -->
         <GameBoard
