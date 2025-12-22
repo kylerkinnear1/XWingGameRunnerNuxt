@@ -165,11 +165,11 @@ function groupManeuversBySpeed(
           "
         >
           <!-- Ship Header -->
-          <div class="p-4 border-b border-gray-700 bg-gray-900">
-            <div class="flex items-center gap-4">
+          <div class="p-3 border-b border-gray-700 bg-gray-900">
+            <div class="flex items-center gap-3">
               <!-- Pilot Skill Badge - Orange like the cards -->
               <div
-                class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold bg-orange-600 text-white"
+                class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold bg-orange-600 text-white"
               >
                 {{ ship.pilotSkill }}
               </div>
@@ -177,7 +177,7 @@ function groupManeuversBySpeed(
               <!-- Ship Icon -->
               <span
                 v-if="pilot"
-                class="xwing-ship text-4xl shrink-0"
+                class="xwing-ship text-3xl shrink-0"
                 :class="
                   currentPlayerId === player1Id
                     ? 'text-red-400'
@@ -189,29 +189,24 @@ function groupManeuversBySpeed(
 
               <!-- Ship Details - Just name, no redundant stats -->
               <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-gray-100">
+                <h3 class="text-base font-semibold text-gray-100">
                   {{ pilot?.pilotName || "Unknown" }}
                 </h3>
               </div>
 
-              <!-- Selected Dial Display -->
+              <!-- Selected Dial Display - Compact version -->
               <div
                 v-if="selectedDials[ship.shipId]"
-                class="shrink-0 flex flex-col items-center gap-1 px-6 py-3 bg-teal-900/50 border border-teal-600 rounded"
+                class="shrink-0 flex items-center gap-1 px-3 py-1 bg-teal-900/30 border border-teal-700 rounded"
               >
-                <span class="text-xs text-gray-400 uppercase tracking-wide"
-                  >Selected</span
-                >
-                <!-- Dial Arrow -->
                 <span
-                  class="xwing-icon text-5xl"
+                  class="xwing-icon text-2xl"
                   :class="getManeuverDisplay(selectedDials[ship.shipId]!).color"
                 >
                   {{ getManeuverDisplay(selectedDials[ship.shipId]!).bearing }}
                 </span>
-                <!-- Speed underneath -->
                 <span
-                  class="text-3xl font-bold"
+                  class="text-xl font-bold"
                   :class="getManeuverDisplay(selectedDials[ship.shipId]!).color"
                 >
                   {{ getManeuverDisplay(selectedDials[ship.shipId]!).speed }}
@@ -221,29 +216,29 @@ function groupManeuversBySpeed(
           </div>
 
           <!-- Maneuver Selection -->
-          <div class="p-4">
-            <div class="space-y-3">
+          <div class="p-3">
+            <div class="space-y-2">
               <div
                 v-for="[speed, maneuvers] in groupManeuversBySpeed(
                   ship.maneuvers
                 )"
                 :key="speed"
-                class="flex items-start gap-3"
+                class="flex items-center gap-2"
               >
                 <!-- Speed Label -->
                 <div
-                  class="shrink-0 w-8 h-8 rounded flex items-center justify-center text-lg font-bold bg-gray-700 text-gray-300"
+                  class="shrink-0 w-6 h-6 rounded flex items-center justify-center text-sm font-bold bg-gray-700 text-gray-300"
                 >
                   {{ speed }}
                 </div>
 
-                <!-- Maneuver Options - Show as dials with arrow on top, speed on bottom -->
-                <div class="flex-1 flex flex-wrap gap-2">
+                <!-- Left-aligned container with centered dials inside -->
+                <div class="flex-1 flex flex-wrap gap-1.5 justify-center">
                   <button
                     v-for="(maneuver, index) in maneuvers"
                     :key="index"
                     @click="selectDial(ship.shipId, maneuver)"
-                    class="flex flex-col items-center gap-1 px-3 py-2 border-2 transition-all hover:scale-105"
+                    class="flex flex-col items-center justify-center gap-0 px-2 py-1.5 border-2 transition-all hover:scale-105 min-w-[48px]"
                     :class="[
                       selectedDials[ship.shipId] === maneuver
                         ? 'border-teal-500 bg-teal-900/50'
@@ -252,14 +247,14 @@ function groupManeuversBySpeed(
                   >
                     <!-- Dial Arrow -->
                     <span
-                      class="xwing-icon text-4xl"
+                      class="xwing-icon text-2xl leading-none"
                       :class="getManeuverDisplay(maneuver).color"
                     >
                       {{ getManeuverDisplay(maneuver).bearing }}
                     </span>
                     <!-- Speed underneath -->
                     <span
-                      class="text-2xl font-bold"
+                      class="text-lg font-bold leading-none"
                       :class="getManeuverDisplay(maneuver).color"
                     >
                       {{ getManeuverDisplay(maneuver).speed }}
