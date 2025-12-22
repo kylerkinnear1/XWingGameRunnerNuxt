@@ -85,15 +85,30 @@ function getDieImage(face: AttackDieFace): string {
 
     <Transition name="drawer-slide">
       <div v-if="isModifyDrawerOpen" class="modify-drawer mb-6">
-        <div class="face-options flex flex-wrap justify-center gap-3">
-          <button
-            v-for="face in attackFaces"
-            :key="face"
-            class="face-option-button"
-            @click="changeDieFace(face)"
-          >
-            <img :src="getDieImage(face)" :alt="face" class="die-image" />
-          </button>
+        <div class="drawer-content">
+          <div class="drawer-header">
+            <h3 class="drawer-title">Select New Face</h3>
+            <button
+              class="drawer-close"
+              @click="
+                isModifyDrawerOpen = false;
+                selectedDieId = null;
+              "
+            >
+              <span class="text-xl">×</span>
+            </button>
+          </div>
+          <div class="face-options flex flex-wrap justify-center gap-3">
+            <button
+              v-for="face in attackFaces"
+              :key="face"
+              class="face-option-button"
+              :class="{ active: selectedDie?.face === face }"
+              @click="changeDieFace(face)"
+            >
+              <img :src="getDieImage(face)" :alt="face" class="die-image" />
+            </button>
+          </div>
         </div>
       </div>
     </Transition>
@@ -177,13 +192,68 @@ function getDieImage(face: AttackDieFace): string {
 .modify-drawer {
   width: 100%;
   max-width: 800px;
+  overflow: hidden;
+}
+
+.drawer-content {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.drawer-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  padding: 0;
+}
+
+.drawer-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.drawer-close:active {
+  transform: scale(0.95);
 }
 
 .face-options {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .face-option-button {
@@ -192,23 +262,53 @@ function getDieImage(face: AttackDieFace): string {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   position: relative;
   overflow: hidden;
-  background: transparent;
-  border: none;
-  padding: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 0.5rem;
   flex-shrink: 0;
   cursor: pointer;
 }
 
 .face-option-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
 .face-option-button:active {
-  transform: scale(0.95);
+  transform: scale(1.02);
+}
+
+.face-option-button.active {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+}
+
+.face-option-button .die-image {
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+}
+
+@media (max-width: 640px) {
+  .drawer-content {
+    padding: 1rem;
+  }
+
+  .face-option-button {
+    width: 120px;
+    height: 120px;
+  }
+
+  .drawer-title {
+    font-size: 1rem;
+  }
 }
 
 .roll-button {
@@ -241,26 +341,27 @@ function getDieImage(face: AttackDieFace): string {
 
 .drawer-slide-enter-active,
 .drawer-slide-leave-active {
-  transition: all 0.2s ease-out;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  overflow: hidden;
 }
 
 .drawer-slide-enter-from {
   opacity: 0;
-  transform: translateY(-20px);
+  max-height: 0;
 }
 
 .drawer-slide-enter-to {
   opacity: 1;
-  transform: translateY(0);
+  max-height: 1000px;
 }
 
 .drawer-slide-leave-from {
   opacity: 1;
-  transform: translateY(0);
+  max-height: 1000px;
 }
 
 .drawer-slide-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  max-height: 0;
 }
 </style>
