@@ -124,31 +124,6 @@ function groupManeuversBySpeed(
     <!-- Header -->
     <div class="p-6 border-b border-gray-700 bg-gray-800">
       <h2 class="text-2xl font-bold text-gray-100 mb-2">Planning Phase</h2>
-      <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-400">Current Player:</span>
-          <span
-            class="px-3 py-1 rounded text-sm font-semibold"
-            :class="
-              currentPlayerId === player1Id
-                ? 'bg-red-600 text-white'
-                : 'bg-gray-600 text-white'
-            "
-          >
-            {{ currentPlayerId === player1Id ? "Player 1" : "Player 2" }}
-          </span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-400">Ships Remaining:</span>
-          <span class="text-sm font-semibold text-teal-400">
-            {{
-              currentPlayerShips.filter((s) => !selectedDials[s.ship.shipId])
-                .length
-            }}
-            / {{ currentPlayerShips.length }}
-          </span>
-        </div>
-      </div>
     </div>
 
     <!-- Ship List -->
@@ -169,7 +144,7 @@ function groupManeuversBySpeed(
             <div class="flex items-center gap-3">
               <!-- Pilot Skill Badge - Orange like the cards -->
               <div
-                class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold bg-orange-600 text-white"
+                class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-2xl font-bold text-orange-600"
               >
                 {{ ship.pilotSkill }}
               </div>
@@ -225,13 +200,6 @@ function groupManeuversBySpeed(
                 :key="speed"
                 class="flex items-center gap-2"
               >
-                <!-- Speed Label -->
-                <div
-                  class="shrink-0 w-6 h-6 rounded flex items-center justify-center text-sm font-bold bg-gray-700 text-gray-300"
-                >
-                  {{ speed }}
-                </div>
-
                 <!-- Left-aligned container with centered dials inside -->
                 <div class="flex-1 flex flex-wrap gap-1.5 justify-center">
                   <button
@@ -270,21 +238,7 @@ function groupManeuversBySpeed(
 
     <!-- Footer Actions -->
     <div class="p-6 border-t border-gray-700 bg-gray-800">
-      <div class="max-w-6xl mx-auto flex items-center justify-between">
-        <div class="text-sm text-gray-400">
-          <span v-if="!allDialsAssigned">
-            Assign dials to all ships to continue
-          </span>
-          <span
-            v-else-if="isInitiativePlayer"
-            class="text-teal-400 font-semibold"
-          >
-            Ready to pass to Player 2
-          </span>
-          <span v-else class="text-teal-400 font-semibold">
-            Ready to begin activation
-          </span>
-        </div>
+      <div class="max-w-6xl mx-auto flex items-center justify-center">
         <button
           @click="confirmDials"
           :disabled="!allDialsAssigned"
