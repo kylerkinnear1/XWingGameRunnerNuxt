@@ -12,7 +12,11 @@ const emit = defineEmits<{
   selectStep: [index: number];
 }>();
 
-const hiddenStepTypes = ["initiative_selected", "select_action_again", "done_with_actions"];
+const hiddenStepTypes = [
+  "initiative_selected",
+  "select_action_again",
+  "done_with_actions",
+];
 
 const visibleSteps = computed(() => {
   return props.steps
@@ -21,7 +25,8 @@ const visibleSteps = computed(() => {
 });
 
 function handleStepClick(visibleIndex: number) {
-  const originalIndex = visibleSteps.value[visibleIndex]?.originalIndex ?? visibleIndex;
+  const originalIndex =
+    visibleSteps.value[visibleIndex]?.originalIndex ?? visibleIndex;
   emit("selectStep", originalIndex);
 }
 
@@ -54,21 +59,29 @@ const getSelectedVisibleIndex = computed(() => {
         v-for="({ step, originalIndex }, visibleIndex) in visibleSteps"
         :key="originalIndex"
         @click="handleStepClick(visibleIndex)"
-        class="p-3 mb-1 border cursor-pointer transition-all"
+        class="p-3 mb-1 border cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg group"
         :class="[
           selectedIndex === originalIndex
-            ? 'border-teal-500 bg-gray-700 border-l-4'
-            : 'border-gray-700 bg-gray-800 hover:bg-gray-750 border-l-2',
+            ? 'border-teal-500 bg-gray-700 border-l-4 shadow-teal-500/20'
+            : 'border-gray-700 bg-gray-800 hover:bg-gray-750 hover:border-gray-500 border-l-2 hover:shadow-gray-900',
         ]"
       >
         <div class="flex items-center justify-between">
           <div class="flex-1 min-w-0">
-            <div class="text-xs font-semibold text-gray-100 truncate">
+            <div
+              class="text-xs font-semibold text-gray-100 truncate group-hover:text-teal-400 transition-colors"
+            >
               {{ step.type.replace(/_/g, " ").toUpperCase() }}
             </div>
-            <div class="text-xs text-gray-500">Step {{ visibleIndex + 1 }}</div>
+            <div
+              class="text-xs text-gray-500 group-hover:text-gray-400 transition-colors"
+            >
+              Step {{ visibleIndex + 1 }}
+            </div>
           </div>
-          <div class="text-xs text-gray-600">
+          <div
+            class="text-xs text-gray-600 group-hover:text-gray-500 transition-colors"
+          >
             {{ new Date(step.timestamp).toLocaleTimeString() }}
           </div>
         </div>
