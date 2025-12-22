@@ -70,14 +70,20 @@ const transitionName = computed(() => {
   const baseTransition =
     transitionDirection.value === "forward" ? "slide-up" : "slide-down";
 
-  // Suppress leave transition when leaving RollAttackDice
-  if (previousUiScreen.value === CurrentGamePage.RollAttackDice) {
-    return `${baseTransition}-no-leave`;
+  const previousScreen = previousUiScreen.value;
+  const currentScreen = currentGameState.value?.uiScreen;
+
+  // Suppress both enter and leave when transitioning from RollAttackDice to ModifyAttackDice
+  if (
+    previousScreen === CurrentGamePage.RollAttackDice &&
+    currentScreen === CurrentGamePage.ModifyAttackDice
+  ) {
+    return `${baseTransition}-no-enter-no-leave`;
   }
 
-  // Suppress enter transition when entering ModifyAttackDice
-  if (currentGameState.value?.uiScreen === CurrentGamePage.ModifyAttackDice) {
-    return `${baseTransition}-no-enter`;
+  // Suppress leave transition when leaving RollAttackDice
+  if (previousScreen === CurrentGamePage.RollAttackDice) {
+    return `${baseTransition}-no-leave`;
   }
 
   return baseTransition;
@@ -1068,6 +1074,41 @@ async function handleNoShot() {
   opacity: 0;
 }
 
+/* Slide Up with no enter and no leave transition */
+.slide-up-no-enter-no-leave-enter-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-enter-no-leave-leave-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-up-no-enter-no-leave-enter-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-no-leave-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-no-leave-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-up-no-enter-no-leave-leave-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /* Slide Down - Moving Backward in Time */
 .slide-down-enter-active,
 .slide-down-leave-active {
@@ -1165,5 +1206,40 @@ async function handleNoShot() {
 .slide-down-no-enter-leave-to {
   transform: translateY(100%);
   opacity: 0;
+}
+
+/* Slide Down with no enter and no leave transition */
+.slide-down-no-enter-no-leave-enter-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-enter-no-leave-leave-active {
+  transition: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-down-no-enter-no-leave-enter-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-no-leave-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-no-leave-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-no-enter-no-leave-leave-to {
+  transform: translateY(0);
+  opacity: 1;
 }
 </style>

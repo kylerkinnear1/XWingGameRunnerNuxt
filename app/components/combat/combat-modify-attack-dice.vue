@@ -69,6 +69,20 @@ function getDieImage(face: AttackDieFace): string {
       </div>
     </div>
 
+    <div
+      class="dice-controls-spacer mb-6 flex justify-center items-center gap-3"
+    >
+      <div class="dice-control-button invisible">
+        <span class="text-xl">−</span>
+      </div>
+      <div class="text-2xl font-bold w-12 text-center text-white invisible">
+        0
+      </div>
+      <div class="dice-control-button invisible">
+        <span class="text-xl">+</span>
+      </div>
+    </div>
+
     <Transition name="drawer-slide">
       <div v-if="isModifyDrawerOpen" class="modify-drawer mb-6">
         <div class="face-options flex flex-wrap justify-center gap-3">
@@ -141,6 +155,23 @@ function getDieImage(face: AttackDieFace): string {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.dice-controls-spacer {
+  height: 36px;
+}
+
+.dice-control-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
 }
 
 .modify-drawer {
