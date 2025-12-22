@@ -1,7 +1,5 @@
-import { GamePhase } from "#shared/enums";
-import type {
-  SquadReadDto,
-} from "#shared/squad-dto";
+import { CurrentGamePage, GamePhase } from "#shared/enums";
+import type { SquadReadDto } from "#shared/squad-dto";
 import type { CardsDto } from "#shared/cards";
 import type {
   CurrentGameState,
@@ -22,6 +20,7 @@ export function handleCombatStep(
 ): void {
   state.currentPhase = GamePhase.Engagement;
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.CombatStart;
 }
 
 export function handleDeclareTarget(
@@ -36,6 +35,8 @@ export function handleDeclareTarget(
   if (ship) {
     ship.attackTargetShipId = step.defenderShipId;
   }
+
+  state.uiScreen = CurrentGamePage.Engagement;
 }
 
 export function handleRollAttackDice(
@@ -87,4 +88,3 @@ export function handleCompleteAttack(
     ship.hasAttacked = true;
   }
 }
-

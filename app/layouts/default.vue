@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden">
-    <main-header />
+    <NavigationMainHeader />
     <div class="flex-1 overflow-hidden">
       <slot />
     </div>

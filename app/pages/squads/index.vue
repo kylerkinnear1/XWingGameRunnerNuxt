@@ -63,7 +63,7 @@ const showShipDrawer = computed(() => {
 
     <!-- Right side - Edit Form -->
     <div class="flex-1 bg-gray-900 overflow-y-auto">
-      <EditSquad />
+      <SquadEdit />
     </div>
   </div>
 </template>

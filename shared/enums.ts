@@ -110,6 +110,8 @@ export enum CurrentGamePage {
   CollisionSelection = "collision-selection",
   ActionSelection = "action-selection",
   Engagement = "engagement",
+  CombatStart = "combat-start",
+  SelectTarget = "select-target",
   End = "end",
 }
 

@@ -108,7 +108,7 @@ function handleCloseTokenManager() {
           <div class="text-xs uppercase tracking-wide text-gray-500 mb-2 px-2">
             Player 1
           </div>
-          <ShipCard
+          <GameShipCard
             v-for="{ ship, pilot } in player1Ships"
             :key="ship.shipId"
             :ship="ship"
@@ -127,7 +127,7 @@ function handleCloseTokenManager() {
           <div class="text-xs uppercase tracking-wide text-gray-500 mb-2 px-2">
             Player 2
           </div>
-          <ShipCard
+          <GameShipCard
             v-for="{ ship, pilot } in player2Ships"
             :key="ship.shipId"
             :ship="ship"
@@ -145,7 +145,7 @@ function handleCloseTokenManager() {
       v-if="expandedShipId"
       class="bg-gray-900 border-l border-gray-700 shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full w-64"
     >
-      <ShipTokenManager
+      <GameShipTokenManager
         v-if="expandedShip"
         :key="expandedShipId"
         :ship="expandedShip"

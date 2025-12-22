@@ -172,6 +172,25 @@ function selectStep(index: number) {
 }
 
 watch(
+  [gameData, cards, squads],
+  async () => {
+    if (!gameData.value || !cards.value || !squads.value.length) return;
+    
+    const hasGameStartStep = gameData.value.steps.some(
+      (step) => step.type === "game_start"
+    );
+    
+    if (!hasGameStartStep && gameData.value.steps.length === 0) {
+      await addStep({
+        type: "game_start",
+        timestamp: new Date(),
+      });
+    }
+  },
+  { immediate: true }
+);
+
+watch(
   [selectedStepIndex, gameData],
   async () => {
     if (!gameData.value) return;
@@ -514,6 +533,48 @@ async function handleDoneWithActions() {
     }
   }
 }
+
+async function handleCombatAnimationComplete() {
+  await addStep({
+    type: "declare_target",
+    attackerShipId: "",
+    defenderShipId: "",
+    weaponId: "",
+    baseAttackDice: 0,
+    baseDefenseDice: 0,
+    timestamp: new Date(),
+  });
+}
+
+async function handleDeclareAttack(
+  attackerShipId: string,
+  defenderShipId: string
+) {
+  const attacker = [...player1Ships.value, ...player2Ships.value].find(
+    (s) => s.ship.shipId === attackerShipId
+  );
+
+  if (!attacker) return;
+
+  await addStep({
+    type: "declare_target",
+    attackerShipId,
+    defenderShipId,
+    weaponId: "pilot", // Primary weapon for now
+    baseAttackDice: attacker.ship.attack,
+    baseDefenseDice: 0, // Will be calculated from defender
+    timestamp: new Date(),
+  });
+}
+
+async function handleNoShot() {
+  // Mark this as no shot and move to next step
+  await addStep({
+    type: "combat_step",
+    pilotSkill: 0,
+    timestamp: new Date(),
+  });
+}
 </script>
 
 <template>
@@ -528,7 +589,7 @@ async function handleDoneWithActions() {
     />
 
     <!-- Ships Drawer -->
-    <ShipsDrawer
+    <GameShipsDrawer
       :player1-ships="player1Ships"
       :player2-ships="player2Ships"
       :expanded-ship-id="expandedShipId"
@@ -557,7 +618,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Select Initiative -->
-        <SelectInitiative
+        <SetupSelectInitiative
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.SelectInitiative &&
             player1Squad &&
@@ -573,7 +634,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Setup Phase -->
-        <StartSetup
+        <SetupStart
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.Setup && gameData
           "
@@ -587,7 +648,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Turn Start Animation -->
-        <TurnStartAnimation
+        <ActivationTurnStartAnimation
           v-else-if="currentGameState?.uiScreen === CurrentGamePage.TurnStart"
           :key="`${CurrentGamePage.TurnStart}-${currentGameState.totalTurns}`"
           :turn-number="currentGameState.totalTurns"
@@ -609,7 +670,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Select Ship to Activate -->
-        <SelectActivation
+        <ActivationSelect
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.SelectActivation &&
             gameData
@@ -623,7 +684,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Collision Selection -->
-        <CollisionSelection
+        <ActivationCollisionSelection
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.CollisionSelection &&
             currentActivatingShip
@@ -637,7 +698,7 @@ async function handleDoneWithActions() {
         />
 
         <!-- Action Selection -->
-        <ActionSelection
+        <ActivationActionSelection
           v-else-if="
             currentGameState?.uiScreen === CurrentGamePage.ActionSelection &&
             currentActivatingShip

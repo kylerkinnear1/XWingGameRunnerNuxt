@@ -3,13 +3,9 @@
     <div class="px-6 py-2">
       <div class="flex items-center gap-3">
         <NuxtLink to="/" class="flex items-center gap-2 py-2">
-          <img
-            src="/xwing_logo.png"
-            alt="XWing Gamemaster"
-            class="h-10 w-auto shrink-0"
-          />
+          <img src="/xwing_logo.png" alt="XWGM" class="h-10 w-auto shrink-0" />
           <span class="font-bold text-lg whitespace-nowrap text-gray-100"
-            >XWing Gamemaster</span
+            >XWGM</span
           >
         </NuxtLink>
 
