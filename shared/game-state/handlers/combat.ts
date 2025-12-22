@@ -5,6 +5,9 @@ import type {
   CurrentGameState,
   BeginCombat,
   BeginSelectTarget,
+  SelectAttacker,
+  SelectWeapon,
+  SkipAttack,
   DeclareTarget,
   RollAttackDice,
   ModifyAttackDice,
@@ -31,6 +34,41 @@ export function handleBeginSelectTarget(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.SelectTarget;
+}
+
+export function handleSelectAttacker(
+  step: SelectAttacker,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.currentAttackingShipId = step.shipId;
+  state.uiScreen = CurrentGamePage.SelectWeapon;
+}
+
+export function handleSelectWeapon(
+  step: SelectWeapon,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.currentAttackingShipId = step.attackerShipId;
+  state.currentDefendingShipId = step.defenderShipId;
+  state.uiScreen = CurrentGamePage.SelectWeapon;
+}
+
+export function handleSkipAttack(
+  step: SkipAttack,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.currentAttackingShipId = null;
+  state.currentDefendingShipId = null;
   state.uiScreen = CurrentGamePage.SelectTarget;
 }
 

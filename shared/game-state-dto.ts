@@ -35,6 +35,8 @@ export type CurrentGameState = {
 
   uiScreen: CurrentGamePage;
   currentActivatingShipId: string | null;
+  currentAttackingShipId: string | null;
+  currentDefendingShipId: string | null;
 };
 
 export type ObstacleStateDto = {
@@ -93,8 +95,13 @@ export type TokenStateDto = {
 
 export type WeaponStateDto = {
   weaponId: string;
+  type: string;
+  name: string;
+  attack: number | null;
+  minRange: number | null;
+  maxRange: number | null;
   isDestroyed: boolean;
-  ammo: number;
+  ammo: number | null;
 };
 
 export type GameStepDto =
@@ -125,6 +132,9 @@ export type GameStepDto =
   | TriggerAbility
   | BeginCombat
   | BeginSelectTarget
+  | SelectAttacker
+  | SelectWeapon
+  | SkipAttack
   | DeclareTarget
   | RollAttackDice
   | ModifyAttackDice
@@ -339,6 +349,25 @@ export interface BeginCombat {
 
 export interface BeginSelectTarget {
   type: "begin_select_target";
+  timestamp: Date;
+}
+
+export interface SelectAttacker {
+  type: "select_attacker";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface SelectWeapon {
+  type: "select_weapon";
+  attackerShipId: string;
+  defenderShipId: string;
+  timestamp: Date;
+}
+
+export interface SkipAttack {
+  type: "skip_attack";
+  shipId: string;
   timestamp: Date;
 }
 

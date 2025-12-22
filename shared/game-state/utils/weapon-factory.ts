@@ -38,10 +38,8 @@ export function createWeaponsForShip(
       attack: pilotCard.attack,
       minRange: 1,
       maxRange: 3,
-      isTurret: false,
       ammo: null,
       isDestroyed: false,
-      source: "pilot",
     });
   }
 
@@ -65,7 +63,6 @@ export function createWeaponsForShip(
           ? 1
           : null,
       isDestroyed: false,
-      source: u.id,
     }));
 
   if (shipUpgradeObjs.some((u) => u.key === "snapshot")) {
@@ -77,10 +74,8 @@ export function createWeaponsForShip(
       attack: snap?.attack ?? 2,
       minRange: snap?.minRange ?? 2,
       maxRange: snap?.maxRange ?? 2,
-      isTurret: false,
       ammo: null,
       isDestroyed: false,
-      source: snap?.id ?? "elite/snapshot",
     });
   }
 
@@ -93,20 +88,14 @@ export function createWeaponsForShip(
       attack: refit?.attack ?? 2,
       minRange: refit?.minRange ?? 2,
       maxRange: refit?.maxRange ?? 3,
-      isTurret: false,
       ammo: 1,
       isDestroyed: false,
-      source: refit?.id ?? "torpedo/renegaderefit",
     });
   }
 
   if (hasExtraMunitions) {
     upgradeWeapons = upgradeWeapons.map((w) => {
-      if (
-        w.type === "Cannon" ||
-        w.type === "Elite" ||
-        w.isTurret
-      ) {
+      if (w.type === "Cannon" || w.type === "Elite") {
         return { ...w };
       }
       if (w.ammo !== null && typeof w.ammo === "number") {

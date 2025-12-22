@@ -380,6 +380,22 @@ const currentActivatingShip = computed(() => {
   );
 });
 
+const currentAttackingShip = computed(() => {
+  if (!currentGameState.value?.currentAttackingShipId) return null;
+  const allShips = [...player1Ships.value, ...player2Ships.value];
+  return allShips.find(
+    (s) => s.ship.shipId === currentGameState.value!.currentAttackingShipId
+  );
+});
+
+const currentDefendingShip = computed(() => {
+  if (!currentGameState.value?.currentDefendingShipId) return null;
+  const allShips = [...player1Ships.value, ...player2Ships.value];
+  return allShips.find(
+    (s) => s.ship.shipId === currentGameState.value!.currentDefendingShipId
+  );
+});
+
 async function handleBeginActivation() {
   await addStep({
     type: "activation_step",
@@ -545,19 +561,41 @@ async function handleDeclareAttack(
   attackerShipId: string,
   defenderShipId: string
 ) {
-  const attacker = [...player1Ships.value, ...player2Ships.value].find(
-    (s) => s.ship.shipId === attackerShipId
-  );
+  await addStep({
+    type: "select_weapon",
+    attackerShipId,
+    defenderShipId,
+    timestamp: new Date(),
+  });
+}
 
-  if (!attacker) return;
+async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
+  if (
+    !currentGameState.value?.currentAttackingShipId ||
+    !currentGameState.value?.currentDefendingShipId
+  )
+    return;
+
+  const defender = currentDefendingShip.value;
+  if (!defender) return;
 
   await addStep({
     type: "declare_target",
-    attackerShipId,
-    defenderShipId,
-    weaponId: "pilot", // Primary weapon for now
-    baseAttackDice: attacker.ship.attack,
-    baseDefenseDice: 0, // Will be calculated from defender
+    attackerShipId: currentGameState.value.currentAttackingShipId,
+    defenderShipId: currentGameState.value.currentDefendingShipId,
+    weaponId,
+    baseAttackDice,
+    baseDefenseDice: defender.ship.agility,
+    timestamp: new Date(),
+  });
+}
+
+async function handleSkipAttack() {
+  if (!currentGameState.value?.currentAttackingShipId) return;
+
+  await addStep({
+    type: "skip_attack",
+    shipId: currentGameState.value.currentAttackingShipId,
     timestamp: new Date(),
   });
 }
@@ -727,6 +765,21 @@ async function handleNoShot() {
           :player2-id="gameData.player2Id"
           @declare-attack="handleDeclareAttack"
           @no-shot="handleNoShot"
+        />
+
+        <!-- Select Weapon -->
+        <SelectWeapon
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.SelectWeapon &&
+            currentAttackingShip &&
+            currentDefendingShip
+          "
+          :key="`${CurrentGamePage.SelectWeapon}-${currentAttackingShip.ship.shipId}-${currentDefendingShip.ship.shipId}`"
+          :attacking-ship="currentAttackingShip"
+          :defending-ship="currentDefendingShip"
+          :player-color="currentAttackingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
+          @select-weapon="handleSelectWeapon"
+          @skip-attack="handleSkipAttack"
         />
 
         <!-- Game Board (fallback) -->

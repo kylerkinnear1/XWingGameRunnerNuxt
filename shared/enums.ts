@@ -112,6 +112,7 @@ export enum CurrentGamePage {
   Engagement = "engagement",
   CombatStart = "combat-start",
   SelectTarget = "select-target",
+  SelectWeapon = "select-weapon",
   End = "end",
 }
 

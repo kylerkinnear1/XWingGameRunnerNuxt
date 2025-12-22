@@ -32,6 +32,8 @@ export function calculateGameState(
     currentPhase: GamePhase.Start,
     uiScreen: CurrentGamePage.GameStart,
     currentActivatingShipId: null,
+    currentAttackingShipId: null,
+    currentDefendingShipId: null,
   };
 
   for (const step of gameState.steps) {
@@ -156,6 +158,15 @@ export function handleStep(
       break;
     case "begin_select_target":
       combatHandlers.handleBeginSelectTarget(step, currentState, squads, cards);
+      break;
+    case "select_attacker":
+      combatHandlers.handleSelectAttacker(step, currentState, squads, cards);
+      break;
+    case "select_weapon":
+      combatHandlers.handleSelectWeapon(step, currentState, squads, cards);
+      break;
+    case "skip_attack":
+      combatHandlers.handleSkipAttack(step, currentState, squads, cards);
       break;
     case "declare_target":
       combatHandlers.handleDeclareTarget(step, currentState, squads, cards);
