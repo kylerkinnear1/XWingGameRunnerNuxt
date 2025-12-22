@@ -1,12 +1,26 @@
-# 📘 X-Wing Game Runner
+# X-Wing Game Runner
 
 A state-heavy, interactive game runner for X-Wing Miniatures Game built with Nuxt 4, featuring multiplayer support, realtime sync, and complex game state management.
 
-## 🎯 Goal
+## Goal
 
 Build a comprehensive game runner that manages lists, activation dials, damage tracking, and game phases with clear client/server boundaries, typed APIs, and optional realtime synchronization.
 
-## 🏗️ Core Architecture
+## Screenshots
+
+### Login Screen
+
+![Login Screen](./LoginScreen.png)
+
+### Squad Builder
+
+![Squad Builder](./SquadBuilderScreen.png)
+
+### Battle Screen
+
+![Battle Screen](./BattleScreen.png)
+
+## Core Architecture
 
 ### Tech Stack
 
@@ -14,7 +28,8 @@ Build a comprehensive game runner that manages lists, activation dials, damage t
 - **Nitro Server** – Node runtime (not edge) for complex logic
 - **Pinia** – Client-side state management
 - **SSE (Server-Sent Events)** – Realtime sync via Nitro `createEventStream`
-- **SQLite → Postgres** – Migration-ready data storage
+- **Drizzle** - ORM of choice
+- **Postgres** – Migration-ready data storage
 - **OIDC** – Authentication via Auth.js / sidebase or Nuxt OIDC module
 
 ### Why Nuxt?
@@ -25,7 +40,7 @@ Build a comprehensive game runner that manages lists, activation dials, damage t
 - Flexible deployment options
 - Streamlined state management with Pinia
 
-## 📱 App Routes
+## App Routes
 
 ```
 /squads                 – View game lists
@@ -39,10 +54,11 @@ Build a comprehensive game runner that manages lists, activation dials, damage t
 ```
 
 **Layouts:**
+
 - `default.vue` – Main navigation, global context
 - `game.vue` – Sticky header, left/right rails, phase workspace
 
-## 🔄 Game Flow (Finite State Machine)
+## Game Flow (Finite State Machine)
 
 The game progresses through explicit, server-validated state transitions:
 
@@ -72,7 +88,7 @@ End Phase
 
 **Key Property:** All state transitions are explicit, immutable, and validated server-side before client updates.
 
-## 🌐 Realtime Sync (SSE)
+## Realtime Sync (SSE)
 
 ### Pattern
 
@@ -100,11 +116,12 @@ Server pushes updates to:
 - Minimal client-side complexity
 - Native browser support (no WebSocket library needed)
 
-## 💾 Data Storage
+## Data Storage
 
 ### Development & Single-Instance
 
 **SQLite**
+
 - Simple file-based storage
 - Zero setup required
 - Easy backups
@@ -113,6 +130,7 @@ Server pushes updates to:
 ### Production & Multi-Instance
 
 **Postgres**
+
 - Multiple app instances
 - Row-level locking for concurrent updates
 - Hosted DB options (AWS RDS, Heroku, etc.)
@@ -120,7 +138,7 @@ Server pushes updates to:
 
 **Implementation:** DAL is abstracted so migration is painless.
 
-## 🔐 Authentication
+## Authentication
 
 - **OIDC** (OpenID Connect) provider
 - **Cookie-based sessions**
@@ -128,7 +146,7 @@ Server pushes updates to:
   - Command endpoints (`/api/games/:id/activate`, etc.)
   - SSE connection handshake (`GET /api/games/:id/stream`)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 /app
@@ -177,18 +195,3 @@ Preview production build locally:
 ```bash
 pnpm preview
 ```
-
-## 📚 For AI Assistants
-
-This README documents the complete architecture and design philosophy for the X-Wing Game Runner. Before implementing features, review:
-
-1. **Game Flow** – Understand the FSM state transitions
-2. **Architecture** – Note client/server separation and type safety requirements
-3. **Realtime Sync** – SSE is the transport, HTTP mutations are the state changes
-4. **Data Storage** – Abstract DAL for SQLite/Postgres migration
-
-When making changes:
-- Server-side state validation is mandatory
-- All state transitions must be explicit
-- Type safety is enforced throughout
-- SSE updates happen after HTTP mutations complete

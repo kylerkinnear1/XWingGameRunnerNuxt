@@ -576,8 +576,12 @@ async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
   )
     return;
 
+  const attacker = currentAttackingShip.value;
   const defender = currentDefendingShip.value;
-  if (!defender) return;
+  if (!attacker || !defender) return;
+
+  const weapon = attacker.ship.weapons.find((w) => w.weaponId === weaponId);
+  if (!weapon) return;
 
   await addStep({
     type: "declare_target",
@@ -586,6 +590,25 @@ async function handleSelectWeapon(weaponId: string, baseAttackDice: number) {
     weaponId,
     baseAttackDice,
     baseDefenseDice: defender.ship.agility,
+    timestamp: new Date(),
+  });
+
+  if (weapon.type !== "Primary" && weapon.ammo !== null) {
+    const newAmmo = weapon.ammo > 0 ? weapon.ammo - 1 : 0;
+    await addStep({
+      type: "spend_ammo",
+      shipId: currentGameState.value.currentAttackingShipId,
+      weaponId,
+      ammoRemaining: newAmmo,
+      timestamp: new Date(),
+    });
+  }
+
+  await refresh();
+
+  await addStep({
+    type: "roll_attack_dice",
+    results: [],
     timestamp: new Date(),
   });
 }
@@ -605,6 +628,13 @@ async function handleNoShot() {
   await addStep({
     type: "combat_step",
     pilotSkill: 0,
+    timestamp: new Date(),
+  });
+}
+
+async function handleMoveToCleanup() {
+  await addStep({
+    type: "cleanup",
     timestamp: new Date(),
   });
 }
@@ -765,6 +795,7 @@ async function handleNoShot() {
           :player2-id="gameData.player2Id"
           @declare-attack="handleDeclareAttack"
           @no-shot="handleNoShot"
+          @move-to-cleanup="handleMoveToCleanup"
         />
 
         <!-- Select Weapon -->

@@ -136,4 +136,8 @@ export function handleCompleteAttack(
   if (ship) {
     ship.hasAttacked = true;
   }
+
+  state.currentAttackingShipId = null;
+  state.currentDefendingShipId = null;
+  state.uiScreen = CurrentGamePage.SelectTarget;
 }

@@ -1,4 +1,4 @@
-import { GamePhase } from "#shared/enums";
+import { GamePhase, CurrentGamePage } from "#shared/enums";
 import type {
   SquadReadDto,
 } from "#shared/squad-dto";
@@ -18,6 +18,7 @@ export function handleCleanup(
 ): void {
   state.currentPhase = GamePhase.End;
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.End;
 }
 
 export function handleTurnEnd(
