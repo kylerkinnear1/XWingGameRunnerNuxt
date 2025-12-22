@@ -160,6 +160,11 @@ async function handleRollDice() {
 <style scoped>
 .roll-attack-dice-component {
   padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .dice-preview {
@@ -176,8 +181,8 @@ async function handleRollDice() {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   position: relative;
   overflow: hidden;
   background: transparent;
