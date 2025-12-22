@@ -113,6 +113,9 @@ export enum CurrentGamePage {
   CombatStart = "combat-start",
   SelectTarget = "select-target",
   SelectWeapon = "select-weapon",
+  RollAttackDice = "roll-attack-dice",
+  ModifyAttackDice = "modify-attack-dice",
+  RollDefenseDice = "roll-defense-dice",
   End = "end",
 }
 

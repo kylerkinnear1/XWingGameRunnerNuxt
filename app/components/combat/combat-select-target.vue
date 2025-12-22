@@ -18,23 +18,21 @@ const props = defineProps<{
 const emit = defineEmits<{
   declareAttack: [attackerShipId: string, defenderShipId: string];
   noShot: [];
-  moveToCleanup: [];
 }>();
 
 const selectedAttacker = ref<string | null>(null);
 const selectedDefender = ref<string | null>(null);
 
-// Show all ships (not destroyed), sorted by pilot skill
-// Ships that have already shot are still selectable but visually marked
+// Filter to ships that haven't attacked yet and aren't destroyed
 const player1ShipsAvailable = computed(() => {
   return props.player1Ships
-    .filter((s) => !s.ship.isDestroyed)
+    .filter((s) => !s.ship.hasAttacked && !s.ship.isDestroyed)
     .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
 });
 
 const player2ShipsAvailable = computed(() => {
   return props.player2Ships
-    .filter((s) => !s.ship.isDestroyed)
+    .filter((s) => !s.ship.hasAttacked && !s.ship.isDestroyed)
     .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
 });
 
@@ -76,10 +74,6 @@ function noShot() {
   selectedAttacker.value = null;
   selectedDefender.value = null;
 }
-
-function moveToCleanup() {
-  emit("moveToCleanup");
-}
 </script>
 
 <template>
@@ -92,6 +86,18 @@ function moveToCleanup() {
     <!-- Ship Selection Grid -->
     <div class="flex-1 overflow-y-auto p-6">
       <div
+        v-if="
+          player1ShipsAvailable.length === 0 &&
+          player2ShipsAvailable.length === 0
+        "
+        class="text-center py-12"
+      >
+        <p class="text-xl text-gray-400 mb-2">All ships have attacked!</p>
+        <p class="text-sm text-gray-500">Ready to move to end phase.</p>
+      </div>
+
+      <div
+        v-else
         class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
       >
         <!-- Player 1 Ships (Left Column) -->
@@ -118,8 +124,6 @@ function moveToCleanup() {
                   ? 'border-red-500 bg-red-900/20'
                   : selectedDefender === ship.shipId
                   ? 'border-teal-500 bg-teal-900/20'
-                  : ship.hasAttacked
-                  ? 'border-yellow-600 bg-yellow-900/10 opacity-75'
                   : 'border-gray-700 bg-gray-800',
               ]"
             >
@@ -228,8 +232,6 @@ function moveToCleanup() {
                   ? 'border-red-500 bg-red-900/20'
                   : selectedDefender === ship.shipId
                   ? 'border-teal-500 bg-teal-900/20'
-                  : ship.hasAttacked
-                  ? 'border-yellow-600 bg-yellow-900/10 opacity-75'
                   : 'border-gray-700 bg-gray-800',
               ]"
             >
@@ -251,17 +253,9 @@ function moveToCleanup() {
 
                 <!-- Ship Details -->
                 <div class="flex-1 min-w-0">
-                  <div class="flex items-center gap-2 mb-1">
-                    <h3 class="text-base font-semibold text-gray-100">
-                      {{ pilot?.pilotName || "Unknown" }}
-                    </h3>
-                    <span
-                      v-if="ship.hasAttacked"
-                      class="text-xs px-2 py-0.5 bg-yellow-600 text-yellow-100 rounded uppercase tracking-wide"
-                    >
-                      Already Shot
-                    </span>
-                  </div>
+                  <h3 class="text-base font-semibold text-gray-100 mb-1">
+                    {{ pilot?.pilotName || "Unknown" }}
+                  </h3>
 
                   <!-- Stats -->
                   <div class="flex items-center gap-3 text-xs">
@@ -340,12 +334,6 @@ function moveToCleanup() {
           class="px-8 py-3 text-sm font-bold bg-red-600 text-white border-b-4 border-red-800 hover:bg-red-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
         >
           Declare Attack
-        </button>
-        <button
-          @click="moveToCleanup"
-          class="px-8 py-3 text-sm font-bold bg-blue-600 text-white border-b-4 border-blue-800 hover:bg-blue-500 active:border-b-2 transition-all uppercase tracking-wide"
-        >
-          Move to Cleanup
         </button>
       </div>
     </div>

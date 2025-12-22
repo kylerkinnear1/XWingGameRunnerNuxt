@@ -4,7 +4,7 @@ import type { CardsDto } from "#shared/cards";
 import type {
   CurrentGameState,
   BeginCombat,
-  BeginSelectTarget,
+  DeclareAttackers,
   SelectAttacker,
   SelectWeapon,
   SkipAttack,
@@ -27,8 +27,8 @@ export function handleCombatStep(
   state.uiScreen = CurrentGamePage.CombatStart;
 }
 
-export function handleBeginSelectTarget(
-  step: BeginSelectTarget,
+export function handleDeclareAttackers(
+  step: DeclareAttackers,
   state: CurrentGameState,
   squads: readonly SquadReadDto[],
   cards: CardsDto
@@ -95,6 +95,7 @@ export function handleRollAttackDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.RollAttackDice;
 }
 
 export function handleModifyAttackDice(
@@ -104,6 +105,7 @@ export function handleModifyAttackDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.ModifyAttackDice;
 }
 
 export function handleRollDefenseDice(
@@ -113,6 +115,7 @@ export function handleRollDefenseDice(
   cards: CardsDto
 ): void {
   state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.RollDefenseDice;
 }
 
 export function handleModifyDefenseDice(
@@ -136,8 +139,4 @@ export function handleCompleteAttack(
   if (ship) {
     ship.hasAttacked = true;
   }
-
-  state.currentAttackingShipId = null;
-  state.currentDefendingShipId = null;
-  state.uiScreen = CurrentGamePage.SelectTarget;
 }

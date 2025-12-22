@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { ShipStateDto, WeaponStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
-import { getShipIcon, STAT_ICONS, UPGRADE_SLOT_ICONS } from "#shared/xwing-icons";
+import {
+  getShipIcon,
+  STAT_ICONS,
+  UPGRADE_SLOT_ICONS,
+} from "#shared/xwing-icons";
 
 interface ShipWithPilot {
   ship: ShipStateDto;
@@ -48,10 +52,6 @@ function formatAmmo(ammo: number | null): string {
 function handleSelectWeapon(weapon: WeaponStateDto) {
   if (weapon.attack === null) return;
   emit("selectWeapon", weapon.weaponId, weapon.attack);
-}
-
-function handleSkipAttack() {
-  emit("skipAttack");
 }
 </script>
 
@@ -112,7 +112,9 @@ function handleSkipAttack() {
     <div class="flex-1 overflow-y-auto p-6">
       <div v-if="availableWeapons.length === 0" class="text-center py-12">
         <p class="text-xl text-gray-400 mb-2">No weapons available</p>
-        <p class="text-sm text-gray-500">All weapons are destroyed or out of ammo</p>
+        <p class="text-sm text-gray-500">
+          All weapons are destroyed or out of ammo
+        </p>
       </div>
 
       <div v-else class="max-w-4xl mx-auto space-y-3">
@@ -124,7 +126,9 @@ function handleSkipAttack() {
         >
           <div class="flex items-center gap-4">
             <!-- Weapon Icon -->
-            <div class="shrink-0 w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center border-2 border-teal-600">
+            <div
+              class="shrink-0 w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center border-2 border-teal-600"
+            >
               <span class="xwing-icon text-2xl text-teal-400">
                 {{ getWeaponIcon(weapon.type) }}
               </span>
@@ -142,12 +146,17 @@ function handleSkipAttack() {
               </div>
               <div class="flex items-center gap-4 text-sm text-gray-300">
                 <span class="flex items-center gap-1">
-                  <span class="xwing-icon text-red-500">{{ STAT_ICONS.attack }}</span>
+                  <span class="xwing-icon text-red-500">{{
+                    STAT_ICONS.attack
+                  }}</span>
                   <span class="font-medium">
                     {{ weapon.attack !== null ? weapon.attack : "—" }}
                   </span>
                 </span>
-                <span class="text-gray-500">Range: {{ formatRange(weapon.minRange, weapon.maxRange) }}</span>
+                <span class="text-gray-500"
+                  >Range:
+                  {{ formatRange(weapon.minRange, weapon.maxRange) }}</span
+                >
                 <span v-if="weapon.ammo !== null" class="text-gray-500">
                   Ammo: {{ formatAmmo(weapon.ammo) }}
                 </span>
@@ -165,18 +174,5 @@ function handleSkipAttack() {
         </button>
       </div>
     </div>
-
-    <!-- Footer Actions -->
-    <div class="p-6 border-t border-gray-700 bg-gray-800">
-      <div class="max-w-4xl mx-auto flex items-center justify-center">
-        <button
-          @click="handleSkipAttack"
-          class="px-8 py-3 text-sm font-bold bg-gray-600 text-white border-b-4 border-gray-800 hover:bg-gray-500 active:border-b-2 transition-all uppercase tracking-wide"
-        >
-          Skip Attack
-        </button>
-      </div>
-    </div>
   </div>
 </template>
-

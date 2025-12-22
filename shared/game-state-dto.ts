@@ -131,7 +131,7 @@ export type GameStepDto =
   | AssignToken
   | TriggerAbility
   | BeginCombat
-  | BeginSelectTarget
+  | DeclareAttackers
   | SelectAttacker
   | SelectWeapon
   | SkipAttack
@@ -347,8 +347,8 @@ export interface BeginCombat {
   timestamp: Date;
 }
 
-export interface BeginSelectTarget {
-  type: "begin_select_target";
+export interface DeclareAttackers {
+  type: "declare_attackers";
   timestamp: Date;
 }
 
@@ -383,6 +383,8 @@ export interface DeclareTarget {
 
 export interface RollAttackDice {
   type: "roll_attack_dice";
+  weaponId: string;
+  baseAttackDice: number;
   results: DiceResult[];
   timestamp: Date;
 }
