@@ -162,6 +162,41 @@ function selectStep(index: number) {
   selectedStepIndex.value = index;
 }
 
+watch(
+  [selectedStepIndex, gameData],
+  async () => {
+    if (!gameData.value) return;
+    
+    const currentStep = gameData.value.steps[selectedStepIndex.value];
+    if (!currentStep) return;
+    
+    await nextTick();
+    
+    let expectedStepType: string | null = null;
+    
+    if (currentStep.type === "action_skipped") {
+      if (!currentGameState.value) return;
+      
+      const allActivated = currentGameState.value.ships.every(
+        (s) => s.hasActivated || s.isDestroyed
+      );
+      expectedStepType = allActivated ? "combat_step" : "activation_step";
+    } else if (currentStep.type === "turn_start") {
+      expectedStepType = "planning";
+    }
+    
+    if (!expectedStepType) return;
+    
+    const nextIndex = selectedStepIndex.value + 1;
+    const nextStep = gameData.value.steps[nextIndex];
+    
+    if (nextStep && nextStep.type === expectedStepType) {
+      selectedStepIndex.value = nextIndex;
+    }
+  },
+  { immediate: false }
+);
+
 function toggleShipExpansion(shipId: string) {
   expandedShipId.value = expandedShipId.value === shipId ? null : shipId;
 }
@@ -195,7 +230,7 @@ async function startGame() {
 }
 
 async function handleTurnAnimationComplete() {
-  await addStep({
+  await moveToStepOrPush("planning", {
     type: "planning",
     timestamp: new Date(),
   });
@@ -238,7 +273,7 @@ async function placeShip(shipId: string) {
   if (currentGameState.value) {
     const allPlaced = currentGameState.value.ships.every((s) => s.isPlaced);
     if (allPlaced) {
-      await addStep({
+      await moveToStepOrPush("turn_start", {
         type: "turn_start",
         timestamp: new Date(),
       });
@@ -285,6 +320,24 @@ async function addStep(step: import("#shared/game-state-dto").GameStepDto) {
 
   if (gameData.value) {
     selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
+}
+
+async function moveToStepOrPush(
+  stepType: import("#shared/game-state-dto").GameStepDto["type"],
+  step: import("#shared/game-state-dto").GameStepDto
+) {
+  if (!gameData.value) return;
+
+  const currentIndex = selectedStepIndex.value;
+  const nextIndex = currentIndex + 1;
+  const nextStep = gameData.value.steps[nextIndex];
+
+  if (nextStep && nextStep.type === stepType) {
+    selectedStepIndex.value = nextIndex;
+    await refresh();
+  } else {
+    await addStep(step);
   }
 }
 
@@ -343,13 +396,13 @@ async function handleCollision(
         (s) => s.hasActivated || s.isDestroyed
       );
       if (allActivated) {
-        await addStep({
+        await moveToStepOrPush("combat_step", {
           type: "combat_step",
           pilotSkill: 0,
           timestamp: new Date(),
         });
       } else {
-        await addStep({
+        await moveToStepOrPush("activation_step", {
           type: "activation_step",
           shipId: "",
           timestamp: new Date(),
@@ -402,13 +455,13 @@ async function handleSkipAction() {
       (s) => s.hasActivated || s.isDestroyed
     );
     if (allActivated) {
-      await addStep({
+      await moveToStepOrPush("combat_step", {
         type: "combat_step",
         pilotSkill: 0,
         timestamp: new Date(),
       });
     } else {
-      await addStep({
+      await moveToStepOrPush("activation_step", {
         type: "activation_step",
         shipId: "",
         timestamp: new Date(),
@@ -435,13 +488,13 @@ async function handleDoneWithActions() {
       (s) => s.hasActivated || s.isDestroyed
     );
     if (allActivated) {
-      await addStep({
+      await moveToStepOrPush("combat_step", {
         type: "combat_step",
         pilotSkill: 0,
         timestamp: new Date(),
       });
     } else {
-      await addStep({
+      await moveToStepOrPush("activation_step", {
         type: "activation_step",
         shipId: "",
         timestamp: new Date(),
