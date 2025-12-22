@@ -20,6 +20,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   completePlanning: [dials: Record<string, Maneuver>];
+  beginActivation: [];
 }>();
 
 // Track which player is currently selecting
@@ -99,8 +100,10 @@ function confirmDials() {
     // Switch to second player
     currentPlayerId.value = otherPlayerId.value;
   } else {
-    // Both players done - emit complete event
+    // Both players done - emit complete event with dials
     emit("completePlanning", { ...selectedDials.value });
+    // Then signal to begin activation phase
+    emit("beginActivation");
   }
 }
 
