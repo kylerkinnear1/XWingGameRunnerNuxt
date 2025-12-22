@@ -57,8 +57,16 @@ export function handleStep(
     case "increase_max_shields":
       setupHandlers.handleIncreaseMaxShields(step, currentState, squads, cards);
       break;
-    case "select_initiative":
-      setupHandlers.handleSelectInitiative(step, currentState, squads, cards);
+    case "begin_select_initiative":
+      setupHandlers.handleBeginSelectInitiative(
+        step,
+        currentState,
+        squads,
+        cards
+      );
+      break;
+    case "initiative_selected":
+      setupHandlers.handleInitiativeSelected(step, currentState, squads, cards);
       break;
     case "start_setup":
       setupHandlers.handleStartSetup(step, currentState, squads, cards);

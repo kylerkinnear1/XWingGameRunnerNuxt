@@ -122,6 +122,7 @@ export function handleInitiativeSelected(
   squads: readonly SquadReadDto[],
   cards: CardsDto
 ): void {
+  state.currentStep += 1;
   state.playerWithInitiative = step.playerWithInitiative;
 }
 

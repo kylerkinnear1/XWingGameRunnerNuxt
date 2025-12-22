@@ -101,7 +101,8 @@ export type GameStepDto =
   | GameStartDto
   | IncreaseMaxHull
   | IncreaseMaxShields
-  | SelectInitiative
+  | BeginSelectInitiative
+  | InitiativeSelected
   | StartSetup
   | PlaceObstacle
   | ShipPlaced
@@ -159,8 +160,13 @@ export interface IncreaseMaxShields {
 }
 
 // Setup Phase
-export interface SelectInitiative {
-  type: "select_initiative";
+export interface BeginSelectInitiative {
+  type: "begin_select_initiative";
+  timestamp: Date;
+}
+
+export interface InitiativeSelected {
+  type: "initiative_selected";
   playerWithInitiative: string;
   timestamp: Date;
 }

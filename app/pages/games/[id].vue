@@ -167,112 +167,82 @@ function toggleShipExpansion(shipId: string) {
 }
 
 async function addToken(shipId: string, tokenType: TokenType) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "assign_token",
-      sourceShipId: shipId,
-      tokenType,
-      conditionId: null,
-      reinforceDirection: null,
-      targetShipId: null,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "assign_token",
+    sourceShipId: shipId,
+    tokenType,
+    conditionId: null,
+    reinforceDirection: null,
+    targetShipId: null,
+    timestamp: new Date(),
   });
-  await refresh();
 }
 
 async function removeToken(shipId: string, tokenType: TokenType) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "spend_token",
-      shipId,
-      tokenType,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "spend_token",
+    shipId,
+    tokenType,
+    timestamp: new Date(),
   });
-  await refresh();
 }
 
 async function startGame() {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "game_start",
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "begin_select_initiative",
+    timestamp: new Date(),
   });
-  await refresh();
 }
 
-function handleTurnAnimationComplete() {
-  $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "planning",
-      timestamp: new Date(),
-    },
-  }).then(() => {
-    refresh().then(() => {
-      if (gameData.value) {
-        selectedStepIndex.value = gameData.value.steps.length - 1;
-      }
-    });
+async function handleTurnAnimationComplete() {
+  await addStep({
+    type: "planning",
+    timestamp: new Date(),
   });
 }
 
 async function handlePlanningComplete(dials: Record<string, Maneuver>) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "planning_complete",
-      dials,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "planning_complete",
+    dials,
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
 }
 
 async function selectInitiative(playerId: string) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "select_initiative",
-      playerWithInitiative: playerId,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "initiative_selected",
+    playerWithInitiative: playerId,
+    timestamp: new Date(),
   });
   // Automatically start setup after initiative is selected
   await startSetup();
 }
 
 async function startSetup() {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "start_setup",
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "start_setup",
+    timestamp: new Date(),
   });
-  await refresh();
 }
 
 async function placeShip(shipId: string) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "ship_placed",
-      shipId,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "ship_placed",
+    shipId,
+    timestamp: new Date(),
   });
+
   await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
+
+  if (currentGameState.value) {
+    const allPlaced = currentGameState.value.ships.every((s) => s.isPlaced);
+    if (allPlaced) {
+      await addStep({
+        type: "turn_start",
+        timestamp: new Date(),
+      });
+    }
   }
 }
 
@@ -290,6 +260,34 @@ async function refresh() {
   }
 }
 
+async function addStep(step: import("#shared/game-state-dto").GameStepDto) {
+  if (!gameData.value) return;
+
+  const currentIndex = selectedStepIndex.value;
+  const totalSteps = gameData.value.steps.length;
+  const isAtEnd = currentIndex === totalSteps - 1;
+
+  if (!isAtEnd && totalSteps > 0) {
+    await $fetch(`/api/games/${gameId}/steps/truncate`, {
+      method: "POST",
+      body: {
+        afterIndex: currentIndex,
+      },
+    });
+  }
+
+  await $fetch(`/api/games/${gameId}/steps`, {
+    method: "POST",
+    body: step,
+  });
+
+  await refresh();
+
+  if (gameData.value) {
+    selectedStepIndex.value = gameData.value.steps.length - 1;
+  }
+}
+
 const currentActivatingShip = computed(() => {
   if (!currentGameState.value?.currentActivatingShipId) return null;
   const allShips = [...player1Ships.value, ...player2Ships.value];
@@ -299,50 +297,29 @@ const currentActivatingShip = computed(() => {
 });
 
 async function handleBeginActivation() {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "activation_step",
-      shipId: "",
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "activation_step",
+    shipId: "",
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
 }
 
 async function handleActivateShip(shipId: string) {
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "begin_maneuver",
-      shipId,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "begin_maneuver",
+    shipId,
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
 }
 
 async function handleSuccessfulManeuver() {
   if (!currentGameState.value?.currentActivatingShipId) return;
 
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "clean_maneuver",
-      shipId: currentGameState.value.currentActivatingShipId,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "clean_maneuver",
+    shipId: currentGameState.value.currentActivatingShipId,
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
 }
 
 async function handleCollision(
@@ -351,46 +328,125 @@ async function handleCollision(
 ) {
   if (!currentGameState.value?.currentActivatingShipId) return;
 
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "collide",
-      shipId: currentGameState.value.currentActivatingShipId,
-      collisionType,
-      landedOnObstacle,
-      timestamp: new Date(),
-    },
+  await addStep({
+    type: "collide",
+    shipId: currentGameState.value.currentActivatingShipId,
+    collisionType,
+    landedOnObstacle,
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
+
+  if (collisionType === CollisionType.Ship) {
+    await refresh();
+    if (currentGameState.value) {
+      const allActivated = currentGameState.value.ships.every(
+        (s) => s.hasActivated || s.isDestroyed
+      );
+      if (allActivated) {
+        await addStep({
+          type: "combat_step",
+          pilotSkill: 0,
+          timestamp: new Date(),
+        });
+      } else {
+        await addStep({
+          type: "activation_step",
+          shipId: "",
+          timestamp: new Date(),
+        });
+      }
+    }
+  } else {
+    await addStep({
+      type: "select_action_again",
+      shipId: currentGameState.value.currentActivatingShipId,
+      timestamp: new Date(),
+    });
   }
 }
 
 async function handlePerformAction(action: ActionType) {
   if (!currentGameState.value?.currentActivatingShipId) return;
 
-  await $fetch(`/api/games/${gameId}/steps`, {
-    method: "POST",
-    body: {
-      type: "perform_action",
-      shipId: currentGameState.value.currentActivatingShipId,
-      action,
-      timestamp: new Date(),
-    },
+  const shipId = currentGameState.value.currentActivatingShipId;
+
+  await addStep({
+    type: "perform_action",
+    shipId,
+    action,
+    timestamp: new Date(),
   });
-  await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
-  }
+
+  await addStep({
+    type: "select_action_again",
+    shipId,
+    timestamp: new Date(),
+  });
 }
 
 async function handleSkipAction() {
   if (!currentGameState.value?.currentActivatingShipId) return;
 
+  const shipId = currentGameState.value.currentActivatingShipId;
+
+  await addStep({
+    type: "action_skipped",
+    shipId,
+    timestamp: new Date(),
+  });
+
   await refresh();
-  if (gameData.value) {
-    selectedStepIndex.value = gameData.value.steps.length - 1;
+
+  if (currentGameState.value) {
+    const allActivated = currentGameState.value.ships.every(
+      (s) => s.hasActivated || s.isDestroyed
+    );
+    if (allActivated) {
+      await addStep({
+        type: "combat_step",
+        pilotSkill: 0,
+        timestamp: new Date(),
+      });
+    } else {
+      await addStep({
+        type: "activation_step",
+        shipId: "",
+        timestamp: new Date(),
+      });
+    }
+  }
+}
+
+async function handleDoneWithActions() {
+  if (!currentGameState.value?.currentActivatingShipId) return;
+
+  const shipId = currentGameState.value.currentActivatingShipId;
+
+  await addStep({
+    type: "done_with_actions",
+    shipId,
+    timestamp: new Date(),
+  });
+
+  await refresh();
+
+  if (currentGameState.value) {
+    const allActivated = currentGameState.value.ships.every(
+      (s) => s.hasActivated || s.isDestroyed
+    );
+    if (allActivated) {
+      await addStep({
+        type: "combat_step",
+        pilotSkill: 0,
+        timestamp: new Date(),
+      });
+    } else {
+      await addStep({
+        type: "activation_step",
+        shipId: "",
+        timestamp: new Date(),
+      });
+    }
   }
 }
 </script>
@@ -515,6 +571,7 @@ async function handleSkipAction() {
         :player-color="currentActivatingShip.ship.playerId === gameData!.player1Id ? 'red' : 'gray'"
         @perform-action="handlePerformAction"
         @skip-action="handleSkipAction"
+        @done-with-actions="handleDoneWithActions"
       />
 
       <!-- Game Board (fallback) -->

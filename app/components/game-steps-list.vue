@@ -12,9 +12,24 @@ const emit = defineEmits<{
   selectStep: [index: number];
 }>();
 
-function handleStepClick(index: number) {
-  emit("selectStep", index);
+const hiddenStepTypes = ["initiative_selected", "select_action_again", "done_with_actions"];
+
+const visibleSteps = computed(() => {
+  return props.steps
+    .map((step, originalIndex) => ({ step, originalIndex }))
+    .filter(({ step }) => !hiddenStepTypes.includes(step.type));
+});
+
+function handleStepClick(visibleIndex: number) {
+  const originalIndex = visibleSteps.value[visibleIndex]?.originalIndex ?? visibleIndex;
+  emit("selectStep", originalIndex);
 }
+
+const getSelectedVisibleIndex = computed(() => {
+  return visibleSteps.value.findIndex(
+    ({ originalIndex }) => originalIndex === props.selectedIndex
+  );
+});
 </script>
 
 <template>
@@ -36,12 +51,12 @@ function handleStepClick(index: number) {
 
     <div v-else class="p-2 flex-1 overflow-y-auto">
       <div
-        v-for="(step, index) in steps"
-        :key="index"
-        @click="handleStepClick(index)"
+        v-for="({ step, originalIndex }, visibleIndex) in visibleSteps"
+        :key="originalIndex"
+        @click="handleStepClick(visibleIndex)"
         class="p-3 mb-1 border cursor-pointer transition-all"
         :class="[
-          selectedIndex === index
+          selectedIndex === originalIndex
             ? 'border-teal-500 bg-gray-700 border-l-4'
             : 'border-gray-700 bg-gray-800 hover:bg-gray-750 border-l-2',
         ]"
@@ -51,7 +66,7 @@ function handleStepClick(index: number) {
             <div class="text-xs font-semibold text-gray-100 truncate">
               {{ step.type.replace(/_/g, " ").toUpperCase() }}
             </div>
-            <div class="text-xs text-gray-500">Step {{ index + 1 }}</div>
+            <div class="text-xs text-gray-500">Step {{ visibleIndex + 1 }}</div>
           </div>
           <div class="text-xs text-gray-600">
             {{ new Date(step.timestamp).toLocaleTimeString() }}
