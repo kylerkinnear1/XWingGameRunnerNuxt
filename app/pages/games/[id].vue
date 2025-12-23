@@ -132,6 +132,7 @@ const {
   addStatModifier,
   decreaseHull,
   decreaseShields,
+  flipUpgrade,
 } = useGameActions(
   addStep,
   gameData,
@@ -295,6 +296,7 @@ watch(
       @assign-crit="assignCrit"
       @remove-crit="removeCrit"
       @flip-crit-facedown="flipCritFacedown"
+      @flip-upgrade="flipUpgrade"
       @add-stat-modifier="addStatModifier"
       @decrease-hull="decreaseHull"
       @decrease-shields="decreaseShields"

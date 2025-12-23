@@ -17,6 +17,7 @@ import type {
   UpdatePilotSkill,
   DecreaseShields,
   FlipCrit,
+  FlipUpgrade,
   DestroyShip,
   DestroyObstacle,
 } from "#shared/game-state-dto";
@@ -217,6 +218,24 @@ export function handleFlipCrit(
     );
     if (crit) {
       crit.faceUp = step.faceUp;
+    }
+  }
+  state.currentStep += 1;
+}
+
+export function handleFlipUpgrade(
+  step: FlipUpgrade,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    const upgrade = ship.upgrades.find(
+      (u) => u.upgradeId === step.upgradeId
+    );
+    if (upgrade) {
+      upgrade.faceUp = step.faceUp;
     }
   }
   state.currentStep += 1;

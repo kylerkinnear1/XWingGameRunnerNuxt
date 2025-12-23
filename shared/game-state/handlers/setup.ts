@@ -66,7 +66,7 @@ export function handleGameStart(
       faceDownDamage: 0,
       upgrades: ship.upgradeIds.map((id) => ({
         upgradeId: id,
-        faceUp: false,
+        faceUp: true,
       })),
       hasActivated: false,
       didBump: false,

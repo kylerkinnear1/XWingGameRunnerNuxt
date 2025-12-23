@@ -216,6 +216,9 @@ export function handleStep(
     case "flip_crit":
       anyPhaseHandlers.handleFlipCrit(step, currentState, squads, cards);
       break;
+    case "flip_upgrade":
+      anyPhaseHandlers.handleFlipUpgrade(step, currentState, squads, cards);
+      break;
     case "destroy_ship":
       anyPhaseHandlers.handleDestroyShip(step, currentState, squads, cards);
       break;

@@ -27,7 +27,7 @@ export const useGameShips = () => {
       weapons: [],
       upgrades: shipDto.upgradeIds.map((id) => ({
         upgradeId: id,
-        faceUp: false,
+        faceUp: true,
       })),
       isPlaced: false,
       isDestroyed: false,

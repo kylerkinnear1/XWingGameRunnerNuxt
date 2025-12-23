@@ -216,6 +216,24 @@ export const useGameActions = (
     );
   };
 
+  const flipUpgrade = async (
+    shipId: string,
+    upgradeId: string,
+    faceUp: boolean
+  ) => {
+    await addStep(
+      {
+        type: "flip_upgrade",
+        shipId,
+        upgradeId,
+        faceUp,
+        timestamp: new Date(),
+      },
+      gameData,
+      refreshCallback
+    );
+  };
+
   return {
     addToken,
     removeToken,
@@ -227,6 +245,7 @@ export const useGameActions = (
     addStatModifier,
     decreaseHull,
     decreaseShields,
+    flipUpgrade,
   };
 };
 

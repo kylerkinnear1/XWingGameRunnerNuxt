@@ -28,6 +28,7 @@ const emit = defineEmits<{
   assignCrit: [shipId: string, critCardId: string];
   removeCrit: [shipId: string, critCardId: string];
   flipCritFacedown: [shipId: string, critCardId: string];
+  flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
   addStatModifier: [
     shipId: string,
     stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
@@ -39,11 +40,14 @@ const emit = defineEmits<{
 
 const isOpen = ref(true);
 
+const allShips = computed(() => {
+  return [...props.player1Ships, ...props.player2Ships];
+});
+
 const expandedShip = computed(() => {
   if (!props.expandedShipId) return null;
-  const allShips = [...props.player1Ships, ...props.player2Ships];
   return (
-    allShips.find((s) => s.ship.shipId === props.expandedShipId)?.ship ?? null
+    allShips.value.find((s) => s.ship.shipId === props.expandedShipId)?.ship ?? null
   );
 });
 
@@ -62,6 +66,14 @@ function handleAddToken(
 
 function handleRemoveToken(shipId: string, tokenType: TokenType) {
   emit("removeToken", shipId, tokenType);
+}
+
+function handleFlipUpgrade(
+  shipId: string,
+  upgradeId: string,
+  faceUp: boolean
+) {
+  emit("flipUpgrade", shipId, upgradeId, faceUp);
 }
 
 function handleCloseTokenManager() {
@@ -138,7 +150,10 @@ function handleCloseTokenManager() {
             :pilot="pilot"
             :is-expanded="expandedShipId === ship.shipId"
             player-color="red"
+            :all-ships="allShips"
             @toggle-expansion="handleToggleExpansion"
+            @flip-upgrade="handleFlipUpgrade"
+            @spend-token="handleRemoveToken"
           />
         </div>
 
@@ -157,7 +172,10 @@ function handleCloseTokenManager() {
             :pilot="pilot"
             :is-expanded="expandedShipId === ship.shipId"
             player-color="gray"
+            :all-ships="allShips"
             @toggle-expansion="handleToggleExpansion"
+            @flip-upgrade="handleFlipUpgrade"
+            @spend-token="handleRemoveToken"
           />
         </div>
       </div>
@@ -172,7 +190,7 @@ function handleCloseTokenManager() {
         v-if="expandedShip"
         :key="expandedShipId"
         :ship="expandedShip"
-        :all-ships="[...player1Ships, ...player2Ships]"
+        :all-ships="allShips"
         @add-token="handleAddToken"
         @remove-token="handleRemoveToken"
         @add-facedown-damage="(shipId) => emit('addFacedownDamage', shipId)"
