@@ -100,3 +100,23 @@ export function getActionIcon(action: string): string {
 export function getUpgradeSlotIcon(slot: string): string {
   return UPGRADE_SLOT_ICONS[slot] || "?";
 }
+
+export function getTokenIcon(tokenType: string): string {
+  const tokenMapping: Record<string, keyof typeof TOKEN_ICONS> = {
+    Focus: "focus",
+    Evade: "evade",
+    Stress: "stress",
+    IonToken: "ion",
+    TargetLock: "targetLock",
+    Shield: "shield",
+    Cloak: "cloak",
+    Jam: "jam",
+    Reinforce: "reinforce",
+    TractorBeam: "tractor",
+    WeaponsDisabled: "weaponsDisabled",
+    Condition: "condition",
+  };
+
+  const iconKey = tokenMapping[tokenType];
+  return iconKey ? TOKEN_ICONS[iconKey] : "?";
+}
