@@ -120,3 +120,22 @@ export function getTokenIcon(tokenType: string): string {
   const iconKey = tokenMapping[tokenType];
   return iconKey ? TOKEN_ICONS[iconKey] : "?";
 }
+
+export const TOKEN_COLORS: Record<string, string> = {
+  focus: "text-green-500",
+  evade: "text-green-500",
+  stress: "text-red-500",
+  ion: "text-red-500",
+  "target-lock": "text-yellow-500",
+  shield: "text-blue-500",
+  cloak: "text-blue-500",
+  jam: "text-green-500",
+  reinforce: "text-green-500",
+  tractor: "text-red-500",
+  "weapons-disabled": "text-red-500",
+  condition: "text-orange-500",
+} as const;
+
+export function getTokenColor(tokenType: string): string {
+  return TOKEN_COLORS[tokenType] || "text-gray-300";
+}

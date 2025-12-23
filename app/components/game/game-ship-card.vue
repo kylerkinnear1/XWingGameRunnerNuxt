@@ -2,13 +2,14 @@
 import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto, UpgradeDto } from "#shared/cards";
 import type { TokenType } from "#shared/enums";
-import { TokenType as TokenTypeEnum } from "#shared/enums";
+import { TokenType as TokenTypeEnum, ReinforceDirection } from "#shared/enums";
 import {
   getShipIcon,
   STAT_ICONS,
   getActionIcon,
   getTokenIcon,
   getUpgradeSlotIcon,
+  getTokenColor as getSharedTokenColor,
 } from "#shared/xwing-icons";
 import { ATTACK_DIE_ICONS } from "#shared/dice";
 
@@ -98,7 +99,8 @@ const groupedTokens = computed(() => {
   for (const token of props.ship.tokens) {
     if (
       token.tokenType !== TokenTypeEnum.TargetLock &&
-      token.tokenType !== TokenTypeEnum.Condition
+      token.tokenType !== TokenTypeEnum.Condition &&
+      token.tokenType !== TokenTypeEnum.Reinforce
     ) {
       const count = groups.get(token.tokenType) || 0;
       groups.set(token.tokenType, count + 1);
@@ -121,6 +123,26 @@ const conditionTokens = computed(() => {
     (t) => t.tokenType === TokenTypeEnum.Condition
   );
 });
+
+const reinforceTokens = computed(() => {
+  return props.ship.tokens.filter(
+    (t) => t.tokenType === TokenTypeEnum.Reinforce
+  );
+});
+
+function getReinforceRotation(direction: ReinforceDirection | null): string {
+  if (direction === ReinforceDirection.Front) {
+    return "rotate(-90deg)";
+  }
+  if (direction === ReinforceDirection.Back) {
+    return "rotate(90deg)";
+  }
+  return "";
+}
+
+function getReinforceCount(): number {
+  return reinforceTokens.value.length;
+}
 
 function handleUpgradeHover(upgradeId: string | null) {
   hoveredUpgradeId.value = upgradeId;
@@ -150,21 +172,7 @@ function getLockedShipName(targetShipId: string | null): string {
 }
 
 function getTokenColor(tokenType: TokenType): string {
-  const tokenColors: Record<TokenType, string> = {
-    [TokenTypeEnum.Focus]: "text-green-500",
-    [TokenTypeEnum.Evade]: "text-blue-400",
-    [TokenTypeEnum.Stress]: "text-red-500",
-    [TokenTypeEnum.TargetLock]: "text-red-500",
-    [TokenTypeEnum.Ion]: "text-cyan-400",
-    [TokenTypeEnum.WeaponsDisabled]: "text-orange-500",
-    [TokenTypeEnum.Cloak]: "text-purple-400",
-    [TokenTypeEnum.Tractor]: "text-teal-400",
-    [TokenTypeEnum.Shield]: "text-blue-500",
-    [TokenTypeEnum.Condition]: "text-orange-500",
-    [TokenTypeEnum.Reinforce]: "text-yellow-500",
-    [TokenTypeEnum.Jam]: "text-red-400",
-  };
-  return tokenColors[tokenType] || "text-gray-300";
+  return getSharedTokenColor(tokenType);
 }
 </script>
 
@@ -302,57 +310,101 @@ function getTokenColor(tokenType: TokenType): string {
                 <div
                   v-for="group in groupedTokens"
                   :key="group.tokenType"
-                  class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded"
+                  class="flex items-center gap-2 bg-gray-900 px-2 py-1 rounded w-full"
                 >
                   <span
-                    class="xwing-icon text-lg"
+                    class="xwing-icon text-3xl"
                     :class="getTokenColor(group.tokenType)"
                   >
                     {{ getTokenIcon(group.tokenType) }}
                   </span>
-                  <span class="text-xs text-gray-300 font-semibold">
+                  <span class="text-sm text-gray-300 font-semibold flex-1">
                     {{ group.count }}
                   </span>
-                  <button
-                    @click.stop="handleRemoveToken(group.tokenType)"
-                    :disabled="group.count === 0"
-                    class="w-5 h-5 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors rounded"
-                    title="Remove token"
+                  <div class="flex items-center gap-1">
+                    <button
+                      @click.stop="handleRemoveToken(group.tokenType)"
+                      :disabled="group.count === 0"
+                      class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-sm font-bold transition-colors rounded"
+                      title="Remove token"
+                    >
+                      -
+                    </button>
+                    <button
+                      @click.stop="handleAddToken(group.tokenType)"
+                      class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors rounded"
+                      title="Add token"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reinforce Tokens (grouped with +/- buttons and rotation) -->
+              <div
+                v-if="reinforceTokens.length > 0"
+                class="flex flex-wrap gap-2"
+              >
+                <div
+                  class="flex items-center gap-2 bg-gray-900 px-2 py-1 rounded w-full"
+                >
+                  <span
+                    class="xwing-icon text-3xl"
+                    :class="getTokenColor(TokenTypeEnum.Reinforce)"
+                    :style="{
+                      transform: getReinforceRotation(
+                        reinforceTokens[0]?.reinforceDirection || null
+                      ),
+                    }"
                   >
-                    -
-                  </button>
-                  <button
-                    @click.stop="handleAddToken(group.tokenType)"
-                    class="w-5 h-5 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors rounded"
-                    title="Add token"
-                  >
-                    +
-                  </button>
+                    {{ getTokenIcon(TokenTypeEnum.Reinforce) }}
+                  </span>
+                  <span class="text-sm text-gray-300 font-semibold flex-1">
+                    {{ getReinforceCount() }}
+                  </span>
+                  <div class="flex items-center gap-1">
+                    <button
+                      @click.stop="handleRemoveToken(TokenTypeEnum.Reinforce)"
+                      :disabled="getReinforceCount() === 0"
+                      class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-sm font-bold transition-colors rounded"
+                      title="Remove token"
+                    >
+                      -
+                    </button>
+                    <button
+                      @click.stop="handleAddToken(TokenTypeEnum.Reinforce)"
+                      class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors rounded"
+                      title="Add token"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
 
               <!-- Target Lock Tokens (individual with Spend button) -->
               <div
                 v-if="targetLockTokens.length > 0"
-                class="flex flex-wrap gap-2"
+                class="flex flex-col gap-2"
               >
                 <div
                   v-for="(token, index) in targetLockTokens"
                   :key="`targetlock-${index}`"
-                  class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded group/token"
+                  class="flex items-center gap-2 bg-gray-900 px-2 py-1 rounded w-full group/token"
                 >
                   <span
-                    class="xwing-icon text-lg"
+                    class="xwing-icon text-3xl"
                     :class="getTokenColor(token.tokenType)"
                   >
                     {{ getTokenIcon(token.tokenType) }}
                   </span>
-                  <span class="text-xs text-gray-400">
+                  <span class="text-sm text-gray-400 flex-1">
                     {{ getLockedShipName(token.targetShipId) }}
                   </span>
                   <button
                     @click.stop="handleSpendToken(token.tokenType)"
-                    class="opacity-0 group-hover/token:opacity-100 text-xs px-2 py-0.5 bg-red-600 hover:bg-red-700 rounded transition-opacity"
+                    class="opacity-0 group-hover/token:opacity-100 text-sm px-2 py-0.5 bg-red-600 hover:bg-red-700 rounded transition-opacity"
                     title="Spend token"
                   >
                     Spend
@@ -371,12 +423,12 @@ function getTokenColor(tokenType: TokenType): string {
                   class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded"
                 >
                   <span
-                    class="xwing-icon text-lg"
+                    class="xwing-icon text-3xl"
                     :class="getTokenColor(token.tokenType)"
                   >
                     {{ getTokenIcon(token.tokenType) }}
                   </span>
-                  <span v-if="token.conditionId" class="text-xs text-gray-400">
+                  <span v-if="token.conditionId" class="text-sm text-gray-400">
                     {{ token.conditionId }}
                   </span>
                 </div>

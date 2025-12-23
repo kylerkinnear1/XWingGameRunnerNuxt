@@ -3,7 +3,12 @@ import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
 import { TokenType } from "#shared/enums";
 import { ReinforceDirection } from "#shared/enums";
-import { TOKEN_ICONS, getShipIcon, STAT_ICONS } from "#shared/xwing-icons";
+import {
+  TOKEN_ICONS,
+  getShipIcon,
+  STAT_ICONS,
+  getTokenColor as getSharedTokenColor,
+} from "#shared/xwing-icons";
 import { ATTACK_DIE_ICONS } from "#shared/dice";
 
 interface ShipWithPilot {
@@ -81,27 +86,12 @@ const iconMap: Record<TokenType, string> = {
   [TokenType.Condition]: TOKEN_ICONS.condition,
 };
 
-const tokenColors: Record<TokenType, string> = {
-  [TokenType.Focus]: "text-green-500",
-  [TokenType.Evade]: "text-green-500",
-  [TokenType.Stress]: "text-red-500",
-  [TokenType.Ion]: "text-red-500",
-  [TokenType.TargetLock]: "text-yellow-500",
-  [TokenType.Reinforce]: "text-green-500",
-  [TokenType.Cloak]: "text-blue-500",
-  [TokenType.Jam]: "text-green-500",
-  [TokenType.Tractor]: "text-red-500",
-  [TokenType.Shield]: "text-blue-500",
-  [TokenType.WeaponsDisabled]: "text-red-500",
-  [TokenType.Condition]: "text-orange-500",
-};
-
 function getTokenIcon(tokenType: TokenType): string {
   return iconMap[tokenType] || "?";
 }
 
 function getTokenColor(tokenType: TokenType): string {
-  return tokenColors[tokenType] || "text-gray-300";
+  return getSharedTokenColor(tokenType);
 }
 
 function getTokenCount(tokenType: TokenType): number {
