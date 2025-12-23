@@ -107,8 +107,8 @@ function handleCollision(
 
     <!-- Maneuver Result Options -->
     <div class="flex-1 overflow-y-auto p-6">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <!-- Successful Maneuver - Top Layer -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Successful Maneuver -->
         <div>
           <h3
             class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3"
@@ -121,69 +121,6 @@ function handleCollision(
           >
             ✓ Successful Maneuver (No Collision)
           </button>
-        </div>
-
-        <!-- Collision Options - Bottom Layer -->
-        <div>
-          <h3
-            class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3"
-          >
-            Collisions
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <!-- Asteroid -->
-            <button
-              @click="handleCollision(CollisionType.Asteroid, true)"
-              class="p-4 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-orange-500 transition-all text-left"
-            >
-              <div class="font-semibold text-gray-100 mb-1">🪨 Asteroid</div>
-              <div class="text-xs text-gray-400">
-                Roll for damage, skip action
-              </div>
-            </button>
-
-            <!-- Debris -->
-            <button
-              @click="handleCollision(CollisionType.Debris, true)"
-              class="p-4 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-orange-500 transition-all text-left"
-            >
-              <div class="font-semibold text-gray-100 mb-1">💥 Debris</div>
-              <div class="text-xs text-gray-400">Gain stress token</div>
-            </button>
-
-            <!-- Gas Cloud -->
-            <button
-              @click="handleCollision(CollisionType.GasCloud, true)"
-              class="p-4 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-orange-500 transition-all text-left"
-            >
-              <div class="font-semibold text-gray-100 mb-1">☁️ Gas Cloud</div>
-              <div class="text-xs text-gray-400">Gain strain token</div>
-            </button>
-
-            <!-- Mine -->
-            <button
-              @click="handleCollision(CollisionType.Mine, true)"
-              class="p-4 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-orange-500 transition-all text-left"
-            >
-              <div class="font-semibold text-gray-100 mb-1">⚠️ Mine</div>
-              <div class="text-xs text-gray-400">
-                Detonate mine, take damage
-              </div>
-            </button>
-
-            <!-- Ship Collision -->
-            <button
-              @click="handleCollision(CollisionType.Ship, false)"
-              class="p-4 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-red-500 transition-all text-left md:col-span-2"
-            >
-              <div class="font-semibold text-gray-100 mb-1">
-                🚀 Ship Collision (Bump)
-              </div>
-              <div class="text-xs text-gray-400">
-                Skip action phase for both ships
-              </div>
-            </button>
-          </div>
         </div>
       </div>
     </div>

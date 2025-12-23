@@ -293,6 +293,7 @@ watch(
 
 <template>
   <div class="h-full flex bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+    <GameRollDiceButton />
     <GameStepsList
       :steps="gameData?.steps || []"
       :selected-index="selectedStepIndex"
