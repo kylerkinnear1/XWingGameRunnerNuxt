@@ -31,6 +31,9 @@ const emit = defineEmits<{
   ];
   assignCrit: [shipId: string, critCardId: string];
   addFacedownDamage: [shipId: string];
+  removeFacedownDamage: [shipId: string];
+  removeCrit: [shipId: string, critCardId: string];
+  flipCritFacedown: [shipId: string, critCardId: string];
   closeTokenManager: [];
 }>();
 
@@ -167,7 +170,11 @@ function shuffleArray<T>(array: readonly T[]): T[] {
 }
 
 function handleAddHullDamage() {
-  emit("addDamage", props.ship.shipId, false);
+  emit("addFacedownDamage", props.ship.shipId);
+}
+
+function handleRemoveFacedownDamage() {
+  emit("removeFacedownDamage", props.ship.shipId);
 }
 
 async function handleAddCrit() {
@@ -184,6 +191,23 @@ async function handleAddCrit() {
   if (critCard?.id === "direct-hit") {
     emit("addFacedownDamage", props.ship.shipId);
   }
+}
+
+function handleRemoveCrit(critCardId: string) {
+  emit("removeCrit", props.ship.shipId, critCardId);
+}
+
+function handleRemoveLastCrit() {
+  if (assignedCrits.value.length > 0) {
+    const lastCrit = assignedCrits.value[assignedCrits.value.length - 1];
+    if (lastCrit) {
+      handleRemoveCrit(lastCrit.critCardId);
+    }
+  }
+}
+
+function handleFlipCritFacedown(critCardId: string) {
+  emit("flipCritFacedown", props.ship.shipId, critCardId);
 }
 
 function handleAddStatModifier(
@@ -252,25 +276,63 @@ const assignedCrits = computed(() => {
           >
             Damage Cards
           </div>
-          <div class="flex items-center gap-2 mb-2">
-            <button
-              @click="handleAddHullDamage"
-              class="flex items-center gap-2 flex-1 p-2 bg-gray-800 hover:bg-gray-700 transition-colors rounded"
-            >
-              <span class="xwing-icon text-2xl text-red-500">
+          <!-- Hull Damage (Facedown) -->
+          <div
+            class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1"
+          >
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <span class="xwing-icon text-4xl shrink-0 text-red-500">
                 {{ ATTACK_DIE_ICONS.hit }}
               </span>
               <span class="text-xs text-gray-300">Hull Damage</span>
-            </button>
-            <button
-              @click="handleAddCrit"
-              class="flex items-center gap-2 flex-1 p-2 bg-gray-800 hover:bg-gray-700 transition-colors rounded"
-            >
-              <span class="xwing-icon text-2xl text-orange-500">
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <span class="text-xs text-gray-300 w-6 text-center font-semibold">
+                {{ props.ship.faceDownDamage }}
+              </span>
+              <button
+                @click.stop="handleRemoveFacedownDamage"
+                :disabled="props.ship.faceDownDamage === 0"
+                class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+              >
+                -
+              </button>
+              <button
+                @click.stop="handleAddHullDamage"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Crits -->
+          <div
+            class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1"
+          >
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <span class="xwing-icon text-4xl shrink-0 text-orange-500">
                 {{ ATTACK_DIE_ICONS.crit }}
               </span>
-              <span class="text-xs text-gray-300">Critical</span>
-            </button>
+              <span class="text-xs text-gray-300">Crits</span>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <span class="text-xs text-gray-300 w-6 text-center font-semibold">
+                {{ assignedCrits.length }}
+              </span>
+              <button
+                @click.stop="handleRemoveLastCrit"
+                :disabled="assignedCrits.length === 0"
+                class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+              >
+                -
+              </button>
+              <button
+                @click.stop="handleAddCrit"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+              >
+                +
+              </button>
+            </div>
           </div>
           <div class="text-xs text-gray-400 mb-2">
             Damage: {{ getDamageCount() }} / Hull: {{ props.ship.hull }} /
@@ -282,19 +344,32 @@ const assignedCrits = computed(() => {
               :key="`${crit.critCardId}-${index}`"
               class="p-2 bg-gray-800 rounded text-xs"
             >
-              <div class="font-semibold text-gray-200 mb-1">
-                {{ crit.card.name }}
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-semibold text-gray-200">
+                  {{ crit.card.name }}
+                </div>
+                <div class="flex items-center gap-1">
+                  <button
+                    v-if="crit.faceUp"
+                    @click.stop="handleFlipCritFacedown(crit.critCardId)"
+                    class="px-2 py-0.5 bg-gray-700 hover:bg-gray-600 text-xs text-gray-300 transition-colors"
+                    title="Flip facedown"
+                  >
+                    Flip
+                  </button>
+                  <button
+                    @click.stop="handleRemoveCrit(crit.critCardId)"
+                    class="px-2 py-0.5 bg-red-600 hover:bg-red-700 text-xs text-white transition-colors"
+                    title="Remove"
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
               <div class="text-gray-400 leading-relaxed">
                 {{ crit.card.text }}
               </div>
             </div>
-          </div>
-          <div
-            v-if="props.ship.faceDownDamage > 0"
-            class="mt-1 text-xs text-gray-400"
-          >
-            Facedown Damage: {{ props.ship.faceDownDamage }}
           </div>
         </div>
 
@@ -305,49 +380,157 @@ const assignedCrits = computed(() => {
           >
             Stat Modifiers
           </div>
-          <div class="grid grid-cols-2 gap-1">
-            <button
-              @click="handleAddStatModifier('hull', 1)"
-              class="flex items-center gap-1 p-1.5 bg-gray-800 hover:bg-gray-700 transition-colors rounded text-xs"
+          <div class="space-y-1">
+            <!-- Hull -->
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
             >
-              <span class="xwing-icon text-gray-400">{{
-                STAT_ICONS.hull
-              }}</span>
-              <span class="text-gray-300">+Hull</span>
-            </button>
-            <button
-              @click="handleAddStatModifier('shields', 1)"
-              class="flex items-center gap-1 p-1.5 bg-gray-800 hover:bg-gray-700 transition-colors rounded text-xs"
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <span class="xwing-icon text-4xl shrink-0 text-gray-400">{{
+                  STAT_ICONS.hull
+                }}</span>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <span
+                  class="text-xs text-gray-300 w-6 text-center font-semibold"
+                >
+                  {{ props.ship.hull }}
+                </span>
+                <button
+                  @click.stop="handleAddStatModifier('hull', -1)"
+                  :disabled="props.ship.hull <= 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="handleAddStatModifier('hull', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <!-- Shields -->
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
             >
-              <span class="xwing-icon text-blue-500">{{
-                STAT_ICONS.shield
-              }}</span>
-              <span class="text-gray-300">+Shield</span>
-            </button>
-            <button
-              @click="handleAddStatModifier('agility', 1)"
-              class="flex items-center gap-1 p-1.5 bg-gray-800 hover:bg-gray-700 transition-colors rounded text-xs"
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <span class="xwing-icon text-4xl shrink-0 text-blue-500">{{
+                  STAT_ICONS.shield
+                }}</span>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <span
+                  class="text-xs text-gray-300 w-6 text-center font-semibold"
+                >
+                  {{ props.ship.shields }}
+                </span>
+                <button
+                  @click.stop="handleAddStatModifier('shields', -1)"
+                  :disabled="props.ship.shields <= 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="handleAddStatModifier('shields', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <!-- Agility -->
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
             >
-              <span class="xwing-icon text-green-500">{{
-                STAT_ICONS.agility
-              }}</span>
-              <span class="text-gray-300">+Agility</span>
-            </button>
-            <button
-              @click="handleAddStatModifier('attack', 1)"
-              class="flex items-center gap-1 p-1.5 bg-gray-800 hover:bg-gray-700 transition-colors rounded text-xs"
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <span class="xwing-icon text-4xl shrink-0 text-green-500">{{
+                  STAT_ICONS.agility
+                }}</span>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <span
+                  class="text-xs text-gray-300 w-6 text-center font-semibold"
+                >
+                  {{ props.ship.agility }}
+                </span>
+                <button
+                  @click.stop="handleAddStatModifier('agility', -1)"
+                  :disabled="props.ship.agility <= 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="handleAddStatModifier('agility', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <!-- Attack -->
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
             >
-              <span class="xwing-icon text-red-500">{{
-                STAT_ICONS.attack
-              }}</span>
-              <span class="text-gray-300">+Attack</span>
-            </button>
-            <button
-              @click="handleAddStatModifier('pilotSkill', 1)"
-              class="flex items-center gap-1 p-1.5 bg-gray-800 hover:bg-gray-700 transition-colors rounded text-xs col-span-2"
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <span class="xwing-icon text-4xl shrink-0 text-red-500">{{
+                  STAT_ICONS.attack
+                }}</span>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <span
+                  class="text-xs text-gray-300 w-6 text-center font-semibold"
+                >
+                  {{ props.ship.attack }}
+                </span>
+                <button
+                  @click.stop="handleAddStatModifier('attack', -1)"
+                  :disabled="props.ship.attack <= 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="handleAddStatModifier('attack', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <!-- Pilot Skill -->
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
             >
-              <span class="text-gray-300">+Pilot Skill</span>
-            </button>
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <span class="text-xs text-gray-300 font-semibold shrink-0">
+                  PS
+                </span>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <span
+                  class="text-xs text-gray-300 w-6 text-center font-semibold"
+                >
+                  {{ props.ship.pilotSkill }}
+                </span>
+                <button
+                  @click.stop="handleAddStatModifier('pilotSkill', -1)"
+                  :disabled="props.ship.pilotSkill <= 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="handleAddStatModifier('pilotSkill', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

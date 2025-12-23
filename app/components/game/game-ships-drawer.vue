@@ -22,6 +22,10 @@ const emit = defineEmits<{
   addStatModifier: [shipId: string, stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill", amount: number];
   assignCrit: [shipId: string, critCardId: string];
   addFacedownDamage: [shipId: string];
+  removeFacedownDamage: [shipId: string];
+  removeCrit: [shipId: string, critCardId: string];
+  flipCritFacedown: [shipId: string, critCardId: string];
+  flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
 }>();
 
 const isOpen = ref(true);
@@ -119,8 +123,11 @@ function handleCloseTokenManager() {
             :ship="ship"
             :pilot="pilot"
             :is-expanded="expandedShipId === ship.shipId"
+            :all-ships="[...player1Ships, ...player2Ships]"
             player-color="red"
             @toggle-expansion="handleToggleExpansion"
+            @remove-token="handleRemoveToken"
+            @flip-upgrade="(shipId, upgradeId, faceUp) => emit('flipUpgrade', shipId, upgradeId, faceUp)"
           />
         </div>
 
@@ -138,8 +145,11 @@ function handleCloseTokenManager() {
             :ship="ship"
             :pilot="pilot"
             :is-expanded="expandedShipId === ship.shipId"
+            :all-ships="[...player1Ships, ...player2Ships]"
             player-color="gray"
             @toggle-expansion="handleToggleExpansion"
+            @remove-token="handleRemoveToken"
+            @flip-upgrade="(shipId, upgradeId, faceUp) => emit('flipUpgrade', shipId, upgradeId, faceUp)"
           />
         </div>
       </div>

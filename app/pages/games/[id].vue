@@ -392,21 +392,101 @@ async function addFacedownDamage(shipId: string) {
   });
 }
 
+async function removeFacedownDamage(shipId: string) {
+  await addStep({
+    type: "remove_facedown_damage",
+    shipId,
+    timestamp: new Date(),
+  });
+}
+
+async function removeCrit(shipId: string, critCardId: string) {
+  await addStep({
+    type: "remove_crit",
+    shipId,
+    critCardId,
+    timestamp: new Date(),
+  });
+}
+
+async function flipCritFacedown(shipId: string, critCardId: string) {
+  await addStep({
+    type: "flip_crit",
+    shipId,
+    critCardId,
+    faceUp: false,
+    timestamp: new Date(),
+  });
+}
+
+async function flipUpgrade(shipId: string, upgradeId: string, faceUp: boolean) {
+  await addStep({
+    type: "flip_upgrade",
+    shipId,
+    upgradeId,
+    faceUp,
+    timestamp: new Date(),
+  });
+}
+
 async function addStatModifier(
   shipId: string,
   stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
   amount: number
 ) {
+  const ship = currentGameState.value?.ships.find((s) => s.shipId === shipId);
+  if (!ship) return;
+
   if (stat === "hull") {
+    if (amount > 0) {
+      await addStep({
+        type: "increase_max_hull",
+        shipId,
+        timestamp: new Date(),
+      });
+    } else {
+      await addStep({
+        type: "decrease_max_hull",
+        shipId,
+        timestamp: new Date(),
+      });
+    }
+  } else if (stat === "shields") {
+    if (amount > 0) {
+      await addStep({
+        type: "increase_max_shields",
+        shipId,
+        timestamp: new Date(),
+      });
+    } else {
+      await addStep({
+        type: "decrease_max_shields",
+        shipId,
+        timestamp: new Date(),
+      });
+    }
+  } else if (stat === "pilotSkill") {
+    const newValue = Math.max(0, ship.pilotSkill + amount);
     await addStep({
-      type: "increase_max_hull",
+      type: "modify_pilot_skill",
       shipId,
+      newValue,
       timestamp: new Date(),
     });
-  } else if (stat === "shields") {
+  } else if (stat === "agility") {
+    const newValue = Math.max(0, ship.agility + amount);
     await addStep({
-      type: "increase_max_shields",
+      type: "modify_agility",
       shipId,
+      newValue,
+      timestamp: new Date(),
+    });
+  } else if (stat === "attack") {
+    const newValue = Math.max(0, ship.attack + amount);
+    await addStep({
+      type: "modify_attack",
+      shipId,
+      newValue,
       timestamp: new Date(),
     });
   }
@@ -1041,6 +1121,10 @@ async function handleModifyDefenseDiceComplete(dice: any[]) {
       @add-stat-modifier="addStatModifier"
       @assign-crit="assignCrit"
       @add-facedown-damage="addFacedownDamage"
+      @remove-facedown-damage="removeFacedownDamage"
+      @remove-crit="removeCrit"
+      @flip-crit-facedown="flipCritFacedown"
+      @flip-upgrade="flipUpgrade"
     />
 
     <!-- Main Game Area - Switch based on uiScreen with transitions -->

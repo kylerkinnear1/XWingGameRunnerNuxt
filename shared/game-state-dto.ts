@@ -108,6 +108,11 @@ export type GameStepDto =
   | GameStartDto
   | IncreaseMaxHull
   | IncreaseMaxShields
+  | DecreaseMaxHull
+  | DecreaseMaxShields
+  | ModifyPilotSkill
+  | ModifyAgility
+  | ModifyAttack
   | BeginSelectInitiative
   | InitiativeSelected
   | StartSetup
@@ -148,6 +153,8 @@ export type GameStepDto =
   | DestroyShip
   | AssignCrit
   | FlipCrit
+  | RemoveCrit
+  | RemoveFacedownDamage
   | SpendToken
   | Cleanup
   | TurnEnd
@@ -167,6 +174,39 @@ export interface IncreaseMaxHull {
 export interface IncreaseMaxShields {
   type: "increase_max_shields";
   shipId: string;
+  timestamp: Date;
+}
+
+export interface DecreaseMaxHull {
+  type: "decrease_max_hull";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface DecreaseMaxShields {
+  type: "decrease_max_shields";
+  shipId: string;
+  timestamp: Date;
+}
+
+export interface ModifyPilotSkill {
+  type: "modify_pilot_skill";
+  shipId: string;
+  newValue: number;
+  timestamp: Date;
+}
+
+export interface ModifyAgility {
+  type: "modify_agility";
+  shipId: string;
+  newValue: number;
+  timestamp: Date;
+}
+
+export interface ModifyAttack {
+  type: "modify_attack";
+  shipId: string;
+  newValue: number;
   timestamp: Date;
 }
 
@@ -462,6 +502,19 @@ export interface FlipCrit {
   shipId: string;
   critCardId: string;
   faceUp: boolean;
+  timestamp: Date;
+}
+
+export interface RemoveCrit {
+  type: "remove_crit";
+  shipId: string;
+  critCardId: string;
+  timestamp: Date;
+}
+
+export interface RemoveFacedownDamage {
+  type: "remove_facedown_damage";
+  shipId: string;
   timestamp: Date;
 }
 

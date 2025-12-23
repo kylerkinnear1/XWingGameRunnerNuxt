@@ -59,6 +59,21 @@ export function handleStep(
     case "increase_max_shields":
       setupHandlers.handleIncreaseMaxShields(step, currentState, squads, cards);
       break;
+    case "decrease_max_hull":
+      setupHandlers.handleDecreaseMaxHull(step, currentState, squads, cards);
+      break;
+    case "decrease_max_shields":
+      setupHandlers.handleDecreaseMaxShields(step, currentState, squads, cards);
+      break;
+    case "modify_pilot_skill":
+      setupHandlers.handleModifyPilotSkill(step, currentState, squads, cards);
+      break;
+    case "modify_agility":
+      setupHandlers.handleModifyAgility(step, currentState, squads, cards);
+      break;
+    case "modify_attack":
+      setupHandlers.handleModifyAttack(step, currentState, squads, cards);
+      break;
     case "begin_select_initiative":
       setupHandlers.handleBeginSelectInitiative(
         step,
@@ -200,6 +215,20 @@ export function handleStep(
       break;
     case "flip_crit":
       anyPhaseHandlers.handleFlipCrit(step, currentState, squads, cards);
+      break;
+    case "remove_crit":
+      anyPhaseHandlers.handleRemoveCrit(step, currentState, squads, cards);
+      break;
+    case "remove_facedown_damage":
+      anyPhaseHandlers.handleRemoveFacedownDamage(
+        step,
+        currentState,
+        squads,
+        cards
+      );
+      break;
+    case "flip_upgrade":
+      anyPhaseHandlers.handleFlipUpgrade(step, currentState, squads, cards);
       break;
     case "destroy_ship":
       anyPhaseHandlers.handleDestroyShip(step, currentState, squads, cards);

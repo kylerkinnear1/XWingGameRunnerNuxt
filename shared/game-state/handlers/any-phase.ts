@@ -12,8 +12,11 @@ import type {
   ShipHalfHealth,
   AssignCrit,
   FlipCrit,
+  RemoveCrit,
+  RemoveFacedownDamage,
   DestroyShip,
   DestroyObstacle,
+  FlipUpgrade,
 } from "#shared/game-state-dto";
 
 export function handleAssignToken(
@@ -133,12 +136,64 @@ export function handleFlipCrit(
 ): void {
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
-    const crit = ship.faceUpDamage.find(
+    if (step.faceUp) {
+      if (ship.faceDownDamage > 0) {
+        ship.faceDownDamage -= 1;
+        ship.faceUpDamage.push({
+          critCardId: step.critCardId,
+          faceUp: true,
+        });
+      }
+    } else {
+      const critIndex = ship.faceUpDamage.findIndex(
+        (c) => c.critCardId === step.critCardId
+      );
+      if (critIndex !== -1) {
+        ship.faceUpDamage.splice(critIndex, 1);
+        ship.faceDownDamage += 1;
+      }
+    }
+  }
+  state.currentStep += 1;
+}
+
+export function handleRemoveCrit(
+  step: RemoveCrit,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    const critIndex = ship.faceUpDamage.findIndex(
       (c) => c.critCardId === step.critCardId
     );
-    if (crit) {
-      crit.faceUp = step.faceUp;
+    if (critIndex !== -1) {
+      ship.faceUpDamage.splice(critIndex, 1);
+      const newHull = ship.hull + 1;
+      ship.hull = Math.min(newHull, ship.hull);
     }
+  }
+  state.currentStep += 1;
+}
+
+export function handleRemoveFacedownDamage(
+  step: RemoveFacedownDamage,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship && ship.faceDownDamage > 0) {
+    ship.faceDownDamage -= 1;
+    const pilot = squads
+      .flatMap((s) => s.ships)
+      .find((s) => s.id === step.shipId);
+    const baseHull = pilot
+      ? cards.pilots.find((p) => p.id === pilot.pilotId)?.hull || 0
+      : 0;
+    const newHull = Math.min(ship.hull + 1, baseHull);
+    ship.hull = newHull;
   }
   state.currentStep += 1;
 }
@@ -167,6 +222,22 @@ export function handleDestroyObstacle(
   );
   if (obstacle) {
     obstacle.isDestroyed = true;
+  }
+  state.currentStep += 1;
+}
+
+export function handleFlipUpgrade(
+  step: FlipUpgrade,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    const upgrade = ship.upgrades.find((u) => u.upgradeId === step.upgradeId);
+    if (upgrade) {
+      upgrade.faceUp = step.faceUp;
+    }
   }
   state.currentStep += 1;
 }
