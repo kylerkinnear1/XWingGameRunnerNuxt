@@ -16,14 +16,23 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   toggleExpansion: [shipId: string];
-  addToken: [shipId: string, tokenType: TokenType, targetShipId?: string | null, conditionId?: string | null];
+  addToken: [
+    shipId: string,
+    tokenType: TokenType,
+    targetShipId?: string | null,
+    conditionId?: string | null
+  ];
   removeToken: [shipId: string, tokenType: TokenType];
   addFacedownDamage: [shipId: string];
   removeFacedownDamage: [shipId: string];
   assignCrit: [shipId: string, critCardId: string];
   removeCrit: [shipId: string, critCardId: string];
   flipCritFacedown: [shipId: string, critCardId: string];
-  addStatModifier: [shipId: string, stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill", amount: number];
+  addStatModifier: [
+    shipId: string,
+    stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
+    amount: number
+  ];
   decreaseHull: [shipId: string];
   decreaseShields: [shipId: string];
 }>();
@@ -42,7 +51,12 @@ function handleToggleExpansion(shipId: string) {
   emit("toggleExpansion", shipId);
 }
 
-function handleAddToken(shipId: string, tokenType: TokenType, targetShipId?: string | null, conditionId?: string | null) {
+function handleAddToken(
+  shipId: string,
+  tokenType: TokenType,
+  targetShipId?: string | null,
+  conditionId?: string | null
+) {
   emit("addToken", shipId, tokenType, targetShipId, conditionId);
 }
 
@@ -162,11 +176,22 @@ function handleCloseTokenManager() {
         @add-token="handleAddToken"
         @remove-token="handleRemoveToken"
         @add-facedown-damage="(shipId) => emit('addFacedownDamage', shipId)"
-        @remove-facedown-damage="(shipId) => emit('removeFacedownDamage', shipId)"
-        @assign-crit="(shipId, critCardId) => emit('assignCrit', shipId, critCardId)"
-        @remove-crit="(shipId, critCardId) => emit('removeCrit', shipId, critCardId)"
-        @flip-crit-facedown="(shipId, critCardId) => emit('flipCritFacedown', shipId, critCardId)"
-        @add-stat-modifier="(shipId, stat, amount) => emit('addStatModifier', shipId, stat, amount)"
+        @remove-facedown-damage="
+          (shipId) => emit('removeFacedownDamage', shipId)
+        "
+        @assign-crit="
+          (shipId, critCardId) => emit('assignCrit', shipId, critCardId)
+        "
+        @remove-crit="
+          (shipId, critCardId) => emit('removeCrit', shipId, critCardId)
+        "
+        @flip-crit-facedown="
+          (shipId, critCardId) => emit('flipCritFacedown', shipId, critCardId)
+        "
+        @add-stat-modifier="
+          (shipId, stat, amount) =>
+            emit('addStatModifier', shipId, stat, amount)
+        "
         @decrease-hull="(shipId) => emit('decreaseHull', shipId)"
         @decrease-shields="(shipId) => emit('decreaseShields', shipId)"
         @close-token-manager="handleCloseTokenManager"

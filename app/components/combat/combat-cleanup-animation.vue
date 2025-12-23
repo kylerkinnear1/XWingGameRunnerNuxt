@@ -113,4 +113,3 @@ function handleEndTurn() {
   opacity: 1;
 }
 </style>
-

@@ -42,7 +42,9 @@ const { cards } = useCards();
 
 const showTargetLockDrawer = ref(false);
 const showConditionsDrawer = ref(false);
-const hoveredCondition = ref<{ name: string; cardImageUrl?: string } | null>(null);
+const hoveredCondition = ref<{ name: string; cardImageUrl?: string } | null>(
+  null
+);
 const hoverPosition = ref({ x: 0, y: 0 });
 
 const availableTokens: readonly TokenType[] = [
@@ -229,7 +231,12 @@ function handleClose() {
         @click="handleClose"
         class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -239,17 +246,21 @@ function handleClose() {
         </svg>
       </button>
     </div>
-    
+
     <div class="flex-1 overflow-y-auto p-2">
       <div class="space-y-1">
         <!-- Damage Cards Section -->
         <div class="mb-3 pb-3 border-b border-gray-700">
-          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+          <div
+            class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2"
+          >
             Damage Cards
           </div>
-          
+
           <!-- Hull Damage (Facedown) -->
-          <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1">
+          <div
+            class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1"
+          >
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <span class="xwing-icon text-4xl shrink-0 text-red-500">
                 {{ ATTACK_DIE_ICONS.hit }}
@@ -275,9 +286,11 @@ function handleClose() {
               </button>
             </div>
           </div>
-          
+
           <!-- Crits -->
-          <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1">
+          <div
+            class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1"
+          >
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <span class="xwing-icon text-4xl shrink-0 text-orange-500">
                 {{ ATTACK_DIE_ICONS.crit }}
@@ -296,11 +309,12 @@ function handleClose() {
               </button>
             </div>
           </div>
-          
+
           <div class="text-xs text-gray-400 mb-2">
-            Damage: {{ getDamageCount() }} / Hull: {{ props.ship.hull }} / {{ getTotalHull() }}
+            Damage: {{ getDamageCount() }} / Hull: {{ props.ship.hull }} /
+            {{ getTotalHull() }}
           </div>
-          
+
           <!-- Assigned Crits -->
           <div v-if="assignedCrits.length > 0" class="space-y-1">
             <div
@@ -339,13 +353,19 @@ function handleClose() {
 
         <!-- Stat Modifiers Section -->
         <div class="mb-3 pb-3 border-b border-gray-700">
-          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+          <div
+            class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2"
+          >
             Stat Modifiers
           </div>
           <div class="space-y-1">
-            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
+            >
               <div class="flex items-center gap-2 flex-1">
-                <span class="xwing-icon text-4xl text-yellow-500">{{ STAT_ICONS.hull }}</span>
+                <span class="xwing-icon text-4xl text-yellow-500">{{
+                  STAT_ICONS.hull
+                }}</span>
                 <span class="text-xs text-gray-300">Hull</span>
               </div>
               <div class="flex items-center gap-1">
@@ -357,17 +377,23 @@ function handleClose() {
                   -
                 </button>
                 <button
-                  @click.stop="$emit('addStatModifier', props.ship.shipId, 'hull', 1)"
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'hull', 1)
+                  "
                   class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
                 >
                   +
                 </button>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
+            >
               <div class="flex items-center gap-2 flex-1">
-                <span class="xwing-icon text-4xl text-blue-500">{{ STAT_ICONS.shield }}</span>
+                <span class="xwing-icon text-4xl text-blue-500">{{
+                  STAT_ICONS.shield
+                }}</span>
                 <span class="text-xs text-gray-300">Shields</span>
               </div>
               <div class="flex items-center gap-1">
@@ -379,46 +405,64 @@ function handleClose() {
                   -
                 </button>
                 <button
-                  @click.stop="$emit('addStatModifier', props.ship.shipId, 'shields', 1)"
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'shields', 1)
+                  "
                   class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
                 >
                   +
                 </button>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
+            >
               <div class="flex items-center gap-2 flex-1">
-                <span class="xwing-icon text-4xl text-green-500">{{ STAT_ICONS.agility }}</span>
+                <span class="xwing-icon text-4xl text-green-500">{{
+                  STAT_ICONS.agility
+                }}</span>
                 <span class="text-xs text-gray-300">Agility</span>
               </div>
               <button
-                @click.stop="$emit('addStatModifier', props.ship.shipId, 'agility', 1)"
+                @click.stop="
+                  $emit('addStatModifier', props.ship.shipId, 'agility', 1)
+                "
                 class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
               >
                 +
               </button>
             </div>
-            
-            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
+            >
               <div class="flex items-center gap-2 flex-1">
-                <span class="xwing-icon text-4xl text-red-500">{{ STAT_ICONS.attack }}</span>
+                <span class="xwing-icon text-4xl text-red-500">{{
+                  STAT_ICONS.attack
+                }}</span>
                 <span class="text-xs text-gray-300">Attack</span>
               </div>
               <button
-                @click.stop="$emit('addStatModifier', props.ship.shipId, 'attack', 1)"
+                @click.stop="
+                  $emit('addStatModifier', props.ship.shipId, 'attack', 1)
+                "
                 class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
               >
                 +
               </button>
             </div>
-            
-            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+
+            <div
+              class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
+            >
               <div class="flex items-center gap-2 flex-1">
                 <span class="text-xs text-gray-300">Pilot Skill</span>
               </div>
               <button
-                @click.stop="$emit('addStatModifier', props.ship.shipId, 'pilotSkill', 1)"
+                @click.stop="
+                  $emit('addStatModifier', props.ship.shipId, 'pilotSkill', 1)
+                "
                 class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
               >
                 +
@@ -429,11 +473,13 @@ function handleClose() {
 
         <!-- Tokens Section -->
         <div class="mb-2">
-          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+          <div
+            class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2"
+          >
             Tokens
           </div>
         </div>
-        
+
         <div
           v-for="tokenType in availableTokens"
           :key="`${props.ship.shipId}-${tokenType}`"
@@ -453,7 +499,11 @@ function handleClose() {
               "
               class="text-xs text-gray-400"
             >
-              {{ getLockedShipName(getTargetLockTokens()[0]?.targetShipId || null) }}
+              {{
+                getLockedShipName(
+                  getTargetLockTokens()[0]?.targetShipId || null
+                )
+              }}
             </div>
           </div>
           <div class="flex items-center gap-1 shrink-0">
@@ -483,16 +533,30 @@ function handleClose() {
       v-if="showTargetLockDrawer"
       class="absolute inset-0 bg-gray-900 border-l border-gray-700 z-10 flex flex-col"
     >
-      <div class="p-3 border-b border-gray-700 flex items-center justify-between">
-        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+      <div
+        class="p-3 border-b border-gray-700 flex items-center justify-between"
+      >
+        <div
+          class="text-xs font-semibold text-gray-400 uppercase tracking-wide"
+        >
           Select Target
         </div>
         <button
           @click="showTargetLockDrawer = false"
           class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -524,16 +588,30 @@ function handleClose() {
       class="absolute inset-0 bg-gray-900 border-l border-gray-700 z-10 flex flex-col"
       @mousemove="handleMouseMove"
     >
-      <div class="p-3 border-b border-gray-700 flex items-center justify-between">
-        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+      <div
+        class="p-3 border-b border-gray-700 flex items-center justify-between"
+      >
+        <div
+          class="text-xs font-semibold text-gray-400 uppercase tracking-wide"
+        >
           Conditions
         </div>
         <button
           @click="showConditionsDrawer = false"
           class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -543,7 +621,12 @@ function handleClose() {
             v-for="condition in allConditions"
             :key="condition.id"
             @click="handleAddCondition(condition.id)"
-            @mouseenter="hoveredCondition = { name: condition.name, cardImageUrl: condition.cardImageUrl }"
+            @mouseenter="
+              hoveredCondition = {
+                name: condition.name,
+                cardImageUrl: condition.cardImageUrl,
+              }
+            "
             @mouseleave="hoveredCondition = null"
             class="flex items-start gap-2 p-2 hover:bg-gray-800 transition-colors cursor-pointer"
           >
@@ -569,9 +652,16 @@ function handleClose() {
     <div
       v-if="hoveredCondition && hoveredCondition.cardImageUrl"
       class="fixed z-[60] pointer-events-none"
-      :style="{ left: `${hoverPosition.x + 20}px`, top: `${hoverPosition.y - 100}px` }"
+      :style="{
+        left: `${hoverPosition.x + 20}px`,
+        top: `${hoverPosition.y - 100}px`,
+      }"
     >
-      <img :src="hoveredCondition.cardImageUrl" :alt="hoveredCondition.name" class="w-64 rounded-lg shadow-2xl border-2 border-gray-300" />
+      <img
+        :src="hoveredCondition.cardImageUrl"
+        :alt="hoveredCondition.name"
+        class="w-64 rounded-lg shadow-2xl border-2 border-gray-300"
+      />
     </div>
   </Teleport>
 </template>

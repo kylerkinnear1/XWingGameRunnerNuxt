@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "./game-transitions.css";
 
 @font-face {
   font-family: 'xwing-miniatures';
