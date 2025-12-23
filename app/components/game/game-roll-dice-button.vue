@@ -251,7 +251,7 @@ function handleDefenseModifyComplete(dice: DefenseDie[]) {
           v-if="showCompareModal"
           :attack-dice="modifiedAttackDice"
           :defense-dice="modifiedDefenseDice"
-          @close="closeModal"
+          @continue="closeModal"
         />
       </Transition>
     </Teleport>

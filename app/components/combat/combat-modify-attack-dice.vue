@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AttackDie, AttackDieFace } from "#shared/dice";
+import { rollAttackDie } from "#app/domain/dice";
 
 const props = defineProps<{
   initialDice: AttackDie[];
@@ -12,6 +13,7 @@ const emit = defineEmits<{
 const dice = ref<AttackDie[]>(JSON.parse(JSON.stringify(props.initialDice)));
 const selectedDieId = ref<string | null>(null);
 const isModifyDrawerOpen = ref(false);
+const isRerolling = ref(false);
 
 const attackFaces: AttackDieFace[] = ["hit", "crit", "focus", "blank"];
 
@@ -28,6 +30,24 @@ function changeDieFace(newFace: AttackDieFace) {
     dice.value[dieIndex]!.face = newFace;
   }
 
+  isModifyDrawerOpen.value = false;
+  selectedDieId.value = null;
+}
+
+async function rerollDie() {
+  if (!selectedDieId.value) return;
+
+  isRerolling.value = true;
+  
+  // Animate the reroll with a brief delay
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  
+  const dieIndex = dice.value.findIndex((d) => d.id === selectedDieId.value);
+  if (dieIndex !== -1) {
+    dice.value[dieIndex]!.face = rollAttackDie();
+  }
+
+  isRerolling.value = false;
   isModifyDrawerOpen.value = false;
   selectedDieId.value = null;
 }
@@ -87,7 +107,7 @@ function getDieImage(face: AttackDieFace): string {
       <div v-if="isModifyDrawerOpen" class="modify-drawer mb-6">
         <div class="drawer-content">
           <div class="drawer-header">
-            <h3 class="drawer-title">Select New Face</h3>
+            <h3 class="drawer-title">Modify Die</h3>
             <button
               class="drawer-close"
               @click="
@@ -98,16 +118,29 @@ function getDieImage(face: AttackDieFace): string {
               <span class="text-xl">×</span>
             </button>
           </div>
-          <div class="face-options flex flex-wrap justify-center gap-3">
+          <div class="modify-options">
             <button
-              v-for="face in attackFaces"
-              :key="face"
-              class="face-option-button"
-              :class="{ active: selectedDie?.face === face }"
-              @click="changeDieFace(face)"
+              class="reroll-button"
+              :disabled="isRerolling"
+              @click="rerollDie"
             >
-              <img :src="getDieImage(face)" :alt="face" class="die-image" />
+              <span class="reroll-icon">🎲</span>
+              <span class="reroll-text">Reroll</span>
             </button>
+            <div class="divider">
+              <span class="divider-text">OR</span>
+            </div>
+            <div class="face-options flex flex-wrap justify-center gap-3">
+              <button
+                v-for="face in attackFaces"
+                :key="face"
+                class="face-option-button"
+                :class="{ active: selectedDie?.face === face }"
+                @click="changeDieFace(face)"
+              >
+                <img :src="getDieImage(face)" :alt="face" class="die-image" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -247,6 +280,84 @@ function getDieImage(face: AttackDieFace): string {
 
 .drawer-close:active {
   transform: scale(0.95);
+}
+
+.modify-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.reroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background-color: rgb(234 88 12);
+  color: white;
+  border-bottom: 4px solid rgb(194 65 12);
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  min-width: 200px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.reroll-button:hover:not(:disabled) {
+  background-color: rgb(249 115 22);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.reroll-button:active:not(:disabled) {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+}
+
+.reroll-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reroll-icon {
+  font-size: 1.5rem;
+}
+
+.reroll-text {
+  font-size: 1rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.divider-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .face-options {
