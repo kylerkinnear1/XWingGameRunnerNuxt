@@ -147,6 +147,11 @@ export type GameStepDto =
   | ShipHalfHealth
   | DestroyShip
   | AssignCrit
+  | RemoveCrit
+  | RemoveFacedownDamage
+  | FlipCritFacedown
+  | UpdatePilotSkill
+  | DecreaseShields
   | FlipCrit
   | SpendToken
   | Cleanup
@@ -454,6 +459,40 @@ export interface AssignCrit {
   type: "assign_crit";
   shipId: string;
   critCardId: string;
+  timestamp: Date;
+}
+
+export interface RemoveCrit {
+  type: "remove_crit";
+  shipId: string;
+  critCardId: string;
+  timestamp: Date;
+}
+
+export interface RemoveFacedownDamage {
+  type: "remove_facedown_damage";
+  shipId: string;
+  hullRemaining: number;
+  timestamp: Date;
+}
+
+export interface FlipCritFacedown {
+  type: "flip_crit_facedown";
+  shipId: string;
+  critCardId: string;
+  timestamp: Date;
+}
+
+export interface UpdatePilotSkill {
+  type: "update_pilot_skill";
+  shipId: string;
+  newPilotSkill: number;
+  timestamp: Date;
+}
+
+export interface DecreaseShields {
+  type: "decrease_shields";
+  shipId: string;
   timestamp: Date;
 }
 

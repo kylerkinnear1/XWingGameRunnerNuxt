@@ -198,6 +198,21 @@ export function handleStep(
     case "assign_crit":
       anyPhaseHandlers.handleAssignCrit(step, currentState, squads, cards);
       break;
+    case "remove_crit":
+      anyPhaseHandlers.handleRemoveCrit(step, currentState, squads, cards);
+      break;
+    case "remove_facedown_damage":
+      anyPhaseHandlers.handleRemoveFacedownDamage(step, currentState, squads, cards);
+      break;
+    case "flip_crit_facedown":
+      anyPhaseHandlers.handleFlipCritFacedown(step, currentState, squads, cards);
+      break;
+    case "update_pilot_skill":
+      anyPhaseHandlers.handleUpdatePilotSkill(step, currentState, squads, cards);
+      break;
+    case "decrease_shields":
+      anyPhaseHandlers.handleDecreaseShields(step, currentState, squads, cards);
+      break;
     case "flip_crit":
       anyPhaseHandlers.handleFlipCrit(step, currentState, squads, cards);
       break;

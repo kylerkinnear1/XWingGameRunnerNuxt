@@ -3,6 +3,8 @@ import type { Maneuver } from "#shared/enums";
 export interface CardsDto {
   pilots: PilotDto[];
   upgrades: UpgradeDto[];
+  damageCards: DamageCardDto[];
+  damageDeck: readonly string[];
 }
 
 export interface PilotDto {
@@ -56,5 +58,13 @@ export interface UpgradeDto {
   maxRange: number | null;
   energy: number | null;
 
+  cardImageUrl?: string;
+}
+
+export interface DamageCardDto {
+  id: string;
+  name: string;
+  type: "Pilot" | "Ship";
+  text: string;
   cardImageUrl?: string;
 }

@@ -11,6 +11,11 @@ import type {
   ApplyDamage,
   ShipHalfHealth,
   AssignCrit,
+  RemoveCrit,
+  RemoveFacedownDamage,
+  FlipCritFacedown,
+  UpdatePilotSkill,
+  DecreaseShields,
   FlipCrit,
   DestroyShip,
   DestroyObstacle,
@@ -113,11 +118,89 @@ export function handleAssignCrit(
 ): void {
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
-    ship.faceUpDamage.push({
-      critCardId: step.critCardId,
-      faceUp: true,
-    });
+    if (step.critCardId === "facedown") {
+      ship.faceDownDamage += 1;
+    } else {
+      ship.faceUpDamage.push({
+        critCardId: step.critCardId,
+        faceUp: true,
+      });
+    }
   }
+  state.currentStep += 1;
+}
+
+export function handleRemoveCrit(
+  step: RemoveCrit,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    const index = ship.faceUpDamage.findIndex(
+      (c) => c.critCardId === step.critCardId
+    );
+    if (index !== -1) {
+      ship.faceUpDamage.splice(index, 1);
+    }
+  }
+  state.currentStep += 1;
+}
+
+export function handleRemoveFacedownDamage(
+  step: RemoveFacedownDamage,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship && ship.faceDownDamage > 0) {
+    ship.faceDownDamage -= 1;
+    ship.hull = step.hullRemaining;
+  }
+  state.currentStep += 1;
+}
+
+export function handleFlipCritFacedown(
+  step: FlipCritFacedown,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    const crit = ship.faceUpDamage.find(
+      (c) => c.critCardId === step.critCardId
+    );
+    if (crit) {
+      crit.faceUp = false;
+    }
+  }
+  state.currentStep += 1;
+}
+
+export function handleUpdatePilotSkill(
+  step: UpdatePilotSkill,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.pilotSkill = step.newPilotSkill;
+  }
+  state.currentStep += 1;
+}
+
+export function handleDecreaseShields(
+  step: DecreaseShields,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship && ship.shields > 0) ship.shields -= 1;
   state.currentStep += 1;
 }
 

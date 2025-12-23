@@ -16,8 +16,16 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   toggleExpansion: [shipId: string];
-  addToken: [shipId: string, tokenType: TokenType];
+  addToken: [shipId: string, tokenType: TokenType, targetShipId?: string | null, conditionId?: string | null];
   removeToken: [shipId: string, tokenType: TokenType];
+  addFacedownDamage: [shipId: string];
+  removeFacedownDamage: [shipId: string];
+  assignCrit: [shipId: string, critCardId: string];
+  removeCrit: [shipId: string, critCardId: string];
+  flipCritFacedown: [shipId: string, critCardId: string];
+  addStatModifier: [shipId: string, stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill", amount: number];
+  decreaseHull: [shipId: string];
+  decreaseShields: [shipId: string];
 }>();
 
 const isOpen = ref(true);
@@ -34,8 +42,8 @@ function handleToggleExpansion(shipId: string) {
   emit("toggleExpansion", shipId);
 }
 
-function handleAddToken(shipId: string, tokenType: TokenType) {
-  emit("addToken", shipId, tokenType);
+function handleAddToken(shipId: string, tokenType: TokenType, targetShipId?: string | null, conditionId?: string | null) {
+  emit("addToken", shipId, tokenType, targetShipId, conditionId);
 }
 
 function handleRemoveToken(shipId: string, tokenType: TokenType) {
@@ -51,11 +59,12 @@ function handleCloseTokenManager() {
 
 <template>
   <div
-    class="shrink-0 border-r border-gray-700 bg-gray-800 overflow-hidden flex h-full"
+    class="shrink-0 border-r border-gray-700 bg-gray-800 flex h-full relative"
+    :class="expandedShipId ? 'overflow-visible' : 'overflow-hidden'"
   >
     <!-- Ships List -->
     <div
-      class="flex flex-col transition-all h-full"
+      class="flex flex-col transition-all h-full overflow-hidden"
       :class="isOpen ? 'w-96' : 'w-12'"
     >
       <div
@@ -140,17 +149,26 @@ function handleCloseTokenManager() {
       </div>
     </div>
 
-    <!-- Token Drawer (slides from right of ship list) -->
+    <!-- Token Drawer (floats over content to the right) -->
     <div
       v-if="expandedShipId"
-      class="bg-gray-900 border-l border-gray-700 shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full w-64"
+      class="absolute left-full top-0 bottom-0 bg-gray-900 border-l border-gray-700 shadow-xl transition-all duration-300 overflow-hidden flex flex-col w-64 z-50"
     >
       <GameShipTokenManager
         v-if="expandedShip"
         :key="expandedShipId"
         :ship="expandedShip"
+        :all-ships="[...player1Ships, ...player2Ships]"
         @add-token="handleAddToken"
         @remove-token="handleRemoveToken"
+        @add-facedown-damage="(shipId) => emit('addFacedownDamage', shipId)"
+        @remove-facedown-damage="(shipId) => emit('removeFacedownDamage', shipId)"
+        @assign-crit="(shipId, critCardId) => emit('assignCrit', shipId, critCardId)"
+        @remove-crit="(shipId, critCardId) => emit('removeCrit', shipId, critCardId)"
+        @flip-crit-facedown="(shipId, critCardId) => emit('flipCritFacedown', shipId, critCardId)"
+        @add-stat-modifier="(shipId, stat, amount) => emit('addStatModifier', shipId, stat, amount)"
+        @decrease-hull="(shipId) => emit('decreaseHull', shipId)"
+        @decrease-shields="(shipId) => emit('decreaseShields', shipId)"
         @close-token-manager="handleCloseTokenManager"
       />
     </div>

@@ -1,17 +1,49 @@
 <script setup lang="ts">
 import type { ShipStateDto } from "#shared/game-state-dto";
+import type { PilotDto } from "#shared/cards";
 import { TokenType } from "#shared/enums";
-import { TOKEN_ICONS } from "#shared/xwing-icons";
+import { TOKEN_ICONS, getShipIcon, STAT_ICONS } from "#shared/xwing-icons";
+import { ATTACK_DIE_ICONS } from "#shared/dice";
+
+interface ShipWithPilot {
+  ship: ShipStateDto;
+  pilot: PilotDto | undefined;
+}
 
 const props = defineProps<{
   ship: ShipStateDto;
+  allShips: ShipWithPilot[];
 }>();
 
 const emit = defineEmits<{
-  addToken: [shipId: string, tokenType: TokenType];
+  addToken: [
+    shipId: string,
+    tokenType: TokenType,
+    targetShipId?: string | null,
+    conditionId?: string | null
+  ];
   removeToken: [shipId: string, tokenType: TokenType];
+  addFacedownDamage: [shipId: string];
+  removeFacedownDamage: [shipId: string];
+  assignCrit: [shipId: string, critCardId: string];
+  removeCrit: [shipId: string, critCardId: string];
+  flipCritFacedown: [shipId: string, critCardId: string];
+  addStatModifier: [
+    shipId: string,
+    stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
+    amount: number
+  ];
+  decreaseHull: [shipId: string];
+  decreaseShields: [shipId: string];
   closeTokenManager: [];
 }>();
+
+const { cards } = useCards();
+
+const showTargetLockDrawer = ref(false);
+const showConditionsDrawer = ref(false);
+const hoveredCondition = ref<{ name: string; cardImageUrl?: string } | null>(null);
+const hoverPosition = ref({ x: 0, y: 0 });
 
 const availableTokens: readonly TokenType[] = [
   TokenType.Focus,
@@ -43,24 +75,143 @@ const iconMap: Record<TokenType, string> = {
   [TokenType.Condition]: TOKEN_ICONS.condition,
 };
 
+const tokenColors: Record<TokenType, string> = {
+  [TokenType.Focus]: "text-green-500",
+  [TokenType.Evade]: "text-green-500",
+  [TokenType.Stress]: "text-red-500",
+  [TokenType.Ion]: "text-red-500",
+  [TokenType.TargetLock]: "text-yellow-500",
+  [TokenType.Reinforce]: "text-green-500",
+  [TokenType.Cloak]: "text-blue-500",
+  [TokenType.Jam]: "text-green-500",
+  [TokenType.Tractor]: "text-red-500",
+  [TokenType.Shield]: "text-blue-500",
+  [TokenType.WeaponsDisabled]: "text-red-500",
+  [TokenType.Condition]: "text-orange-500",
+};
+
 function getTokenIcon(tokenType: TokenType): string {
   return iconMap[tokenType] || "?";
+}
+
+function getTokenColor(tokenType: TokenType): string {
+  return tokenColors[tokenType] || "text-gray-300";
 }
 
 function getTokenCount(tokenType: TokenType): number {
   return props.ship.tokens.filter((t) => t.tokenType === tokenType).length;
 }
 
-function formatTokenName(tokenType: TokenType): string {
-  return tokenType.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+function getTargetLockTokens() {
+  return props.ship.tokens.filter((t) => t.tokenType === TokenType.TargetLock);
+}
+
+function getLockedShipName(targetShipId: string | null): string {
+  if (!targetShipId) return "";
+  const targetShip = props.allShips.find((s) => s.ship.shipId === targetShipId);
+  return targetShip?.pilot?.pilotName || "Unknown";
+}
+
+function getOtherShips() {
+  return props.allShips.filter(
+    (s) => s.ship.shipId !== props.ship.shipId && !s.ship.isDestroyed
+  );
+}
+
+function shuffleArray<T>(array: readonly T[]): T[] {
+  const shuffled: T[] = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp: T = shuffled[i]!;
+    shuffled[i] = shuffled[j]!;
+    shuffled[j] = temp;
+  }
+  return shuffled;
+}
+
+const allConditions = computed(() => {
+  if (!cards.value) return [];
+  return cards.value.upgrades.filter((u) => u.categoryKey === "condition");
+});
+
+const assignedCrits = computed(() => {
+  if (!cards.value) return [];
+  return props.ship.faceUpDamage
+    .map((crit) => {
+      const card = cards.value!.damageCards.find(
+        (c) => c.id === crit.critCardId
+      );
+      return card ? { ...crit, card } : null;
+    })
+    .filter((c): c is NonNullable<typeof c> => c !== null);
+});
+
+function getDamageCount(): number {
+  return props.ship.faceUpDamage.length + props.ship.faceDownDamage;
+}
+
+function getTotalHull(): number {
+  const pilot = props.allShips.find(
+    (s) => s.ship.shipId === props.ship.shipId
+  )?.pilot;
+  if (!pilot) return props.ship.hull;
+  return pilot.hull;
 }
 
 function handleAddToken(tokenType: TokenType) {
+  if (tokenType === TokenType.TargetLock) {
+    showTargetLockDrawer.value = true;
+    return;
+  }
+  if (tokenType === TokenType.Condition) {
+    showConditionsDrawer.value = true;
+    return;
+  }
   emit("addToken", props.ship.shipId, tokenType);
+}
+
+function handleAddTargetLock(targetShipId: string) {
+  emit("addToken", props.ship.shipId, TokenType.TargetLock, targetShipId);
+  showTargetLockDrawer.value = false;
+}
+
+function handleAddCondition(conditionId: string) {
+  emit("addToken", props.ship.shipId, TokenType.Condition, null, conditionId);
+  showConditionsDrawer.value = false;
 }
 
 function handleRemoveToken(tokenType: TokenType) {
   emit("removeToken", props.ship.shipId, tokenType);
+}
+
+function handleAddHullDamage() {
+  emit("addFacedownDamage", props.ship.shipId);
+}
+
+function handleRemoveFacedownDamage() {
+  emit("removeFacedownDamage", props.ship.shipId);
+}
+
+async function handleAddCrit() {
+  if (!cards.value || !cards.value.damageDeck.length) return;
+
+  const shuffledDeck = shuffleArray(cards.value.damageDeck);
+  const critCardId = shuffledDeck[0];
+  if (!critCardId) return;
+
+  emit("assignCrit", props.ship.shipId, critCardId);
+}
+
+function handleRemoveCrit(critCardId: string) {
+  emit("removeCrit", props.ship.shipId, critCardId);
+}
+
+function handleFlipCritFacedown(critCardId: string) {
+  emit("flipCritFacedown", props.ship.shipId, critCardId);
+}
+
+function handleMouseMove(event: MouseEvent) {
+  hoverPosition.value = { x: event.clientX, y: event.clientY };
 }
 
 function handleClose() {
@@ -69,7 +220,7 @@ function handleClose() {
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-full flex flex-col relative">
     <div class="p-3 border-b border-gray-700 flex items-center justify-between">
       <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
         Tokens
@@ -78,12 +229,7 @@ function handleClose() {
         @click="handleClose"
         class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
       >
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -93,20 +239,222 @@ function handleClose() {
         </svg>
       </button>
     </div>
+    
     <div class="flex-1 overflow-y-auto p-2">
       <div class="space-y-1">
+        <!-- Damage Cards Section -->
+        <div class="mb-3 pb-3 border-b border-gray-700">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            Damage Cards
+          </div>
+          
+          <!-- Hull Damage (Facedown) -->
+          <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <span class="xwing-icon text-4xl shrink-0 text-red-500">
+                {{ ATTACK_DIE_ICONS.hit }}
+              </span>
+              <span class="text-xs text-gray-300">Hull Damage</span>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <span class="text-xs text-gray-300 w-6 text-center font-semibold">
+                {{ props.ship.faceDownDamage }}
+              </span>
+              <button
+                @click.stop="handleRemoveFacedownDamage"
+                :disabled="props.ship.faceDownDamage === 0"
+                class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors"
+              >
+                -
+              </button>
+              <button
+                @click.stop="handleAddHullDamage"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          
+          <!-- Crits -->
+          <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors mb-1">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <span class="xwing-icon text-4xl shrink-0 text-orange-500">
+                {{ ATTACK_DIE_ICONS.crit }}
+              </span>
+              <span class="text-xs text-gray-300">Crits</span>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <span class="text-xs text-gray-300 w-6 text-center font-semibold">
+                {{ assignedCrits.length }}
+              </span>
+              <button
+                @click.stop="handleAddCrit"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          
+          <div class="text-xs text-gray-400 mb-2">
+            Damage: {{ getDamageCount() }} / Hull: {{ props.ship.hull }} / {{ getTotalHull() }}
+          </div>
+          
+          <!-- Assigned Crits -->
+          <div v-if="assignedCrits.length > 0" class="space-y-1">
+            <div
+              v-for="(crit, index) in assignedCrits"
+              :key="`${crit.critCardId}-${index}`"
+              class="p-2 bg-gray-800 rounded text-xs"
+            >
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-semibold text-gray-200">
+                  {{ crit.card.name }}
+                </div>
+                <div class="flex items-center gap-1">
+                  <button
+                    v-if="crit.faceUp"
+                    @click.stop="handleFlipCritFacedown(crit.critCardId)"
+                    class="px-2 py-0.5 bg-gray-700 hover:bg-gray-600 text-xs text-gray-300 transition-colors"
+                    title="Flip facedown"
+                  >
+                    Flip
+                  </button>
+                  <button
+                    @click.stop="handleRemoveCrit(crit.critCardId)"
+                    class="px-2 py-0.5 bg-red-700 hover:bg-red-600 text-xs text-white transition-colors"
+                    title="Remove crit"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+              <div class="text-gray-400 leading-relaxed">
+                {{ crit.card.text }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat Modifiers Section -->
+        <div class="mb-3 pb-3 border-b border-gray-700">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            Stat Modifiers
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+              <div class="flex items-center gap-2 flex-1">
+                <span class="xwing-icon text-4xl text-yellow-500">{{ STAT_ICONS.hull }}</span>
+                <span class="text-xs text-gray-300">Hull</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <button
+                  @click.stop="$emit('decreaseHull', props.ship.shipId)"
+                  :disabled="props.ship.hull === 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 text-white text-xs font-bold"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="$emit('addStatModifier', props.ship.shipId, 'hull', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+              <div class="flex items-center gap-2 flex-1">
+                <span class="xwing-icon text-4xl text-blue-500">{{ STAT_ICONS.shield }}</span>
+                <span class="text-xs text-gray-300">Shields</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <button
+                  @click.stop="$emit('decreaseShields', props.ship.shipId)"
+                  :disabled="props.ship.shields === 0"
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 text-white text-xs font-bold"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="$emit('addStatModifier', props.ship.shipId, 'shields', 1)"
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+              <div class="flex items-center gap-2 flex-1">
+                <span class="xwing-icon text-4xl text-green-500">{{ STAT_ICONS.agility }}</span>
+                <span class="text-xs text-gray-300">Agility</span>
+              </div>
+              <button
+                @click.stop="$emit('addStatModifier', props.ship.shipId, 'agility', 1)"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
+              >
+                +
+              </button>
+            </div>
+            
+            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+              <div class="flex items-center gap-2 flex-1">
+                <span class="xwing-icon text-4xl text-red-500">{{ STAT_ICONS.attack }}</span>
+                <span class="text-xs text-gray-300">Attack</span>
+              </div>
+              <button
+                @click.stop="$emit('addStatModifier', props.ship.shipId, 'attack', 1)"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
+              >
+                +
+              </button>
+            </div>
+            
+            <div class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors">
+              <div class="flex items-center gap-2 flex-1">
+                <span class="text-xs text-gray-300">Pilot Skill</span>
+              </div>
+              <button
+                @click.stop="$emit('addStatModifier', props.ship.shipId, 'pilotSkill', 1)"
+                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tokens Section -->
+        <div class="mb-2">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            Tokens
+          </div>
+        </div>
+        
         <div
           v-for="tokenType in availableTokens"
           :key="`${props.ship.shipId}-${tokenType}`"
           class="flex items-center justify-between p-2 hover:bg-gray-800 transition-colors"
         >
           <div class="flex items-center gap-2 flex-1 min-w-0">
-            <span class="xwing-icon text-lg text-gray-300 shrink-0">
+            <span
+              class="xwing-icon text-4xl shrink-0"
+              :class="getTokenColor(tokenType)"
+            >
               {{ getTokenIcon(tokenType) }}
             </span>
-            <span class="text-xs text-gray-400 truncate">
-              {{ formatTokenName(tokenType) }}
-            </span>
+            <div
+              v-if="
+                tokenType === TokenType.TargetLock &&
+                getTokenCount(tokenType) > 0
+              "
+              class="text-xs text-gray-400"
+            >
+              {{ getLockedShipName(getTargetLockTokens()[0]?.targetShipId || null) }}
+            </div>
           </div>
           <div class="flex items-center gap-1 shrink-0">
             <span class="text-xs text-gray-300 w-6 text-center font-semibold">
@@ -129,5 +477,101 @@ function handleClose() {
         </div>
       </div>
     </div>
+
+    <!-- Target Lock Drawer -->
+    <div
+      v-if="showTargetLockDrawer"
+      class="absolute inset-0 bg-gray-900 border-l border-gray-700 z-10 flex flex-col"
+    >
+      <div class="p-3 border-b border-gray-700 flex items-center justify-between">
+        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+          Select Target
+        </div>
+        <button
+          @click="showTargetLockDrawer = false"
+          class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-2">
+        <div class="space-y-1">
+          <div
+            v-for="{ ship, pilot } in getOtherShips()"
+            :key="ship.shipId"
+            @click="handleAddTargetLock(ship.shipId)"
+            class="flex items-center gap-2 p-2 hover:bg-gray-800 transition-colors cursor-pointer"
+          >
+            <span class="xwing-ship text-2xl text-gray-300 shrink-0">
+              {{ pilot?.shipType ? getShipIcon(pilot.shipType) : "?" }}
+            </span>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-semibold text-gray-200">
+                {{ pilot?.pilotName || "Unknown" }}
+              </div>
+              <div class="text-xs text-gray-400">PS {{ ship.pilotSkill }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conditions Drawer -->
+    <div
+      v-if="showConditionsDrawer"
+      class="absolute inset-0 bg-gray-900 border-l border-gray-700 z-10 flex flex-col"
+      @mousemove="handleMouseMove"
+    >
+      <div class="p-3 border-b border-gray-700 flex items-center justify-between">
+        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+          Conditions
+        </div>
+        <button
+          @click="showConditionsDrawer = false"
+          class="p-1 hover:bg-gray-700 transition-colors rounded text-gray-400 hover:text-gray-200"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-2">
+        <div class="space-y-1">
+          <div
+            v-for="condition in allConditions"
+            :key="condition.id"
+            @click="handleAddCondition(condition.id)"
+            @mouseenter="hoveredCondition = { name: condition.name, cardImageUrl: condition.cardImageUrl }"
+            @mouseleave="hoveredCondition = null"
+            class="flex items-start gap-2 p-2 hover:bg-gray-800 transition-colors cursor-pointer"
+          >
+            <span class="xwing-icon text-2xl text-orange-500 shrink-0">
+              {{ TOKEN_ICONS.condition }}
+            </span>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-semibold text-gray-200 mb-1">
+                {{ condition.name }}
+              </div>
+              <div class="text-xs text-gray-400 leading-relaxed">
+                {{ condition.rulesText }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Condition Card Tooltip -->
+  <Teleport to="body">
+    <div
+      v-if="hoveredCondition && hoveredCondition.cardImageUrl"
+      class="fixed z-[60] pointer-events-none"
+      :style="{ left: `${hoverPosition.x + 20}px`, top: `${hoverPosition.y - 100}px` }"
+    >
+      <img :src="hoveredCondition.cardImageUrl" :alt="hoveredCondition.name" class="w-64 rounded-lg shadow-2xl border-2 border-gray-300" />
+    </div>
+  </Teleport>
 </template>
