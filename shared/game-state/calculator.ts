@@ -186,6 +186,9 @@ export function handleStep(
     case "modify_defense_dice":
       combatHandlers.handleModifyDefenseDice(step, currentState, squads, cards);
       break;
+    case "compare_dice_results":
+      combatHandlers.handleCompareDiceResults(step, currentState, squads, cards);
+      break;
     case "spend_ammo":
       anyPhaseHandlers.handleSpendAmmo(step, currentState, squads, cards);
       break;

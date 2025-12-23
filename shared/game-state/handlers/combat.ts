@@ -13,6 +13,7 @@ import type {
   ModifyAttackDice,
   RollDefenseDice,
   ModifyDefenseDice,
+  CompareDiceResults,
   CompleteAttack,
 } from "#shared/game-state-dto";
 
@@ -126,6 +127,16 @@ export function handleModifyDefenseDice(
 ): void {
   state.currentStep += 1;
   state.uiScreen = CurrentGamePage.ModifyDefenseDice;
+}
+
+export function handleCompareDiceResults(
+  step: CompareDiceResults,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  state.currentStep += 1;
+  state.uiScreen = CurrentGamePage.CompareDiceResults;
 }
 
 export function handleCompleteAttack(

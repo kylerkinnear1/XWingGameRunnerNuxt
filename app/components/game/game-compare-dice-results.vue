@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  close: [];
+  continue: [];
 }>();
 
 function getAttackDieImage(face: string): string {
@@ -47,7 +47,7 @@ const netDamage = computed(() => {
 <template>
   <div
     class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100]"
-    @click.self="emit('close')"
+    @click.self
   >
     <div
       class="bg-gray-900 border border-gray-700 rounded-lg p-6 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto"
@@ -55,24 +55,6 @@ const netDamage = computed(() => {
     >
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold text-white">Dice Results Comparison</h2>
-        <button
-          @click="emit('close')"
-          class="text-gray-400 hover:text-white transition-colors"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -126,7 +108,7 @@ const netDamage = computed(() => {
       </div>
 
       <!-- Net Results -->
-      <div class="bg-gray-800 rounded-lg p-6 border-2 border-teal-600">
+      <div class="bg-gray-800 rounded-lg p-6 border-2 border-teal-600 mb-6">
         <div class="text-center">
           <div class="text-sm text-gray-400 mb-2">Net Damage</div>
           <div class="text-5xl font-bold text-red-400">{{ netDamage }}</div>
@@ -137,6 +119,16 @@ const netDamage = computed(() => {
             ✓ All damage evaded!
           </div>
         </div>
+      </div>
+
+      <!-- Continue Button -->
+      <div class="flex justify-center">
+        <button
+          @click="emit('continue')"
+          class="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-lg transition-colors"
+        >
+          Continue
+        </button>
       </div>
     </div>
   </div>

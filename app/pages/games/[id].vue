@@ -181,6 +181,7 @@ const {
   handleDefenseDiceComplete,
   handleEndTurn,
   handleModifyDefenseDiceComplete,
+  handleCompareResultsComplete,
 } = useGameHandlers(
   addStep,
   moveToStepOrPush,
@@ -230,6 +231,30 @@ const currentDefendingShip = computed(() => {
   );
   return ship && !ship.ship.isDestroyed ? ship : null;
 });
+
+function getCompareAttackDice() {
+  if (!gameData.value) return [];
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (currentStep?.type === "compare_dice_results") {
+    return currentStep.attackResults.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as import("#shared/dice").AttackDieFace,
+    }));
+  }
+  return [];
+}
+
+function getCompareDefenseDice() {
+  if (!gameData.value) return [];
+  const currentStep = gameData.value.steps[selectedStepIndex.value];
+  if (currentStep?.type === "compare_dice_results") {
+    return currentStep.defenseResults.map((result, index) => ({
+      id: `die-${index}`,
+      face: result as import("#shared/dice").DefenseDieFace,
+    }));
+  }
+  return [];
+}
 
 function toggleShipExpansion(shipId: string) {
   expandedShipId.value = expandedShipId.value === shipId ? null : shipId;
@@ -517,6 +542,16 @@ watch(
           :key="`${CurrentGamePage.ModifyDefenseDice}-${selectedStepIndex}`"
           :initial-dice="currentDefenseDice"
           @confirm="handleModifyDefenseDiceComplete"
+        />
+
+        <GameCompareDiceResults
+          v-else-if="
+            currentGameState?.uiScreen === CurrentGamePage.CompareDiceResults
+          "
+          :key="`${CurrentGamePage.CompareDiceResults}-${selectedStepIndex}`"
+          :attack-dice="getCompareAttackDice()"
+          :defense-dice="getCompareDefenseDice()"
+          @continue="handleCompareResultsComplete"
         />
 
         <CombatCleanupAnimation

@@ -110,6 +110,7 @@ export enum CurrentGamePage {
   ModifyAttackDice = "modify-attack-dice",
   RollDefenseDice = "roll-defense-dice",
   ModifyDefenseDice = "modify-defense-dice",
+  CompareDiceResults = "compare-dice-results",
   Cleanup = "cleanup",
   End = "end",
 }

@@ -531,21 +531,23 @@ export const useGameHandlers = (
       return;
 
     const currentStep = gameData.value.steps[selectedStepIndex.value];
-    if (currentStep && currentStep.type === "modify_defense_dice") {
-      const beforeResults = currentStep.beforeResults;
-      const afterResults = dice.map((die) => die.face);
 
-      const currentIndex = selectedStepIndex.value;
-      const previousIndex = currentIndex - 1;
+    if (!currentStep || currentStep.type !== "modify_defense_dice") {
+      return;
+    }
 
-      if (previousIndex >= 0) {
-        await $fetch(`/api/games/${gameId}/steps/truncate`, {
-          method: "POST",
-          body: {
-            afterIndex: previousIndex,
-          },
-        });
+    let attackResults: any[] = [];
+    for (let i = gameData.value.steps.length - 1; i >= 0; i--) {
+      const step = gameData.value.steps[i];
+      if (step && step.type === "modify_attack_dice") {
+        attackResults = step.afterResults;
+        break;
       }
+    }
+
+    try {
+      const beforeResults = currentStep.beforeResults;
+      const afterResults = dice.map((d: any) => d.face);
 
       await $fetch(`/api/games/${gameId}/steps`, {
         method: "POST",
@@ -565,8 +567,11 @@ export const useGameHandlers = (
 
         await addStep(
           {
-            type: "complete_attack",
+            type: "compare_dice_results",
             attackerShipId: currentGameState.value.currentAttackingShipId,
+            defenderShipId: currentGameState.value.currentDefendingShipId,
+            attackResults,
+            defenseResults: afterResults,
             timestamp: new Date(),
           },
           gameData,
@@ -575,34 +580,59 @@ export const useGameHandlers = (
 
         await nextTick();
         await refreshCallback();
+      }
+    } catch (error) {
+      console.error("Error in handleModifyDefenseDiceComplete:", error);
+    }
+  };
 
-        if (currentGameState.value) {
-          const shipsAvailableToAttack = currentGameState.value.ships.filter(
-            (s) => !s.hasAttacked && !s.isDestroyed
+  const handleCompareResultsComplete = async () => {
+    if (!gameData.value || !currentGameState.value?.currentAttackingShipId) {
+      return;
+    }
+
+    try {
+      await addStep(
+        {
+          type: "complete_attack",
+          attackerShipId: currentGameState.value.currentAttackingShipId,
+          timestamp: new Date(),
+        },
+        gameData,
+        refreshCallback
+      );
+
+      await nextTick();
+      await refreshCallback();
+
+      if (currentGameState.value) {
+        const shipsAvailableToAttack = currentGameState.value.ships.filter(
+          (s) => !s.hasAttacked && !s.isDestroyed
+        );
+        if (shipsAvailableToAttack.length === 0) {
+          await moveToStepOrPush(
+            "cleanup",
+            {
+              type: "cleanup",
+              timestamp: new Date(),
+            },
+            gameData,
+            refreshCallback
           );
-          if (shipsAvailableToAttack.length === 0) {
-            await moveToStepOrPush(
-              "cleanup",
-              {
-                type: "cleanup",
-                timestamp: new Date(),
-              },
-              gameData,
-              refreshCallback
-            );
-          } else {
-            await moveToStepOrPush(
-              "declare_attackers",
-              {
-                type: "declare_attackers",
-                timestamp: new Date(),
-              },
-              gameData,
-              refreshCallback
-            );
-          }
+        } else {
+          await moveToStepOrPush(
+            "declare_attackers",
+            {
+              type: "declare_attackers",
+              timestamp: new Date(),
+            },
+            gameData,
+            refreshCallback
+          );
         }
       }
+    } catch (error) {
+      console.error("Error in handleCompareResultsComplete:", error);
     }
   };
 
@@ -631,6 +661,7 @@ export const useGameHandlers = (
     handleDefenseDiceComplete,
     handleEndTurn,
     handleModifyDefenseDiceComplete,
+    handleCompareResultsComplete,
   };
 };
 

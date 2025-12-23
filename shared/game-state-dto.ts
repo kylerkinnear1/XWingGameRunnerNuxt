@@ -140,6 +140,7 @@ export type GameStepDto =
   | ModifyAttackDice
   | RollDefenseDice
   | ModifyDefenseDice
+  | CompareDiceResults
   | CompleteAttack
   | FlipUpgrade
   | SpendAmmo
@@ -416,6 +417,15 @@ export interface ModifyDefenseDice {
   defenderShipId: string;
   beforeResults: DiceResult[];
   afterResults: DiceResult[];
+  timestamp: Date;
+}
+
+export interface CompareDiceResults {
+  type: "compare_dice_results";
+  attackerShipId: string;
+  defenderShipId: string;
+  attackResults: DiceResult[];
+  defenseResults: DiceResult[];
   timestamp: Date;
 }
 
