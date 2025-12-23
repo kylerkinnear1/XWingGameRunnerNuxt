@@ -14,7 +14,12 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock", "Evade", "BarrelRoll"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "Evade",
+        "BarrelRoll"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -128,7 +133,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -241,7 +249,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -355,8 +366,17 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Crew", "Bomb", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Crew",
+        "Bomb",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "When attacking with a secondary weapon, you may reroll 1 attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/krassistrelix.png",
       "maneuvers": [
@@ -461,8 +481,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "During your Perform Action step, you may perform 2 actions.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/darthvader.png",
       "maneuvers": [
@@ -572,8 +601,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/maarekstele.png",
       "maneuvers": [
@@ -683,8 +721,16 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/commanderalozen.png",
       "maneuvers": [
@@ -794,8 +840,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When you reveal your maneuver, you may increase or decrease its speed by 1 (to a minimum of 1).",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/junoeclipse.png",
       "maneuvers": [
@@ -905,8 +960,16 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "At the start of the End phase, you may spend a target lock you have on an enemy ship to flip 1 random facedown Damage card assigned to it faceup.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/lieutenantcolzet.png",
       "maneuvers": [
@@ -1016,8 +1079,16 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/stormsquadronpilot.png",
       "maneuvers": [
@@ -1127,8 +1198,16 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/tempestsquadronpilot.png",
       "maneuvers": [
@@ -1238,8 +1317,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When attacking with a secondary weapon, if you are inside the defender's firing arc, you may reroll your blank results.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/zertikstrom.png",
       "maneuvers": [
@@ -1349,8 +1437,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "While a friendly ship at Range 1 is performing an attack with a primary weapon, it may reroll 1 attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/howlrunner.png",
       "maneuvers": [
@@ -1450,8 +1545,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/backstabber.png",
       "maneuvers": [
@@ -1551,8 +1653,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When defending, ships attacking you cannot spend focus tokens or reroll attack dice.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/darkcurse.png",
       "maneuvers": [
@@ -1652,8 +1760,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "After you perform an attack at Range 1 that hits, assign 1 damage to the defender.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/maulermithel.png",
       "maneuvers": [
@@ -1753,8 +1868,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/academypilot.png",
       "maneuvers": [
@@ -1854,8 +1975,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/blacksquadronpilot.png",
       "maneuvers": [
@@ -1955,8 +2083,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/obsidiansquadronpilot.png",
       "maneuvers": [
@@ -2056,8 +2190,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "After executing a green maneuver, you may perform a free focus action.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/nightbeast.png",
       "maneuvers": [
@@ -2157,8 +2297,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking a defender that has 1 or more Damage cards, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/scourge.png",
       "maneuvers": [
@@ -2258,8 +2405,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking, you may spend your target lock on the defender to deal 1 damage. Then cancel all dice results.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wampa.png",
       "maneuvers": [
@@ -2359,8 +2513,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When attacking at Range 1, you may change 1 of your hit results to a critical result.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wingedgundark.png",
       "maneuvers": [
@@ -2460,8 +2620,15 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "After being dealt a Damage card, if you have 2 or fewer Damage cards, flip that Damage card facedown.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/youngster.png",
       "maneuvers": [
@@ -2561,8 +2728,14 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When attacking, if you are the only ship attacking the defender, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/chaser.png",
       "maneuvers": [
@@ -2662,8 +2835,16 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When defending, you may change 1 of your focus results to an evade result.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/lukeskywalker.png",
       "maneuvers": [
@@ -2758,8 +2939,16 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When attacking, reduce the defender's agility value by 1 (to a minimum of 0).",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wedgeantilles.png",
       "maneuvers": [
@@ -2854,8 +3043,15 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/biggsdarklighter.png",
       "maneuvers": [
@@ -2950,8 +3146,16 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "After spending a focus token, you may place that token on any other friendly ship at Range 1-2.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/garvendreis.png",
       "maneuvers": [
@@ -3046,8 +3250,15 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/redsquadronpilot.png",
       "maneuvers": [
@@ -3142,8 +3353,15 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/rookiepilot.png",
       "maneuvers": [
@@ -3238,8 +3456,16 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When you receive a stress token, you may remove it and roll 1 attack die. On a hit result, deal 1 facedown Damage card to this ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/jekporkins.png",
       "maneuvers": [
@@ -3334,8 +3560,15 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/tarnmison.png",
       "maneuvers": [
@@ -3430,8 +3663,16 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wesjanson.png",
       "maneuvers": [
@@ -3526,8 +3767,15 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When you acquire or spend a target lock, you may remove 1 stress token from your ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/hobbieklivian.png",
       "maneuvers": [
@@ -3622,7 +3870,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -3724,7 +3975,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -3826,7 +4080,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -3928,7 +4185,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -4030,8 +4290,18 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "You may perform actions even while you have stress tokens.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/tychocelchu.png",
       "maneuvers": [
@@ -4141,8 +4411,18 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "After performing a focus action, you may perform a free boost or barrel roll action.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/jakefarrell.png",
       "maneuvers": [
@@ -4252,8 +4532,17 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "You may declare an enemy ship inside your firing arc that you are touching as the target of your attack.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/arvelcrynyd.png",
       "maneuvers": [
@@ -4363,8 +4652,17 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/gemmersojan.png",
       "maneuvers": [
@@ -4474,8 +4772,18 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/greensquadronpilot.png",
       "maneuvers": [
@@ -4585,8 +4893,17 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/prototypepilot.png",
       "maneuvers": [
@@ -4696,7 +5013,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Turret",
@@ -4799,7 +5119,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -4901,7 +5224,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -5003,7 +5329,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -5105,8 +5434,16 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "When attacking, if there are no other friendly ships at Range 1-2, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/ndrusuhlak.png",
       "maneuvers": [
@@ -5201,8 +5538,16 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/kaatoleeachos.png",
       "maneuvers": [
@@ -5297,8 +5642,15 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/blacksunsoldier.png",
       "maneuvers": [
@@ -5393,8 +5745,15 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/binayrepirate.png",
       "maneuvers": [
@@ -5489,8 +5848,15 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "You have the pilot skill and pilot ability of the friendly Hound's Tooth (fore section), if it is in play.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/nashtahpup.png",
       "maneuvers": [
@@ -5585,7 +5951,12 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock", "Evade", "BarrelRoll"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "Evade",
+        "BarrelRoll"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -5699,7 +6070,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -5813,7 +6187,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -5926,7 +6303,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -6034,7 +6414,9 @@
       "isUnique": false,
       "rulesText": "Increase your pilot skill value by 2.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -6056,7 +6438,9 @@
       "isUnique": false,
       "rulesText": "Once per round, after you perform an action, you may perform 1 free action shown in your action bar. Then receive 1 stress token.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6078,7 +6462,9 @@
       "isUnique": false,
       "rulesText": "When attacking, you may reroll 1 attack die. If the defender's pilot skill value is 2 or lower, you may instead reroll up to 2 attack dice.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6100,7 +6486,9 @@
       "isUnique": false,
       "rulesText": "When attacking a ship inside your firing arc, you may discard this card to cancel 1 of the defender's evade results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -6122,7 +6510,9 @@
       "isUnique": false,
       "rulesText": "Action: When attacking this round, you may change 1 of your focus results to a critical hit result and all of your other focus results to hit results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6144,7 +6534,9 @@
       "isUnique": true,
       "rulesText": "When attacking or defending, if there are no other friendly ships at Range 1-2, you may reroll 1 of your blank results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6166,7 +6558,9 @@
       "isUnique": false,
       "rulesText": "When attacking, if you have no stress tokens, you may change all of your focus results to hit results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6188,7 +6582,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Combat phase, choose 1 friendly ship at Range 1. Until the end of this phase, treat that ship as if its pilot skill were equal to yours.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6210,10 +6606,14 @@
       "isUnique": true,
       "rulesText": "After executing a green maneuver, you may recover 1 shield (up to your shield value).",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 4,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6232,7 +6632,9 @@
       "isUnique": false,
       "rulesText": "You may treat all 1- and 2-speed maneuvers as green maneuvers.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -6254,7 +6656,9 @@
       "isUnique": false,
       "rulesText": "When you declare the target of your attack, if the defender is inside your firing arc, you may receive 1 stress token to cause the defender to receive 1 stress token.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6276,7 +6680,9 @@
       "isUnique": false,
       "rulesText": "After spending your target lock, roll 1 defense die. On an evade result, immediately acquire a target lock on that same ship. You cannot spend this target lock during this attack.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6298,7 +6704,9 @@
       "isUnique": false,
       "rulesText": "Action: Choose an enemy ship at Range 1-2. If you are inside that ship's firing arc, you may acquire a target lock on that ship. Then, you may perform a free boost action.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6320,10 +6728,14 @@
       "isUnique": true,
       "rulesText": "When you reveal a green maneuver, you may perform a free barrel roll action.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6342,7 +6754,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your focus results to a critical hit result.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6364,7 +6778,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a focus result.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 6,
       "restrictions": {
         "factions": [],
@@ -6386,7 +6802,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6408,7 +6826,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6430,7 +6850,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a hit result.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6452,7 +6874,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. The defender cannot spend evade tokens during this attack.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6474,7 +6898,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack twice.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6496,7 +6922,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, each other ship at Range 1 of the defender suffers 1 damage.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6518,7 +6946,9 @@
       "isUnique": false,
       "rulesText": "Attack (focus): Discard this card to perform this attack. You may roll additional attack dice equal to your agility value, to a maximum of 3 additional dice.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6540,7 +6970,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6562,7 +6994,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. Immediately after rolling your attack dice, you must change all of your critical hit results to hit results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 7,
       "restrictions": {
         "factions": [],
@@ -6584,7 +7018,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6606,7 +7042,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. When you attack with this weapon, you may change 1 of your hit results to a critical hit result.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6628,7 +7066,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Perform this attack twice. Each attack cannot be modified by more than 1 focus token or spend more than 1 focus token.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 6,
       "restrictions": {
         "factions": [],
@@ -6650,7 +7090,9 @@
       "isUnique": false,
       "rulesText": "Attack (focus): Attack 1 ship (even a ship outside your firing arc). You may change 1 of your focus results to a hit result.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -6672,7 +7114,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6694,7 +7138,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6716,7 +7162,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If the target of this attack is inside your firing arc, roll 1 additional attack die.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6738,10 +7186,14 @@
       "isUnique": true,
       "rulesText": "When you are dealt a faceup Damage card, immediately flip it facedown (without resolving its effect).",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 4,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6760,10 +7212,14 @@
       "isUnique": true,
       "rulesText": "When attacking, you may reroll all of your dice. If you do so, you cannot spend focus tokens during this attack.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 2,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6782,10 +7238,14 @@
       "isUnique": true,
       "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You may change 1 focus result to a hit result. You cannot perform another attack this round.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 7,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6804,7 +7264,9 @@
       "isUnique": false,
       "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You cannot perform another attack this round.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6826,7 +7288,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Activation phase, choose 1 enemy ship at Range 1-2. You may look at that ship's chosen maneuver.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -6848,7 +7312,9 @@
       "isUnique": false,
       "rulesText": "When you perform a focus action, assign 1 additional focus token to your ship.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6870,10 +7336,14 @@
       "isUnique": true,
       "rulesText": "After you perform an attack against an enemy ship, you may suffer 2 damage to cause that ship to suffer 1 damage.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
-        "factions": ["empire"],
+        "factions": [
+          "empire"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6892,10 +7362,14 @@
       "isUnique": false,
       "rulesText": "Action: Choose up to 2 friendly ships at Range 1-2 and assign 1 focus token to each of those ships. Then receive 1 stress token.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
-        "factions": ["empire"],
+        "factions": [
+          "empire"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -6914,7 +7388,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 proton bomb token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -6936,7 +7412,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 seismic charge token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -6958,7 +7436,9 @@
       "isUnique": false,
       "rulesText": "Action: Discard this card to drop 1 proximity mine token. When a ship's base or maneuver template overlaps this token, this token detonates.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -6980,7 +7460,9 @@
       "isUnique": false,
       "rulesText": "Action: Discard this card to drop 1 cluster mine token set. When a ship overlaps one of these tokens, that token detonates.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -7002,7 +7484,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 ion bomb token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7024,7 +7508,9 @@
       "isUnique": false,
       "rulesText": "Increase your hull value by 1.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7046,7 +7532,9 @@
       "isUnique": false,
       "rulesText": "Increase your shield value by 1.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -7068,7 +7556,9 @@
       "isUnique": false,
       "rulesText": "Your action bar gains the boost action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -7090,7 +7580,9 @@
       "isUnique": false,
       "rulesText": "Increase your agility value by 1. If you are hit by an attack, discard this card.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7112,7 +7604,9 @@
       "isUnique": false,
       "rulesText": "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to an evade result. You can equip this card only if you have the boost action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7134,7 +7628,9 @@
       "isUnique": false,
       "rulesText": "Your action bar gains the target lock action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7156,7 +7652,9 @@
       "isUnique": false,
       "rulesText": "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your Perform Action step during this round.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7178,7 +7676,9 @@
       "isUnique": false,
       "rulesText": "After you perform an attack, you may acquire a target lock on the defender.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7200,7 +7700,9 @@
       "isUnique": false,
       "rulesText": "When defending, you may change 1 of the attacker's hit results to a focus result. The attacker cannot reroll the die with the changed result.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -7222,7 +7724,9 @@
       "isUnique": false,
       "rulesText": "When attacking, during the Modify Attack Dice step, you may cancel all of your dice results. Then, you may add 2 hit results. Your dice cannot be modified again during this attack.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7244,7 +7748,9 @@
       "isUnique": false,
       "rulesText": "When you reveal a maneuver, you may rotate your dial to another maneuver with the same bearing. You cannot rotate to a red maneuver if you have any stress tokens. You can only equip this upgrade if you have the system upgrade icon.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 0,
       "restrictions": {
         "factions": [],
@@ -7266,7 +7772,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Combat phase, you may discard this card and receive 1 stress token. If you do, until the end of the round, when attacking or defending, you may convert all of your focus results to hit or evade results.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7288,7 +7796,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver, you may discard this card to instead perform a white [0 stop] maneuver. Then receive 1 stress token.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -7310,7 +7820,9 @@
       "isUnique": false,
       "rulesText": "Attack (energy): Attack 1 ship. You may receive 1 ion token to roll 1 additional attack die. If you do not have an energy token, you cannot perform this attack.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7332,7 +7844,9 @@
       "isUnique": false,
       "rulesText": "When you are destroyed, each other ship at Range 1 suffers 1 damage.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7354,7 +7868,9 @@
       "isUnique": false,
       "rulesText": "During the Combat phase, instead of performing an attack, you may receive 1 ion token and suffer 1 damage to cause each ship at Range 1 to suffer 1 damage.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7376,11 +7892,17 @@
       "isUnique": true,
       "rulesText": "Your action bar gains the evade action icon.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 1,
       "restrictions": {
-        "factions": ["Rebel"],
-        "ships": ["YT1300"],
+        "factions": [
+          "Rebel"
+        ],
+        "ships": [
+          "YT1300"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -7398,11 +7920,17 @@
       "isUnique": true,
       "rulesText": "After you execute a 3-speed bank maneuver or a 3-speed turn maneuver, you may perform a free boost action.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["Scum"],
-        "ships": ["Firespray31"],
+        "factions": [
+          "Scum"
+        ],
+        "ships": [
+          "Firespray31"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -7420,11 +7948,17 @@
       "isUnique": false,
       "rulesText": "You may equip up to 2 Modification upgrades (instead of 1). You cannot equip this upgrade if your pilot skill value is 4 or lower.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["empire"],
-        "ships": ["TIEInterceptor"],
+        "factions": [
+          "empire"
+        ],
+        "ships": [
+          "TIEInterceptor"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -7442,11 +7976,17 @@
       "isUnique": false,
       "rulesText": "After you perform a boost or barrel roll action, you may perform a free evade action.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["empire"],
-        "ships": ["TIEAdvanced"],
+        "factions": [
+          "empire"
+        ],
+        "ships": [
+          "TIEAdvanced"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -7464,11 +8004,17 @@
       "isUnique": true,
       "rulesText": "While you have a cannon upgrade card equipped, you cannot perform primary weapon attacks and you may perform cannon secondary weapon attacks against ships outside your firing arc.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 5,
       "restrictions": {
-        "factions": ["Rebel"],
-        "ships": ["YT2400"],
+        "factions": [
+          "Rebel"
+        ],
+        "ships": [
+          "YT2400"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -7486,7 +8032,9 @@
       "isUnique": false,
       "rulesText": "During the End phase, you may receive 1 evade or focus token. If you do not have any focus or evade tokens at the end of the Combat phase, you may not use this ability until the end of the next round.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7508,7 +8056,9 @@
       "isUnique": false,
       "rulesText": "When you fully execute a maneuver, you may postpone triggering any abilities that occur after executing that maneuver until after you perform an action.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7530,7 +8080,9 @@
       "isUnique": false,
       "rulesText": "When you reveal a [3 straight] maneuver, you may treat it as a green maneuver.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -7552,7 +8104,9 @@
       "isUnique": false,
       "rulesText": "When a friendly ship at Range 1-2 is attacking a ship you have locked, it may treat that ship as being locked as well.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -7574,7 +8128,9 @@
       "isUnique": false,
       "rulesText": "When defending, you may spend a focus token to change 1 of your blank results to an evade result.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7596,7 +8152,9 @@
       "isUnique": false,
       "rulesText": "When you are dealt a faceup Damage card with the Ship trait, you may immediately discard that card (before resolving its effect). Then, discard this Upgrade card.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7618,7 +8176,9 @@
       "isUnique": false,
       "rulesText": "When attacking, after you spend a focus token, you may receive 1 stress token to receive 1 focus token.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -7640,7 +8200,9 @@
       "isUnique": false,
       "rulesText": "You may treat all 3-speed maneuvers as green maneuvers.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -7655,128 +8217,5 @@
       "energy": null,
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/upgrades/salvagedastromech/unhingedastromech.png"
     }
-  ],
-  "damageCards": [
-    {
-      "id": "blinded-pilot",
-      "name": "Blinded Pilot",
-      "type": "Pilot",
-      "text": "You cannot perform attacks. After your next opportunity to attack (even if there was no target for an attack), flip this card facedown."
-    },
-    {
-      "id": "console-fire",
-      "name": "Console Fire",
-      "type": "Ship",
-      "text": "At the start of each Combat phase, roll 1 attack die. On a Hit result, suffer 1 damage. Action: Flip this card facedown."
-    },
-    {
-      "id": "damaged-cockpit",
-      "name": "Damaged Cockpit",
-      "type": "Pilot",
-      "text": "Starting the round after you receive this card, treat your pilot skill value as \"0\"."
-    },
-    {
-      "id": "damaged-engine",
-      "name": "Damaged Engine",
-      "type": "Ship",
-      "text": "Treat all turn maneuvers (left turn or right turn) as red maneuvers."
-    },
-    {
-      "id": "damaged-sensor-array",
-      "name": "Damaged Sensor Array",
-      "type": "Ship",
-      "text": "You cannot perform any actions except actions listed on Damage cards. Action: Roll 1 attack die. On a Hit or Critical Hit result, flip this card facedown."
-    },
-    {
-      "id": "direct-hit",
-      "name": "Direct Hit!",
-      "type": "Ship",
-      "text": "This card counts as 2 DAMAGE against your hull."
-    },
-    {
-      "id": "loose-stabilizer",
-      "name": "Loose Stabilizer",
-      "type": "Ship",
-      "text": "After you execute a white maneuver, receive 1 stress token. Action: Flip this card facedown."
-    },
-    {
-      "id": "major-explosion",
-      "name": "Major Explosion",
-      "type": "Ship",
-      "text": "Roll 1 attack die. On a Hit result, suffer 1 critical damage. Then flip this card facedown."
-    },
-    {
-      "id": "major-hull-breach",
-      "name": "Major Hull Breach",
-      "type": "Ship",
-      "text": "Starting the round after you receive this card, all Damage cards dealt to you are dealt faceup. Action: Flip this card facedown."
-    },
-    {
-      "id": "shaken-pilot",
-      "name": "Shaken Pilot",
-      "type": "Pilot",
-      "text": "During the Planning phase, you cannot be assigned straight maneuvers. When you reveal a maneuver, flip this card facedown."
-    },
-    {
-      "id": "structural-damage",
-      "name": "Structural Damage",
-      "type": "Ship",
-      "text": "Reduce your agility value by 1 (to a minimum of \"0\"). Action: Roll 1 attack die. On a Hit or Critical Hit result, flip this card facedown."
-    },
-    {
-      "id": "stunned-pilot",
-      "name": "Stunned Pilot",
-      "type": "Pilot",
-      "text": "After you execute a maneuver, if you are touching another ship or overlapping an obstacle token, suffer 1 damage."
-    },
-    {
-      "id": "thrust-control-fire",
-      "name": "Thrust Control Fire",
-      "type": "Ship",
-      "text": "Receive 1 stress token. Then flip this card facedown."
-    },
-    {
-      "id": "weapons-failure",
-      "name": "Weapons Failure",
-      "type": "Ship",
-      "text": "When attacking, roll 1 fewer attack die. Action: Roll 1 attack die. On a Hit or Critical Hit result, flip this card facedown."
-    }
-  ],
-  "damageDeck": [
-    "direct-hit",
-    "direct-hit",
-    "direct-hit",
-    "direct-hit",
-    "direct-hit",
-    "direct-hit",
-    "direct-hit",
-
-    "blinded-pilot",
-    "blinded-pilot",
-    "damaged-cockpit",
-    "damaged-cockpit",
-    "shaken-pilot",
-    "shaken-pilot",
-    "stunned-pilot",
-    "stunned-pilot",
-
-    "console-fire",
-    "console-fire",
-    "damaged-engine",
-    "damaged-engine",
-    "damaged-sensor-array",
-    "damaged-sensor-array",
-    "loose-stabilizer",
-    "loose-stabilizer",
-    "major-explosion",
-    "major-explosion",
-    "major-hull-breach",
-    "major-hull-breach",
-    "structural-damage",
-    "structural-damage",
-    "thrust-control-fire",
-    "thrust-control-fire",
-    "weapons-failure",
-    "weapons-failure"
   ]
 }

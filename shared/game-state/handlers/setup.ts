@@ -13,11 +13,6 @@ import type {
   EndSetup,
   IncreaseMaxHull,
   IncreaseMaxShields,
-  DecreaseMaxHull,
-  DecreaseMaxShields,
-  ModifyPilotSkill,
-  ModifyAgility,
-  ModifyAttack,
 } from "#shared/game-state-dto";
 import { createWeaponsForShip } from "../utils/weapon-factory";
 
@@ -71,7 +66,7 @@ export function handleGameStart(
       faceDownDamage: 0,
       upgrades: ship.upgradeIds.map((id) => ({
         upgradeId: id,
-        faceUp: true,
+        faceUp: false,
       })),
       hasActivated: false,
       didBump: false,
@@ -108,71 +103,6 @@ export function handleIncreaseMaxShields(
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
     ship.shields += 1;
-  }
-}
-
-export function handleDecreaseMaxHull(
-  step: DecreaseMaxHull,
-  state: CurrentGameState,
-  squads: readonly SquadReadDto[],
-  cards: CardsDto
-): void {
-  state.currentStep += 1;
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.hull = Math.max(0, ship.hull - 1);
-  }
-}
-
-export function handleDecreaseMaxShields(
-  step: DecreaseMaxShields,
-  state: CurrentGameState,
-  squads: readonly SquadReadDto[],
-  cards: CardsDto
-): void {
-  state.currentStep += 1;
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.shields = Math.max(0, ship.shields - 1);
-  }
-}
-
-export function handleModifyPilotSkill(
-  step: ModifyPilotSkill,
-  state: CurrentGameState,
-  squads: readonly SquadReadDto[],
-  cards: CardsDto
-): void {
-  state.currentStep += 1;
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.pilotSkill = step.newValue;
-  }
-}
-
-export function handleModifyAgility(
-  step: ModifyAgility,
-  state: CurrentGameState,
-  squads: readonly SquadReadDto[],
-  cards: CardsDto
-): void {
-  state.currentStep += 1;
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.agility = step.newValue;
-  }
-}
-
-export function handleModifyAttack(
-  step: ModifyAttack,
-  state: CurrentGameState,
-  squads: readonly SquadReadDto[],
-  cards: CardsDto
-): void {
-  state.currentStep += 1;
-  const ship = state.ships.find((s) => s.shipId === step.shipId);
-  if (ship) {
-    ship.attack = step.newValue;
   }
 }
 
