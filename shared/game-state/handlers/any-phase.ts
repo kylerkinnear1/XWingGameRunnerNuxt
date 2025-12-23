@@ -15,6 +15,8 @@ import type {
   RemoveFacedownDamage,
   FlipCritFacedown,
   UpdatePilotSkill,
+  UpdateAgility,
+  UpdateAttack,
   DecreaseShields,
   FlipCrit,
   FlipUpgrade,
@@ -121,11 +123,13 @@ export function handleAssignCrit(
   if (ship) {
     if (step.critCardId === "facedown") {
       ship.faceDownDamage += 1;
+      ship.hull = Math.max(0, ship.hull - 1);
     } else {
       ship.faceUpDamage.push({
         critCardId: step.critCardId,
         faceUp: true,
       });
+      ship.hull = Math.max(0, ship.hull - 1);
     }
   }
   state.currentStep += 1;
@@ -144,6 +148,22 @@ export function handleRemoveCrit(
     );
     if (index !== -1) {
       ship.faceUpDamage.splice(index, 1);
+      const critCard = cards.damageCards.find((c) => c.id === step.critCardId);
+      const isDirectHit = critCard?.id === "direct-hit";
+      
+      const squad = squads.find((s) =>
+        s.ships.some((squadShip) => squadShip.id === ship.shipId)
+      );
+      const squadShip = squad?.ships.find((s) => s.id === ship.shipId);
+      const pilot = squadShip ? cards.pilots.find((p) => p.id === squadShip.pilotId) : null;
+      const totalHull = pilot?.hull || ship.hull;
+      
+      ship.hull = Math.min(ship.hull + 1, totalHull);
+      
+      if (isDirectHit && ship.faceDownDamage > 0) {
+        ship.faceDownDamage -= 1;
+        ship.hull = Math.min(ship.hull + 1, totalHull);
+      }
     }
   }
   state.currentStep += 1;
@@ -158,7 +178,13 @@ export function handleRemoveFacedownDamage(
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship && ship.faceDownDamage > 0) {
     ship.faceDownDamage -= 1;
-    ship.hull = step.hullRemaining;
+    const squad = squads.find((s) =>
+      s.ships.some((squadShip) => squadShip.id === ship.shipId)
+    );
+    const squadShip = squad?.ships.find((s) => s.id === ship.shipId);
+    const pilot = squadShip ? cards.pilots.find((p) => p.id === squadShip.pilotId) : null;
+    const totalHull = pilot?.hull || ship.hull;
+    ship.hull = Math.min(ship.hull + 1, totalHull);
   }
   state.currentStep += 1;
 }
@@ -190,6 +216,32 @@ export function handleUpdatePilotSkill(
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
     ship.pilotSkill = step.newPilotSkill;
+  }
+  state.currentStep += 1;
+}
+
+export function handleUpdateAgility(
+  step: UpdateAgility,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.agility = step.newAgility;
+  }
+  state.currentStep += 1;
+}
+
+export function handleUpdateAttack(
+  step: UpdateAttack,
+  state: CurrentGameState,
+  squads: readonly SquadReadDto[],
+  cards: CardsDto
+): void {
+  const ship = state.ships.find((s) => s.shipId === step.shipId);
+  if (ship) {
+    ship.attack = step.newAttack;
   }
   state.currentStep += 1;
 }

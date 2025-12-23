@@ -151,6 +151,8 @@ export type GameStepDto =
   | RemoveFacedownDamage
   | FlipCritFacedown
   | UpdatePilotSkill
+  | UpdateAgility
+  | UpdateAttack
   | DecreaseShields
   | FlipCrit
   | SpendToken
@@ -472,7 +474,6 @@ export interface RemoveCrit {
 export interface RemoveFacedownDamage {
   type: "remove_facedown_damage";
   shipId: string;
-  hullRemaining: number;
   timestamp: Date;
 }
 
@@ -487,6 +488,20 @@ export interface UpdatePilotSkill {
   type: "update_pilot_skill";
   shipId: string;
   newPilotSkill: number;
+  timestamp: Date;
+}
+
+export interface UpdateAgility {
+  type: "update_agility";
+  shipId: string;
+  newAgility: number;
+  timestamp: Date;
+}
+
+export interface UpdateAttack {
+  type: "update_attack";
+  shipId: string;
+  newAttack: number;
   timestamp: Date;
 }
 

@@ -1,4 +1,5 @@
 import type { TokenType } from "#shared/enums";
+import type { ReinforceDirection } from "#shared/enums";
 import type { GameStepDto } from "#shared/game-state-dto";
 import type { CurrentGameState } from "#shared/game-state-dto";
 import type { CardsDto } from "#shared/cards";
@@ -19,7 +20,8 @@ export const useGameActions = (
     shipId: string,
     tokenType: TokenType,
     targetShipId?: string | null,
-    conditionId?: string | null
+    conditionId?: string | null,
+    reinforceDirection?: ReinforceDirection | null
   ) => {
     await addStep(
       {
@@ -27,7 +29,7 @@ export const useGameActions = (
         sourceShipId: shipId,
         tokenType,
         conditionId: conditionId ?? null,
-        reinforceDirection: null,
+        reinforceDirection: reinforceDirection ?? null,
         targetShipId: targetShipId ?? null,
         timestamp: new Date(),
       },
@@ -50,25 +52,6 @@ export const useGameActions = (
   };
 
   const addFacedownDamage = async (shipId: string) => {
-    const ship = currentGameState.value?.ships.find((s) => s.shipId === shipId);
-    if (!ship) return;
-
-    const newHull = Math.max(0, ship.hull - 1);
-
-    await addStep(
-      {
-        type: "apply_damage",
-        shipId,
-        hitsApplied: 1,
-        critsApplied: 0,
-        hullRemaining: newHull,
-        shieldsRemaining: ship.shields,
-        timestamp: new Date(),
-      },
-      gameData,
-      refreshCallback
-    );
-
     await addStep(
       {
         type: "assign_crit",
@@ -85,13 +68,10 @@ export const useGameActions = (
     const ship = currentGameState.value?.ships.find((s) => s.shipId === shipId);
     if (!ship || ship.faceDownDamage === 0) return;
 
-    const newHull = Math.min(ship.hull + 1, getTotalHull(shipId));
-
     await addStep(
       {
         type: "remove_facedown_damage",
         shipId,
-        hullRemaining: newHull,
         timestamp: new Date(),
       },
       gameData,
@@ -100,9 +80,6 @@ export const useGameActions = (
   };
 
   const assignCrit = async (shipId: string, critCardId: string) => {
-    const ship = currentGameState.value?.ships.find((s) => s.shipId === shipId);
-    if (!ship) return;
-
     await addStep(
       {
         type: "assign_crit",
@@ -117,29 +94,15 @@ export const useGameActions = (
     const critCard = cards.value?.damageCards.find((c) => c.id === critCardId);
     const isDirectHit = critCard?.id === "direct-hit";
 
-    const damageAmount = isDirectHit ? 2 : 1;
-    const newHull = Math.max(0, ship.hull - damageAmount);
-
-    await addStep(
-      {
-        type: "apply_damage",
-        shipId,
-        hitsApplied: 0,
-        critsApplied: 1,
-        hullRemaining: newHull,
-        shieldsRemaining: ship.shields,
-        timestamp: new Date(),
-      },
-      gameData,
-      refreshCallback
-    );
-
     if (isDirectHit) {
       await addFacedownDamage(shipId);
     }
   };
 
   const removeCrit = async (shipId: string, critCardId: string) => {
+    const critCard = cards.value?.damageCards.find((c) => c.id === critCardId);
+    const isDirectHit = critCard?.id === "direct-hit";
+
     await addStep(
       {
         type: "remove_crit",
@@ -150,6 +113,10 @@ export const useGameActions = (
       gameData,
       refreshCallback
     );
+
+    if (isDirectHit) {
+      await removeFacedownDamage(shipId);
+    }
   };
 
   const flipCritFacedown = async (shipId: string, critCardId: string) => {
@@ -165,37 +132,81 @@ export const useGameActions = (
     );
   };
 
+  const flipCritFaceup = async (shipId: string, critCardId: string) => {
+    await addStep(
+      {
+        type: "flip_crit",
+        shipId,
+        critCardId,
+        faceUp: true,
+        timestamp: new Date(),
+      },
+      gameData,
+      refreshCallback
+    );
+  };
+
   const addStatModifier = async (
     shipId: string,
     stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
     amount: number
   ) => {
+    const ship = currentGameState.value?.ships.find(
+      (s) => s.shipId === shipId
+    );
+    if (!ship) return;
+
     if (stat === "hull") {
-      await addStep(
-        { type: "increase_max_hull", shipId, timestamp: new Date() },
-        gameData,
-        refreshCallback
-      );
+      if (amount > 0) {
+        await addStep(
+          { type: "increase_max_hull", shipId, timestamp: new Date() },
+          gameData,
+          refreshCallback
+        );
+      }
     } else if (stat === "shields") {
+      if (amount > 0) {
+        await addStep(
+          {
+            type: "increase_max_shields",
+            shipId,
+            timestamp: new Date(),
+          },
+          gameData,
+          refreshCallback
+        );
+      }
+    } else if (stat === "pilotSkill") {
+      const newPilotSkill = Math.max(0, ship.pilotSkill + amount);
       await addStep(
         {
-          type: "increase_max_shields",
+          type: "update_pilot_skill",
           shipId,
+          newPilotSkill,
           timestamp: new Date(),
         },
         gameData,
         refreshCallback
       );
-    } else if (stat === "pilotSkill") {
-      const ship = currentGameState.value?.ships.find(
-        (s) => s.shipId === shipId
-      );
-      if (!ship) return;
+    } else if (stat === "agility") {
+      const newAgility = Math.max(0, ship.agility + amount);
       await addStep(
         {
-          type: "update_pilot_skill",
+          type: "update_agility",
           shipId,
-          newPilotSkill: ship.pilotSkill + amount,
+          newAgility,
+          timestamp: new Date(),
+        },
+        gameData,
+        refreshCallback
+      );
+    } else if (stat === "attack") {
+      const newAttack = Math.max(0, ship.attack + amount);
+      await addStep(
+        {
+          type: "update_attack",
+          shipId,
+          newAttack,
           timestamp: new Date(),
         },
         gameData,
@@ -242,6 +253,7 @@ export const useGameActions = (
     assignCrit,
     removeCrit,
     flipCritFacedown,
+    flipCritFaceup,
     addStatModifier,
     decreaseHull,
     decreaseShields,

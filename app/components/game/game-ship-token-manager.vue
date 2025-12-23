@@ -2,6 +2,7 @@
 import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
 import { TokenType } from "#shared/enums";
+import { ReinforceDirection } from "#shared/enums";
 import { TOKEN_ICONS, getShipIcon, STAT_ICONS } from "#shared/xwing-icons";
 import { ATTACK_DIE_ICONS } from "#shared/dice";
 
@@ -20,7 +21,8 @@ const emit = defineEmits<{
     shipId: string,
     tokenType: TokenType,
     targetShipId?: string | null,
-    conditionId?: string | null
+    conditionId?: string | null,
+    reinforceDirection?: ReinforceDirection | null
   ];
   removeToken: [shipId: string, tokenType: TokenType];
   addFacedownDamage: [shipId: string];
@@ -28,6 +30,7 @@ const emit = defineEmits<{
   assignCrit: [shipId: string, critCardId: string];
   removeCrit: [shipId: string, critCardId: string];
   flipCritFacedown: [shipId: string, critCardId: string];
+  flipCritFaceup: [shipId: string, critCardId: string];
   addStatModifier: [
     shipId: string,
     stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
@@ -42,6 +45,7 @@ const { cards } = useCards();
 
 const showTargetLockDrawer = ref(false);
 const showConditionsDrawer = ref(false);
+const showReinforcePopup = ref(false);
 const hoveredCondition = ref<{ name: string; cardImageUrl?: string } | null>(
   null
 );
@@ -169,7 +173,23 @@ function handleAddToken(tokenType: TokenType) {
     showConditionsDrawer.value = true;
     return;
   }
+  if (tokenType === TokenType.Reinforce) {
+    showReinforcePopup.value = true;
+    return;
+  }
   emit("addToken", props.ship.shipId, tokenType);
+}
+
+function handleReinforceDirection(direction: ReinforceDirection) {
+  emit(
+    "addToken",
+    props.ship.shipId,
+    TokenType.Reinforce,
+    null,
+    null,
+    direction
+  );
+  showReinforcePopup.value = false;
 }
 
 function handleAddTargetLock(targetShipId: string) {
@@ -210,6 +230,10 @@ function handleRemoveCrit(critCardId: string) {
 
 function handleFlipCritFacedown(critCardId: string) {
   emit("flipCritFacedown", props.ship.shipId, critCardId);
+}
+
+function handleFlipCritFaceup(critCardId: string) {
+  emit("flipCritFaceup", props.ship.shipId, critCardId);
 }
 
 function handleMouseMove(event: MouseEvent) {
@@ -336,6 +360,14 @@ function handleClose() {
                     Flip
                   </button>
                   <button
+                    v-if="!crit.faceUp"
+                    @click.stop="handleFlipCritFaceup(crit.critCardId)"
+                    class="px-2 py-0.5 bg-gray-700 hover:bg-gray-600 text-xs text-gray-300 transition-colors"
+                    title="Flip faceup"
+                  >
+                    Flip
+                  </button>
+                  <button
                     @click.stop="handleRemoveCrit(crit.critCardId)"
                     class="px-2 py-0.5 bg-red-700 hover:bg-red-600 text-xs text-white transition-colors"
                     title="Remove crit"
@@ -424,14 +456,24 @@ function handleClose() {
                 }}</span>
                 <span class="text-xs text-gray-300">Agility</span>
               </div>
-              <button
-                @click.stop="
-                  $emit('addStatModifier', props.ship.shipId, 'agility', 1)
-                "
-                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
-              >
-                +
-              </button>
+              <div class="flex items-center gap-1">
+                <button
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'agility', -1)
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'agility', 1)
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
             </div>
 
             <div
@@ -443,14 +485,24 @@ function handleClose() {
                 }}</span>
                 <span class="text-xs text-gray-300">Attack</span>
               </div>
-              <button
-                @click.stop="
-                  $emit('addStatModifier', props.ship.shipId, 'attack', 1)
-                "
-                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
-              >
-                +
-              </button>
+              <div class="flex items-center gap-1">
+                <button
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'attack', -1)
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'attack', 1)
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
             </div>
 
             <div
@@ -459,14 +511,29 @@ function handleClose() {
               <div class="flex items-center gap-2 flex-1">
                 <span class="text-xs text-gray-300">Pilot Skill</span>
               </div>
-              <button
-                @click.stop="
-                  $emit('addStatModifier', props.ship.shipId, 'pilotSkill', 1)
-                "
-                class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
-              >
-                +
-              </button>
+              <div class="flex items-center gap-1">
+                <button
+                  @click.stop="
+                    $emit(
+                      'addStatModifier',
+                      props.ship.shipId,
+                      'pilotSkill',
+                      -1
+                    )
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-colors"
+                >
+                  -
+                </button>
+                <button
+                  @click.stop="
+                    $emit('addStatModifier', props.ship.shipId, 'pilotSkill', 1)
+                  "
+                  class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -662,6 +729,47 @@ function handleClose() {
         :alt="hoveredCondition.name"
         class="w-64 rounded-lg shadow-2xl border-2 border-gray-300"
       />
+    </div>
+  </Teleport>
+
+  <!-- Reinforce Direction Popup -->
+  <Teleport to="body">
+    <div
+      v-if="showReinforcePopup"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[70]"
+      @click.self="showReinforcePopup = false"
+    >
+      <div class="bg-gray-900 border border-teal-500 rounded-lg p-6 shadow-xl">
+        <div class="text-sm font-semibold text-gray-300 mb-4 text-center">
+          Select Reinforce Direction
+        </div>
+        <div class="flex items-center gap-6">
+          <button
+            @click="handleReinforceDirection(ReinforceDirection.Front)"
+            class="flex flex-col items-center gap-2 p-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors border-2 border-transparent hover:border-teal-500"
+          >
+            <span
+              class="xwing-icon text-6xl text-yellow-500"
+              style="transform: rotate(-90deg)"
+            >
+              {{ TOKEN_ICONS.reinforce }}
+            </span>
+            <span class="text-xs text-gray-300">Front</span>
+          </button>
+          <button
+            @click="handleReinforceDirection(ReinforceDirection.Back)"
+            class="flex flex-col items-center gap-2 p-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors border-2 border-transparent hover:border-teal-500"
+          >
+            <span
+              class="xwing-icon text-6xl text-yellow-500"
+              style="transform: rotate(90deg)"
+            >
+              {{ TOKEN_ICONS.reinforce }}
+            </span>
+            <span class="text-xs text-gray-300">Back</span>
+          </button>
+        </div>
+      </div>
     </div>
   </Teleport>
 </template>

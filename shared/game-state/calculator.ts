@@ -210,6 +210,12 @@ export function handleStep(
     case "update_pilot_skill":
       anyPhaseHandlers.handleUpdatePilotSkill(step, currentState, squads, cards);
       break;
+    case "update_agility":
+      anyPhaseHandlers.handleUpdateAgility(step, currentState, squads, cards);
+      break;
+    case "update_attack":
+      anyPhaseHandlers.handleUpdateAttack(step, currentState, squads, cards);
+      break;
     case "decrease_shields":
       anyPhaseHandlers.handleDecreaseShields(step, currentState, squads, cards);
       break;

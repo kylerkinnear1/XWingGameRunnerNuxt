@@ -20,7 +20,8 @@ const emit = defineEmits<{
     shipId: string,
     tokenType: TokenType,
     targetShipId?: string | null,
-    conditionId?: string | null
+    conditionId?: string | null,
+    reinforceDirection?: import("#shared/enums").ReinforceDirection | null
   ];
   removeToken: [shipId: string, tokenType: TokenType];
   addFacedownDamage: [shipId: string];
@@ -28,6 +29,7 @@ const emit = defineEmits<{
   assignCrit: [shipId: string, critCardId: string];
   removeCrit: [shipId: string, critCardId: string];
   flipCritFacedown: [shipId: string, critCardId: string];
+  flipCritFaceup: [shipId: string, critCardId: string];
   flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
   addStatModifier: [
     shipId: string,
@@ -59,9 +61,10 @@ function handleAddToken(
   shipId: string,
   tokenType: TokenType,
   targetShipId?: string | null,
-  conditionId?: string | null
+  conditionId?: string | null,
+  reinforceDirection?: import("#shared/enums").ReinforceDirection | null
 ) {
-  emit("addToken", shipId, tokenType, targetShipId, conditionId);
+  emit("addToken", shipId, tokenType, targetShipId, conditionId, reinforceDirection);
 }
 
 function handleRemoveToken(shipId: string, tokenType: TokenType) {
@@ -205,6 +208,9 @@ function handleCloseTokenManager() {
         "
         @flip-crit-facedown="
           (shipId, critCardId) => emit('flipCritFacedown', shipId, critCardId)
+        "
+        @flip-crit-faceup="
+          (shipId, critCardId) => emit('flipCritFaceup', shipId, critCardId)
         "
         @add-stat-modifier="
           (shipId, stat, amount) =>

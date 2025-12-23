@@ -9,6 +9,7 @@ import {
   getActionIcon,
   getTokenIcon,
 } from "#shared/xwing-icons";
+import { ATTACK_DIE_ICONS } from "#shared/dice";
 
 interface ShipWithPilot {
   ship: ShipStateDto;
@@ -39,6 +40,18 @@ const colorClasses = {
 const isCardCollapsed = ref(false);
 const hoveredUpgradeId = ref<string | null>(null);
 const clickedUpgradeId = ref<string | null>(null);
+
+const assignedCrits = computed(() => {
+  if (!cards.value) return [];
+  return props.ship.faceUpDamage
+    .map((crit) => {
+      const card = cards.value!.damageCards.find(
+        (c) => c.id === crit.critCardId
+      );
+      return card ? { ...crit, card } : null;
+    })
+    .filter((c): c is NonNullable<typeof c> => c !== null);
+});
 
 const shipUpgrades = computed(() => {
   if (!cards.value) return [];
@@ -142,7 +155,10 @@ function getTokenColor(tokenType: TokenType): string {
       <div class="flex items-start gap-3 pr-8">
         <!-- Pilot Skill + Ship Icon + Name on one line -->
         <div class="flex items-center gap-2 shrink-0">
-          <span class="text-xl font-bold text-orange-500">
+          <span
+            class="text-xl font-bold"
+            :class="isExpanded ? 'text-orange-500' : 'text-gray-400'"
+          >
             {{ ship.pilotSkill }}
           </span>
           <span
@@ -255,6 +271,38 @@ function getTokenColor(tokenType: TokenType): string {
                 >
                   ×
                 </button>
+              </div>
+            </div>
+
+            <!-- Crits Section -->
+            <div v-if="assignedCrits.length > 0" class="space-y-1">
+              <div
+                v-for="(crit, index) in assignedCrits"
+                :key="`crit-${index}`"
+                class="text-xs bg-gray-900 px-2 py-1 rounded"
+                :class="
+                  crit.faceUp
+                    ? 'border-l-2 border-orange-500'
+                    : 'border-l-2 border-gray-600'
+                "
+              >
+                <div class="flex items-center gap-1">
+                  <span class="xwing-icon text-orange-500">{{
+                    ATTACK_DIE_ICONS.crit
+                  }}</span>
+                  <span class="font-semibold text-gray-200">{{
+                    crit.card.name
+                  }}</span>
+                  <span v-if="!crit.faceUp" class="text-gray-500 italic"
+                    >(facedown)</span
+                  >
+                </div>
+                <div
+                  v-if="crit.faceUp && crit.card.text"
+                  class="text-gray-400 mt-1 leading-relaxed"
+                >
+                  {{ crit.card.text }}
+                </div>
               </div>
             </div>
 

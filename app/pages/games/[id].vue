@@ -129,6 +129,7 @@ const {
   assignCrit,
   removeCrit,
   flipCritFacedown,
+  flipCritFaceup,
   addStatModifier,
   decreaseHull,
   decreaseShields,
@@ -296,6 +297,7 @@ watch(
       @assign-crit="assignCrit"
       @remove-crit="removeCrit"
       @flip-crit-facedown="flipCritFacedown"
+      @flip-crit-faceup="flipCritFaceup"
       @flip-upgrade="flipUpgrade"
       @add-stat-modifier="addStatModifier"
       @decrease-hull="decreaseHull"
