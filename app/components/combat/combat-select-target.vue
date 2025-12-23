@@ -17,32 +17,40 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   declareAttack: [attackerShipId: string, defenderShipId: string];
-  noShot: [];
   endCombat: [];
 }>();
 
 const selectedAttacker = ref<string | null>(null);
 const selectedDefender = ref<string | null>(null);
 
-// Filter to ships that haven't attacked yet and aren't destroyed
-const player1ShipsAvailable = computed(() => {
+// Ships that CAN attack (haven't attacked yet)
+const player1ShipsCanAttack = computed(() => {
   return props.player1Ships
     .filter((s) => !s.ship.hasAttacked && !s.ship.isDestroyed)
     .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
 });
 
-const player2ShipsAvailable = computed(() => {
+const player2ShipsCanAttack = computed(() => {
   return props.player2Ships
     .filter((s) => !s.ship.hasAttacked && !s.ship.isDestroyed)
     .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
 });
 
-const canDeclareAttack = computed(() => {
-  return !!selectedAttacker.value && !!selectedDefender.value;
+// Ships that HAVE already attacked (but can still defend)
+const player1ShipsAlreadyAttacked = computed(() => {
+  return props.player1Ships
+    .filter((s) => s.ship.hasAttacked && !s.ship.isDestroyed)
+    .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
 });
 
-const canNoShot = computed(() => {
-  return !!selectedAttacker.value;
+const player2ShipsAlreadyAttacked = computed(() => {
+  return props.player2Ships
+    .filter((s) => s.ship.hasAttacked && !s.ship.isDestroyed)
+    .sort((a, b) => b.ship.pilotSkill - a.ship.pilotSkill);
+});
+
+const canDeclareAttack = computed(() => {
+  return !!selectedAttacker.value && !!selectedDefender.value;
 });
 
 function selectAttacker(shipId: string) {
@@ -70,12 +78,6 @@ function declareAttack() {
   }
 }
 
-function noShot() {
-  emit("noShot");
-  selectedAttacker.value = null;
-  selectedDefender.value = null;
-}
-
 function endCombat() {
   emit("endCombat");
 }
@@ -92,36 +94,27 @@ function endCombat() {
     <div class="flex-1 overflow-y-auto p-6">
       <div
         v-if="
-          player1ShipsAvailable.length === 0 &&
-          player2ShipsAvailable.length === 0
+          player1ShipsCanAttack.length === 0 &&
+          player2ShipsCanAttack.length === 0
         "
         class="text-center py-12"
       >
         <p class="text-xl text-gray-400 mb-2">All ships have attacked!</p>
-        <p class="text-sm text-gray-500">Ready to move to end phase.</p>
+        <p class="text-sm text-gray-500">Ready to end combat phase.</p>
       </div>
 
-      <div
-        v-else
-        class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
-      >
-        <!-- Player 1 Ships (Left Column) -->
-        <div class="space-y-3">
-          <h3
-            class="text-lg font-bold text-red-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10"
-          >
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <!-- Player 1 Ships -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold text-red-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10">
             Player 1
           </h3>
-          <div
-            v-if="player1ShipsAvailable.length === 0"
-            class="text-center py-8"
-          >
-            <p class="text-sm text-gray-500">No ships available</p>
+          
+          <!-- Ships that can still attack -->
+          <div v-if="player1ShipsCanAttack.length === 0" class="text-center py-4">
+            <p class="text-sm text-gray-500">No ships available to attack</p>
           </div>
-          <template
-            v-for="{ ship, pilot } in player1ShipsAvailable"
-            :key="ship.shipId"
-          >
+          <template v-for="{ ship, pilot } in player1ShipsCanAttack" :key="ship.shipId">
             <div
               class="p-4 border-2 transition-all"
               :class="[
@@ -129,65 +122,108 @@ function endCombat() {
                   ? 'border-red-500 bg-red-900/20'
                   : selectedDefender === ship.shipId
                   ? 'border-teal-500 bg-teal-900/20'
-                  : 'border-gray-700 bg-gray-800',
+                  : 'border-gray-600 bg-gray-800',
               ]"
             >
-              <div class="flex items-center gap-4">
-                <!-- Pilot Skill Badge -->
-                <div
-                  class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold bg-orange-600 text-white"
-                >
-                  {{ ship.pilotSkill }}
-                </div>
-
-                <!-- Ship Icon -->
-                <span
-                  v-if="pilot"
-                  class="xwing-ship text-4xl shrink-0 text-red-400"
-                >
-                  {{ getShipIcon(pilot.shipType) }}
+              <!-- Ship card display -->
+              <div class="flex items-start gap-3 mb-3">
+                <span class="xwing-ship text-red-400 text-3xl">
+                  {{ getShipIcon(pilot?.shipType || '') }}
                 </span>
-
-                <!-- Ship Details -->
-                <div class="flex-1 min-w-0">
-                  <h3 class="text-base font-semibold text-gray-100 mb-1">
-                    {{ pilot?.pilotName || "Unknown" }}
-                  </h3>
-
-                  <!-- Stats -->
-                  <div class="flex items-center gap-3 text-xs">
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-red-500">{{
-                        STAT_ICONS.attack
-                      }}</span>
-                      <span class="font-medium">{{ ship.attack }}</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-white">{{ pilot?.pilotName || 'Unknown' }}</h4>
+                  <p class="text-xs text-gray-400">PS {{ ship.pilotSkill }}</p>
+                  <div class="flex gap-2 text-xs mt-1">
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.attack" class="mr-1"></i>{{ ship.attack }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-green-500">{{
-                        STAT_ICONS.agility
-                      }}</span>
-                      <span class="font-medium">{{ ship.agility }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.agility" class="mr-1"></i>{{ ship.agility }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-gray-400">{{
-                        STAT_ICONS.hull
-                      }}</span>
-                      <span class="font-medium">{{ ship.hull }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.hull" class="mr-1"></i>{{ ship.hull }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-blue-500">{{
-                        STAT_ICONS.shield
-                      }}</span>
-                      <span class="font-medium">{{ ship.shields }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.shield" class="mr-1"></i>{{ ship.shields }}
                     </span>
                   </div>
                 </div>
+              </div>
+              
+              <!-- Action buttons -->
+              <div class="flex gap-2">
+                <button
+                  @click="selectAttacker(ship.shipId)"
+                  class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                  :class="[
+                    selectedAttacker === ship.shipId
+                      ? 'bg-red-600 border-red-800'
+                      : 'bg-gray-600 border-gray-800 hover:bg-gray-500',
+                  ]"
+                >
+                  Attack
+                </button>
+                <button
+                  @click="selectDefender(ship.shipId)"
+                  class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                  :class="[
+                    selectedDefender === ship.shipId
+                      ? 'bg-teal-600 border-teal-800'
+                      : 'bg-gray-600 border-gray-800 hover:bg-gray-500',
+                  ]"
+                >
+                  Defend
+                </button>
+              </div>
+            </div>
+          </template>
 
-                <!-- Action Buttons -->
-                <div class="flex items-center gap-2 shrink-0">
+          <!-- Already Attacked Section -->
+          <div v-if="player1ShipsAlreadyAttacked.length > 0" class="mt-6 space-y-3">
+            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wide">
+              Already Attacked
+            </h4>
+            <template v-for="{ ship, pilot } in player1ShipsAlreadyAttacked" :key="ship.shipId">
+              <div
+                class="p-4 border-2 transition-all opacity-75"
+                :class="[
+                  selectedAttacker === ship.shipId
+                    ? 'border-red-500 bg-red-900/20'
+                    : selectedDefender === ship.shipId
+                    ? 'border-teal-500 bg-teal-900/20'
+                    : 'border-gray-700 bg-gray-800/50',
+                ]"
+              >
+                <!-- Ship card display -->
+                <div class="flex items-start gap-3 mb-3">
+                  <span class="xwing-ship text-red-400 text-3xl">
+                    {{ getShipIcon(pilot?.shipType || '') }}
+                  </span>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white">{{ pilot?.pilotName || 'Unknown' }}</h4>
+                    <p class="text-xs text-gray-400">PS {{ ship.pilotSkill }}</p>
+                    <div class="flex gap-2 text-xs mt-1">
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.attack" class="mr-1"></i>{{ ship.attack }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.agility" class="mr-1"></i>{{ ship.agility }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.hull" class="mr-1"></i>{{ ship.hull }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.shield" class="mr-1"></i>{{ ship.shields }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Action buttons -->
+                <div class="flex gap-2">
                   <button
                     @click="selectAttacker(ship.shipId)"
-                    class="px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                    class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
                     :class="[
                       selectedAttacker === ship.shipId
                         ? 'bg-red-600 border-red-800'
@@ -198,7 +234,7 @@ function endCombat() {
                   </button>
                   <button
                     @click="selectDefender(ship.shipId)"
-                    class="px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                    class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
                     :class="[
                       selectedDefender === ship.shipId
                         ? 'bg-teal-600 border-teal-800'
@@ -209,27 +245,21 @@ function endCombat() {
                   </button>
                 </div>
               </div>
-            </div>
-          </template>
+            </template>
+          </div>
         </div>
 
-        <!-- Player 2 Ships (Right Column) -->
-        <div class="space-y-3">
-          <h3
-            class="text-lg font-bold text-gray-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10"
-          >
+        <!-- Player 2 Ships (same structure) -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold text-gray-400 mb-4 sticky top-0 bg-gray-900 py-2 z-10">
             Player 2
           </h3>
-          <div
-            v-if="player2ShipsAvailable.length === 0"
-            class="text-center py-8"
-          >
-            <p class="text-sm text-gray-500">No ships available</p>
+          
+          <!-- Ships that can still attack -->
+          <div v-if="player2ShipsCanAttack.length === 0" class="text-center py-4">
+            <p class="text-sm text-gray-500">No ships available to attack</p>
           </div>
-          <template
-            v-for="{ ship, pilot } in player2ShipsAvailable"
-            :key="ship.shipId"
-          >
+          <template v-for="{ ship, pilot } in player2ShipsCanAttack" :key="ship.shipId">
             <div
               class="p-4 border-2 transition-all"
               :class="[
@@ -237,65 +267,108 @@ function endCombat() {
                   ? 'border-red-500 bg-red-900/20'
                   : selectedDefender === ship.shipId
                   ? 'border-teal-500 bg-teal-900/20'
-                  : 'border-gray-700 bg-gray-800',
+                  : 'border-gray-600 bg-gray-800',
               ]"
             >
-              <div class="flex items-center gap-4">
-                <!-- Pilot Skill Badge -->
-                <div
-                  class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold bg-orange-600 text-white"
-                >
-                  {{ ship.pilotSkill }}
-                </div>
-
-                <!-- Ship Icon -->
-                <span
-                  v-if="pilot"
-                  class="xwing-ship text-4xl shrink-0 text-gray-400"
-                >
-                  {{ getShipIcon(pilot.shipType) }}
+              <!-- Ship card display -->
+              <div class="flex items-start gap-3 mb-3">
+                <span class="xwing-ship text-gray-400 text-3xl">
+                  {{ getShipIcon(pilot?.shipType || '') }}
                 </span>
-
-                <!-- Ship Details -->
-                <div class="flex-1 min-w-0">
-                  <h3 class="text-base font-semibold text-gray-100 mb-1">
-                    {{ pilot?.pilotName || "Unknown" }}
-                  </h3>
-
-                  <!-- Stats -->
-                  <div class="flex items-center gap-3 text-xs">
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-red-500">{{
-                        STAT_ICONS.attack
-                      }}</span>
-                      <span class="font-medium">{{ ship.attack }}</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-white">{{ pilot?.pilotName || 'Unknown' }}</h4>
+                  <p class="text-xs text-gray-400">PS {{ ship.pilotSkill }}</p>
+                  <div class="flex gap-2 text-xs mt-1">
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.attack" class="mr-1"></i>{{ ship.attack }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-green-500">{{
-                        STAT_ICONS.agility
-                      }}</span>
-                      <span class="font-medium">{{ ship.agility }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.agility" class="mr-1"></i>{{ ship.agility }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-gray-400">{{
-                        STAT_ICONS.hull
-                      }}</span>
-                      <span class="font-medium">{{ ship.hull }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.hull" class="mr-1"></i>{{ ship.hull }}
                     </span>
-                    <span class="flex items-center gap-1 text-gray-300">
-                      <span class="xwing-icon text-blue-500">{{
-                        STAT_ICONS.shield
-                      }}</span>
-                      <span class="font-medium">{{ ship.shields }}</span>
+                    <span class="text-gray-400">
+                      <i :class="STAT_ICONS.shield" class="mr-1"></i>{{ ship.shields }}
                     </span>
                   </div>
                 </div>
+              </div>
+              
+              <!-- Action buttons -->
+              <div class="flex gap-2">
+                <button
+                  @click="selectAttacker(ship.shipId)"
+                  class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                  :class="[
+                    selectedAttacker === ship.shipId
+                      ? 'bg-red-600 border-red-800'
+                      : 'bg-gray-600 border-gray-800 hover:bg-gray-500',
+                  ]"
+                >
+                  Attack
+                </button>
+                <button
+                  @click="selectDefender(ship.shipId)"
+                  class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                  :class="[
+                    selectedDefender === ship.shipId
+                      ? 'bg-teal-600 border-teal-800'
+                      : 'bg-gray-600 border-gray-800 hover:bg-gray-500',
+                  ]"
+                >
+                  Defend
+                </button>
+              </div>
+            </div>
+          </template>
 
-                <!-- Action Buttons -->
-                <div class="flex items-center gap-2 shrink-0">
+          <!-- Already Attacked Section -->
+          <div v-if="player2ShipsAlreadyAttacked.length > 0" class="mt-6 space-y-3">
+            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wide">
+              Already Attacked
+            </h4>
+            <template v-for="{ ship, pilot } in player2ShipsAlreadyAttacked" :key="ship.shipId">
+              <div
+                class="p-4 border-2 transition-all opacity-75"
+                :class="[
+                  selectedAttacker === ship.shipId
+                    ? 'border-red-500 bg-red-900/20'
+                    : selectedDefender === ship.shipId
+                    ? 'border-teal-500 bg-teal-900/20'
+                    : 'border-gray-700 bg-gray-800/50',
+                ]"
+              >
+                <!-- Ship card display -->
+                <div class="flex items-start gap-3 mb-3">
+                  <span class="xwing-ship text-gray-400 text-3xl">
+                    {{ getShipIcon(pilot?.shipType || '') }}
+                  </span>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white">{{ pilot?.pilotName || 'Unknown' }}</h4>
+                    <p class="text-xs text-gray-400">PS {{ ship.pilotSkill }}</p>
+                    <div class="flex gap-2 text-xs mt-1">
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.attack" class="mr-1"></i>{{ ship.attack }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.agility" class="mr-1"></i>{{ ship.agility }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.hull" class="mr-1"></i>{{ ship.hull }}
+                      </span>
+                      <span class="text-gray-400">
+                        <i :class="STAT_ICONS.shield" class="mr-1"></i>{{ ship.shields }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Action buttons -->
+                <div class="flex gap-2">
                   <button
                     @click="selectAttacker(ship.shipId)"
-                    class="px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                    class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
                     :class="[
                       selectedAttacker === ship.shipId
                         ? 'bg-red-600 border-red-800'
@@ -306,7 +379,7 @@ function endCombat() {
                   </button>
                   <button
                     @click="selectDefender(ship.shipId)"
-                    class="px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
+                    class="flex-1 px-4 py-2 text-sm font-bold text-white border-b-2 transition-all uppercase tracking-wide"
                     :class="[
                       selectedDefender === ship.shipId
                         ? 'bg-teal-600 border-teal-800'
@@ -317,8 +390,8 @@ function endCombat() {
                   </button>
                 </div>
               </div>
-            </div>
-          </template>
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -326,13 +399,6 @@ function endCombat() {
     <!-- Footer Actions -->
     <div class="p-6 border-t border-gray-700 bg-gray-800">
       <div class="max-w-4xl mx-auto flex items-center justify-center gap-4">
-        <button
-          @click="noShot"
-          :disabled="!canNoShot"
-          class="px-8 py-3 text-sm font-bold bg-gray-600 text-white border-b-4 border-gray-800 hover:bg-gray-500 active:border-b-2 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          No Shot
-        </button>
         <button
           @click="declareAttack"
           :disabled="!canDeclareAttack"
