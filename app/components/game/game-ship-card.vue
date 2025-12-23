@@ -551,8 +551,7 @@ function handleDestructionComplete() {
     <!-- Ship Destruction Modal -->
     <GameShipDestructionModal
       :is-visible="showDestructionModal"
-      :ship-name="pilot?.shipType || 'Ship'"
-      :pilot-name="pilot?.pilotName || 'Unknown'"
+      :pilot="pilot"
       @close="handleDestructionComplete"
     />
   </div>

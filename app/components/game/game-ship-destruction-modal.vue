@@ -3,57 +3,42 @@
     <Transition name="destruction">
       <div
         v-if="isVisible"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
         @click.self="handleClose"
       >
-        <div class="relative w-full max-w-md">
-          <!-- Ship Card with Burning Effect -->
+        <div class="relative">
+          <!-- Pilot Card Image with Destruction Effects -->
           <div
-            class="relative transform transition-all duration-1000"
+            v-if="pilot && pilot.cardImageUrl"
+            class="relative transition-all duration-1000"
             :class="animationClass"
           >
-            <!-- Ship Card Display -->
-            <div
-              class="ship-card-container relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-2xl"
-            >
-              <!-- Burning overlay effects -->
-              <div class="fire-overlay absolute inset-0 pointer-events-none">
+            <!-- The actual pilot card image -->
+            <img
+              v-if="pilot?.cardImageUrl"
+              :src="pilot.cardImageUrl"
+              :alt="pilot.pilotName"
+              class="w-80 h-auto rounded-lg shadow-2xl"
+            />
+
+            <!-- Fire/Burn overlay -->
+            <div v-if="isBurning" class="absolute inset-0 pointer-events-none">
+              <!-- Orange/red burning gradient overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-orange-600 via-red-500 to-transparent opacity-0 animate-burn-in rounded-lg"
+              ></div>
+
+              <!-- Flickering flames at bottom -->
+              <div class="absolute bottom-0 left-0 right-0 h-1/3">
                 <div class="flame flame-1"></div>
                 <div class="flame flame-2"></div>
                 <div class="flame flame-3"></div>
-                <div class="embers"></div>
               </div>
 
-              <!-- Ship Info -->
-              <div class="relative z-10 text-white">
-                <h2 class="text-2xl font-bold mb-2">{{ shipName }}</h2>
-                <p class="text-lg mb-4">{{ pilotName }}</p>
-                <div class="text-6xl text-center my-8 animate-pulse">💥</div>
-                <p class="text-center text-red-400 font-semibold text-xl">
-                  DESTROYED
-                </p>
-              </div>
-
-              <!-- Damage cracks overlay -->
-              <svg
-                class="absolute inset-0 w-full h-full pointer-events-none opacity-30"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  class="crack-line"
-                  d="M 10 50 L 30 20 L 60 40 L 90 10"
-                  stroke="rgba(255, 100, 0, 0.6)"
-                  stroke-width="2"
-                  fill="none"
-                />
-                <path
-                  class="crack-line crack-line-2"
-                  d="M 80 80 L 60 60 L 70 40 L 50 30"
-                  stroke="rgba(255, 150, 0, 0.5)"
-                  stroke-width="1.5"
-                  fill="none"
-                />
-              </svg>
+              <!-- Smoke/fade effect -->
+              <div
+                class="absolute inset-0 bg-black opacity-0 animate-fade-out rounded-lg"
+              ></div>
             </div>
           </div>
 
@@ -73,11 +58,11 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import type { PilotDto } from "#shared/cards";
 
 interface Props {
   isVisible: boolean;
-  shipName: string;
-  pilotName: string;
+  pilot: PilotDto | undefined;
 }
 
 const props = defineProps<Props>();
@@ -87,6 +72,7 @@ const emit = defineEmits<{
 }>();
 
 const animationClass = ref("");
+const isBurning = ref(false);
 const showCloseButton = ref(false);
 
 watch(
@@ -95,28 +81,29 @@ watch(
     if (visible) {
       showCloseButton.value = false;
       animationClass.value = "";
+      isBurning.value = false;
 
-      // Start the destruction animation sequence
-      setTimeout(() => {
-        animationClass.value = "scale-110";
-      }, 100);
-
+      // Start the destruction sequence
       setTimeout(() => {
         animationClass.value = "scale-110 shake";
-      }, 500);
+      }, 300);
 
       setTimeout(() => {
-        animationClass.value = "scale-95 opacity-80 burning";
+        isBurning.value = true;
+      }, 800);
+
+      setTimeout(() => {
+        animationClass.value = "scale-90 opacity-60";
       }, 1500);
 
       setTimeout(() => {
-        animationClass.value = "scale-75 opacity-40 burning";
-      }, 2500);
+        animationClass.value = "scale-75 opacity-20";
+      }, 2200);
 
       // Show close button after animation
       setTimeout(() => {
         showCloseButton.value = true;
-      }, 3000);
+      }, 2800);
     }
   }
 );
@@ -138,7 +125,7 @@ const handleClose = () => {
   opacity: 0;
 }
 
-/* Shake animation for impact */
+/* Shake animation */
 @keyframes shake {
   0%,
   100% {
@@ -149,13 +136,13 @@ const handleClose = () => {
   50%,
   70%,
   90% {
-    transform: translateX(-5px) scale(1.1);
+    transform: translateX(-8px) scale(1.1);
   }
   20%,
   40%,
   60%,
   80% {
-    transform: translateX(5px) scale(1.1);
+    transform: translateX(8px) scale(1.1);
   }
 }
 
@@ -163,114 +150,90 @@ const handleClose = () => {
   animation: shake 0.5s ease-in-out;
 }
 
-/* Fire effect */
+/* Burn-in animation for the overlay */
+@keyframes burn-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+.animate-burn-in {
+  animation: burn-in 1s ease-in forwards;
+}
+
+/* Fade out to black */
+@keyframes fade-out {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out 1.5s ease-in forwards;
+  animation-delay: 0.5s;
+}
+
+/* Simple flickering flames */
 @keyframes flicker {
   0%,
   100% {
-    opacity: 0.8;
-    transform: translateY(0) scale(1);
+    opacity: 0.7;
+    transform: translateY(0) scaleY(1);
   }
   25% {
-    opacity: 0.6;
-    transform: translateY(-10px) scale(1.1);
+    opacity: 0.5;
+    transform: translateY(-10px) scaleY(1.1);
   }
   50% {
-    opacity: 0.9;
-    transform: translateY(-5px) scale(0.95);
+    opacity: 0.8;
+    transform: translateY(-5px) scaleY(0.95);
   }
   75% {
-    opacity: 0.7;
-    transform: translateY(-15px) scale(1.05);
+    opacity: 0.6;
+    transform: translateY(-12px) scaleY(1.05);
   }
 }
 
 .flame {
   position: absolute;
   bottom: 0;
-  width: 60px;
-  height: 80px;
+  width: 50px;
+  height: 60px;
   background: linear-gradient(
     to top,
-    rgba(255, 100, 0, 0.9) 0%,
-    rgba(255, 150, 0, 0.7) 40%,
-    rgba(255, 200, 0, 0.4) 70%,
+    rgba(255, 80, 0, 0.8) 0%,
+    rgba(255, 150, 0, 0.6) 40%,
+    rgba(255, 200, 0, 0.3) 70%,
     transparent 100%
   );
   border-radius: 50% 50% 0 0;
-  filter: blur(8px);
+  filter: blur(6px);
   animation: flicker 0.3s ease-in-out infinite;
 }
 
 .flame-1 {
-  left: 10%;
+  left: 15%;
   animation-delay: 0s;
 }
 
 .flame-2 {
   left: 45%;
   animation-delay: 0.1s;
-  height: 100px;
+  height: 70px;
 }
 
 .flame-3 {
   right: 15%;
   animation-delay: 0.15s;
-  height: 70px;
-}
-
-/* Embers effect */
-@keyframes ember-rise {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-200px) scale(0.3);
-    opacity: 0;
-  }
-}
-
-.embers {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-      circle,
-      rgba(255, 100, 0, 0.8) 2px,
-      transparent 2px
-    ),
-    radial-gradient(circle, rgba(255, 150, 0, 0.6) 1.5px, transparent 1.5px),
-    radial-gradient(circle, rgba(255, 200, 0, 0.7) 2.5px, transparent 2.5px);
-  background-size: 50px 50px, 80px 80px, 60px 60px;
-  background-position: 0 0, 30px 30px, 15px 45px;
-  animation: ember-rise 2s ease-out infinite;
-}
-
-/* Burning effect class */
-.burning .fire-overlay {
-  opacity: 1;
-}
-
-/* Crack line animation */
-@keyframes crack-grow {
-  from {
-    stroke-dasharray: 0, 1000;
-  }
-  to {
-    stroke-dasharray: 1000, 0;
-  }
-}
-
-.crack-line {
-  animation: crack-grow 0.8s ease-out forwards;
-}
-
-.crack-line-2 {
-  animation-delay: 0.3s;
-}
-
-/* Glow effect when burning */
-.burning .ship-card-container {
-  box-shadow: 0 0 30px rgba(255, 100, 0, 0.6), 0 0 60px rgba(255, 150, 0, 0.4),
-    0 0 90px rgba(255, 200, 0, 0.2);
+  height: 55px;
 }
 </style>
