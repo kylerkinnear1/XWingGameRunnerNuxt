@@ -12,6 +12,7 @@ import {
   getTokenColor as getSharedTokenColor,
 } from "#shared/xwing-icons";
 import { ATTACK_DIE_ICONS } from "#shared/dice";
+import ShipDestructionModal from "./game-ship-destruction-modal.vue";
 
 interface ShipWithPilot {
   ship: ShipStateDto;
@@ -32,6 +33,7 @@ const emit = defineEmits<{
   spendToken: [shipId: string, tokenType: TokenType];
   addToken: [shipId: string, tokenType: TokenType];
   removeToken: [shipId: string, tokenType: TokenType];
+  destroyShip: [shipId: string];
 }>();
 
 const { cards } = useCards();
@@ -44,6 +46,7 @@ const colorClasses = {
 const isCardCollapsed = ref(false);
 const hoveredUpgradeId = ref<string | null>(null);
 const clickedUpgradeId = ref<string | null>(null);
+const showDestructionModal = ref(false);
 
 const assignedCrits = computed(() => {
   if (!cards.value) return [];
@@ -173,6 +176,15 @@ function getLockedShipName(targetShipId: string | null): string {
 
 function getTokenColor(tokenType: TokenType): string {
   return getSharedTokenColor(tokenType);
+}
+
+function handleDestroyClick() {
+  showDestructionModal.value = true;
+}
+
+function handleDestructionComplete() {
+  showDestructionModal.value = false;
+  emit("destroyShip", props.ship.shipId);
 }
 </script>
 
@@ -489,6 +501,14 @@ function getTokenColor(tokenType: TokenType): string {
             >
               {{ pilot.ability }}
             </div>
+
+            <!-- Destroy Ship Button -->
+            <button
+              @click.stop="handleDestroyClick"
+              class="w-full mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-semibold transition-colors"
+            >
+              💥 Destroy Ship
+            </button>
           </div>
         </div>
       </div>
@@ -527,5 +547,13 @@ function getTokenColor(tokenType: TokenType): string {
         {{ activeUpgrade.upgrade.points }} points
       </div>
     </div>
+
+    <!-- Ship Destruction Modal -->
+    <GameShipDestructionModal
+      :is-visible="showDestructionModal"
+      :ship-name="pilot?.shipType || 'Ship'"
+      :pilot-name="pilot?.pilotName || 'Unknown'"
+      @close="handleDestructionComplete"
+    />
   </div>
 </template>

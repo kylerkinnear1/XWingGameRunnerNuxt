@@ -134,6 +134,7 @@ const {
   decreaseHull,
   decreaseShields,
   flipUpgrade,
+  destroyShip,
 } = useGameActions(
   addStep,
   gameData,
@@ -302,6 +303,7 @@ watch(
       @add-stat-modifier="addStatModifier"
       @decrease-hull="decreaseHull"
       @decrease-shields="decreaseShields"
+      @destroy-ship="destroyShip"
     />
 
     <div class="flex-1 overflow-hidden relative game-transition-container">

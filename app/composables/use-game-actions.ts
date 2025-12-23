@@ -245,6 +245,22 @@ export const useGameActions = (
     );
   };
 
+  const destroyShip = async (
+    shipId: string,
+    destroyedByShipId?: string | null
+  ) => {
+    await addStep(
+      {
+        type: "destroy_ship",
+        shipId,
+        destroyedByShipId: destroyedByShipId ?? shipId,
+        timestamp: new Date(),
+      },
+      gameData,
+      refreshCallback
+    );
+  };
+
   return {
     addToken,
     removeToken,
@@ -258,6 +274,7 @@ export const useGameActions = (
     decreaseHull,
     decreaseShields,
     flipUpgrade,
+    destroyShip,
   };
 };
 

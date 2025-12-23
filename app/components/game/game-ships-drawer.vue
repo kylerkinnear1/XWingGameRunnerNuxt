@@ -38,7 +38,16 @@ const emit = defineEmits<{
   ];
   decreaseHull: [shipId: string];
   decreaseShields: [shipId: string];
+  destroyShip: [shipId: string];
 }>();
+
+const filteredPlayer1Ships = computed(() => {
+  return props.player1Ships.filter((s) => !s.ship.isDestroyed);
+});
+
+const filteredPlayer2Ships = computed(() => {
+  return props.player2Ships.filter((s) => !s.ship.isDestroyed);
+});
 
 const isOpen = ref(true);
 
@@ -77,6 +86,13 @@ function handleFlipUpgrade(
   faceUp: boolean
 ) {
   emit("flipUpgrade", shipId, upgradeId, faceUp);
+}
+
+function handleDestroyShip(shipId: string) {
+  if (props.expandedShipId === shipId) {
+    emit("toggleExpansion", shipId);
+  }
+  emit("destroyShip", shipId);
 }
 
 function handleCloseTokenManager() {
@@ -142,12 +158,12 @@ function handleCloseTokenManager() {
 
       <div v-if="isOpen" class="flex-1 overflow-y-auto">
         <!-- Player 1 Ships -->
-        <div v-if="player1Ships.length > 0" class="p-2">
+        <div v-if="filteredPlayer1Ships.length > 0" class="p-2">
           <div class="text-xs uppercase tracking-wide text-gray-500 mb-2 px-2">
             Player 1
           </div>
           <GameShipCard
-            v-for="{ ship, pilot } in player1Ships"
+            v-for="{ ship, pilot } in filteredPlayer1Ships"
             :key="ship.shipId"
             :ship="ship"
             :pilot="pilot"
@@ -159,19 +175,20 @@ function handleCloseTokenManager() {
             @spend-token="handleRemoveToken"
             @add-token="handleAddToken"
             @remove-token="handleRemoveToken"
+            @destroy-ship="handleDestroyShip"
           />
         </div>
 
         <!-- Player 2 Ships -->
         <div
-          v-if="player2Ships.length > 0"
+          v-if="filteredPlayer2Ships.length > 0"
           class="p-2 border-t border-gray-700"
         >
           <div class="text-xs uppercase tracking-wide text-gray-500 mb-2 px-2">
             Player 2
           </div>
           <GameShipCard
-            v-for="{ ship, pilot } in player2Ships"
+            v-for="{ ship, pilot } in filteredPlayer2Ships"
             :key="ship.shipId"
             :ship="ship"
             :pilot="pilot"
@@ -183,6 +200,7 @@ function handleCloseTokenManager() {
             @spend-token="handleRemoveToken"
             @add-token="handleAddToken"
             @remove-token="handleRemoveToken"
+            @destroy-ship="handleDestroyShip"
           />
         </div>
       </div>
