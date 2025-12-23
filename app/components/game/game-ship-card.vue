@@ -8,6 +8,7 @@ import {
   STAT_ICONS,
   getActionIcon,
   getTokenIcon,
+  getUpgradeSlotIcon,
 } from "#shared/xwing-icons";
 import { ATTACK_DIE_ICONS } from "#shared/dice";
 
@@ -28,6 +29,8 @@ const emit = defineEmits<{
   toggleExpansion: [shipId: string];
   flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
   spendToken: [shipId: string, tokenType: TokenType];
+  addToken: [shipId: string, tokenType: TokenType];
+  removeToken: [shipId: string, tokenType: TokenType];
 }>();
 
 const { cards } = useCards();
@@ -77,6 +80,47 @@ function handleFlipUpgrade(upgradeId: string, currentFaceUp: boolean) {
 function handleSpendToken(tokenType: TokenType) {
   emit("spendToken", props.ship.shipId, tokenType);
 }
+
+function handleAddToken(tokenType: TokenType) {
+  emit("addToken", props.ship.shipId, tokenType);
+}
+
+function handleRemoveToken(tokenType: TokenType) {
+  emit("removeToken", props.ship.shipId, tokenType);
+}
+
+function getTokenCount(tokenType: TokenType): number {
+  return props.ship.tokens.filter((t) => t.tokenType === tokenType).length;
+}
+
+const groupedTokens = computed(() => {
+  const groups = new Map<TokenType, number>();
+  for (const token of props.ship.tokens) {
+    if (
+      token.tokenType !== TokenTypeEnum.TargetLock &&
+      token.tokenType !== TokenTypeEnum.Condition
+    ) {
+      const count = groups.get(token.tokenType) || 0;
+      groups.set(token.tokenType, count + 1);
+    }
+  }
+  return Array.from(groups.entries()).map(([tokenType, count]) => ({
+    tokenType,
+    count,
+  }));
+});
+
+const targetLockTokens = computed(() => {
+  return props.ship.tokens.filter(
+    (t) => t.tokenType === TokenTypeEnum.TargetLock
+  );
+});
+
+const conditionTokens = computed(() => {
+  return props.ship.tokens.filter(
+    (t) => t.tokenType === TokenTypeEnum.Condition
+  );
+});
 
 function handleUpgradeHover(upgradeId: string | null) {
   hoveredUpgradeId.value = upgradeId;
@@ -215,6 +259,12 @@ function getTokenColor(tokenType: TokenType): string {
                 @mouseleave="handleUpgradeHover(null)"
               >
                 <span
+                  class="xwing-icon text-xs text-gray-400"
+                  :title="upgrade.upgrade.upgradeType"
+                >
+                  {{ getUpgradeSlotIcon(upgrade.upgrade.upgradeType) }}
+                </span>
+                <span
                   class="text-xs text-gray-400 hover:text-teal-400 cursor-pointer transition-colors"
                   :class="{ 'line-through': !upgrade.faceUp }"
                   @click.stop="handleUpgradeClick(upgrade.upgradeId)"
@@ -245,32 +295,91 @@ function getTokenColor(tokenType: TokenType): string {
               </div>
             </div>
 
-            <!-- Tokens Section - Show each token individually -->
-            <div v-if="ship.tokens.length > 0" class="flex flex-wrap gap-2">
+            <!-- Tokens Section -->
+            <div v-if="ship.tokens.length > 0" class="space-y-2">
+              <!-- Grouped Tokens (with +/- buttons) -->
+              <div v-if="groupedTokens.length > 0" class="flex flex-wrap gap-2">
+                <div
+                  v-for="group in groupedTokens"
+                  :key="group.tokenType"
+                  class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded"
+                >
+                  <span
+                    class="xwing-icon text-lg"
+                    :class="getTokenColor(group.tokenType)"
+                  >
+                    {{ getTokenIcon(group.tokenType) }}
+                  </span>
+                  <span class="text-xs text-gray-300 font-semibold">
+                    {{ group.count }}
+                  </span>
+                  <button
+                    @click.stop="handleRemoveToken(group.tokenType)"
+                    :disabled="group.count === 0"
+                    class="w-5 h-5 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors rounded"
+                    title="Remove token"
+                  >
+                    -
+                  </button>
+                  <button
+                    @click.stop="handleAddToken(group.tokenType)"
+                    class="w-5 h-5 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors rounded"
+                    title="Add token"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <!-- Target Lock Tokens (individual with Spend button) -->
               <div
-                v-for="(token, index) in ship.tokens"
-                :key="`token-${index}`"
-                class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded group/token"
+                v-if="targetLockTokens.length > 0"
+                class="flex flex-wrap gap-2"
               >
-                <span
-                  class="xwing-icon text-lg"
-                  :class="getTokenColor(token.tokenType)"
+                <div
+                  v-for="(token, index) in targetLockTokens"
+                  :key="`targetlock-${index}`"
+                  class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded group/token"
                 >
-                  {{ getTokenIcon(token.tokenType) }}
-                </span>
-                <span
-                  v-if="token.tokenType === TokenTypeEnum.TargetLock"
-                  class="text-xs text-gray-400"
+                  <span
+                    class="xwing-icon text-lg"
+                    :class="getTokenColor(token.tokenType)"
+                  >
+                    {{ getTokenIcon(token.tokenType) }}
+                  </span>
+                  <span class="text-xs text-gray-400">
+                    {{ getLockedShipName(token.targetShipId) }}
+                  </span>
+                  <button
+                    @click.stop="handleSpendToken(token.tokenType)"
+                    class="opacity-0 group-hover/token:opacity-100 text-xs px-2 py-0.5 bg-red-600 hover:bg-red-700 rounded transition-opacity"
+                    title="Spend token"
+                  >
+                    Spend
+                  </button>
+                </div>
+              </div>
+
+              <!-- Condition Tokens (individual) -->
+              <div
+                v-if="conditionTokens.length > 0"
+                class="flex flex-wrap gap-2"
+              >
+                <div
+                  v-for="(token, index) in conditionTokens"
+                  :key="`condition-${index}`"
+                  class="flex items-center gap-1 bg-gray-900 px-2 py-1 rounded"
                 >
-                  {{ getLockedShipName(token.targetShipId) }}
-                </span>
-                <button
-                  @click.stop="handleSpendToken(token.tokenType)"
-                  class="opacity-0 group-hover/token:opacity-100 text-xs px-1 bg-red-600 hover:bg-red-700 rounded transition-opacity"
-                  title="Spend token"
-                >
-                  ×
-                </button>
+                  <span
+                    class="xwing-icon text-lg"
+                    :class="getTokenColor(token.tokenType)"
+                  >
+                    {{ getTokenIcon(token.tokenType) }}
+                  </span>
+                  <span v-if="token.conditionId" class="text-xs text-gray-400">
+                    {{ token.conditionId }}
+                  </span>
+                </div>
               </div>
             </div>
 

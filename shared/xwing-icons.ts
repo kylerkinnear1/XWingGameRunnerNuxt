@@ -103,18 +103,18 @@ export function getUpgradeSlotIcon(slot: string): string {
 
 export function getTokenIcon(tokenType: string): string {
   const tokenMapping: Record<string, keyof typeof TOKEN_ICONS> = {
-    Focus: "focus",
-    Evade: "evade",
-    Stress: "stress",
-    IonToken: "ion",
-    TargetLock: "targetLock",
-    Shield: "shield",
-    Cloak: "cloak",
-    Jam: "jam",
-    Reinforce: "reinforce",
-    TractorBeam: "tractor",
-    WeaponsDisabled: "weaponsDisabled",
-    Condition: "condition",
+    focus: "focus",
+    evade: "evade",
+    stress: "stress",
+    ion: "ion",
+    "target-lock": "targetLock",
+    shield: "shield",
+    cloak: "cloak",
+    jam: "jam",
+    reinforce: "reinforce",
+    tractor: "tractor",
+    "weapons-disabled": "weaponsDisabled",
+    condition: "condition",
   };
 
   const iconKey = tokenMapping[tokenType];

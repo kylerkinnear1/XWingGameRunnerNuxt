@@ -157,6 +157,8 @@ function handleCloseTokenManager() {
             @toggle-expansion="handleToggleExpansion"
             @flip-upgrade="handleFlipUpgrade"
             @spend-token="handleRemoveToken"
+            @add-token="handleAddToken"
+            @remove-token="handleRemoveToken"
           />
         </div>
 
@@ -179,6 +181,8 @@ function handleCloseTokenManager() {
             @toggle-expansion="handleToggleExpansion"
             @flip-upgrade="handleFlipUpgrade"
             @spend-token="handleRemoveToken"
+            @add-token="handleAddToken"
+            @remove-token="handleRemoveToken"
           />
         </div>
       </div>
