@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DefenseDie, DefenseDieFace } from "#shared/dice";
-import { rollDefenseDie } from "#app/domain/dice";
+import { rollDefenseDie } from "~/domain/dice";
 
 const props = defineProps<{
   initialDice: DefenseDie[];
@@ -38,10 +38,10 @@ async function rerollDie() {
   if (!selectedDieId.value) return;
 
   isRerolling.value = true;
-  
+
   // Animate the reroll with a brief delay
   await new Promise((resolve) => setTimeout(resolve, 300));
-  
+
   const dieIndex = dice.value.findIndex((d) => d.id === selectedDieId.value);
   if (dieIndex !== -1) {
     dice.value[dieIndex]!.face = rollDefenseDie();
