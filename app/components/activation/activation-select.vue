@@ -19,16 +19,16 @@ const emit = defineEmits<{
   activateShip: [shipId: string];
 }>();
 
-// Filter out ships that have already activated
+// Filter out ships that have already activated or are destroyed
 const player1ShipsRemaining = computed(() => {
   return props.player1Ships
-    .filter((s) => !s.ship.hasActivated)
+    .filter((s) => !s.ship.hasActivated && !s.ship.isDestroyed)
     .sort((a, b) => a.ship.pilotSkill - b.ship.pilotSkill);
 });
 
 const player2ShipsRemaining = computed(() => {
   return props.player2Ships
-    .filter((s) => !s.ship.hasActivated)
+    .filter((s) => !s.ship.hasActivated && !s.ship.isDestroyed)
     .sort((a, b) => a.ship.pilotSkill - b.ship.pilotSkill);
 });
 
@@ -38,7 +38,7 @@ function activateShip(shipId: string) {
 </script>
 
 <template>
-  <div class="h-full flex flex-col bg-gray-900 overflow-hidden">
+  <div class="h-full flex flex-col overflow-hidden relative z-10">
     <!-- Header -->
     <div class="p-6 border-b border-gray-700 bg-gray-800">
       <h2 class="text-2xl font-bold text-gray-100 mb-2">Activation Phase</h2>

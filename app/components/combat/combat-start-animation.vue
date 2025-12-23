@@ -16,24 +16,8 @@ onMounted(() => {
 
 <template>
   <div
-    class="h-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden relative"
+    class="h-full flex items-center justify-center overflow-hidden relative z-10"
   >
-    <!-- Background stars effect -->
-    <div class="absolute inset-0 opacity-20">
-      <div
-        v-for="i in 50"
-        :key="i"
-        class="absolute bg-white rounded-full animate-pulse"
-        :style="{
-          width: `${Math.random() * 3}px`,
-          height: `${Math.random() * 3}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 3}s`,
-        }"
-      />
-    </div>
-
     <div class="relative z-10 text-center">
       <div
         class="transition-all duration-1000 ease-out"

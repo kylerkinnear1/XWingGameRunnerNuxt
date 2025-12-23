@@ -73,6 +73,18 @@ const { transitionName, watchUiScreen } = useGameTransitions(
 
 watchUiScreen(currentGameState);
 
+const stars = ref<Array<{ width: string; height: string; left: string; top: string; delay: string }>>([]);
+
+onMounted(() => {
+  stars.value = Array.from({ length: 50 }, () => ({
+    width: `${Math.random() * 3}px`,
+    height: `${Math.random() * 3}px`,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 3}s`,
+  }));
+});
+
 const { getPlayerShips, getTotalHull } = useGameShips();
 
 const player1Ships = computed(() => {
@@ -195,25 +207,28 @@ const {
 const currentActivatingShip = computed(() => {
   if (!currentGameState.value?.currentActivatingShipId) return null;
   const allShips = [...player1Ships.value, ...player2Ships.value];
-  return allShips.find(
+  const ship = allShips.find(
     (s) => s.ship.shipId === currentGameState.value!.currentActivatingShipId
   );
+  return ship && !ship.ship.isDestroyed ? ship : null;
 });
 
 const currentAttackingShip = computed(() => {
   if (!currentGameState.value?.currentAttackingShipId) return null;
   const allShips = [...player1Ships.value, ...player2Ships.value];
-  return allShips.find(
+  const ship = allShips.find(
     (s) => s.ship.shipId === currentGameState.value!.currentAttackingShipId
   );
+  return ship && !ship.ship.isDestroyed ? ship : null;
 });
 
 const currentDefendingShip = computed(() => {
   if (!currentGameState.value?.currentDefendingShipId) return null;
   const allShips = [...player1Ships.value, ...player2Ships.value];
-  return allShips.find(
+  const ship = allShips.find(
     (s) => s.ship.shipId === currentGameState.value!.currentDefendingShipId
   );
+  return ship && !ship.ship.isDestroyed ? ship : null;
 });
 
 function toggleShipExpansion(shipId: string) {
@@ -277,7 +292,7 @@ watch(
 </script>
 
 <template>
-  <div class="h-full flex bg-gray-900 overflow-hidden">
+  <div class="h-full flex bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
     <GameStepsList
       :steps="gameData?.steps || []"
       :selected-index="selectedStepIndex"
@@ -307,6 +322,21 @@ watch(
     />
 
     <div class="flex-1 overflow-hidden relative game-transition-container">
+      <!-- Background stars effect -->
+      <div class="absolute inset-0 opacity-20 pointer-events-none z-0">
+        <div
+          v-for="(star, i) in stars"
+          :key="i"
+          class="absolute bg-white rounded-full animate-pulse"
+          :style="{
+            width: star.width,
+            height: star.height,
+            left: star.left,
+            top: star.top,
+            animationDelay: star.delay,
+          }"
+        />
+      </div>
       <Transition :name="transitionName" mode="out-in">
         <GameStartAnimation
           v-if="
@@ -449,6 +479,7 @@ watch(
             currentGameState?.uiScreen === CurrentGamePage.RollAttackDice
           "
           :key="`${CurrentGamePage.RollAttackDice}-${selectedStepIndex}`"
+          class="relative z-10 h-full"
         >
           <CombatAttackDice
             :initial-count="currentRollAttackDiceCount"
@@ -470,6 +501,7 @@ watch(
             currentGameState?.uiScreen === CurrentGamePage.RollDefenseDice
           "
           :key="`${CurrentGamePage.RollDefenseDice}-${selectedStepIndex}`"
+          class="relative z-10 h-full"
         >
           <CombatDefenseDice
             :initial-count="currentRollDefenseDiceCount"

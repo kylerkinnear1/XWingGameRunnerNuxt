@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div v-if="currentGameState" class="h-full overflow-y-auto">
+  <div v-if="currentGameState" class="h-full overflow-y-auto relative z-10">
     <div class="p-6">
       <h2 class="text-xl font-bold text-gray-100">Game In Progress</h2>
       <p class="text-gray-400 mt-2">

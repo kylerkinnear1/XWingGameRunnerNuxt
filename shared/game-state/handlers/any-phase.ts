@@ -2,6 +2,7 @@ import type {
   SquadReadDto,
 } from "#shared/squad-dto";
 import type { CardsDto } from "#shared/cards";
+import { TokenType } from "#shared/enums";
 import type {
   CurrentGameState,
   AssignToken,
@@ -302,6 +303,22 @@ export function handleDestroyShip(
   const ship = state.ships.find((s) => s.shipId === step.shipId);
   if (ship) {
     ship.isDestroyed = true;
+    
+    // Remove all target locks from the destroyed ship
+    ship.tokens = ship.tokens.filter(
+      (t) => t.tokenType !== TokenType.TargetLock
+    );
+    
+    // Remove all target locks on the destroyed ship (from other ships)
+    state.ships.forEach((otherShip) => {
+      if (otherShip.shipId !== step.shipId) {
+        otherShip.tokens = otherShip.tokens.filter(
+          (t) =>
+            t.tokenType !== TokenType.TargetLock ||
+            t.targetShipId !== step.shipId
+        );
+      }
+    });
   }
   state.currentStep += 1;
 }

@@ -52,7 +52,7 @@ function getDieImage(face: DefenseDieFace): string {
 </script>
 
 <template>
-  <div class="modify-defense-dice-component">
+  <div class="modify-defense-dice-component relative z-10 h-full">
     <div class="dice-preview mb-4 flex flex-wrap justify-center gap-3">
       <div
         v-for="die in dice"

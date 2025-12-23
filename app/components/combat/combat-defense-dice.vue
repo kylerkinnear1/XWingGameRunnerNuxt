@@ -108,7 +108,7 @@ async function handleRollDice() {
 </script>
 
 <template>
-  <div class="roll-defense-dice-component">
+  <div class="roll-defense-dice-component relative z-10 h-full">
     <div class="dice-preview mb-4 flex flex-wrap justify-center gap-3">
       <div
         v-for="die in previewDice"

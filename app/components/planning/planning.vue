@@ -44,17 +44,20 @@ watch(
   { immediate: true, deep: true }
 );
 
-// Get all ships
-const allShips = computed(() => [
-  ...props.player1Ships,
-  ...props.player2Ships,
-]);
+// Get all ships (excluding destroyed)
+const allShips = computed(() =>
+  [...props.player1Ships, ...props.player2Ships].filter(
+    (s) => !s.ship.isDestroyed
+  )
+);
 
-// Get ships for current player
+// Get ships for current player (excluding destroyed)
 const currentPlayerShips = computed(() => {
-  return currentPlayerId.value === props.player1Id
-    ? props.player1Ships
-    : props.player2Ships;
+  const ships =
+    currentPlayerId.value === props.player1Id
+      ? props.player1Ships
+      : props.player2Ships;
+  return ships.filter((s) => !s.ship.isDestroyed);
 });
 
 const otherPlayerId = computed(() => {
@@ -76,9 +79,7 @@ const allCurrentPlayerDialsAssigned = computed(() => {
 
 // Check if all ships (both players) have dials assigned
 const allDialsAssigned = computed(() => {
-  return allShips.value.every(
-    (s) => !!selectedDials.value[s.ship.shipId]
-  );
+  return allShips.value.every((s) => !!selectedDials.value[s.ship.shipId]);
 });
 
 // Determine if we should show all ships (when all dials are assigned) or just current player's ships
@@ -159,7 +160,7 @@ function groupManeuversBySpeed(
 </script>
 
 <template>
-  <div class="h-full flex flex-col bg-gray-900 overflow-hidden">
+  <div class="h-full flex flex-col overflow-hidden relative z-10">
     <!-- Header -->
     <div class="p-6 border-b border-gray-700 bg-gray-800">
       <h2 class="text-2xl font-bold text-gray-100 mb-2">Planning Phase</h2>
@@ -193,9 +194,7 @@ function groupManeuversBySpeed(
                 v-if="pilot"
                 class="xwing-ship text-3xl shrink-0"
                 :class="
-                  ship.playerId === player1Id
-                    ? 'text-red-400'
-                    : 'text-gray-400'
+                  ship.playerId === player1Id ? 'text-red-400' : 'text-gray-400'
                 "
               >
                 {{ getShipIcon(pilot.shipType) }}
