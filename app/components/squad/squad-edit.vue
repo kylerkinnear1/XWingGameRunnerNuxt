@@ -169,6 +169,21 @@ function getAllUpgradeSlots(pilotCard: CardPilotDto, pilot: any) {
     }
   });
 
+  // Add unassigned upgrades (custom upgrades that don't match any base slot)
+  const unassignedUpgrades = upgradeIds.filter((upgradeId: string) => !assignedUpgrades.has(upgradeId));
+  unassignedUpgrades.forEach((upgradeId: string, index: number) => {
+    const upgrade = getUpgrade(upgradeId);
+    if (upgrade) {
+      // Use the first slot type from the upgrade, or "Custom" if none
+      const slotType = upgrade.slotsRequired[0] || upgrade.upgradeType || "Custom";
+      slots.push({
+        slotIndex: baseSlots.length + index,
+        slotType,
+        upgradeId,
+      });
+    }
+  });
+
   return slots;
 }
 
@@ -229,15 +244,20 @@ function closeCustomPicker() {
 }
 
 function addCustomUpgrade(upgradeId: string) {
-  if (customPickerPilotId.value) {
-    const pilot = formPilots.value.find(
-      (p) => p.pilotId === customPickerPilotId.value
-    );
-    if (pilot) {
-      pilot.upgradeIds.push(upgradeId);
-    }
-    closeCustomPicker();
+  if (!customPickerPilotId.value) return;
+  
+  const pilot = formPilots.value.find(
+    (p) => p.pilotId === customPickerPilotId.value
+  );
+  
+  if (!pilot) return;
+  
+  if (!pilot.upgradeIds) {
+    pilot.upgradeIds = [];
   }
+  
+  pilot.upgradeIds.push(upgradeId);
+  closeCustomPicker();
 }
 
 function getSlotColor(slotType: string): string {
@@ -389,6 +409,10 @@ onMounted(() => {
                       card?.points || 0
                     }}</span>
                     points
+                  </div>
+
+                  <div v-if="card?.ability" class="text-xs text-gray-400 italic leading-relaxed mt-2">
+                    {{ card.ability }}
                   </div>
                 </div>
 
