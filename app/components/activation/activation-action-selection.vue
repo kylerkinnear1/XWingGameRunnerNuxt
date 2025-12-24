@@ -72,18 +72,22 @@ function handleSkipAction() {
       <div class="max-w-4xl mx-auto space-y-6">
         <!-- Skip Action / Done with Actions -->
         <div class="space-y-3">
-          <button
+          <AppButton
+            variant="primary"
+            size="lg"
             @click="handleSkipAction"
-            class="w-full p-6 border-2 border-gray-600 bg-gray-800 hover:bg-gray-700 hover:border-gray-500 text-gray-100 font-semibold text-lg transition-all hover:scale-[1.02]"
+            class="w-full p-6 bg-gray-800 hover:bg-gray-700 border-gray-600 hover:border-gray-500 text-gray-100 hover:scale-[1.02]"
           >
             ⏭️ Skip Action
-          </button>
-          <button
+          </AppButton>
+          <AppButton
+            variant="primary"
+            size="lg"
             @click="emit('doneWithActions')"
-            class="w-full p-6 border-2 border-teal-600 bg-teal-900/20 hover:bg-teal-900/40 hover:border-teal-500 text-teal-100 font-semibold text-lg transition-all hover:scale-[1.02]"
+            class="w-full p-6 bg-teal-900/20 hover:bg-teal-900/40 border-teal-600 hover:border-teal-500 text-teal-100 hover:scale-[1.02]"
           >
             ✓ Done with Actions
-          </button>
+          </AppButton>
         </div>
 
         <!-- Available Actions -->

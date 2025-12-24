@@ -123,12 +123,9 @@ const netDamage = computed(() => {
 
       <!-- Continue Button -->
       <div class="flex justify-center">
-        <button
-          @click="emit('continue')"
-          class="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-lg transition-colors"
-        >
+        <AppButton variant="primary" size="lg" @click="emit('continue')">
           Continue
-        </button>
+        </AppButton>
       </div>
     </div>
   </div>

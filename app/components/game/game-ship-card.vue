@@ -382,21 +382,25 @@ function handleDestructionComplete() {
                     {{ group.count }}
                   </span>
                   <div class="flex items-center gap-1">
-                    <button
-                      @click.stop="handleRemoveToken(group.tokenType)"
+                    <AppButton
+                      variant="primary"
+                      size="sm"
                       :disabled="group.count === 0"
-                      class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-sm font-bold transition-colors rounded"
+                      @click.stop="handleRemoveToken(group.tokenType)"
                       title="Remove token"
+                      class="w-6 h-6 flex items-center justify-center p-0"
                     >
                       -
-                    </button>
-                    <button
+                    </AppButton>
+                    <AppButton
+                      variant="primary"
+                      size="sm"
                       @click.stop="handleAddToken(group.tokenType)"
-                      class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors rounded"
                       title="Add token"
+                      class="w-6 h-6 flex items-center justify-center p-0"
                     >
                       +
-                    </button>
+                    </AppButton>
                   </div>
                 </div>
               </div>
@@ -424,21 +428,25 @@ function handleDestructionComplete() {
                     {{ getReinforceCount() }}
                   </span>
                   <div class="flex items-center gap-1">
-                    <button
-                      @click.stop="handleRemoveToken(TokenTypeEnum.Reinforce)"
+                    <AppButton
+                      variant="primary"
+                      size="sm"
                       :disabled="getReinforceCount() === 0"
-                      class="w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white text-sm font-bold transition-colors rounded"
+                      @click.stop="handleRemoveToken(TokenTypeEnum.Reinforce)"
                       title="Remove token"
+                      class="w-6 h-6 flex items-center justify-center p-0"
                     >
                       -
-                    </button>
-                    <button
+                    </AppButton>
+                    <AppButton
+                      variant="primary"
+                      size="sm"
                       @click.stop="handleAddToken(TokenTypeEnum.Reinforce)"
-                      class="w-6 h-6 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors rounded"
                       title="Add token"
+                      class="w-6 h-6 flex items-center justify-center p-0"
                     >
                       +
-                    </button>
+                    </AppButton>
                   </div>
                 </div>
               </div>
@@ -462,13 +470,15 @@ function handleDestructionComplete() {
                   <span class="text-sm text-gray-400 flex-1">
                     {{ getLockedShipName(token.targetShipId) }}
                   </span>
-                  <button
+                  <AppButton
+                    variant="primary"
+                    size="sm"
                     @click.stop="handleSpendToken(token.tokenType)"
-                    class="opacity-0 group-hover/token:opacity-100 text-sm px-2 py-0.5 bg-red-600 hover:bg-red-700 rounded transition-opacity"
                     title="Spend token"
+                    class="opacity-0 group-hover/token:opacity-100 px-2 py-0.5"
                   >
                     Spend
-                  </button>
+                  </AppButton>
                 </div>
               </div>
 
@@ -551,12 +561,14 @@ function handleDestructionComplete() {
             </div>
 
             <!-- Destroy Ship Button -->
-            <button
+            <AppButton
+              variant="accent"
+              size="md"
               @click.stop="handleDestroyClick"
-              class="w-full mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-semibold transition-colors"
+              class="w-full mt-2"
             >
               💥 Destroy Ship
-            </button>
+            </AppButton>
           </div>
         </div>
       </div>

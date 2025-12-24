@@ -121,33 +121,21 @@ onUnmounted(() => {
         v-if="showDiceOptions"
         class="flex flex-col gap-2 bg-gray-800 border border-gray-700 rounded-lg p-2 shadow-xl"
       >
-        <button
-          @click="openModal('attack')"
-          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
-        >
+        <AppButton variant="primary" size="md" @click="openModal('attack')">
           Roll Attack Dice
-        </button>
-        <button
-          @click="openModal('defense')"
-          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
-        >
+        </AppButton>
+        <AppButton variant="primary" size="md" @click="openModal('defense')">
           Roll Defense Dice
-        </button>
-        <button
-          @click="openModal('both')"
-          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
-        >
+        </AppButton>
+        <AppButton variant="primary" size="md" @click="openModal('both')">
           Roll Both
-        </button>
+        </AppButton>
       </div>
       
       <!-- Main Roll Dice Button -->
-      <button
-        @click="showDiceOptions = !showDiceOptions"
-        class="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg shadow-2xl border-b-4 border-teal-800 hover:border-teal-900 transition-all"
-      >
+      <AppButton variant="primary" size="lg" @click="showDiceOptions = !showDiceOptions">
         Roll Dice
-      </button>
+      </AppButton>
     </div>
 
     <!-- Dice Modal -->

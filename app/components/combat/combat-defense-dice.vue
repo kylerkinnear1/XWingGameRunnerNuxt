@@ -145,13 +145,15 @@ async function handleRollDice() {
     </div>
 
     <div class="flex justify-center">
-      <button
-        class="roll-button"
+      <AppButton
+        variant="primary"
+        size="lg"
         :disabled="isRolling || diceCount <= 0"
         @click="handleRollDice"
+        class="min-w-[200px]"
       >
         {{ isRolling ? "Rolling..." : "Roll Defense Dice" }}
-      </button>
+      </AppButton>
     </div>
   </div>
 </template>

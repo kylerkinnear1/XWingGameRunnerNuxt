@@ -43,13 +43,15 @@
           </div>
 
           <!-- Close button (appears after animation) -->
-          <button
+          <AppButton
             v-if="showCloseButton"
+            variant="primary"
+            size="md"
             @click="handleClose"
-            class="mt-6 w-full rounded-lg bg-gray-700 px-4 py-2 text-white hover:bg-gray-600 transition-colors"
+            class="mt-6 w-full bg-gray-700 hover:bg-gray-600 border-gray-800 hover:border-gray-900"
           >
             Close
-          </button>
+          </AppButton>
         </div>
       </div>
     </Transition>

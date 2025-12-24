@@ -146,9 +146,9 @@ function getDieImage(face: DefenseDieFace): string {
     </Transition>
 
     <div class="flex justify-center">
-      <button class="roll-button" @click="handleConfirm">
+      <AppButton variant="primary" size="lg" @click="handleConfirm" class="min-w-[200px]">
         Confirm Modifications
-      </button>
+      </AppButton>
     </div>
   </div>
 </template>

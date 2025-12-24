@@ -180,12 +180,14 @@ function activateShip(shipId: string) {
                 </div>
 
                 <!-- Activate Button -->
-                <button
-                  class="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors shrink-0"
+                <AppButton
+                  variant="primary"
+                  size="md"
                   @click.stop="activateShip(ship.shipId)"
+                  class="shrink-0"
                 >
                   Activate
-                </button>
+                </AppButton>
               </div>
             </div>
           </template>
@@ -310,12 +312,14 @@ function activateShip(shipId: string) {
                 </div>
 
                 <!-- Activate Button -->
-                <button
-                  class="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors shrink-0"
+                <AppButton
+                  variant="primary"
+                  size="md"
                   @click.stop="activateShip(ship.shipId)"
+                  class="shrink-0"
                 >
                   Activate
-                </button>
+                </AppButton>
               </div>
             </div>
           </template>

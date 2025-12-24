@@ -135,17 +135,19 @@ function handleStart() {
             </div>
 
             <!-- Start Button -->
-            <button
+            <AppButton
+              variant="primary"
+              size="lg"
               @click="handleStart"
-              class="px-12 py-4 text-xl font-bold bg-teal-600 text-white border-b-8 border-teal-800 hover:bg-teal-500 active:border-b-4 uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 transition-opacity duration-700 ease-out"
+              class="px-12 py-4 text-xl shadow-2xl hover:shadow-teal-500/50 transition-opacity duration-700 ease-out start-button-pulse"
               :class="[
                 animationPhase === 'ready'
-                  ? 'opacity-100 pointer-events-auto start-button-pulse'
+                  ? 'opacity-100 pointer-events-auto'
                   : 'opacity-0 pointer-events-none',
               ]"
             >
               Start Battle
-            </button>
+            </AppButton>
           </div>
         </div>
 

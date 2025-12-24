@@ -123,12 +123,14 @@ function addPilotToSquad(pilot: PilotDto) {
               </div>
               <div class="flex items-center gap-2">
                 <span class="font-bold text-teal-400 text-sm">{{ pilot.points }}</span>
-                <button
-                  class="opacity-0 group-hover:opacity-100 px-3 py-1 bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 transition-all"
+                <AppButton
+                  variant="primary"
+                  size="sm"
+                  class="opacity-0 group-hover:opacity-100 px-3 py-1 text-xs"
                   @click.stop="addPilotToSquad(pilot)"
                 >
-                  ADD
-                </button>
+                  Add
+                </AppButton>
               </div>
             </div>
 

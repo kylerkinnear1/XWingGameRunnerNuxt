@@ -781,14 +781,23 @@ function closeImportDialog() {
         </div>
 
         <div class="flex gap-4 pt-2">
-          <button type="button" @click="openImportDialog"
-            class="px-6 py-2 text-sm font-bold bg-blue-600 text-white border-b-4 border-blue-800 hover:bg-blue-500 active:border-b-2 transition-all uppercase tracking-wide">
+          <AppButton
+            type="button"
+            variant="primary"
+            size="lg"
+            @click="openImportDialog"
+            class="bg-blue-600 hover:bg-blue-500 border-blue-800 hover:border-blue-900"
+          >
             Import Squad
-          </button>
-          <button type="submit" :disabled="loading || !form.name"
-            class="px-6 py-2 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide">
+          </AppButton>
+          <AppButton
+            type="submit"
+            variant="primary"
+            size="lg"
+            :disabled="loading || !form.name"
+          >
             {{ loading ? "Saving..." : "Save Squad" }}
-          </button>
+          </AppButton>
         </div>
       </div>
     </form>
@@ -924,14 +933,25 @@ function closeImportDialog() {
 
         <!-- Actions -->
         <div class="p-4 border-t border-gray-700 flex gap-4 justify-end">
-          <button type="button" @click="closeImportDialog" :disabled="importing"
-            class="px-4 py-2 text-sm font-semibold bg-gray-600 text-gray-200 hover:bg-gray-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          <AppButton
+            type="button"
+            variant="primary"
+            size="md"
+            :disabled="importing"
+            @click="closeImportDialog"
+            class="bg-gray-600 hover:bg-gray-500 border-gray-800 hover:border-gray-900 text-gray-200"
+          >
             Cancel
-          </button>
-          <button type="button" @click="handleImport" :disabled="importing || !importText.trim()"
-            class="px-4 py-2 text-sm font-semibold bg-teal-600 text-white hover:bg-teal-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          </AppButton>
+          <AppButton
+            type="button"
+            variant="primary"
+            size="md"
+            :disabled="importing || !importText.trim()"
+            @click="handleImport"
+          >
             {{ importing ? "Importing..." : "Import" }}
-          </button>
+          </AppButton>
         </div>
       </div>
     </div>

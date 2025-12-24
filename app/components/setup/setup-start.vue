@@ -141,12 +141,14 @@ function placeShip(shipId: string) {
                 </div>
 
                 <!-- Place Button -->
-                <button
-                  class="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors shrink-0"
+                <AppButton
+                  variant="primary"
+                  size="md"
                   @click.stop="placeShip(ship.shipId)"
+                  class="shrink-0"
                 >
                   Place Ship
-                </button>
+                </AppButton>
               </div>
             </div>
           </template>
@@ -222,12 +224,14 @@ function placeShip(shipId: string) {
                 </div>
 
                 <!-- Place Button -->
-                <button
-                  class="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors shrink-0"
+                <AppButton
+                  variant="primary"
+                  size="md"
                   @click.stop="placeShip(ship.shipId)"
+                  class="shrink-0"
                 >
                   Place Ship
-                </button>
+                </AppButton>
               </div>
             </div>
           </template>

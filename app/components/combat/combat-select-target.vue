@@ -399,19 +399,21 @@ function endCombat() {
     <!-- Footer Actions -->
     <div class="p-6 border-t border-gray-700 bg-gray-800">
       <div class="max-w-4xl mx-auto flex items-center justify-center gap-4">
-        <button
-          @click="declareAttack"
+        <AppButton
+          variant="primary"
+          size="lg"
           :disabled="!canDeclareAttack"
-          class="px-8 py-3 text-sm font-bold bg-red-600 text-white border-b-4 border-red-800 hover:bg-red-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
+          @click="declareAttack"
         >
           Declare Attack
-        </button>
-        <button
+        </AppButton>
+        <AppButton
+          variant="accent"
+          size="lg"
           @click="endCombat"
-          class="px-8 py-3 text-sm font-bold bg-amber-600 text-white border-b-4 border-amber-800 hover:bg-amber-500 active:border-b-2 transition-all uppercase tracking-wide"
         >
           End Combat
-        </button>
+        </AppButton>
       </div>
     </div>
   </div>

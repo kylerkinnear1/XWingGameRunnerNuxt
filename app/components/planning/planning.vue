@@ -277,23 +277,25 @@ function groupManeuversBySpeed(
     <!-- Footer Actions -->
     <div class="p-6 border-t border-gray-700 bg-gray-800">
       <div class="max-w-6xl mx-auto flex items-center justify-center">
-        <button
+        <AppButton
           v-if="allDialsAssigned"
+          variant="primary"
+          size="lg"
           @click="beginActivation"
-          class="px-8 py-3 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all uppercase tracking-wide"
         >
           Begin Activation
-        </button>
-        <button
+        </AppButton>
+        <AppButton
           v-else
-          @click="confirmDials"
+          variant="primary"
+          size="lg"
           :disabled="!allCurrentPlayerDialsAssigned"
-          class="px-8 py-3 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
+          @click="confirmDials"
         >
           {{
             isInitiativePlayer ? "Pass Device to Player 2" : "Complete Planning"
           }}
-        </button>
+        </AppButton>
       </div>
     </div>
   </div>
