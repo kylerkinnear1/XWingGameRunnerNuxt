@@ -73,6 +73,27 @@ const filteredCustomUpgrades = computed(() => {
   );
 });
 
+// Group filtered upgrades by type
+const groupedCustomUpgrades = computed(() => {
+  const grouped = new Map<string, typeof filteredCustomUpgrades.value>();
+  
+  filteredCustomUpgrades.value.forEach((upgrade) => {
+    const type = upgrade.upgradeType;
+    if (!grouped.has(type)) {
+      grouped.set(type, []);
+    }
+    grouped.get(type)!.push(upgrade);
+  });
+
+  // Sort types alphabetically
+  const sortedTypes = Array.from(grouped.keys()).sort();
+  
+  return sortedTypes.map((type) => ({
+    type,
+    upgrades: grouped.get(type)!,
+  }));
+});
+
 watch(
   selectedSquad,
   (squad) => {
@@ -125,49 +146,60 @@ function getAllUpgradeSlots(pilotCard: CardPilotDto, pilot: any) {
     slotIndex: number;
     slotType: string;
     upgradeId: string | null;
+    upgradeArrayIndex?: number;
   }
 
   const baseSlots = [...pilotCard.upgradeSlots];
   const upgradeIds = pilot.upgradeIds || [];
   const slots: SlotInfo[] = [];
-  const assignedUpgrades = new Set<string>();
+  const assignedIndices = new Set<number>();
 
   // Iterate through base slots in their original order
   baseSlots.forEach((slotType, index) => {
-    // Find an unassigned upgrade that fits this slot
-    const matchingUpgrade = upgradeIds.find((upgradeId: string) => {
-      if (assignedUpgrades.has(upgradeId)) return false;
+    // Find an unassigned upgrade that fits this slot (by array index, not ID)
+    let matchingIndex = -1;
+    for (let i = 0; i < upgradeIds.length; i++) {
+      if (assignedIndices.has(i)) continue;
+      const upgradeId = upgradeIds[i];
       const upgrade = getUpgrade(upgradeId);
-      if (!upgrade) return false;
+      if (!upgrade) continue;
       // Check if this upgrade can use this slot type
-      return upgrade.slotsRequired.includes(slotType);
-    });
+      if (upgrade.slotsRequired.includes(slotType)) {
+        matchingIndex = i;
+        break;
+      }
+    }
 
     slots.push({
       slotIndex: index,
       slotType,
-      upgradeId: matchingUpgrade || null,
+      upgradeId: matchingIndex >= 0 ? upgradeIds[matchingIndex] : null,
+      upgradeArrayIndex: matchingIndex >= 0 ? matchingIndex : undefined,
     });
 
-    if (matchingUpgrade) {
-      assignedUpgrades.add(matchingUpgrade);
+    if (matchingIndex >= 0) {
+      assignedIndices.add(matchingIndex);
     }
   });
 
   // Add unassigned upgrades (custom upgrades that don't match any base slot)
-  const unassignedUpgrades = upgradeIds.filter((upgradeId: string) => !assignedUpgrades.has(upgradeId));
-  unassignedUpgrades.forEach((upgradeId: string, index: number) => {
+  let unassignedCount = 0;
+  for (let i = 0; i < upgradeIds.length; i++) {
+    if (assignedIndices.has(i)) continue;
+    const upgradeId = upgradeIds[i];
     const upgrade = getUpgrade(upgradeId);
     if (upgrade) {
       // Use the first slot type from the upgrade, or "Custom" if none
       const slotType = upgrade.slotsRequired[0] || upgrade.upgradeType || "Custom";
       slots.push({
-        slotIndex: baseSlots.length + index,
+        slotIndex: baseSlots.length + unassignedCount,
         slotType,
         upgradeId,
+        upgradeArrayIndex: i,
       });
+      unassignedCount++;
     }
-  });
+  }
 
   return slots;
 }
@@ -180,24 +212,12 @@ function selectUpgradeForSlot(
   const pilot = formPilots.value.find((p) => p.pilotId === pilotId);
   if (!pilot) return;
 
-  // Get the slot info
-  const pilotCard = cards.value?.pilots.find((p) => p.id === pilotId);
-  if (!pilotCard) return;
-
-  const slots = getAllUpgradeSlots(pilotCard, pilot);
-  const slot = slots[slotIndex];
-  if (!slot) return;
-
-  // If there's already an upgrade in this slot, replace it
-  if (slot.upgradeId) {
-    const existingIndex = pilot.upgradeIds.indexOf(slot.upgradeId);
-    if (existingIndex !== -1) {
-      pilot.upgradeIds[existingIndex] = upgradeId;
-    }
-  } else {
-    // Add new upgrade
-    pilot.upgradeIds.push(upgradeId);
+  if (!pilot.upgradeIds) {
+    pilot.upgradeIds = [];
   }
+
+  // Always add the upgrade (allow duplicates - house rules)
+  pilot.upgradeIds.push(upgradeId);
 
   closeSlotMenu();
 }
@@ -211,8 +231,15 @@ function removeUpgradeFromSlot(pilotId: string, slotIndex: number) {
 
   const slots = getAllUpgradeSlots(pilotCard, pilot);
   const slot = slots[slotIndex];
-  if (slot && slot.upgradeId) {
-    pilot.upgradeIds = pilot.upgradeIds.filter((id) => id !== slot.upgradeId);
+  if (slot && slot.upgradeArrayIndex !== undefined) {
+    // Remove the specific instance by array index
+    pilot.upgradeIds.splice(slot.upgradeArrayIndex, 1);
+  } else if (slot && slot.upgradeId) {
+    // Fallback: remove first matching upgrade ID
+    const index = pilot.upgradeIds.indexOf(slot.upgradeId);
+    if (index !== -1) {
+      pilot.upgradeIds.splice(index, 1);
+    }
   }
 }
 
@@ -241,6 +268,7 @@ function addCustomUpgrade(upgradeId: string) {
     pilot.upgradeIds = [];
   }
   
+  // Allow adding the upgrade multiple times (house rules - no restrictions)
   pilot.upgradeIds.push(upgradeId);
   closeCustomPicker();
 }
@@ -464,20 +492,9 @@ async function handleImport() {
           continue;
         }
 
-        // Check if upgrade can be added (only for unique upgrades)
-        if (
-          upgrade.isUnique &&
-          !canAddUpgrade(upgrade.id, formPilots.value, pilot.id)
-        ) {
-          // Skip unique upgrades that are already in squad
-          continue;
-        }
-
-        // Check if upgrade is already added to this pilot (avoid duplicates)
-        if (!addedPilot.upgradeIds.includes(upgrade.id)) {
-          // Add upgrade without slot validation (custom upgrade behavior)
-          addedPilot.upgradeIds.push(upgrade.id);
-        }
+        // Add upgrade without slot validation (custom upgrade behavior)
+        // Allow multiple copies of the same upgrade (house rules)
+        addedPilot.upgradeIds.push(upgrade.id);
       }
     }
 
@@ -707,25 +724,15 @@ function closeImportDialog() {
                         slot.slotType,
                         card
                       )" :key="upgrade.id" @click.stop="
-                        !upgrade.isUnique ||
-                          canAddUpgrade(upgrade.id, formPilots, pilot.pilotId)
-                          ? selectUpgradeForSlot(
-                            pilot.pilotId,
-                            slot.slotIndex,
-                            upgrade.id
-                          )
-                          : null
+                        selectUpgradeForSlot(
+                          pilot.pilotId,
+                          slot.slotIndex,
+                          upgrade.id
+                        )
                         " @mouseenter="handleUpgradeHover(upgrade, $event)"
                         @mousemove="handleUpgradeHover(upgrade, $event)" @mouseleave="handleUpgradeLeave"
                         class="px-3 py-2 hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0 transition-colors"
                         :class="{
-                          'opacity-50 cursor-not-allowed':
-                            upgrade.isUnique &&
-                            !canAddUpgrade(
-                              upgrade.id,
-                              formPilots,
-                              pilot.pilotId
-                            ),
                           'bg-gray-700': slot.upgradeId === upgrade.id,
                         }">
                         <div class="flex items-start gap-2">
@@ -811,42 +818,55 @@ function closeImportDialog() {
 
         <!-- Upgrade List -->
         <div class="flex-1 overflow-y-auto p-2">
-          <div v-for="upgrade in filteredCustomUpgrades" :key="upgrade.id" @click="addCustomUpgrade(upgrade.id)"
-            @mouseenter="handleUpgradeHover(upgrade, $event)" @mousemove="handleUpgradeHover(upgrade, $event)"
-            @mouseleave="handleUpgradeLeave"
-            class="p-3 hover:bg-gray-700 border border-gray-700 mb-1 cursor-pointer transition-colors group">
-            <div class="flex items-start gap-3">
-              <span class="xwing-icon text-xl shrink-0" :class="getSlotColor(upgrade.upgradeType)">
-                {{ getUpgradeSlotIcon(upgrade.upgradeType) }}
-              </span>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1">
-                  <span v-if="upgrade.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
-                  <span class="font-semibold text-sm text-gray-100">{{
-                    upgrade.name
-                  }}</span>
-                  <span class="text-xs text-gray-500">{{
-                    upgrade.upgradeType
-                  }}</span>
-                </div>
-                <div v-if="upgrade.rulesText" class="text-xs text-gray-400 italic mb-1">
-                  {{ upgrade.rulesText }}
-                </div>
-                <div class="text-xs text-gray-400">
-                  <span class="font-bold text-teal-400">{{
-                    upgrade.points
-                  }}</span>
-                  points
+          <template v-if="groupedCustomUpgrades.length > 0">
+            <div v-for="group in groupedCustomUpgrades" :key="group.type" class="mb-4">
+              <!-- Type Header -->
+              <div class="flex items-center gap-2 mb-2 px-2">
+                <span class="xwing-icon text-lg" :class="getSlotColor(group.type)">
+                  {{ getUpgradeSlotIcon(group.type) }}
+                </span>
+                <h4 class="text-sm font-bold uppercase tracking-wide text-gray-400">
+                  {{ group.type }}
+                </h4>
+                <span class="text-xs text-gray-500">({{ group.upgrades.length }})</span>
+              </div>
+
+              <!-- Upgrades in this type -->
+              <div v-for="upgrade in group.upgrades" :key="upgrade.id" @click="addCustomUpgrade(upgrade.id)"
+                @mouseenter="handleUpgradeHover(upgrade, $event)" @mousemove="handleUpgradeHover(upgrade, $event)"
+                @mouseleave="handleUpgradeLeave"
+                class="p-3 hover:bg-gray-700 border border-gray-700 mb-1 cursor-pointer transition-colors group">
+                <div class="flex items-start gap-3">
+                  <span class="xwing-icon text-xl shrink-0" :class="getSlotColor(upgrade.upgradeType)">
+                    {{ getUpgradeSlotIcon(upgrade.upgradeType) }}
+                  </span>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span v-if="upgrade.isUnique" class="xwing-icon text-yellow-500 text-xs">u</span>
+                      <span class="font-semibold text-sm text-gray-100">{{
+                        upgrade.name
+                      }}</span>
+                    </div>
+                    <div v-if="upgrade.rulesText" class="text-xs text-gray-400 italic mb-1">
+                      {{ upgrade.rulesText }}
+                    </div>
+                    <div class="text-xs text-gray-400">
+                      <span class="font-bold text-teal-400">{{
+                        upgrade.points
+                      }}</span>
+                      points
+                    </div>
+                  </div>
+                  <button
+                    class="opacity-0 group-hover:opacity-100 px-3 py-1 bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 transition-all">
+                    ADD
+                  </button>
                 </div>
               </div>
-              <button
-                class="opacity-0 group-hover:opacity-100 px-3 py-1 bg-teal-600 text-white text-xs font-semibold hover:bg-teal-700 transition-all">
-                ADD
-              </button>
             </div>
-          </div>
+          </template>
 
-          <div v-if="filteredCustomUpgrades.length === 0" class="text-center py-8 text-gray-400">
+          <div v-else class="text-center py-8 text-gray-400">
             No upgrades found
           </div>
         </div>
