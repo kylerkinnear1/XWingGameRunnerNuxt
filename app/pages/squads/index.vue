@@ -25,13 +25,15 @@ watch(
       const pilots = getPilotsForFaction(squad.faction);
       const grouped = groupPilotsByShip(pilots);
 
-      shipGroups.value = Array.from(grouped.entries()).map(
-        ([shipKey, pilots]: [string, PilotDto[]]) => ({
-          shipKey,
-          shipName: pilots[0]?.shipType || "Unknown Ship",
-          pilots,
-        })
-      );
+      shipGroups.value = Array.from(grouped.entries())
+        .map(
+          ([shipKey, pilots]: [string, PilotDto[]]) => ({
+            shipKey,
+            shipName: pilots[0]?.shipType || "Unknown Ship",
+            pilots,
+          })
+        )
+        .sort((a, b) => a.shipName.localeCompare(b.shipName));
     } else {
       shipGroups.value = [];
     }

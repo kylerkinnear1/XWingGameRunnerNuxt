@@ -49,9 +49,16 @@ export const useCards = () => {
       grouped.get(shipKey)!.push(pilot);
     }
 
-    // Sort pilots within each ship by skill (descending)
+    // Sort pilots within each ship by skill (descending), then name (ascending)
     for (const [, shipPilots] of grouped) {
-      shipPilots.sort((a, b) => b.pilotSkill - a.pilotSkill);
+      shipPilots.sort((a, b) => {
+        // First sort by pilot skill (descending)
+        if (b.pilotSkill !== a.pilotSkill) {
+          return b.pilotSkill - a.pilotSkill;
+        }
+        // Then sort by pilot name (ascending)
+        return a.pilotName.localeCompare(b.pilotName);
+      });
     }
 
     return grouped;
