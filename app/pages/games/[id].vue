@@ -146,6 +146,7 @@ const {
   decreaseHull,
   decreaseShields,
   flipUpgrade,
+  spendAmmo,
   destroyShip,
 } = useGameActions(
   addStep,
@@ -341,6 +342,7 @@ watch(
       @flip-crit-facedown="flipCritFacedown"
       @flip-crit-faceup="flipCritFaceup"
       @flip-upgrade="flipUpgrade"
+      @spend-ammo="spendAmmo"
       @add-stat-modifier="addStatModifier"
       @decrease-hull="decreaseHull"
       @decrease-shields="decreaseShields"

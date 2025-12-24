@@ -82,6 +82,29 @@ export function handleSpendAmmo(
     const weapon = ship.weapons.find((w) => w.weaponId === step.weaponId);
     if (weapon) {
       weapon.ammo = step.ammoRemaining;
+      
+      const upgradeCard = cards.upgrades.find((u) => u.id === step.weaponId);
+      const isAmmoUpgrade = upgradeCard && ["Torpedo", "Missile", "Bomb", "Mine"].includes(upgradeCard.upgradeType);
+      
+      if (isAmmoUpgrade && step.ammoRemaining >= 0) {
+        const upgradesWithSameId = ship.upgrades.filter((u) => u.upgradeId === step.weaponId);
+        const expectedDuplicates = step.ammoRemaining;
+        const currentDuplicates = upgradesWithSameId.length - 1;
+        
+        if (currentDuplicates > expectedDuplicates) {
+          const duplicatesToRemove = currentDuplicates - expectedDuplicates;
+          let removed = 0;
+          for (let i = ship.upgrades.length - 1; i >= 0 && removed < duplicatesToRemove; i--) {
+            if (ship.upgrades[i].upgradeId === step.weaponId && ship.upgrades[i].faceUp) {
+              const firstIndex = ship.upgrades.findIndex((u) => u.upgradeId === step.weaponId);
+              if (i > firstIndex) {
+                ship.upgrades.splice(i, 1);
+                removed++;
+              }
+            }
+          }
+        }
+      }
     }
   }
   state.currentStep += 1;

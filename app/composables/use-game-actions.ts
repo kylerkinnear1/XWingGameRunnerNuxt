@@ -245,6 +245,28 @@ export const useGameActions = (
     );
   };
 
+  const spendAmmo = async (shipId: string, upgradeId: string, upgradeIndex: number) => {
+    const ship = currentGameState.value?.ships.find((s) => s.shipId === shipId);
+    if (!ship) return;
+
+    const weapon = ship.weapons.find((w) => w.weaponId === upgradeId);
+    if (!weapon || weapon.ammo === null || weapon.ammo <= 0) return;
+
+    const newAmmo = weapon.ammo - 1;
+    
+    await addStep(
+      {
+        type: "spend_ammo",
+        shipId,
+        weaponId: upgradeId,
+        ammoRemaining: newAmmo,
+        timestamp: new Date(),
+      },
+      gameData,
+      refreshCallback
+    );
+  };
+
   const destroyShip = async (
     shipId: string,
     destroyedByShipId?: string | null
@@ -274,6 +296,7 @@ export const useGameActions = (
     decreaseHull,
     decreaseShields,
     flipUpgrade,
+    spendAmmo,
     destroyShip,
   };
 };

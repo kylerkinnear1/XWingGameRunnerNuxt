@@ -64,10 +64,23 @@ export function handleGameStart(
       dialAssigned: null,
       isHalfPointsScored: false,
       faceDownDamage: 0,
-      upgrades: ship.upgradeIds.map((id) => ({
-        upgradeId: id,
-        faceUp: true,
-      })),
+      upgrades: (() => {
+        const hasExtraMunitions = ship.upgradeIds.includes("extramunitions");
+        const upgradeEntries: Array<{ upgradeId: string; faceUp: boolean }> = [];
+        
+        for (const id of ship.upgradeIds) {
+          upgradeEntries.push({ upgradeId: id, faceUp: true });
+          
+          if (hasExtraMunitions) {
+            const upgrade = upgrades[id];
+            if (upgrade && ["Torpedo", "Missile", "Bomb", "Mine"].includes(upgrade.upgradeType)) {
+              upgradeEntries.push({ upgradeId: id, faceUp: true });
+            }
+          }
+        }
+        
+        return upgradeEntries;
+      })(),
       hasActivated: false,
       didBump: false,
       collisions: [],

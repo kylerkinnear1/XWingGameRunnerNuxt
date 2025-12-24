@@ -30,6 +30,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   toggleExpansion: [shipId: string];
   flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
+  spendAmmo: [shipId: string, upgradeId: string, upgradeIndex: number];
   spendToken: [shipId: string, tokenType: TokenType];
   addToken: [shipId: string, tokenType: TokenType];
   removeToken: [shipId: string, tokenType: TokenType];
@@ -60,15 +61,31 @@ const assignedCrits = computed(() => {
     .filter((c): c is NonNullable<typeof c> => c !== null);
 });
 
+const hasExtraMunitions = computed(() => {
+  return props.ship.upgrades.some(
+    (u) => u.upgradeId === "extramunitions"
+  );
+});
+
+const getWeaponAmmo = (upgradeId: string): number | null => {
+  const weapon = props.ship.weapons.find((w) => w.weaponId === upgradeId);
+  return weapon?.ammo ?? null;
+};
+
 const shipUpgrades = computed(() => {
   if (!cards.value) return [];
   return props.ship.upgrades
-    .map((u) => {
+    .map((u, index) => {
       const upgrade = cards.value!.upgrades.find((up) => up.id === u.upgradeId);
-      return upgrade ? { ...u, upgrade } : null;
+      if (!upgrade) return null;
+      const ammo = getWeaponAmmo(u.upgradeId);
+      const isAmmoUpgrade = ["Torpedo", "Missile", "Bomb", "Mine"].includes(upgrade.upgradeType);
+      const firstIndex = props.ship.upgrades.findIndex((up) => up.upgradeId === u.upgradeId);
+      const isDuplicate = hasExtraMunitions.value && isAmmoUpgrade && upgrade.key !== "extramunitions" && firstIndex < index;
+      return { ...u, upgrade, ammo, isDuplicate };
     })
     .filter(
-      (u): u is { upgradeId: string; faceUp: boolean; upgrade: UpgradeDto } =>
+      (u): u is { upgradeId: string; faceUp: boolean; upgrade: UpgradeDto; ammo: number | null; isDuplicate: boolean } =>
         u !== null
     );
 });
@@ -79,6 +96,10 @@ function handleCardClick() {
 
 function handleFlipUpgrade(upgradeId: string, currentFaceUp: boolean) {
   emit("flipUpgrade", props.ship.shipId, upgradeId, !currentFaceUp);
+}
+
+function handleSpendAmmo(upgradeId: string, upgradeIndex: number) {
+  emit("spendAmmo", props.ship.shipId, upgradeId, upgradeIndex);
 }
 
 function handleSpendToken(tokenType: TokenType) {
@@ -272,8 +293,8 @@ function handleDestructionComplete() {
             <!-- Upgrades List -->
             <div v-if="shipUpgrades.length > 0" class="space-y-1">
               <div
-                v-for="upgrade in shipUpgrades"
-                :key="upgrade.upgradeId"
+                v-for="(upgrade, index) in shipUpgrades"
+                :key="`${upgrade.upgradeId}-${index}`"
                 class="flex items-center gap-2 group/upgrade"
                 @mouseenter="handleUpgradeHover(upgrade.upgradeId)"
                 @mouseleave="handleUpgradeHover(null)"
@@ -291,7 +312,34 @@ function handleDestructionComplete() {
                 >
                   {{ upgrade.upgrade.name }}
                 </span>
+                <span
+                  v-if="upgrade.ammo !== null && upgrade.ammo > 0"
+                  class="text-xs text-gray-500"
+                >
+                  ({{ upgrade.ammo }})
+                </span>
                 <button
+                  v-if="upgrade.isDuplicate && upgrade.ammo !== null && upgrade.ammo > 0"
+                  @click.stop="handleSpendAmmo(upgrade.upgradeId, index)"
+                  class="text-xs text-red-500 hover:text-red-300 transition-opacity"
+                  title="Spend ammo"
+                >
+                  <svg
+                    class="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+                <button
+                  v-else
                   @click.stop="
                     handleFlipUpgrade(upgrade.upgradeId, upgrade.faceUp)
                   "

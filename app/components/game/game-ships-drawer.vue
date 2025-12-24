@@ -31,6 +31,7 @@ const emit = defineEmits<{
   flipCritFacedown: [shipId: string, critCardId: string];
   flipCritFaceup: [shipId: string, critCardId: string];
   flipUpgrade: [shipId: string, upgradeId: string, faceUp: boolean];
+  spendAmmo: [shipId: string, upgradeId: string, upgradeIndex: number];
   addStatModifier: [
     shipId: string,
     stat: "hull" | "shields" | "agility" | "attack" | "pilotSkill",
@@ -86,6 +87,10 @@ function handleFlipUpgrade(
   faceUp: boolean
 ) {
   emit("flipUpgrade", shipId, upgradeId, faceUp);
+}
+
+function handleSpendAmmo(shipId: string, upgradeId: string, upgradeIndex: number) {
+  emit("spendAmmo", shipId, upgradeId, upgradeIndex);
 }
 
 function handleDestroyShip(shipId: string) {
@@ -172,6 +177,7 @@ function handleCloseTokenManager() {
             :all-ships="allShips"
             @toggle-expansion="handleToggleExpansion"
             @flip-upgrade="handleFlipUpgrade"
+            @spend-ammo="handleSpendAmmo"
             @spend-token="handleRemoveToken"
             @add-token="handleAddToken"
             @remove-token="handleRemoveToken"
@@ -197,6 +203,7 @@ function handleCloseTokenManager() {
             :all-ships="allShips"
             @toggle-expansion="handleToggleExpansion"
             @flip-upgrade="handleFlipUpgrade"
+            @spend-ammo="handleSpendAmmo"
             @spend-token="handleRemoveToken"
             @add-token="handleAddToken"
             @remove-token="handleRemoveToken"
