@@ -8,9 +8,9 @@ import {
   getUpgradeSlotIcon,
 } from "#shared/xwing-icons";
 
-const { selectedSquad, formPilots, removePilot, refreshList, pointLimit } =
+const { selectedSquad, formPilots, removePilot, refreshList, pointLimit, addPilot } =
   useSquadEditor();
-const { cards } = useCards();
+const { cards, getPilotsForFaction } = useCards();
 const { getUpgradesForSlot, getUpgrade, canAddUpgrade, getAllUpgrades } =
   useUpgrades();
 
@@ -27,6 +27,12 @@ const success = ref(false);
 const showCustomPicker = ref(false);
 const customPickerPilotId = ref<string | null>(null);
 const customPickerSearch = ref("");
+
+// Import dialog state
+const showImportDialog = ref(false);
+const importText = ref("");
+const importError = ref<string | null>(null);
+const importing = ref(false);
 
 // Hover state for upgrade card images
 const hoveredUpgrade = ref<UpgradeDto | null>(null);
@@ -59,12 +65,24 @@ const squadPoints = computed(() => {
     if (card) {
       total += card.points;
 
-      // Add upgrade points
+      // Check if this ship has Vaksai (reduces upgrade costs by 1)
+      const hasVaksai = pilot.upgradeIds?.some((upgradeId) => {
+        const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
+        return upgrade?.name === "Vaksai";
+      }) || false;
+
+      // Add upgrade points (only count upgrades that exist in the database)
       pilot.upgradeIds?.forEach((upgradeId) => {
         const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
         if (upgrade) {
-          total += upgrade.points;
+          // Vaksai reduces each upgrade cost by 1 (minimum 0)
+          let upgradeCost = upgrade.points;
+          if (hasVaksai && upgrade.name !== "Vaksai") {
+            upgradeCost = Math.max(0, upgradeCost - 1);
+          }
+          total += upgradeCost;
         }
+        // If upgrade not found, don't count it (skip silently)
       });
     }
   });
@@ -312,6 +330,218 @@ onMounted(() => {
     }
   });
 });
+
+interface ParsedShip {
+  pilotName: string;
+  upgrades: string[];
+  cost?: number;
+}
+
+function parseSquadList(text: string): ParsedShip[] {
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  return lines.map((line) => {
+    // Remove cost at the end: " (35)" -> ""
+    const costMatch = line.match(/\((\d+)\)\s*$/);
+    const cost = costMatch ? parseInt(costMatch[1], 10) : undefined;
+    const lineWithoutCost = line.replace(/\s*\(\d+\)\s*$/, "").trim();
+
+    // Split by " + "
+    const parts = lineWithoutCost.split(/\s+\+\s+/).map((p) => p.trim());
+
+    if (parts.length === 0) {
+      throw new Error(`Invalid line: ${line}`);
+    }
+
+    return {
+      pilotName: parts[0],
+      upgrades: parts.slice(1),
+      cost,
+    };
+  });
+}
+
+function findPilotByName(pilotName: string, faction: Faction): CardPilotDto | null {
+  if (!cards.value) return null;
+
+  const normalizedName = pilotName.toLowerCase().trim();
+  
+  // First, try to find in the selected faction
+  let pilots = getPilotsForFaction(faction);
+  
+  // Try exact match first
+  let pilot = pilots.find(
+    (p) => p.pilotName.toLowerCase().trim() === normalizedName
+  );
+
+  // Try partial match if exact match fails
+  if (!pilot) {
+    pilot = pilots.find((p) =>
+      p.pilotName.toLowerCase().trim().includes(normalizedName) ||
+      normalizedName.includes(p.pilotName.toLowerCase().trim())
+    );
+  }
+
+  // If not found in selected faction, search all pilots
+  if (!pilot && cards.value) {
+    const allPilots = cards.value.pilots;
+    pilot = allPilots.find(
+      (p) => p.pilotName.toLowerCase().trim() === normalizedName ||
+             p.pilotName.toLowerCase().trim().includes(normalizedName) ||
+             normalizedName.includes(p.pilotName.toLowerCase().trim())
+    );
+  }
+
+  return pilot || null;
+}
+
+function findUpgradeByName(upgradeName: string): UpgradeDto | null {
+  if (!cards.value) return null;
+
+  const normalizedName = upgradeName.toLowerCase().trim();
+  const allUpgrades = getAllUpgrades();
+
+  // Try exact match first
+  let upgrade = allUpgrades.find(
+    (u) => u.name.toLowerCase().trim() === normalizedName
+  );
+
+  // Try case-insensitive partial match
+  if (!upgrade) {
+    upgrade = allUpgrades.find((u) =>
+      u.name.toLowerCase().trim().includes(normalizedName) ||
+      normalizedName.includes(u.name.toLowerCase().trim())
+    );
+  }
+
+  // Try matching by removing common words
+  if (!upgrade) {
+    const simplifiedName = normalizedName
+      .replace(/\b(the|a|an)\b/g, "")
+      .trim();
+    upgrade = allUpgrades.find((u) => {
+      const simplifiedCardName = u.name
+        .toLowerCase()
+        .replace(/\b(the|a|an)\b/g, "")
+        .trim();
+      return (
+        simplifiedCardName === simplifiedName ||
+        simplifiedCardName.includes(simplifiedName) ||
+        simplifiedName.includes(simplifiedCardName)
+      );
+    });
+  }
+
+  return upgrade || null;
+}
+
+async function handleImport() {
+  if (!selectedSquad.value || !cards.value) {
+    importError.value = "Please select a squad and ensure cards are loaded";
+    return;
+  }
+
+  importing.value = true;
+  importError.value = null;
+
+  try {
+    const parsed = parseSquadList(importText.value);
+    const errors: string[] = [];
+    const warnings: string[] = [];
+
+    // Clear existing pilots
+    formPilots.value.splice(0, formPilots.value.length);
+
+    for (const ship of parsed) {
+      // Find pilot
+      const pilot = findPilotByName(
+        ship.pilotName,
+        selectedSquad.value.faction
+      );
+
+      if (!pilot) {
+        errors.push(`Pilot not found: ${ship.pilotName}`);
+        continue;
+      }
+
+      // Add pilot (ensure it doesn't already exist)
+      const existingPilot = formPilots.value.find((p) => p.pilotId === pilot.id);
+      let addedPilot = existingPilot;
+      
+      if (!addedPilot) {
+        addPilot(pilot.id);
+        // Find the pilot we just added
+        addedPilot = formPilots.value.find((p) => p.pilotId === pilot.id);
+        if (!addedPilot) {
+          errors.push(`Failed to add pilot: ${ship.pilotName}`);
+          continue;
+        }
+      }
+
+      // Initialize upgradeIds array if it doesn't exist
+      if (!addedPilot.upgradeIds) {
+        addedPilot.upgradeIds = [];
+      }
+
+      // Clear any existing upgrades for this pilot before adding new ones
+      addedPilot.upgradeIds = [];
+
+      for (const upgradeName of ship.upgrades) {
+        const upgrade = findUpgradeByName(upgradeName);
+
+        if (!upgrade) {
+          // Skip upgrades that can't be found - no error, just continue
+          continue;
+        }
+
+        // Check if upgrade can be added (only for unique upgrades)
+        if (
+          upgrade.isUnique &&
+          !canAddUpgrade(upgrade.id, formPilots.value, pilot.id)
+        ) {
+          // Skip unique upgrades that are already in squad
+          continue;
+        }
+
+        // Check if upgrade is already added to this pilot (avoid duplicates)
+        if (!addedPilot.upgradeIds.includes(upgrade.id)) {
+          // Add upgrade without slot validation (custom upgrade behavior)
+          addedPilot.upgradeIds.push(upgrade.id);
+        }
+      }
+    }
+
+    if (errors.length > 0) {
+      importError.value = `Errors:\n${errors.join("\n")}`;
+    } else {
+      showImportDialog.value = false;
+      importText.value = "";
+      success.value = true;
+      setTimeout(() => {
+        success.value = false;
+      }, 3000);
+    }
+  } catch (e: any) {
+    importError.value = e.message || "Failed to parse squad list";
+  } finally {
+    importing.value = false;
+  }
+}
+
+function openImportDialog() {
+  showImportDialog.value = true;
+  importText.value = "";
+  importError.value = null;
+}
+
+function closeImportDialog() {
+  showImportDialog.value = false;
+  importText.value = "";
+  importError.value = null;
+}
 </script>
 <template>
   <div class="h-full flex flex-col bg-gray-900">
@@ -577,6 +807,10 @@ onMounted(() => {
         </div>
 
         <div class="flex gap-4 pt-2">
+          <button type="button" @click="openImportDialog"
+            class="px-6 py-2 text-sm font-bold bg-blue-600 text-white border-b-4 border-blue-800 hover:bg-blue-500 active:border-b-2 transition-all uppercase tracking-wide">
+            Import Squad
+          </button>
           <button type="submit" :disabled="loading || !form.name"
             class="px-6 py-2 text-sm font-bold bg-teal-600 text-white border-b-4 border-teal-800 hover:bg-teal-500 active:border-b-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide">
             {{ loading ? "Saving..." : "Save Squad" }}
@@ -661,6 +895,58 @@ onMounted(() => {
     }">
       <img :src="hoveredUpgrade.cardImageUrl" :alt="hoveredUpgrade.name"
         class="w-64 rounded-lg shadow-2xl border-2 border-gray-300" />
+    </div>
+  </Teleport>
+
+  <!-- Import Dialog -->
+  <Teleport to="body">
+    <div v-if="showImportDialog" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+      @click.self="closeImportDialog">
+      <div class="bg-gray-800 border-2 border-gray-600 max-w-2xl w-full max-h-[80vh] flex flex-col">
+        <!-- Header -->
+        <div class="p-4 border-b border-gray-700 flex items-center justify-between bg-gray-900">
+          <h3 class="font-bold text-lg text-gray-100">Import Squad</h3>
+          <button type="button" @click="closeImportDialog"
+            class="p-2 hover:bg-gray-700 transition-colors text-gray-400 hover:text-gray-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="p-4 border-b border-gray-700 bg-gray-900">
+          <p class="text-sm text-gray-300 mb-2">
+            Paste your squad list below. Format: <span class="text-gray-400 italic">Pilot Name + Upgrade1 + Upgrade2 + ... (Cost)</span>
+          </p>
+          <p class="text-xs text-gray-500">
+            Example: Talonbane Cobra + Vectored Thrusters + Engine Upgrade + Autothrusters + Vaksai + Push the Limit (35)
+          </p>
+        </div>
+
+        <!-- Textarea -->
+        <div class="flex-1 overflow-y-auto p-4">
+          <textarea v-model="importText" placeholder="Paste squad list here..."
+            class="w-full h-64 px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 font-mono text-sm"
+            :disabled="importing"></textarea>
+
+          <div v-if="importError" class="mt-4 p-3 bg-red-900/50 border border-red-700 text-red-200 text-sm whitespace-pre-wrap">
+            {{ importError }}
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="p-4 border-t border-gray-700 flex gap-4 justify-end">
+          <button type="button" @click="closeImportDialog" :disabled="importing"
+            class="px-4 py-2 text-sm font-semibold bg-gray-600 text-gray-200 hover:bg-gray-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            Cancel
+          </button>
+          <button type="button" @click="handleImport" :disabled="importing || !importText.trim()"
+            class="px-4 py-2 text-sm font-semibold bg-teal-600 text-white hover:bg-teal-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            {{ importing ? "Importing..." : "Import" }}
+          </button>
+        </div>
+      </div>
     </div>
   </Teleport>
 </template>

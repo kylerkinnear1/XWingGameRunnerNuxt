@@ -115,6 +115,7 @@ function groupUpdates(
     pilotId: string;
     createdAt: Date;
     updatedAt: Date;
+    upgradeIds?: string[];
   }> = [];
   const existingShipIds: string[] = [];
 
@@ -169,6 +170,7 @@ function groupUpdates(
         pilotId: ship.pilotId,
         createdAt: now,
         updatedAt: now,
+        upgradeIds: ship.upgradeIds || [],
       });
     }
   }
@@ -209,7 +211,24 @@ async function updateDatabase(
   }
 
   if (newShipsToInsert.length > 0) {
-    await tx.insert(squadShips).values(newShipsToInsert);
+    const shipsToInsert = newShipsToInsert.map(({ upgradeIds, ...ship }) => ship);
+    const insertedShips = await tx.insert(squadShips).values(shipsToInsert).returning();
+    
+    // Add upgrades for newly inserted ships
+    for (let i = 0; i < insertedShips.length; i++) {
+      const ship = insertedShips[i];
+      const upgradeIds = newShipsToInsert[i].upgradeIds || [];
+      
+      if (upgradeIds.length > 0) {
+        const shipUpgrades = upgradeIds.map((upgradeId, index) => ({
+          shipId: ship.id,
+          upgradeId,
+          sortOrder: index,
+          createdAt: now,
+        }));
+        upgradesToInsert.push(...shipUpgrades);
+      }
+    }
   }
 
   if (existingShipIds.length > 0) {
