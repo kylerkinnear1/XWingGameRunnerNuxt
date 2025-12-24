@@ -1,6 +1,12 @@
 import type { Maneuver } from "#shared/enums";
 
+export interface ShipDto {
+  shipType: string;
+  maneuvers: readonly Maneuver[];
+}
+
 export interface CardsDto {
+  ships: ShipDto[];
   pilots: PilotDto[];
   upgrades: UpgradeDto[];
   damageCards: DamageCardDto[];

@@ -4046,7 +4046,12 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock", "Evade", "BarrelRoll"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "Evade",
+        "BarrelRoll"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -4058,93 +4063,7 @@
       ],
       "ability": "When you reveal a bank maneuver, you may rotate your dial to the other bank maneuver of the same speed.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bobafett.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/bountyhunter",
@@ -4160,7 +4079,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -4171,93 +4093,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/bountyhunter.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/kathscarlet",
@@ -4273,7 +4109,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -4285,93 +4124,7 @@
       ],
       "ability": "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/kathscarlet.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/krassistrelix",
@@ -4387,97 +4140,20 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Crew", "Bomb", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Crew",
+        "Bomb",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "When attacking with a secondary weapon, you may reroll 1 attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/firespray31/krassistrelix.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/darthvader",
@@ -4493,102 +4169,20 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "During your Perform Action step, you may perform 2 actions.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/darthvader.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/maarekstele",
@@ -4604,102 +4198,20 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/maarekstele.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/commanderalozen",
@@ -4715,102 +4227,19 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/commanderalozen.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/junoeclipse",
@@ -4826,102 +4255,20 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When you reveal your maneuver, you may increase or decrease its speed by 1 (to a minimum of 1).",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/junoeclipse.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/lieutenantcolzet",
@@ -4937,102 +4284,19 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "At the start of the End phase, you may spend a target lock you have on an enemy ship to flip 1 random facedown Damage card assigned to it faceup.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/lieutenantcolzet.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/stormsquadronpilot",
@@ -5048,102 +4312,19 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/stormsquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/tempestsquadronpilot",
@@ -5159,102 +4340,19 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/tempestsquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tieadvanced/zertikstrom",
@@ -5270,102 +4368,20 @@
       "agility": 3,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "System", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "System",
+        "Modification"
+      ],
       "ability": "When attacking with a secondary weapon, if you are inside the defender's firing arc, you may reroll your blank results.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tieadvanced/zertikstrom.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/howlrunner",
@@ -5381,92 +4397,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "While a friendly ship at Range 1 is performing an attack with a primary weapon, it may reroll 1 attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/howlrunner.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/backstabber",
@@ -5482,92 +4424,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/backstabber.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/darkcurse",
@@ -5583,92 +4451,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When defending, ships attacking you cannot spend focus tokens or reroll attack dice.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/darkcurse.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/maulermithel",
@@ -5684,92 +4477,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "After you perform an attack at Range 1 that hits, assign 1 damage to the defender.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/maulermithel.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/academypilot",
@@ -5785,92 +4504,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/academypilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/blacksquadronpilot",
@@ -5886,92 +4530,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/blacksquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/obsidiansquadronpilot",
@@ -5987,92 +4557,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/obsidiansquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/nightbeast",
@@ -6088,92 +4583,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "After executing a green maneuver, you may perform a free focus action.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/nightbeast.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/scourge",
@@ -6189,92 +4609,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking a defender that has 1 or more Damage cards, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/scourge.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/wampa",
@@ -6290,92 +4636,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "When attacking, you may spend your target lock on the defender to deal 1 damage. Then cancel all dice results.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wampa.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/wingedgundark",
@@ -6391,92 +4663,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When attacking at Range 1, you may change 1 of your hit results to a critical result.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/wingedgundark.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/youngster",
@@ -6492,92 +4689,18 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Modification"
+      ],
       "ability": "After being dealt a Damage card, if you have 2 or fewer Damage cards, flip that Damage card facedown.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/youngster.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "tiefighter/chaser",
@@ -6593,92 +4716,17 @@
       "agility": 3,
       "hull": 3,
       "shields": 0,
-      "actions": ["Focus", "Evade", "BarrelRoll"],
-      "upgradeSlots": ["Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Modification"
+      ],
       "ability": "When attacking, if you are the only ship attacking the defender, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/imperial/tiefighter/chaser.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/lukeskywalker",
@@ -6694,87 +4742,19 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When defending, you may change 1 of your focus results to an evade result.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/lukeskywalker.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/wedgeantilles",
@@ -6790,87 +4770,19 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When attacking, reduce the defender's agility value by 1 (to a minimum of 0).",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wedgeantilles.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/biggsdarklighter",
@@ -6886,87 +4798,18 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/biggsdarklighter.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/garvendreis",
@@ -6982,87 +4825,19 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "After spending a focus token, you may place that token on any other friendly ship at Range 1-2.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/garvendreis.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/redsquadronpilot",
@@ -7078,87 +4853,18 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/redsquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/rookiepilot",
@@ -7174,87 +4880,18 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/rookiepilot.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/jekporkins",
@@ -7270,87 +4907,19 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When you receive a stress token, you may remove it and roll 1 attack die. On a hit result, deal 1 facedown Damage card to this ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/jekporkins.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/tarnmison",
@@ -7366,87 +4935,18 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/tarnmison.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/wesjanson",
@@ -7462,87 +4962,19 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/wesjanson.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "xwing/hobbieklivian",
@@ -7558,87 +4990,18 @@
       "agility": 2,
       "hull": 3,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Torpedo", "Astromech", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Torpedo",
+        "Astromech",
+        "Modification"
+      ],
       "ability": "When you acquire or spend a target lock, you may remove 1 stress token from your ship.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/xwing/hobbieklivian.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/dutchvander",
@@ -7654,7 +5017,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -7664,83 +5030,7 @@
       ],
       "ability": "After acquiring a target lock, choose another friendly ship at Range 1-2. That ship may immediately acquire a target lock.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/dutchvander.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/hortonsalm",
@@ -7756,7 +5046,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -7766,83 +5059,7 @@
       ],
       "ability": "When attacking at Range 2-3, you may reroll any of your blank results.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/hortonsalm.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/goldsquadronpilot",
@@ -7858,7 +5075,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -7868,83 +5088,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/goldsquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/graysquadronpilot",
@@ -7960,7 +5104,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -7970,83 +5117,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/ywing/graysquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/tychocelchu",
@@ -8062,102 +5133,21 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "You may perform actions even while you have stress tokens.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/tychocelchu.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/jakefarrell",
@@ -8173,102 +5163,21 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "After performing a focus action, you may perform a free boost or barrel roll action.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/jakefarrell.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/arvelcrynyd",
@@ -8284,102 +5193,20 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "You may declare an enemy ship inside your firing arc that you are touching as the target of your attack.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/arvelcrynyd.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/gemmersojan",
@@ -8395,102 +5222,20 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/gemmersojan.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/greensquadronpilot",
@@ -8506,102 +5251,21 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Elite", "Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/greensquadronpilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "awing/prototypepilot",
@@ -8617,102 +5281,20 @@
       "agility": 3,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "Evade", "TargetLock", "Boost", "BarrelRoll"],
-      "upgradeSlots": ["Missile", "Modification"],
+      "actions": [
+        "Focus",
+        "Evade",
+        "TargetLock",
+        "Boost",
+        "BarrelRoll"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/rebels/awing/prototypepilot.png",
-      "maneuvers": [
-        {
-          "speed": 5,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/kavil",
@@ -8728,7 +5310,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Turret",
@@ -8739,83 +5324,7 @@
       ],
       "ability": "When attacking a ship outside your firing arc, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/kavil.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/drearenthal",
@@ -8831,7 +5340,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -8841,83 +5353,7 @@
       ],
       "ability": "When a friendly ship at Range 1-3 attacks a ship you have locked, the friendly ship may treat your target lock as its own.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/drearenthal.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/hiredgun",
@@ -8933,7 +5369,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -8943,83 +5382,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/hiredgun.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "ywing/syndicatethug",
@@ -9035,7 +5398,10 @@
       "agility": 1,
       "hull": 5,
       "shields": 3,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Turret",
         "Torpedo",
@@ -9045,83 +5411,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/ywing/syndicatethug.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "red"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "z95headhunter/ndrusuhlak",
@@ -9137,87 +5427,19 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "When attacking, if there are no other friendly ships at Range 1-2, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/ndrusuhlak.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "z95headhunter/kaatoleeachos",
@@ -9233,87 +5455,19 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Elite", "Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Elite",
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/kaatoleeachos.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "z95headhunter/blacksunsoldier",
@@ -9329,87 +5483,18 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/blacksunsoldier.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "z95headhunter/binayrepirate",
@@ -9425,87 +5510,18 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/binayrepirate.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "z95headhunter/nashtahpup",
@@ -9521,87 +5537,18 @@
       "agility": 2,
       "hull": 2,
       "shields": 2,
-      "actions": ["Focus", "TargetLock"],
-      "upgradeSlots": ["Missile", "Illicit", "Modification"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
+      "upgradeSlots": [
+        "Missile",
+        "Illicit",
+        "Modification"
+      ],
       "ability": "You have the pilot skill and pilot ability of the friendly Hound's Tooth (fore section), if it is in play.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/z95headhunter/nashtahpup.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/bobafett",
@@ -9617,7 +5564,12 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock", "Evade", "BarrelRoll"],
+      "actions": [
+        "Focus",
+        "TargetLock",
+        "Evade",
+        "BarrelRoll"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -9629,93 +5581,7 @@
       ],
       "ability": "When you reveal a bank maneuver, you may rotate your dial to the other bank maneuver of the same speed.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/bobafett.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/kathscarlet",
@@ -9731,7 +5597,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Elite",
         "Cannon",
@@ -9743,93 +5612,7 @@
       ],
       "ability": "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/kathscarlet.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/emonazzameen",
@@ -9845,7 +5628,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -9856,93 +5642,7 @@
       ],
       "ability": "When dropping a bomb, you may use the [3 straight] template instead of the [1 straight] template.",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/emonazzameen.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     },
     {
       "id": "firespray31/mandalorianmercenary",
@@ -9958,7 +5658,10 @@
       "agility": 2,
       "hull": 6,
       "shields": 4,
-      "actions": ["Focus", "TargetLock"],
+      "actions": [
+        "Focus",
+        "TargetLock"
+      ],
       "upgradeSlots": [
         "Cannon",
         "Missile",
@@ -9969,93 +5672,7 @@
       ],
       "ability": "",
       "cardImageUrl": "https://raw.githubusercontent.com/voidstate/xwing-card-images/refs/heads/master/images/pilots/scum/firespray31/mandalorianmercenary.png",
-      "maneuvers": [
-        {
-          "speed": 4,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 4,
-          "bearing": "k-turn",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 3,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 2,
-          "bearing": "straight",
-          "difficulty": "white"
-        },
-        {
-          "speed": 2,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-left",
-          "difficulty": "white"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "straight",
-          "difficulty": "green"
-        },
-        {
-          "speed": 1,
-          "bearing": "bank-right",
-          "difficulty": "white"
-        }
-      ]
+      "maneuvers": null
     }
   ],
   "upgrades": [
@@ -10066,7 +5683,9 @@
       "isUnique": false,
       "rulesText": "Increase your pilot skill value by 2.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -10088,7 +5707,9 @@
       "isUnique": false,
       "rulesText": "Once per round, after you perform an action, you may perform 1 free action shown in your action bar. Then receive 1 stress token.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10110,7 +5731,9 @@
       "isUnique": false,
       "rulesText": "When attacking, you may reroll 1 attack die. If the defender's pilot skill value is 2 or lower, you may instead reroll up to 2 attack dice.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10132,7 +5755,9 @@
       "isUnique": false,
       "rulesText": "When attacking a ship inside your firing arc, you may discard this card to cancel 1 of the defender's evade results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -10154,7 +5779,9 @@
       "isUnique": false,
       "rulesText": "Action: When attacking this round, you may change 1 of your focus results to a critical hit result and all of your other focus results to hit results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10176,7 +5803,9 @@
       "isUnique": true,
       "rulesText": "When attacking or defending, if there are no other friendly ships at Range 1-2, you may reroll 1 of your blank results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10198,7 +5827,9 @@
       "isUnique": false,
       "rulesText": "When attacking, if you have no stress tokens, you may change all of your focus results to hit results.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10220,7 +5851,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Combat phase, choose 1 friendly ship at Range 1. Until the end of this phase, treat that ship as if its pilot skill were equal to yours.",
       "upgradeType": "Elite",
-      "slotsRequired": ["Elite"],
+      "slotsRequired": [
+        "Elite"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10242,10 +5875,14 @@
       "isUnique": true,
       "rulesText": "After executing a green maneuver, you may recover 1 shield (up to your shield value).",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 4,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10264,7 +5901,9 @@
       "isUnique": false,
       "rulesText": "You may treat all 1- and 2-speed maneuvers as green maneuvers.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -10286,7 +5925,9 @@
       "isUnique": false,
       "rulesText": "When you declare the target of your attack, if the defender is inside your firing arc, you may receive 1 stress token to cause the defender to receive 1 stress token.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10308,7 +5949,9 @@
       "isUnique": false,
       "rulesText": "After spending your target lock, roll 1 defense die. On an evade result, immediately acquire a target lock on that same ship. You cannot spend this target lock during this attack.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10330,7 +5973,9 @@
       "isUnique": false,
       "rulesText": "Action: Choose an enemy ship at Range 1-2. If you are inside that ship's firing arc, you may acquire a target lock on that ship. Then, you may perform a free boost action.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10352,10 +5997,14 @@
       "isUnique": true,
       "rulesText": "When you reveal a green maneuver, you may perform a free barrel roll action.",
       "upgradeType": "Astromech",
-      "slotsRequired": ["Astromech"],
+      "slotsRequired": [
+        "Astromech"
+      ],
       "points": 2,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10374,7 +6023,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your focus results to a critical hit result.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10396,7 +6047,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a focus result.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 6,
       "restrictions": {
         "factions": [],
@@ -10418,7 +6071,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10440,7 +6095,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Torpedo",
-      "slotsRequired": ["Torpedo"],
+      "slotsRequired": [
+        "Torpedo"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10462,7 +6119,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a hit result.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10484,7 +6143,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock, focus): Spend your target lock and discard this card to perform this attack. The defender cannot spend evade tokens during this attack.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10506,7 +6167,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack twice.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10528,7 +6191,9 @@
       "isUnique": false,
       "rulesText": "Attack (target lock): Spend your target lock and discard this card to perform this attack. If this attack hits, each other ship at Range 1 of the defender suffers 1 damage.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10550,7 +6215,9 @@
       "isUnique": false,
       "rulesText": "Attack (focus): Discard this card to perform this attack. You may roll additional attack dice equal to your agility value, to a maximum of 3 additional dice.",
       "upgradeType": "Missile",
-      "slotsRequired": ["Missile"],
+      "slotsRequired": [
+        "Missile"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10572,7 +6239,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10594,7 +6263,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. Immediately after rolling your attack dice, you must change all of your critical hit results to hit results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 7,
       "restrictions": {
         "factions": [],
@@ -10616,7 +6287,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10638,7 +6311,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship. When you attack with this weapon, you may change 1 of your hit results to a critical hit result.",
       "upgradeType": "Cannon",
-      "slotsRequired": ["Cannon"],
+      "slotsRequired": [
+        "Cannon"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10660,7 +6335,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Perform this attack twice. Each attack cannot be modified by more than 1 focus token or spend more than 1 focus token.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 6,
       "restrictions": {
         "factions": [],
@@ -10682,7 +6359,9 @@
       "isUnique": false,
       "rulesText": "Attack (focus): Attack 1 ship (even a ship outside your firing arc). You may change 1 of your focus results to a hit result.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -10704,7 +6383,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If this attack hits, the defender suffers 1 damage and receives 1 ion token. Then cancel all dice results.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10726,7 +6407,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). Your hit results cannot be canceled by defense dice. The defender may cancel critical hit results before hit results.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10748,7 +6431,9 @@
       "isUnique": false,
       "rulesText": "Attack: Attack 1 ship (even a ship outside your firing arc). If the target of this attack is inside your firing arc, roll 1 additional attack die.",
       "upgradeType": "Turret",
-      "slotsRequired": ["Turret"],
+      "slotsRequired": [
+        "Turret"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10770,10 +6455,14 @@
       "isUnique": true,
       "rulesText": "When you are dealt a faceup Damage card, immediately flip it facedown (without resolving its effect).",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 4,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10792,10 +6481,14 @@
       "isUnique": true,
       "rulesText": "When attacking, you may reroll all of your dice. If you do so, you cannot spend focus tokens during this attack.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 2,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10814,10 +6507,14 @@
       "isUnique": true,
       "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You may change 1 focus result to a hit result. You cannot perform another attack this round.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 7,
       "restrictions": {
-        "factions": ["Rebel"],
+        "factions": [
+          "Rebel"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10836,7 +6533,9 @@
       "isUnique": false,
       "rulesText": "After you perform an attack that does not hit, you may immediately perform a primary weapon attack. You cannot perform another attack this round.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10858,7 +6557,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Activation phase, choose 1 enemy ship at Range 1-2. You may look at that ship's chosen maneuver.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -10880,7 +6581,9 @@
       "isUnique": false,
       "rulesText": "When you perform a focus action, assign 1 additional focus token to your ship.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -10902,10 +6605,14 @@
       "isUnique": true,
       "rulesText": "After you perform an attack against an enemy ship, you may suffer 2 damage to cause that ship to suffer 1 damage.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
-        "factions": ["empire"],
+        "factions": [
+          "empire"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10924,10 +6631,14 @@
       "isUnique": false,
       "rulesText": "Action: Choose up to 2 friendly ships at Range 1-2 and assign 1 focus token to each of those ships. Then receive 1 stress token.",
       "upgradeType": "Crew",
-      "slotsRequired": ["Crew"],
+      "slotsRequired": [
+        "Crew"
+      ],
       "points": 3,
       "restrictions": {
-        "factions": ["empire"],
+        "factions": [
+          "empire"
+        ],
         "ships": [],
         "isLimited": false,
         "isModification": false
@@ -10946,7 +6657,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 proton bomb token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 5,
       "restrictions": {
         "factions": [],
@@ -10968,7 +6681,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 seismic charge token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -10990,7 +6705,9 @@
       "isUnique": false,
       "rulesText": "Action: Discard this card to drop 1 proximity mine token. When a ship's base or maneuver template overlaps this token, this token detonates.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11012,7 +6729,9 @@
       "isUnique": false,
       "rulesText": "Action: Discard this card to drop 1 cluster mine token set. When a ship overlaps one of these tokens, that token detonates.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -11034,7 +6753,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver dial, you may discard this card to drop 1 ion bomb token. This token detonates at the end of the Activation phase.",
       "upgradeType": "Bomb",
-      "slotsRequired": ["Bomb"],
+      "slotsRequired": [
+        "Bomb"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11056,7 +6777,9 @@
       "isUnique": false,
       "rulesText": "Increase your hull value by 1.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11078,7 +6801,9 @@
       "isUnique": false,
       "rulesText": "Increase your shield value by 1.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -11100,7 +6825,9 @@
       "isUnique": false,
       "rulesText": "Your action bar gains the boost action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -11122,7 +6849,9 @@
       "isUnique": false,
       "rulesText": "Increase your agility value by 1. If you are hit by an attack, discard this card.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11144,7 +6873,9 @@
       "isUnique": false,
       "rulesText": "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to an evade result. You can equip this card only if you have the boost action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11166,7 +6897,9 @@
       "isUnique": false,
       "rulesText": "Your action bar gains the target lock action icon.",
       "upgradeType": "Modification",
-      "slotsRequired": ["Modification"],
+      "slotsRequired": [
+        "Modification"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11188,7 +6921,9 @@
       "isUnique": false,
       "rulesText": "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your Perform Action step during this round.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11210,7 +6945,9 @@
       "isUnique": false,
       "rulesText": "After you perform an attack, you may acquire a target lock on the defender.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11232,7 +6969,9 @@
       "isUnique": false,
       "rulesText": "When defending, you may change 1 of the attacker's hit results to a focus result. The attacker cannot reroll the die with the changed result.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 4,
       "restrictions": {
         "factions": [],
@@ -11254,7 +6993,9 @@
       "isUnique": false,
       "rulesText": "When attacking, during the Modify Attack Dice step, you may cancel all of your dice results. Then, you may add 2 hit results. Your dice cannot be modified again during this attack.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11276,7 +7017,9 @@
       "isUnique": false,
       "rulesText": "When you reveal a maneuver, you may rotate your dial to another maneuver with the same bearing. You cannot rotate to a red maneuver if you have any stress tokens. You can only equip this upgrade if you have the system upgrade icon.",
       "upgradeType": "System",
-      "slotsRequired": ["System"],
+      "slotsRequired": [
+        "System"
+      ],
       "points": 0,
       "restrictions": {
         "factions": [],
@@ -11298,7 +7041,9 @@
       "isUnique": false,
       "rulesText": "At the start of the Combat phase, you may discard this card and receive 1 stress token. If you do, until the end of the round, when attacking or defending, you may convert all of your focus results to hit or evade results.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11320,7 +7065,9 @@
       "isUnique": false,
       "rulesText": "When you reveal your maneuver, you may discard this card to instead perform a white [0 stop] maneuver. Then receive 1 stress token.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -11342,7 +7089,9 @@
       "isUnique": false,
       "rulesText": "Attack (energy): Attack 1 ship. You may receive 1 ion token to roll 1 additional attack die. If you do not have an energy token, you cannot perform this attack.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11364,7 +7113,9 @@
       "isUnique": false,
       "rulesText": "When you are destroyed, each other ship at Range 1 suffers 1 damage.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11386,7 +7137,9 @@
       "isUnique": false,
       "rulesText": "During the Combat phase, instead of performing an attack, you may receive 1 ion token and suffer 1 damage to cause each ship at Range 1 to suffer 1 damage.",
       "upgradeType": "Illicit",
-      "slotsRequired": ["Illicit"],
+      "slotsRequired": [
+        "Illicit"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11408,11 +7161,17 @@
       "isUnique": true,
       "rulesText": "Your action bar gains the evade action icon.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 1,
       "restrictions": {
-        "factions": ["Rebel"],
-        "ships": ["YT1300"],
+        "factions": [
+          "Rebel"
+        ],
+        "ships": [
+          "YT1300"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -11430,11 +7189,17 @@
       "isUnique": true,
       "rulesText": "After you execute a 3-speed bank maneuver or a 3-speed turn maneuver, you may perform a free boost action.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["Scum"],
-        "ships": ["Firespray31"],
+        "factions": [
+          "Scum"
+        ],
+        "ships": [
+          "Firespray31"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -11452,11 +7217,17 @@
       "isUnique": false,
       "rulesText": "You may equip up to 2 Modification upgrades (instead of 1). You cannot equip this upgrade if your pilot skill value is 4 or lower.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["empire"],
-        "ships": ["TIEInterceptor"],
+        "factions": [
+          "empire"
+        ],
+        "ships": [
+          "TIEInterceptor"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -11474,11 +7245,17 @@
       "isUnique": false,
       "rulesText": "After you perform a boost or barrel roll action, you may perform a free evade action.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 0,
       "restrictions": {
-        "factions": ["empire"],
-        "ships": ["TIEAdvanced"],
+        "factions": [
+          "empire"
+        ],
+        "ships": [
+          "TIEAdvanced"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -11496,11 +7273,17 @@
       "isUnique": true,
       "rulesText": "While you have a cannon upgrade card equipped, you cannot perform primary weapon attacks and you may perform cannon secondary weapon attacks against ships outside your firing arc.",
       "upgradeType": "Title",
-      "slotsRequired": ["Title"],
+      "slotsRequired": [
+        "Title"
+      ],
       "points": 5,
       "restrictions": {
-        "factions": ["Rebel"],
-        "ships": ["YT2400"],
+        "factions": [
+          "Rebel"
+        ],
+        "ships": [
+          "YT2400"
+        ],
         "isLimited": false,
         "isModification": false
       },
@@ -11518,7 +7301,9 @@
       "isUnique": false,
       "rulesText": "During the End phase, you may receive 1 evade or focus token. If you do not have any focus or evade tokens at the end of the Combat phase, you may not use this ability until the end of the next round.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11540,7 +7325,9 @@
       "isUnique": false,
       "rulesText": "When you fully execute a maneuver, you may postpone triggering any abilities that occur after executing that maneuver until after you perform an action.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11562,7 +7349,9 @@
       "isUnique": false,
       "rulesText": "When you reveal a [3 straight] maneuver, you may treat it as a green maneuver.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -11584,7 +7373,9 @@
       "isUnique": false,
       "rulesText": "When a friendly ship at Range 1-2 is attacking a ship you have locked, it may treat that ship as being locked as well.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 3,
       "restrictions": {
         "factions": [],
@@ -11606,7 +7397,9 @@
       "isUnique": false,
       "rulesText": "When defending, you may spend a focus token to change 1 of your blank results to an evade result.",
       "upgradeType": "Tech",
-      "slotsRequired": ["Tech"],
+      "slotsRequired": [
+        "Tech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11628,7 +7421,9 @@
       "isUnique": false,
       "rulesText": "When you are dealt a faceup Damage card with the Ship trait, you may immediately discard that card (before resolving its effect). Then, discard this Upgrade card.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11650,7 +7445,9 @@
       "isUnique": false,
       "rulesText": "When attacking, after you spend a focus token, you may receive 1 stress token to receive 1 focus token.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 2,
       "restrictions": {
         "factions": [],
@@ -11672,7 +7469,9 @@
       "isUnique": false,
       "rulesText": "You may treat all 3-speed maneuvers as green maneuvers.",
       "upgradeType": "SalvagedAstromech",
-      "slotsRequired": ["SalvagedAstromech"],
+      "slotsRequired": [
+        "SalvagedAstromech"
+      ],
       "points": 1,
       "restrictions": {
         "factions": [],
@@ -11782,7 +7581,6 @@
     "direct-hit",
     "direct-hit",
     "direct-hit",
-
     "blinded-pilot",
     "blinded-pilot",
     "damaged-cockpit",
@@ -11791,7 +7589,6 @@
     "shaken-pilot",
     "stunned-pilot",
     "stunned-pilot",
-
     "console-fire",
     "console-fire",
     "damaged-engine",
