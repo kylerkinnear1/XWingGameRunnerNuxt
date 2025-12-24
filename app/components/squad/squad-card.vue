@@ -10,6 +10,7 @@ const props = defineProps<{
 }>();
 
 const { cards } = useCards();
+const { calculateSquadReadPoints } = useSquadPoints();
 
 const factionIconColors = {
   [Faction.Rebel]: "text-red-500",
@@ -42,28 +43,19 @@ const squadDetails = computed(() => {
   }
 
   const ships: string[] = [];
-  let totalPoints = 0;
-
   props.squad.ships.forEach((ship) => {
     const card = cards.value!.pilots.find((p) => p.id === ship.pilotId);
     if (card) {
       ships.push(card.shipType);
-      totalPoints += card.points;
-
-      // Add upgrade points
-      ship.upgradeIds?.forEach((upgradeId) => {
-        const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
-        if (upgrade) {
-          totalPoints += upgrade.points;
-        }
-      });
     }
   });
 
+  const points = calculateSquadReadPoints(props.squad, props.pointLimit);
+
   return {
     ships,
-    totalPoints,
-    isOverLimit: props.pointLimit ? totalPoints > props.pointLimit : false,
+    totalPoints: points.total,
+    isOverLimit: points.isOverLimit,
   };
 });
 </script>

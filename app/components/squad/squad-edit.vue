@@ -13,6 +13,7 @@ const { selectedSquad, formPilots, removePilot, refreshList, pointLimit, addPilo
 const { cards, getPilotsForFaction } = useCards();
 const { getUpgradesForSlot, getUpgrade, canAddUpgrade, getAllUpgrades } =
   useUpgrades();
+const { calculateSquadPoints } = useSquadPoints();
 
 const form = ref<{ name: string; faction: Faction }>({
   name: "",
@@ -56,41 +57,7 @@ const pilotDetails = computed(() => {
 
 // Calculate total points live
 const squadPoints = computed(() => {
-  if (!cards.value) return { total: 0, isOverLimit: false };
-
-  let total = 0;
-
-  formPilots.value.forEach((pilot) => {
-    const card = cards.value!.pilots.find((p) => p.id === pilot.pilotId);
-    if (card) {
-      total += card.points;
-
-      // Check if this ship has Vaksai (reduces upgrade costs by 1)
-      const hasVaksai = pilot.upgradeIds?.some((upgradeId) => {
-        const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
-        return upgrade?.name === "Vaksai";
-      }) || false;
-
-      // Add upgrade points (only count upgrades that exist in the database)
-      pilot.upgradeIds?.forEach((upgradeId) => {
-        const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
-        if (upgrade) {
-          // Vaksai reduces each upgrade cost by 1 (minimum 0)
-          let upgradeCost = upgrade.points;
-          if (hasVaksai && upgrade.name !== "Vaksai") {
-            upgradeCost = Math.max(0, upgradeCost - 1);
-          }
-          total += upgradeCost;
-        }
-        // If upgrade not found, don't count it (skip silently)
-      });
-    }
-  });
-
-  return {
-    total,
-    isOverLimit: total > pointLimit.value,
-  };
+  return calculateSquadPoints(formPilots.value, pointLimit.value);
 });
 
 // Filtered upgrades for custom picker

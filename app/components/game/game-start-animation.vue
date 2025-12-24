@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>();
 
 const { cards } = useCards();
+const { calculateSquadReadPoints } = useSquadPoints();
 
 const animationPhase = ref<"initial" | "squadsIn" | "vsIn" | "ready">(
   "initial"
@@ -19,22 +20,7 @@ const animationPhase = ref<"initial" | "squadsIn" | "vsIn" | "ready">(
 
 // Calculate squad points
 const getSquadPoints = (squad: SquadReadDto) => {
-  if (!cards.value) return 0;
-
-  let total = 0;
-  squad.ships.forEach((ship) => {
-    const pilot = cards.value!.pilots.find((p) => p.id === ship.pilotId);
-    if (pilot) {
-      total += pilot.points;
-      ship.upgradeIds?.forEach((upgradeId) => {
-        const upgrade = cards.value!.upgrades.find((u) => u.id === upgradeId);
-        if (upgrade) {
-          total += upgrade.points;
-        }
-      });
-    }
-  });
-  return total;
+  return calculateSquadReadPoints(squad).total;
 };
 
 const player1Ships = computed(() => {
