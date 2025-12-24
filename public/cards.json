@@ -1865,6 +1865,11 @@
         },
         {
           "speed": 3,
+          "bearing": "talon-roll-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
           "bearing": "bank-left",
           "difficulty": "white"
         },
@@ -1881,11 +1886,6 @@
         {
           "speed": 3,
           "bearing": "turn-right",
-          "difficulty": "red"
-        },
-        {
-          "speed": 3,
-          "bearing": "talon-roll-left",
           "difficulty": "red"
         },
         {

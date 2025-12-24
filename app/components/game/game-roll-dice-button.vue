@@ -3,10 +3,12 @@ import type { AttackDie, DefenseDie } from "#shared/dice";
 
 const showDiceModal = ref(false);
 const showCompareModal = ref(false);
+const showDiceOptions = ref(false);
 const diceType = ref<"attack" | "defense" | "both">("attack");
 const diceCount = ref(1);
 const attackDiceCount = ref(1);
 const defenseDiceCount = ref(1);
+const buttonContainer = ref<HTMLElement | null>(null);
 
 const attackDice = ref<AttackDie[]>([]);
 const defenseDice = ref<DefenseDie[]>([]);
@@ -19,6 +21,7 @@ const showAttackRoll = ref(false);
 const showDefenseRoll = ref(false);
 
 function openModal(type: "attack" | "defense" | "both") {
+  showDiceOptions.value = false;
   diceType.value = type;
   if (type === "both") {
     attackDiceCount.value = 1;
@@ -94,30 +97,56 @@ function handleDefenseModifyComplete(dice: DefenseDie[]) {
     closeModal();
   }
 }
+
+function handleClickOutside(event: MouseEvent) {
+  if (buttonContainer.value && !buttonContainer.value.contains(event.target as Node)) {
+    showDiceOptions.value = false;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
-  <div class="fixed bottom-4 right-4 z-50">
-    <div class="flex flex-col gap-2">
-      <div class="flex gap-2">
+  <div ref="buttonContainer" class="fixed bottom-4 right-4 z-50 flex items-center">
+    <div class="flex flex-col items-end gap-2">
+      <!-- Dice Options (shown above button when clicked) -->
+      <div
+        v-if="showDiceOptions"
+        class="flex flex-col gap-2 bg-gray-800 border border-gray-700 rounded-lg p-2 shadow-xl"
+      >
         <button
           @click="openModal('attack')"
-          class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-lg transition-colors"
+          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
         >
           Roll Attack Dice
         </button>
         <button
           @click="openModal('defense')"
-          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-colors"
+          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
         >
           Roll Defense Dice
         </button>
+        <button
+          @click="openModal('both')"
+          class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded transition-colors whitespace-nowrap"
+        >
+          Roll Both
+        </button>
       </div>
+      
+      <!-- Main Roll Dice Button -->
       <button
-        @click="openModal('both')"
-        class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-lg transition-colors"
+        @click="showDiceOptions = !showDiceOptions"
+        class="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg shadow-2xl border-b-4 border-teal-800 hover:border-teal-900 transition-all"
       >
-        Roll Both
+        Roll Dice
       </button>
     </div>
 
