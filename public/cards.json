@@ -1,4 +1,4036 @@
 {
+  "ships": [
+    {
+      "shipType": "Aggressor",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Alpha",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Arc",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "BWing",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "AttackShuttle",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Auzituck",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "YWing",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "KWing",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "EWing",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Protectorate",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "talon-roll-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "talon-roll-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Firespray",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "Misthunter",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Hawk",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "Jumpmaster",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Kihraxz",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Shuttle",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "ShadowCaster",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Kimogila",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Interceptor",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "ResistanceBomber",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Falcon",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Quadjumper",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "AWing",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Scurrg",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Phantom2",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Starviper",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "XWing",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "T70",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "TieAdvancedProtoype",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "TieAdvanced",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "TieAggressor",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TiePunisher",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        }
+      ]
+    },
+    {
+      "shipType": "TieDefender",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "TieFO",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TieInterceptor",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TieFighter",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TiePhantom",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TieReaper",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "TieBomber",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TieSF",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "TieStriker",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "s-loop-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "TieSilencer",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "talon-roll-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "UpsilonShuttle",
+      "maneuvers": [
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "UWing",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Ghost",
+      "maneuvers": [
+        {
+          "speed": 5,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Decimator",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "Y2400",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 4,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        }
+      ]
+    },
+    {
+      "shipType": "YV666",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "red"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 0,
+          "bearing": "stop",
+          "difficulty": "red"
+        }
+      ]
+    },
+    {
+      "shipType": "Z95",
+      "maneuvers": [
+        {
+          "speed": 4,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "straight",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 3,
+          "bearing": "k-turn",
+          "difficulty": "red"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-left",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "bank-right",
+          "difficulty": "green"
+        },
+        {
+          "speed": 2,
+          "bearing": "turn-right",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-left",
+          "difficulty": "white"
+        },
+        {
+          "speed": 1,
+          "bearing": "straight",
+          "difficulty": "green"
+        },
+        {
+          "speed": 1,
+          "bearing": "bank-right",
+          "difficulty": "white"
+        }
+      ]
+    }
+  ],
   "pilots": [
     {
       "id": "firespray31/bobafett",
