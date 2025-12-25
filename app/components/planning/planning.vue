@@ -82,11 +82,8 @@ const allDialsAssigned = computed(() => {
   return allShips.value.every((s) => !!selectedDials.value[s.ship.shipId]);
 });
 
-// Determine if we should show all ships (when all dials are assigned) or just current player's ships
+// Always show only the current player's ships to keep information secret
 const shipsToShow = computed(() => {
-  if (allDialsAssigned.value) {
-    return allShips.value;
-  }
   return currentPlayerShips.value;
 });
 
@@ -116,11 +113,19 @@ function selectDial(shipId: string, maneuver: Maneuver) {
 }
 
 function confirmDials() {
+  console.log("confirmDials called", {
+    isInitiativePlayer: isInitiativePlayer.value,
+    currentPlayerId: currentPlayerId.value,
+    allDialsAssigned: allDialsAssigned.value,
+    selectedDialsCount: Object.keys(selectedDials.value).length,
+  });
+  
   if (isInitiativePlayer.value) {
     // Switch to second player
     currentPlayerId.value = otherPlayerId.value;
   } else {
     // Both players done - emit complete event with dials
+    console.log("Emitting completePlanning event", selectedDials.value);
     emit("completePlanning", { ...selectedDials.value });
   }
 }
@@ -263,7 +268,16 @@ function groupManeuversBySpeed(
     <div class="p-6 border-t border-gray-700 bg-gray-800">
       <div class="max-w-6xl mx-auto flex items-center justify-center">
         <AppButton
-          v-if="allDialsAssigned"
+          v-if="allDialsAssigned && !isInitiativePlayer"
+          variant="primary"
+          size="lg"
+          @click="confirmDials"
+          class="uppercase tracking-wide"
+        >
+          Complete Planning
+        </AppButton>
+        <AppButton
+          v-else-if="allDialsAssigned"
           variant="primary"
           size="lg"
           @click="beginActivation"

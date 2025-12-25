@@ -48,7 +48,15 @@ export function handlePlanningComplete(
   Object.entries(step.dials).forEach(([shipId, maneuver]) => {
     const ship = state.ships.find((s) => s.shipId === shipId);
     if (ship) {
+
+      if (!maneuver) {
+        console.error(`"No maneuver found for ship ${shipId}`);
+      }
+      console.info(`Maneuver found for ship ${shipId}.`);
       ship.dialAssigned = maneuver;
+    }
+    else {
+      console.error("Here's the issue...");
     }
   });
   state.currentStep += 1;

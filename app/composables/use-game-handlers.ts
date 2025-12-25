@@ -1,4 +1,5 @@
-import type { Maneuver, ActionType, CollisionType } from "#shared/enums";
+import type { Maneuver, ActionType } from "#shared/enums";
+import { CollisionType } from "#shared/enums";
 import type { GameStepDto } from "#shared/game-state-dto";
 import type { CurrentGameState } from "#shared/game-state-dto";
 import type { AttackDieFace, DefenseDieFace } from "#shared/dice";
@@ -45,15 +46,34 @@ export const useGameHandlers = (
   };
 
   const handlePlanningComplete = async (dials: Record<string, Maneuver>) => {
-    await addStep(
-      {
-        type: "planning_complete",
-        dials,
-        timestamp: new Date(),
-      },
-      gameData,
-      refreshCallback
-    );
+    console.log("handlePlanningComplete called", dials);
+    try {
+      await addStep(
+        {
+          type: "planning_complete",
+          dials,
+          timestamp: new Date(),
+        },
+        gameData,
+        refreshCallback
+      );
+      console.log("planning_complete step added successfully");
+      
+      await moveToStepOrPush(
+        "activation_step",
+        {
+          type: "activation_step",
+          shipId: "",
+          timestamp: new Date(),
+        },
+        gameData,
+        refreshCallback
+      );
+      console.log("activation_step pushed after planning_complete");
+    } catch (error) {
+      console.error("Error adding planning_complete step:", error);
+      throw error;
+    }
   };
 
   const selectInitiative = async (playerId: string) => {

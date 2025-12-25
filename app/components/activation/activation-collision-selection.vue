@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
-import { CollisionType } from "#shared/enums";
-import { getShipIcon } from "#shared/xwing-icons";
+import { CollisionType, ManeuverDifficulty } from "#shared/enums";
+import { getShipIcon, getBearingIcon } from "#shared/xwing-icons";
 
 const props = defineProps<{
   ship: ShipStateDto;
@@ -60,46 +60,30 @@ function handleCollision(
             {{ pilot?.pilotName || "Unknown" }}
           </h3>
           <!-- Assigned Dial Display -->
-          <div v-if="ship.dialAssigned" class="flex items-center gap-2 text-sm">
-            <span class="text-gray-400">Dial:</span>
-            <span
-              class="xwing-icon text-xl"
-              :class="{
-                'text-green-500': ship.dialAssigned.difficulty === 'green',
-                'text-gray-100': ship.dialAssigned.difficulty === 'white',
-                'text-red-500': ship.dialAssigned.difficulty === 'red',
-              }"
-            >
-              {{
-                (() => {
-                  const bearingSymbols = {
-                    straight: "8",
-                    "bank-left": "7",
-                    "bank-right": "9",
-                    "turn-left": "4",
-                    "turn-right": "6",
-                    "k-turn": "K",
-                    "sloop-left": "1",
-                    "sloop-right": "3",
-                    "tallon-roll-left": ":",
-                    "tallon-roll-right": ";",
-                    stationary: "5",
-                    reverse: "S",
-                  };
-                  return bearingSymbols[ship.dialAssigned.bearing];
-                })()
-              }}
-            </span>
-            <span
-              class="text-lg font-bold"
-              :class="{
-                'text-green-500': ship.dialAssigned.difficulty === 'green',
-                'text-gray-100': ship.dialAssigned.difficulty === 'white',
-                'text-red-500': ship.dialAssigned.difficulty === 'red',
-              }"
-            >
-              {{ ship.dialAssigned.speed }}
-            </span>
+          <div v-if="ship.dialAssigned" class="flex items-center gap-2 mt-2">
+            <span class="text-gray-400 text-sm">Dial:</span>
+            <div class="flex items-center gap-1 px-3 py-1 bg-teal-900/30 border border-teal-700 rounded">
+              <span
+                class="xwing-icon text-2xl"
+                :class="{
+                  'text-green-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Green,
+                  'text-gray-100': ship.dialAssigned.difficulty === ManeuverDifficulty.White,
+                  'text-red-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Red,
+                }"
+              >
+                {{ getBearingIcon(ship.dialAssigned.bearing) }}
+              </span>
+              <span
+                class="text-xl font-bold"
+                :class="{
+                  'text-green-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Green,
+                  'text-gray-100': ship.dialAssigned.difficulty === ManeuverDifficulty.White,
+                  'text-red-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Red,
+                }"
+              >
+                {{ ship.dialAssigned.speed }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -108,6 +92,35 @@ function handleCollision(
     <!-- Maneuver Result Options -->
     <div class="flex-1 overflow-y-auto p-6">
       <div class="max-w-4xl mx-auto">
+        <!-- Dial Display - Large and Prominent -->
+        <div v-if="ship.dialAssigned" class="mb-8 text-center">
+          <div class="text-gray-400 text-sm uppercase tracking-wide mb-4">
+            Selected Maneuver
+          </div>
+          <div class="flex items-center justify-center gap-4">
+            <span
+              class="xwing-icon text-7xl"
+              :class="{
+                'text-green-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Green,
+                'text-gray-100': ship.dialAssigned.difficulty === ManeuverDifficulty.White,
+                'text-red-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Red,
+              }"
+            >
+              {{ getBearingIcon(ship.dialAssigned.bearing) }}
+            </span>
+            <span
+              class="text-7xl font-bold"
+              :class="{
+                'text-green-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Green,
+                'text-gray-100': ship.dialAssigned.difficulty === ManeuverDifficulty.White,
+                'text-red-500': ship.dialAssigned.difficulty === ManeuverDifficulty.Red,
+              }"
+            >
+              {{ ship.dialAssigned.speed }}
+            </span>
+          </div>
+        </div>
+        
         <!-- Successful Maneuver -->
         <div>
           <h3
@@ -119,7 +132,7 @@ function handleCollision(
             @click="handleSuccessfulManeuver"
             class="w-full p-6 border-2 border-green-600 bg-green-900/20 hover:bg-green-900/40 text-green-100 font-semibold text-lg transition-all hover:scale-[1.02]"
           >
-            ✓ Successful Maneuver (No Collision)
+            Done
           </button>
         </div>
       </div>

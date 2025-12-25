@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
-import { ActionType } from "#shared/enums";
-import { getShipIcon, getActionIcon } from "#shared/xwing-icons";
+import type { ActionType } from "#shared/enums";
+import { getShipIcon } from "#shared/xwing-icons";
 
 const props = defineProps<{
   ship: ShipStateDto;
@@ -20,20 +20,6 @@ const colorClasses = {
   red: "text-red-400",
   gray: "text-gray-400",
 };
-
-// Get available actions from pilot
-const availableActions = computed(() => {
-  if (!props.pilot?.actions) return [];
-  return props.pilot.actions;
-});
-
-function handlePerformAction(action: ActionType) {
-  emit("performAction", action);
-}
-
-function handleSkipAction() {
-  emit("skipAction");
-}
 </script>
 
 <template>
@@ -69,57 +55,15 @@ function handleSkipAction() {
 
     <!-- Action Options -->
     <div class="flex-1 overflow-y-auto p-6">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <!-- Skip Action / Done with Actions -->
-        <div class="space-y-3">
-          <AppButton
-            variant="primary"
-            size="lg"
-            @click="handleSkipAction"
-            class="w-full p-6 bg-gray-800 hover:bg-gray-700 border-gray-600 hover:border-gray-500 text-gray-100 hover:scale-[1.02]"
-          >
-            ⏭️ Skip Action
-          </AppButton>
-          <AppButton
-            variant="primary"
-            size="lg"
-            @click="emit('doneWithActions')"
-            class="w-full p-6 bg-teal-900/20 hover:bg-teal-900/40 border-teal-600 hover:border-teal-500 text-teal-100 hover:scale-[1.02]"
-          >
-            ✓ Done with Actions
-          </AppButton>
-        </div>
-
-        <!-- Available Actions -->
-        <div v-if="availableActions.length > 0">
-          <h3
-            class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3"
-          >
-            Perform Action
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <button
-              v-for="action in availableActions"
-              :key="action"
-              @click="handlePerformAction(action as ActionType)"
-              class="p-4 border-2 border-teal-600 bg-teal-900/20 hover:bg-teal-900/40 hover:border-teal-500 transition-all text-center"
-            >
-              <div class="flex flex-col items-center gap-2">
-                <span class="xwing-icon text-3xl text-teal-400">
-                  {{ getActionIcon(action) }}
-                </span>
-                <span class="text-sm font-semibold text-gray-100">
-                  {{ action }}
-                </span>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        <div v-else class="text-center py-8 text-gray-500">
-          <p class="mb-2">No actions available for this ship</p>
-          <p class="text-sm">Skip to continue</p>
-        </div>
+      <div class="max-w-4xl mx-auto flex items-center justify-center">
+        <AppButton
+          variant="primary"
+          size="lg"
+          @click="emit('doneWithActions')"
+          class="w-full max-w-md p-6 bg-teal-900/20 hover:bg-teal-900/40 border-teal-600 hover:border-teal-500 text-teal-100 hover:scale-[1.02]"
+        >
+          Done with Actions
+        </AppButton>
       </div>
     </div>
   </div>
