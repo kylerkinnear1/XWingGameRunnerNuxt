@@ -151,7 +151,7 @@ async function handleRollDice() {
         size="lg"
         :disabled="isRolling || diceCount <= 0"
         @click="handleRollDice"
-        class="min-w-[200px]"
+        class="uppercase tracking-wide min-w-[200px]"
       >
         {{ isRolling ? "Rolling..." : "Roll Attack Dice" }}
       </AppButton>

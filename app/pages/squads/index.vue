@@ -29,10 +29,11 @@ watch(
         .map(
           ([shipKey, pilots]: [string, PilotDto[]]) => ({
             shipKey,
-            shipName: pilots[0]?.shipType || "Unknown Ship",
+            shipName: pilots[0]?.shipType || shipKey || "Unknown Ship",
             pilots,
           })
         )
+        .filter((group) => group.pilots.length > 0)
         .sort((a, b) => a.shipName.localeCompare(b.shipName));
     } else {
       shipGroups.value = [];

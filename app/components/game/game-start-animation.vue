@@ -139,7 +139,7 @@ function handleStart() {
               variant="primary"
               size="lg"
               @click="handleStart"
-              class="px-12 py-4 text-xl shadow-2xl hover:shadow-teal-500/50 transition-opacity duration-700 ease-out start-button-pulse"
+              class="px-12 py-4 text-xl uppercase tracking-wider shadow-2xl hover:shadow-teal-500/50 transition-opacity duration-700 ease-out start-button-pulse"
               :class="[
                 animationPhase === 'ready'
                   ? 'opacity-100 pointer-events-auto'

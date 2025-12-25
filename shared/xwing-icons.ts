@@ -1,3 +1,5 @@
+import { Bearing } from "./enums";
+
 export const SHIP_ICONS: Record<string, string> = {
   // Aggressor Assault Fighter
   Aggressor: "i",
@@ -258,6 +260,23 @@ export const UPGRADE_SLOT_ICONS: Record<string, string> = {
   Command: "V",
 } as const;
 
+export const BEARING_ICONS: Record<string, string> = {
+  "straight": "8",
+  "bank-left": "7",
+  "bank-right": "9",
+  "turn-left": "4",
+  "turn-right": "6",
+  "k-turn": "K",
+  "sloop-left": "1",
+  "sloop-right": "3",
+  "s-loop-left": "1", // Alternative format with hyphen
+  "s-loop-right": "3", // Alternative format with hyphen
+  "talon-roll-left": ":",
+  "talon-roll-right": ";",
+  "stationary": "5",
+  "reverse": "S",
+} as const;
+
 export function getShipIcon(shipType: string): string {
   return SHIP_ICONS[shipType] || "?";
 }
@@ -307,4 +326,31 @@ export const TOKEN_COLORS: Record<string, string> = {
 
 export function getTokenColor(tokenType: string): string {
   return TOKEN_COLORS[tokenType] || "text-gray-300";
+}
+
+export function getBearingIcon(bearing: string | Bearing): string {
+  // Convert to string explicitly to handle enum values
+  let bearingStr = String(bearing);
+  
+  // Remove any extra spaces or duplicates (in case of stringification issues)
+  const parts = bearingStr.split(' ');
+  bearingStr = (parts[0] || bearingStr).trim();
+  
+  // Try direct lookup first
+  const directMatch = BEARING_ICONS[bearingStr];
+  if (directMatch) {
+    return directMatch;
+  }
+  
+  // Try case-insensitive lookup
+  const lowerBearing = bearingStr.toLowerCase();
+  for (const [key, value] of Object.entries(BEARING_ICONS)) {
+    if (key.toLowerCase() === lowerBearing) {
+      return value || "?";
+    }
+  }
+  
+  // Fallback - return "?" which shows as missile icon in font
+  console.warn(`Unknown bearing: ${bearingStr}`, bearing);
+  return "?";
 }

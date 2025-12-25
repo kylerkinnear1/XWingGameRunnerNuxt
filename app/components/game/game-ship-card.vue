@@ -565,9 +565,9 @@ function handleDestructionComplete() {
               variant="accent"
               size="md"
               @click.stop="handleDestroyClick"
-              class="w-full mt-2"
+              class="w-full mt-2 uppercase tracking-wide mb-3"
             >
-              💥 Destroy Ship
+              Destroy Ship
             </AppButton>
           </div>
         </div>

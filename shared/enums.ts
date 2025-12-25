@@ -19,8 +19,8 @@ export enum Bearing {
   KTurn = "k-turn",
   SloopLeft = "sloop-left",
   SloopRight = "sloop-right",
-  TallonRollLeft = "tallon-roll-left",
-  TallonRollRight = "tallon-roll-right",
+  TallonRollLeft = "talon-roll-left",
+  TallonRollRight = "talon-roll-right",
   Stationary = "stationary",
   Reverse = "reverse",
 }

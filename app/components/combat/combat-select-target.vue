@@ -404,6 +404,7 @@ function endCombat() {
           size="lg"
           :disabled="!canDeclareAttack"
           @click="declareAttack"
+          class="uppercase tracking-wide"
         >
           Declare Attack
         </AppButton>
@@ -411,6 +412,7 @@ function endCombat() {
           variant="accent"
           size="lg"
           @click="endCombat"
+          class="uppercase tracking-wide"
         >
           End Combat
         </AppButton>

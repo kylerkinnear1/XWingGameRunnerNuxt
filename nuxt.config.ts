@@ -29,5 +29,10 @@ export default defineNuxtConfig({
   sourcemap: {
     server: true,
     client: true
-  }
+  },
+
+  devServer: {
+    host: '0.0.0.0',
+    port: 3000
+  },
 })

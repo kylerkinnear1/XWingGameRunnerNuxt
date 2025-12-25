@@ -42,7 +42,8 @@ export const useCards = () => {
     const grouped = new Map<string, PilotDto[]>();
 
     for (const pilot of pilots) {
-      const shipKey = pilot.shipType;
+      // Ensure we have a valid shipType - use trimmed value or fallback
+      const shipKey = (pilot.shipType || "").trim() || "Unknown Ship";
       if (!grouped.has(shipKey)) {
         grouped.set(shipKey, []);
       }

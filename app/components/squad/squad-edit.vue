@@ -364,8 +364,8 @@ function findPilotByName(pilotName: string, faction: Faction): CardPilotDto | nu
 
   const normalizedName = pilotName.toLowerCase().trim();
   
-  // First, try to find in the selected faction
-  let pilots = getPilotsForFaction(faction);
+  // ONLY search within the selected faction - never fall back to other factions
+  const pilots = getPilotsForFaction(faction);
   
   // Try exact match first
   let pilot = pilots.find(
@@ -380,14 +380,20 @@ function findPilotByName(pilotName: string, faction: Faction): CardPilotDto | nu
     );
   }
 
-  // If not found in selected faction, search all pilots
-  if (!pilot && cards.value) {
-    const allPilots = cards.value.pilots;
-    pilot = allPilots.find(
-      (p) => p.pilotName.toLowerCase().trim() === normalizedName ||
-             p.pilotName.toLowerCase().trim().includes(normalizedName) ||
-             normalizedName.includes(p.pilotName.toLowerCase().trim())
+  // If multiple matches found with same name, prefer one that matches the faction exactly
+  if (pilot) {
+    const matches = pilots.filter((p) => 
+      p.pilotName.toLowerCase().trim() === normalizedName ||
+      (p.pilotName.toLowerCase().trim().includes(normalizedName) &&
+       normalizedName.includes(p.pilotName.toLowerCase().trim()))
     );
+    if (matches.length > 1) {
+      // If ambiguous, prefer exact faction match (should already be filtered, but double-check)
+      const exactFactionMatch = matches.find((p) => p.factionKey === faction.toLowerCase());
+      if (exactFactionMatch) {
+        pilot = exactFactionMatch;
+      }
+    }
   }
 
   return pilot || null;
@@ -786,7 +792,7 @@ function closeImportDialog() {
             variant="primary"
             size="lg"
             @click="openImportDialog"
-            class="bg-blue-600 hover:bg-blue-500 border-blue-800 hover:border-blue-900"
+            class="uppercase tracking-wide bg-blue-600 hover:bg-blue-500 border-blue-800 hover:border-blue-900"
           >
             Import Squad
           </AppButton>
@@ -795,6 +801,7 @@ function closeImportDialog() {
             variant="primary"
             size="lg"
             :disabled="loading || !form.name"
+            class="uppercase tracking-wide"
           >
             {{ loading ? "Saving..." : "Save Squad" }}
           </AppButton>

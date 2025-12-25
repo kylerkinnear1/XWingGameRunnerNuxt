@@ -3,7 +3,7 @@ import type { ShipStateDto } from "#shared/game-state-dto";
 import type { PilotDto } from "#shared/cards";
 import type { Maneuver } from "#shared/enums";
 import { ManeuverDifficulty, Bearing } from "#shared/enums";
-import { getShipIcon } from "#shared/xwing-icons";
+import { getShipIcon, getBearingIcon } from "#shared/xwing-icons";
 
 interface ShipWithPilot {
   ship: ShipStateDto;
@@ -103,23 +103,8 @@ function getManeuverDisplay(maneuver: Maneuver): {
     [ManeuverDifficulty.Red]: "text-red-500",
   };
 
-  const bearingSymbols: Record<Bearing, string> = {
-    [Bearing.Straight]: "8",
-    [Bearing.BankLeft]: "7",
-    [Bearing.BankRight]: "9",
-    [Bearing.TurnLeft]: "4",
-    [Bearing.TurnRight]: "6",
-    [Bearing.KTurn]: "K",
-    [Bearing.SloopLeft]: "1",
-    [Bearing.SloopRight]: "3",
-    [Bearing.TallonRollLeft]: ":",
-    [Bearing.TallonRollRight]: ";",
-    [Bearing.Stationary]: "5",
-    [Bearing.Reverse]: "S",
-  };
-
   return {
-    bearing: bearingSymbols[maneuver.bearing] || "?",
+    bearing: getBearingIcon(maneuver.bearing),
     speed: maneuver.speed,
     difficulty: maneuver.difficulty,
     color: colorMap[maneuver.difficulty],
@@ -282,6 +267,7 @@ function groupManeuversBySpeed(
           variant="primary"
           size="lg"
           @click="beginActivation"
+          class="uppercase tracking-wide"
         >
           Begin Activation
         </AppButton>
@@ -291,6 +277,7 @@ function groupManeuversBySpeed(
           size="lg"
           :disabled="!allCurrentPlayerDialsAssigned"
           @click="confirmDials"
+          class="uppercase tracking-wide"
         >
           {{
             isInitiativePlayer ? "Pass Device to Player 2" : "Complete Planning"
